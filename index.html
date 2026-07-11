@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ▼ 検索・SNS用の基本情報。公開URLが決まったら og:url と canonical を書き換えてください -->
+<title>高校物理 解説チャンネル｜リードα全問解説・授業動画まとめ（力学・熱力学・波動・電磁気・原子）</title>
+<meta name="description" content="高校物理の解説チャンネル「高校物理 解説チャンネル」の動画まとめページです。力学・熱力学・波動・電磁気・原子の授業動画と、リードα物理基礎・物理の全問解説（第1〜27章）を分野別にまとめています。定期テスト対策・大学受験対策にどうぞ。">
+<link rel="canonical" href="https://REPLACE-WITH-YOUR-GITHUB-PAGES-URL/">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="高校物理 解説チャンネル">
+<meta property="og:title" content="高校物理 解説チャンネル｜リードα全問解説・授業動画まとめ">
+<meta property="og:description" content="力学・熱力学・波動・電磁気・原子の授業動画と、リードα全問解説（第1〜27章）を分野別にまとめました。定期テスト・大学受験対策に。">
+<meta property="og:url" content="https://REPLACE-WITH-YOUR-GITHUB-PAGES-URL/">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="高校物理 解説チャンネル｜リードα全問解説・授業動画まとめ">
+<meta name="twitter:description" content="力学・熱力学・波動・電磁気・原子の授業動画と、リードα全問解説（第1〜27章）を分野別にまとめました。">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "高校物理 解説チャンネル",
+  "description": "高校物理のリードα全問解説・分野別授業動画のリンク集",
+  "url": "https://REPLACE-WITH-YOUR-GITHUB-PAGES-URL/",
+  "sameAs": [
+    "https://www.youtube.com/channel/UCZy3VipvKr3AJc_-okxbDPw",
+    "https://x.com/p4vkzcfrax23502"
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #10151b;
+    --bg-alt: #171e26;
+    --card: #1a222b;
+    --line: #2a333d;
+    --chalk: #edf2f0;
+    --chalk-dim: #93a1a8;
+    --accent: #f4c95d;
+    --mech: #7fd1a4;
+    --therm: #ef8b6b;
+    --wave: #6fb8e0;
+    --electro: #c497e0;
+    --atom: #5fd3c4;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--chalk);
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono{ font-family: "JetBrains Mono", monospace; }
+
+  .grid-bg{
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 85%);
+  }
+
+  a{ color: inherit; text-decoration: none; }
+  .wrap{ position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  header.hero{ padding: 88px 0 56px; text-align: center; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:"JetBrains Mono", monospace;
+    font-size: 12.5px; letter-spacing: 0.12em;
+    color: var(--accent);
+    border: 1px solid rgba(244,201,93,0.35);
+    padding: 5px 12px; border-radius: 999px;
+    margin-bottom: 26px;
+  }
+  .eyebrow::before{ content:"●"; font-size:8px; }
+  h1.title{
+    font-size: clamp(34px, 5vw, 54px);
+    font-weight: 900;
+    margin: 0 0 18px;
+    letter-spacing: -0.01em;
+  }
+  h1.title .sub{
+    display:block;
+    font-size: 0.42em;
+    font-weight: 500;
+    color: var(--chalk-dim);
+    margin-top: 12px;
+    letter-spacing: 0;
+  }
+  .lede{
+    max-width: 560px; margin: 0 auto 34px;
+    color: var(--chalk-dim);
+    font-size: 15.5px;
+  }
+  .cta-row{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 12px 22px; border-radius: 10px;
+    font-weight: 700; font-size: 14.5px;
+    border: 1px solid var(--line);
+    transition: transform .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .btn:hover{ transform: translateY(-1px); }
+  .btn-primary{ background: var(--accent); color: #1a1607; border-color: var(--accent); }
+  .btn-primary:hover{ background:#f7d374; }
+  .btn-ghost{ background: transparent; color: var(--chalk); }
+  .btn-ghost:hover{ border-color: var(--chalk-dim); }
+
+  .filters{
+    position: sticky; top: 0; z-index: 5;
+    background: linear-gradient(to bottom, var(--bg) 78%, transparent);
+    padding: 16px 0 20px;
+    display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+  }
+  .chip{
+    font-family:"JetBrains Mono", monospace;
+    font-size: 12.5px; font-weight: 500;
+    padding: 8px 16px; border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--bg-alt);
+    color: var(--chalk-dim);
+    cursor: pointer;
+    display:flex; align-items:center; gap:7px;
+    transition: all .15s ease;
+  }
+  .chip .dot{ width:7px; height:7px; border-radius:50%; background: currentColor; }
+  .chip[data-cat="mech"]{ color: var(--mech); }
+  .chip[data-cat="therm"]{ color: var(--therm); }
+  .chip[data-cat="wave"]{ color: var(--wave); }
+  .chip[data-cat="electro"]{ color: var(--electro); }
+  .chip[data-cat="atom"]{ color: var(--atom); }
+  .chip.active{ background: var(--card); border-color: currentColor; box-shadow: 0 0 0 1px currentColor inset; }
+  .chip:hover{ border-color: var(--chalk-dim); }
+
+  section.section{ padding: 46px 0; border-top: 1px solid var(--line); }
+  .section-head{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom: 26px; flex-wrap: wrap; }
+  .section-head h2{ font-size: 22px; margin:0; font-weight: 700; }
+  .section-head .count{ font-family:"JetBrains Mono", monospace; font-size:12.5px; color: var(--chalk-dim); }
+
+  .lecture-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 14px; }
+  .lecture-card{
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 20px; position: relative; overflow: hidden;
+    transition: transform .15s ease, border-color .15s ease;
+  }
+  .lecture-card:hover{ transform: translateY(-2px); }
+  .lecture-card::before{
+    content:""; position:absolute; left:0; top:0; bottom:0; width:4px;
+    background: var(--cat-color);
+  }
+  .lecture-card .icon{ color: var(--cat-color); margin-bottom: 14px; }
+  .lecture-card h3{ font-size: 16px; margin: 0 0 6px; }
+  .lecture-card p{ font-size: 13px; color: var(--chalk-dim); margin: 0; }
+  .lecture-card .go{ font-family:"JetBrains Mono", monospace; font-size:12px; color: var(--cat-color); margin-top:14px; display:block; }
+
+  .chapter-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 10px; }
+  .chapter-card{
+    display:flex; align-items: center; gap: 14px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 14px 16px;
+    transition: transform .15s ease, border-color .15s ease;
+  }
+  .chapter-card:hover{ transform: translateY(-2px); border-color: var(--cat-color); }
+  .chapter-card.hidden{ display:none; }
+  .chapter-card .num{
+    font-family:"JetBrains Mono", monospace; font-weight:700; font-size: 13px;
+    color: var(--cat-color);
+    background: color-mix(in srgb, var(--cat-color) 16%, transparent);
+    border-radius: 8px; padding: 6px 8px; flex-shrink:0; min-width: 40px; text-align:center;
+  }
+  .chapter-card .info h4{ font-size: 14px; margin:0 0 3px; font-weight:500; }
+  .chapter-card .info span{ font-size: 11.5px; color: var(--chalk-dim); font-family:"JetBrains Mono", monospace; }
+
+  .shorts-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 10px; }
+  .short-card{
+    background: var(--bg-alt); border: 1px solid var(--line); border-radius: 12px;
+    padding: 14px 16px; display:flex; align-items:flex-start; gap: 10px;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .short-card:hover{ transform: translateY(-2px); border-color: var(--cat-color); }
+  .short-card.hidden{ display:none; }
+  .short-card .play{
+    width: 22px; height:22px; border-radius:50%; flex-shrink:0; margin-top:2px;
+    background: color-mix(in srgb, var(--cat-color) 20%, transparent);
+    display:flex; align-items:center; justify-content:center; color: var(--cat-color);
+  }
+  .short-card p{ margin:0; font-size: 13.5px; }
+  .short-card .tag{ font-family:"JetBrains Mono", monospace; font-size: 11px; color: var(--cat-color); margin-top: 5px; display:block; }
+
+  .texts-section .empty{
+    border: 1.5px dashed var(--line); border-radius: 14px;
+    padding: 40px 24px; text-align:center; color: var(--chalk-dim); font-size: 14px;
+  }
+  .texts-section .empty strong{ display:block; color: var(--chalk); font-size: 16px; margin-bottom: 8px; font-weight:700; }
+
+  footer{ padding: 44px 0 60px; text-align:center; border-top: 1px solid var(--line); }
+  footer p{ color: var(--chalk-dim); font-size: 12.5px; max-width: 520px; margin: 14px auto 0; }
+  footer .socials{ display:flex; align-items:center; justify-content:center; gap: 18px; flex-wrap: wrap; }
+  footer .handle{ font-family:"JetBrains Mono", monospace; color: var(--chalk-dim); font-size: 13px; display:inline-flex; align-items:center; gap:7px; transition: color .15s ease; }
+  footer .handle:hover{ color: var(--chalk); }
+  footer .handle svg{ flex-shrink:0; }
+
+  @media (max-width: 560px){
+    header.hero{ padding: 64px 0 40px; }
+    .filters{ position: static; background:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <span class="eyebrow mono">KOUKOU BUTSURI KAISETSU</span>
+    <h1 class="title">高校物理 解説チャンネル
+      <span class="sub">微積で考える、本質から分かる高校物理</span>
+    </h1>
+    <p class="lede">授業動画・リードα全問解説・要点まとめショートを分野別にまとめました。定期テスト前の復習や、大学受験対策にどうぞ。</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://www.youtube.com/channel/UCZy3VipvKr3AJc_-okxbDPw?sub_confirmation=1" target="_blank" rel="noopener">チャンネル登録する</a>
+      <a class="btn btn-ghost" href="#leadalpha">リードαの解説を見る</a>
+    </div>
+  </header>
+
+  <nav class="filters" id="filters">
+    <div class="chip active" data-cat="all">すべて</div>
+    <div class="chip" data-cat="mech"><span class="dot"></span>力学</div>
+    <div class="chip" data-cat="therm"><span class="dot"></span>熱力学</div>
+    <div class="chip" data-cat="wave"><span class="dot"></span>波動</div>
+    <div class="chip" data-cat="electro"><span class="dot"></span>電磁気</div>
+    <div class="chip" data-cat="atom"><span class="dot"></span>原子</div>
+  </nav>
+
+  <main>
+
+    <section class="section" id="lectures">
+      <div class="section-head">
+        <h2>分野別 授業動画</h2>
+        <span class="count mono">5 playlists</span>
+      </div>
+      <div class="lecture-grid" id="lectureGrid">
+
+        <a class="lecture-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60PrjDDXLbZfbKzNY0Wkk0qI" target="_blank" rel="noopener">
+          <div class="icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M3 20C7 20 8 6 13 6C18 6 19 20 23 20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="13" cy="6" r="2" fill="currentColor"/></svg></div>
+          <h3>力学の授業動画まとめ</h3>
+          <p>力学分野の授業動画をまとめて視聴</p>
+          <span class="go mono">再生リストを開く →</span>
+        </a>
+
+        <a class="lecture-card" data-cat="therm" style="--cat-color:var(--therm)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60MFF4psD3iSPL6EhXbhoGzM" target="_blank" rel="noopener">
+          <div class="icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x="11" y="3" width="4" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="13" cy="20" r="4" fill="currentColor"/></svg></div>
+          <h3>熱力学の授業動画まとめ</h3>
+          <p>熱力学分野の授業動画をまとめて視聴</p>
+          <span class="go mono">再生リストを開く →</span>
+        </a>
+
+        <a class="lecture-card" data-cat="wave" style="--cat-color:var(--wave)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60O22bvO5B7kOrDuDmNCvBBi" target="_blank" rel="noopener">
+          <div class="icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M2 13C5 6 8 6 11 13C14 20 17 20 20 13C21.5 9.5 23 9.5 24 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <h3>波動の授業動画まとめ</h3>
+          <p>波動分野の授業動画をまとめて視聴</p>
+          <span class="go mono">再生リストを開く →</span>
+        </a>
+
+        <a class="lecture-card" data-cat="electro" style="--cat-color:var(--electro)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60PVT6FUSHhOAUYuxzsSqZ4b" target="_blank" rel="noopener">
+          <div class="icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M8 3C8 3 4 9 4 14C4 18 8 21 13 21C18 21 22 18 22 14C22 9 18 3 18 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M10 12L13 8L16 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>電磁気学の授業動画まとめ</h3>
+          <p>電磁気学分野の授業動画をまとめて視聴</p>
+          <span class="go mono">再生リストを開く →</span>
+        </a>
+
+        <a class="lecture-card" data-cat="atom" style="--cat-color:var(--atom)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60N5xkquSgokD0_284BZRbZ0" target="_blank" rel="noopener">
+          <div class="icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><ellipse cx="13" cy="13" rx="10" ry="4" stroke="currentColor" stroke-width="1.5"/><ellipse cx="13" cy="13" rx="10" ry="4" stroke="currentColor" stroke-width="1.5" transform="rotate(60 13 13)"/><ellipse cx="13" cy="13" rx="10" ry="4" stroke="currentColor" stroke-width="1.5" transform="rotate(120 13 13)"/><circle cx="13" cy="13" r="2.2" fill="currentColor"/></svg></div>
+          <h3>原子の授業動画まとめ</h3>
+          <p>原子分野の授業動画をまとめて視聴</p>
+          <span class="go mono">再生リストを開く →</span>
+        </a>
+
+      </div>
+    </section>
+
+    <section class="section" id="leadalpha">
+      <div class="section-head">
+        <h2>リードα 全問解説（第1章〜第27章）</h2>
+        <span class="count mono">27 chapters</span>
+      </div>
+      <div class="chapter-grid" id="chapterGrid">
+
+        <a class="chapter-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60PKaZBwl3_t3EwvdNDXKC3o" target="_blank" rel="noopener"><span class="num mono">01</span><div class="info"><h4>運動の表し方</h4><span>力学</span></div></a>
+        <a class="chapter-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60O1SdQQ9y4-jnmAP-aK-n5j" target="_blank" rel="noopener"><span class="num mono">02</span><div class="info"><h4>落体の運動</h4><span>力学</span></div></a>
+        <a class="chapter-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60M2QsdjjoGinfIwcT7XOW43" target="_blank" rel="noopener"><span class="num mono">03</span><div class="info"><h4>力のつりあい</h4><span>力学</span></div></a>
+        <a class="chapter-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60O1oN-NSewzeZ0-L9NPUMYu" target="_blank" rel="noopener"><span class="num mono">04</span><div class="info"><h4>運動の法則</h4><span>力学</span></div></a>
+        <a class="chapter-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60PeauNejk-_7krqICITwGFa" target="_blank" rel="noopener"><span class="num mono">05</span><div class="info"><h4>剛体にはたらく力のつりあい</h4><span>力学</span></div></a>
+        <a class="chapter-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60Ptrc8t4_eDVFRm99DzGh5S" target="_blank" rel="noopener"><span class="num mono">06</span><div class="info"><h4>仕事と力学的エネルギー</h4><span>力学</span></div></a>
+        <a class="chapter-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60N-W0O9FaY-ESSLdUvDm5uw" target="_blank" rel="noopener"><span class="num mono">07</span><div class="info"><h4>運動量の保存</h4><span>力学</span></div></a>
+        <a class="chapter-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60P4Y-0QnAliy6qTLxXPiZfx" target="_blank" rel="noopener"><span class="num mono">08</span><div class="info"><h4>等速円運動・慣性力</h4><span>力学</span></div></a>
+        <a class="chapter-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60P6lf6GptPMZ5zwEDFPiZSW" target="_blank" rel="noopener"><span class="num mono">09</span><div class="info"><h4>単振動</h4><span>力学</span></div></a>
+        <a class="chapter-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60Nwt4oA6PmgnrgQ-FNbjeTx" target="_blank" rel="noopener"><span class="num mono">10</span><div class="info"><h4>万有引力</h4><span>力学</span></div></a>
+
+        <a class="chapter-card" data-cat="therm" style="--cat-color:var(--therm)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60MoQ8YGAb0ea67jTukQKd1n" target="_blank" rel="noopener"><span class="num mono">11</span><div class="info"><h4>熱とエネルギー</h4><span>熱力学</span></div></a>
+        <a class="chapter-card" data-cat="therm" style="--cat-color:var(--therm)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60MV5x6zaMeCl1URo4C-EbII" target="_blank" rel="noopener"><span class="num mono">12</span><div class="info"><h4>気体の法則</h4><span>熱力学</span></div></a>
+        <a class="chapter-card" data-cat="therm" style="--cat-color:var(--therm)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60Mu62iUO8UN1f9Q1TTD2csa" target="_blank" rel="noopener"><span class="num mono">13</span><div class="info"><h4>気体分子の運動・気体の状態変化</h4><span>熱力学</span></div></a>
+
+        <a class="chapter-card" data-cat="wave" style="--cat-color:var(--wave)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60MrphxrQhcOiI_0bjHDJq9C" target="_blank" rel="noopener"><span class="num mono">14</span><div class="info"><h4>波の性質</h4><span>波動</span></div></a>
+        <a class="chapter-card" data-cat="wave" style="--cat-color:var(--wave)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60O-J5J8XNNLKRGyEz40Cp6a" target="_blank" rel="noopener"><span class="num mono">15</span><div class="info"><h4>正弦波の式</h4><span>波動</span></div></a>
+        <a class="chapter-card" data-cat="wave" style="--cat-color:var(--wave)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60ObaO4aGUz1D_W_0evMrqFI" target="_blank" rel="noopener"><span class="num mono">16</span><div class="info"><h4>平面上を伝わる波</h4><span>波動</span></div></a>
+        <a class="chapter-card" data-cat="wave" style="--cat-color:var(--wave)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60NjBZDwpvlIs8A01sp-VccG" target="_blank" rel="noopener"><span class="num mono">17</span><div class="info"><h4>音の伝わり方と発音体の振動</h4><span>波動</span></div></a>
+        <a class="chapter-card" data-cat="wave" style="--cat-color:var(--wave)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60NM2q1-I9syiZbtyBMpNPLT" target="_blank" rel="noopener"><span class="num mono">18</span><div class="info"><h4>ドップラー効果</h4><span>波動</span></div></a>
+        <a class="chapter-card" data-cat="wave" style="--cat-color:var(--wave)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60MTaMcCDVYY-9qhyp14kerM" target="_blank" rel="noopener"><span class="num mono">19</span><div class="info"><h4>光の性質・レンズ</h4><span>波動</span></div></a>
+        <a class="chapter-card" data-cat="wave" style="--cat-color:var(--wave)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60Oe4DDDIfe8iA8vRL9HWVOM" target="_blank" rel="noopener"><span class="num mono">20</span><div class="info"><h4>光の干渉と回折</h4><span>波動</span></div></a>
+
+        <a class="chapter-card" data-cat="electro" style="--cat-color:var(--electro)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60O18CYHPGP7TNuZcZUeqH-u" target="_blank" rel="noopener"><span class="num mono">21</span><div class="info"><h4>静電気力と電場・電位</h4><span>電磁気</span></div></a>
+        <a class="chapter-card" data-cat="electro" style="--cat-color:var(--electro)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60O8oAB6hWe2RWkiUzZMkFJQ" target="_blank" rel="noopener"><span class="num mono">22</span><div class="info"><h4>コンデンサー</h4><span>電磁気</span></div></a>
+        <a class="chapter-card" data-cat="electro" style="--cat-color:var(--electro)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60PLw_0uKvnxQbSp-OtLFwC7" target="_blank" rel="noopener"><span class="num mono">23</span><div class="info"><h4>電流</h4><span>電磁気</span></div></a>
+        <a class="chapter-card" data-cat="electro" style="--cat-color:var(--electro)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60Ox66AB6t704ForNc9axgwr" target="_blank" rel="noopener"><span class="num mono">24</span><div class="info"><h4>直流回路</h4><span>電磁気</span></div></a>
+        <a class="chapter-card" data-cat="electro" style="--cat-color:var(--electro)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60MW_590-3l5ELvbTd2W_8ZX" target="_blank" rel="noopener"><span class="num mono">25</span><div class="info"><h4>電流と磁場</h4><span>電磁気</span></div></a>
+        <a class="chapter-card" data-cat="electro" style="--cat-color:var(--electro)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60MsuXHPdzHF6LHS6sZ5MW0h" target="_blank" rel="noopener"><span class="num mono">26</span><div class="info"><h4>電磁誘導</h4><span>電磁気</span></div></a>
+        <a class="chapter-card" data-cat="electro" style="--cat-color:var(--electro)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60M579ZuQ0iktvknYCNov2bj" target="_blank" rel="noopener"><span class="num mono">27</span><div class="info"><h4>交流と電気振動</h4><span>電磁気</span></div></a>
+
+      </div>
+    </section>
+
+    <section class="section" id="shorts">
+      <div class="section-head">
+        <h2>要点・公式まとめ（ショート動画）</h2>
+        <span class="count mono">17 shorts</span>
+      </div>
+      <div class="shorts-grid" id="shortsGrid">
+
+        <a class="short-card" data-cat="wave" style="--cat-color:var(--wave)" href="https://www.youtube.com/shorts/kGIg28VBcrc" target="_blank" rel="noopener"><span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5L9 5L1 9.5V0.5Z"/></svg></span><div><p>くさび型空気層の要点・公式まとめ</p><span class="tag mono">波動・干渉</span></div></a>
+        <a class="short-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/shorts/xqsSH60dCRY" target="_blank" rel="noopener"><span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5L9 5L1 9.5V0.5Z"/></svg></span><div><p>床との衝突の要点・公式まとめ</p><span class="tag mono">力学・運動量</span></div></a>
+        <a class="short-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/shorts/wADgc3-gTh0" target="_blank" rel="noopener"><span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5L9 5L1 9.5V0.5Z"/></svg></span><div><p>床との斜め衝突の要点・公式まとめ</p><span class="tag mono">力学・運動量</span></div></a>
+        <a class="short-card" data-cat="therm" style="--cat-color:var(--therm)" href="https://www.youtube.com/shorts/p81OFfX-FCs" target="_blank" rel="noopener"><span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5L9 5L1 9.5V0.5Z"/></svg></span><div><p>熱量Qの公式の要点・公式まとめ</p><span class="tag mono">熱力学</span></div></a>
+        <a class="short-card" data-cat="wave" style="--cat-color:var(--wave)" href="https://www.youtube.com/shorts/mOB0as97VkE" target="_blank" rel="noopener"><span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5L9 5L1 9.5V0.5Z"/></svg></span><div><p>正弦波の式の要点・公式まとめ</p><span class="tag mono">波動</span></div></a>
+        <a class="short-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/shorts/iIkIi915THo" target="_blank" rel="noopener"><span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5L9 5L1 9.5V0.5Z"/></svg></span><div><p>自由落下・鉛直投げ上げの要点・公式まとめ</p><span class="tag mono">力学・等加速度直線運動</span></div></a>
+        <a class="short-card" data-cat="wave" style="--cat-color:var(--wave)" href="https://www.youtube.com/shorts/gAKqSGoWx-E" target="_blank" rel="noopener"><span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5L9 5L1 9.5V0.5Z"/></svg></span><div><p>薄膜の干渉の要点・公式まとめ</p><span class="tag mono">波動・干渉</span></div></a>
+        <a class="short-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/shorts/ecN8CQwB4cM" target="_blank" rel="noopener"><span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5L9 5L1 9.5V0.5Z"/></svg></span><div><p>グラフの見方の要点・公式まとめ</p><span class="tag mono">力学・等加速度直線運動</span></div></a>
+        <a class="short-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/shorts/_A6J8ChPv_M" target="_blank" rel="noopener"><span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5L9 5L1 9.5V0.5Z"/></svg></span><div><p>よくある2物体の衝突の要点・公式まとめ</p><span class="tag mono">力学・運動量</span></div></a>
+        <a class="short-card" data-cat="therm" style="--cat-color:var(--therm)" href="https://www.youtube.com/shorts/Y9vCnKWUHzk" target="_blank" rel="noopener"><span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5L9 5L1 9.5V0.5Z"/></svg></span><div><p>P-V図での温度の見方の要点・公式まとめ</p><span class="tag mono">熱力学</span></div></a>
+        <a class="short-card" data-cat="electro" style="--cat-color:var(--electro)" href="https://www.youtube.com/shorts/Y1sPqpEPh6A" target="_blank" rel="noopener"><span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5L9 5L1 9.5V0.5Z"/></svg></span><div><p>導体棒に生じる起電力の要点・公式まとめ</p><span class="tag mono">電磁気</span></div></a>
+        <a class="short-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/shorts/UVmcgsc1m3w" target="_blank" rel="noopener"><span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5L9 5L1 9.5V0.5Z"/></svg></span><div><p>力の種類の要点・公式まとめ</p><span class="tag mono">力学</span></div></a>
+        <a class="short-card" data-cat="wave" style="--cat-color:var(--wave)" href="https://www.youtube.com/shorts/OJ0jCc-uNuM" target="_blank" rel="noopener"><span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5L9 5L1 9.5V0.5Z"/></svg></span><div><p>ヤングの実験経路差①の要点・公式まとめ</p><span class="tag mono">波動・干渉</span></div></a>
+        <a class="short-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/shorts/Ika9lp5ogOI" target="_blank" rel="noopener"><span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5L9 5L1 9.5V0.5Z"/></svg></span><div><p>等加速度直線運動3公式の要点・公式まとめ</p><span class="tag mono">力学・等加速度直線運動</span></div></a>
+        <a class="short-card" data-cat="wave" style="--cat-color:var(--wave)" href="https://www.youtube.com/shorts/DPlIpLJ4zHE" target="_blank" rel="noopener"><span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5L9 5L1 9.5V0.5Z"/></svg></span><div><p>ヤングの実験経路差②の要点・公式まとめ</p><span class="tag mono">波動・干渉</span></div></a>
+        <a class="short-card" data-cat="wave" style="--cat-color:var(--wave)" href="https://www.youtube.com/shorts/9DJhrKQqCK4" target="_blank" rel="noopener"><span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5L9 5L1 9.5V0.5Z"/></svg></span><div><p>ドップラー効果の要点・公式まとめ</p><span class="tag mono">波動</span></div></a>
+        <a class="short-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/shorts/5TDTis1z0VI" target="_blank" rel="noopener"><span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5L9 5L1 9.5V0.5Z"/></svg></span><div><p>鉛直投げ上げの要点・公式まとめ</p><span class="tag mono">力学・等加速度直線運動</span></div></a>
+
+      </div>
+    </section>
+
+    <section class="section texts-section" id="texts">
+      <div class="section-head">
+        <h2>テキスト・プリント</h2>
+      </div>
+      <div class="empty">
+        <strong>準備中です</strong>
+        配布プリントやPDFを追加すると、ここに一覧表示されます。
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="socials">
+      <a class="handle" href="https://www.youtube.com/channel/UCZy3VipvKr3AJc_-okxbDPw" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2c-.3-1.1-1.1-1.9-2.2-2.2C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.3.5c-1.1.3-1.9 1.1-2.2 2.2C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1.1 1.1 1.9 2.2 2.2 1.9.5 9.3.5 9.3.5s7.4 0 9.3-.5c1.1-.3 1.9-1.1 2.2-2.2.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg>
+        @koukoubutsuri.kaisetsu
+      </a>
+      <a class="handle" href="https://x.com/p4vkzcfrax23502" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.2 8.3L23 22h-6.9l-5.4-7.1L4.3 22H1.2l7.7-8.8L1 2h7l4.9 6.5L18.9 2z"/></svg>
+        X（旧Twitter）
+      </a>
+    </div>
+    <p>本ページは個人が運営する高校物理の解説チャンネルのリンク集です。「リードα」は数研出版の教材名であり、当チャンネルは同社の公式チャンネルではありません。</p>
+  </footer>
+
+</div>
+
+<script>
+  const chips = document.querySelectorAll('.chip');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const cat = chip.dataset.cat;
+      document.querySelectorAll('[data-cat]').forEach(card => {
+        if(card.classList.contains('chip')) return;
+        const show = (cat === 'all' || card.dataset.cat === cat);
+        card.classList.toggle('hidden', !show);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
