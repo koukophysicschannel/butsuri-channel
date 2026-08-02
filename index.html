@@ -174,6 +174,7 @@
     transition: transform .15s ease, border-color .15s ease;
   }
   .lecture-card:hover{ transform: translateY(-2px); }
+  .lecture-card.hidden{ display:none; }
   .lecture-card::before{
     content:""; position:absolute; left:0; top:0; bottom:0; width:4px;
     background: var(--cat-color);
@@ -216,6 +217,15 @@
   }
   .short-card p{ margin:0; font-size: 13.5px; }
   .short-card .tag{ font-family:"JetBrains Mono", monospace; font-size: 11px; color: var(--cat-color); margin-top: 5px; display:block; }
+
+  /* フィルターで表示0件になったセクションに出す案内 */
+  .empty-note{
+    display:none;
+    border: 1.5px dashed var(--line); border-radius: 14px;
+    padding: 30px 20px; text-align:center;
+    color: var(--chalk-dim); font-size: 13.5px;
+  }
+  .empty-note.show{ display:block; }
 
   .texts-section .empty{
     border: 1.5px dashed var(--line); border-radius: 14px;
@@ -318,6 +328,33 @@
         </a>
 
       </div>
+      <p class="empty-note">この分野の授業動画はまだありません。</p>
+    </section>
+
+    <section class="section" id="jumon">
+      <div class="section-head">
+        <h2>重要問題集 解説</h2>
+        <span class="count mono">1 playlist</span>
+      </div>
+      <div class="lecture-grid" id="jumonGrid">
+
+        <a class="lecture-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/playlist?list=PLRnVtUg1W4uY" target="_blank" rel="noopener">
+          <div class="icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M4 4.5C4 3.7 4.7 3 5.5 3H21V20H5.5C4.7 20 4 20.7 4 21.5V4.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 21.5C4 22.3 4.7 23 5.5 23H21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 8H17M8 12H14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <h3>力学の重要問題集 解説</h3>
+          <p>重要問題集・力学分野の解説をまとめて視聴</p>
+          <span class="go mono">再生リストを開く →</span>
+        </a>
+
+        <!-- ▼ 分野が増えたら、上のカードをコピーして下に並べるだけ。
+             変えるのは4か所：data-cat / --cat-color / h3 / href
+               熱力学 → data-cat="therm"   --cat-color:var(--therm)
+               波動   → data-cat="wave"    --cat-color:var(--wave)
+               電磁気 → data-cat="electro" --cat-color:var(--electro)
+               原子   → data-cat="atom"    --cat-color:var(--atom)
+             追加したら上の「1 playlist」の数字も直してください -->
+
+      </div>
+      <p class="empty-note">この分野の重要問題集 解説はまだありません。</p>
     </section>
 
     <section class="section" id="leadalpha">
@@ -359,6 +396,7 @@
         <a class="chapter-card" data-cat="electro" style="--cat-color:var(--electro)" href="https://www.youtube.com/playlist?list=PLP2u1nckV60M579ZuQ0iktvknYCNov2bj" target="_blank" rel="noopener"><span class="num mono">27</span><div class="info"><h4>交流と電気振動</h4><span>電磁気</span></div></a>
 
       </div>
+      <p class="empty-note">この分野のリードα解説はまだありません。</p>
     </section>
 
     <section class="section" id="shorts">
@@ -387,6 +425,7 @@
         <a class="short-card" data-cat="mech" style="--cat-color:var(--mech)" href="https://www.youtube.com/shorts/5TDTis1z0VI" target="_blank" rel="noopener"><span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5L9 5L1 9.5V0.5Z"/></svg></span><div><p>鉛直投げ上げの要点・公式まとめ</p><span class="tag mono">力学・等加速度直線運動</span></div></a>
 
       </div>
+      <p class="empty-note">この分野のショート動画はまだありません。</p>
     </section>
 
     <section class="section texts-section" id="texts">
@@ -419,16 +458,26 @@
 
 <script>
   const chips = document.querySelectorAll('.chip');
+
+  function applyFilter(cat){
+    document.querySelectorAll('[data-cat]').forEach(card => {
+      if(card.classList.contains('chip')) return;
+      const show = (cat === 'all' || card.dataset.cat === cat);
+      card.classList.toggle('hidden', !show);
+    });
+    // 表示できるカードが0件になったセクションに案内を出す
+    document.querySelectorAll('.empty-note').forEach(note => {
+      const grid = note.previousElementSibling;
+      const visible = grid.querySelectorAll('[data-cat]:not(.hidden)').length;
+      note.classList.toggle('show', visible === 0);
+    });
+  }
+
   chips.forEach(chip => {
     chip.addEventListener('click', () => {
       chips.forEach(c => c.classList.remove('active'));
       chip.classList.add('active');
-      const cat = chip.dataset.cat;
-      document.querySelectorAll('[data-cat]').forEach(card => {
-        if(card.classList.contains('chip')) return;
-        const show = (cat === 'all' || card.dataset.cat === cat);
-        card.classList.toggle('hidden', !show);
-      });
+      applyFilter(chip.dataset.cat);
     });
   });
 </script>
