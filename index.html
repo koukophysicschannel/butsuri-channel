@@ -526,5 +526,27 @@
     m.addEventListener('click', function(){ location.href = 'lissajous/'; });
   })();
 </script>
+<script>
+  // 第2トリガー：ショート「熱量Qの公式」(動画ID p81OFfX-FCs) のタグを
+  // 3秒以内に3回押すと /resonance/ へ。
+  //   ・対象は**並び順ではなく動画ID**で特定する（ショートの追加・並べ替えでずれないように）
+  //   ・カードが存在しなければ何もしない（将来の改修でも例外を出さない）
+  //   ・タグ部分のクリックはカードのリンクへ伝播させない（誤爆で動画に飛ばないため）
+  //   ・パス名がJSに残るのは許容。守りは遷移先ページの合言葉が担う
+  (function(){
+    var card = document.querySelector('a.short-card[href*="p81OFfX-FCs"]');
+    if(!card) return;
+    var tag = card.querySelector('.tag');
+    if(!tag) return;
+    var hits = [];
+    tag.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      var now = Date.now();
+      hits.push(now);
+      hits = hits.filter(function(t){ return now - t <= 3000; });
+      if(hits.length >= 3){ hits = []; location.href = 'resonance/'; }
+    });
+  })();
+</script>
 </body>
 </html>

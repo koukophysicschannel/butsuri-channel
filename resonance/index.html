@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QCLT8H81TT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QCLT8H81TT');
+</script>
+
+<title>Resonance</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#080609; --card:#12161b; --line:#242b33; --chalk:#edf2f0;
+         --dim:#93a1a8; --accent:#6fb8e0; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--bg); color:var(--chalk);
+        font-family:"Zen Kaku Gothic New",sans-serif; line-height:1.7;
+        -webkit-font-smoothing:antialiased; }
+  .mono{ font-family:"JetBrains Mono",monospace; }
+  .glow{ position:fixed; inset:0; z-index:0; pointer-events:none;
+    background: radial-gradient(44vw 44vw at 78% 22%, rgba(31,95,168,.20), transparent 62%),
+                radial-gradient(38vw 38vw at 16% 82%, rgba(58,168,160,.12), transparent 66%);
+    filter: blur(6px); }
+  .wrap{ position:relative; z-index:1; max-width:760px; margin:0 auto; padding:0 24px; }
+
+  .gate{ min-height:100svh; display:grid; place-content:center; text-align:center; gap:20px; }
+  .gate .sym{ color:#2f3a44; }
+  .gate h1{ font-size:20px; font-weight:700; margin:0; letter-spacing:.02em; }
+  .gate p{ color:var(--dim); font-size:14px; margin:0; }
+  .row{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+  input[type=password]{
+    font-family:"JetBrains Mono",monospace; font-size:15px;
+    background:#0d1116; color:var(--chalk); border:1px solid var(--line);
+    border-radius:10px; padding:12px 14px; width:min(280px,70vw); outline:none; }
+  input[type=password]:focus{ border-color:var(--accent); }
+  button{
+    font-family:inherit; font-size:14px; font-weight:700; cursor:pointer;
+    background:var(--accent); color:#08131b; border:0; border-radius:10px; padding:12px 20px; }
+  button:disabled{ opacity:.5; cursor:default; }
+  .msg{ min-height:1.4em; font-size:13px; color:#e08b8b; }
+
+  #body{ display:none; padding:70px 0 80px; }
+  #body h2{ font-size:clamp(22px,4vw,32px); margin:0 0 18px; font-weight:900; }
+  .lead{ color:#cfd8dc; margin:0 0 26px; }
+  .pl-list{ display:grid; gap:12px; margin-bottom:26px; }
+  a.pl{ display:flex; align-items:center; gap:14px; text-decoration:none;
+        background:var(--card); border:1px solid var(--line); border-radius:14px;
+        padding:16px 18px; color:var(--chalk); }
+  a.pl:hover{ border-color:var(--accent); }
+  a.pl .when{ color:var(--accent); font-size:12.5px; font-weight:700; min-width:4.2em; }
+  a.pl .ttl{ flex:1; font-weight:700; font-size:15px; }
+  a.pl .n{ color:var(--dim); font-size:12.5px; }
+  .note{ border:1px solid var(--line); border-radius:12px; padding:14px 18px;
+         font-size:13.5px; color:var(--dim); background:rgba(255,255,255,.02); }
+  .note b{ color:var(--chalk); }
+</style>
+</head>
+<body>
+<div class="glow" aria-hidden="true"></div>
+<div class="wrap">
+
+  <section class="gate" id="gate">
+    <div class="sym" aria-hidden="true">
+      <svg width="64" height="30" viewBox="0 0 64 30" fill="none">
+        <path d="M2 15C6 15 6 4 10 4C14 4 14 26 18 26C22 26 22 15 26 15" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M26 15C30 15 30 2 34 2C38 2 38 28 42 28C46 28 46 15 50 15" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M50 15C54 15 54 8 58 8C60 8 61 12 62 15" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h1>鍵を入力</h1>
+    <p>合言葉を入れると内容が表示されます。</p>
+    <form class="row" id="f" autocomplete="off">
+      <input type="password" id="k" inputmode="text" autocapitalize="none"
+             autocorrect="off" spellcheck="false" aria-label="合言葉">
+      <button type="submit" id="go">開く</button>
+    </form>
+    <p class="msg" id="m"></p>
+  </section>
+
+  <main id="body"></main>
+</div>
+
+<script id="d" type="application/json">{"v":1,"kdf":"PBKDF2-SHA256","it":310000,"salt":"+yALHCydjmXuNHAW4wo+Ug==","iv":"cgebIZXoM18f7J4O","ct":"kwF0l8nzl3hIg8tr6eR67EniNMNG+3ptPvIvxHPh4v1x1/mknX9KIHEBkW1W81UGcA9fKR1dwOooZ3V5Uhcl/R7tJuYsgQceH4sScw0+HfqiegsJtVB3kncdO80TqjYrV8d9IgmegcdB/2y4k7EOqFPJfheNS4Keg+YUnyUT82+xvA6oR42HJWTAfy/Kl4Cc+rJykbYsacitaMKsnXABbui23jDR6ANXjj7IkF4oXlIh8jZHvLk1GKQdaJ6+fKd7xJl8A/2fMTvdE5zwuDfwpZk84UqGKWNWX4sclMaCLqHa1jjBqBzEt0thRTGu5fou0LVxi9drkNQMVMDZBJxz5q/ie28/z2Mhql4CkQ2VuRSXuo/88V4I48W2suC08mUHUvcuintIJNQWszlEW7UJahxq4uUJKWwuTSDtOYq7ecaeX5O6KNU6BafYmXL0pSO4aDo/VrA4J9+VfI635QWOwAkuJsy+KjVyMWvouWMJpERZlBpvWXmSjLEPLgvQzeJvHBO50JzrvMtTHfuqUM6U7cqyLx7naDB5XrWezyNmRo6b9Pgkhzbxl0BbkrmFe2JAc16rBealaQr6srARsZvuctci1d8W7O08h9NaRhvasNyGdLUraKp7IMYnuiBmIkWrC/+f7rnLkiNFwwCgZEUCYPzPghGc9Mzff6gjtLe7w/8uGd0vV2hR+3yChchE8WjjnwmS56R6JfFOIb8V2hlj6OJdFHdGg9Jp2vJJZjK9ctYXqoo7dBnzwm2e5J5e1lyb9ex/xphICU2pAGaeCItox130keGIGWwxliOKkBp7lfMPapEztIQB4qpDLXUhBpIPHbFO7zQ0zJmGwWfsI3irK3O+gQyKzQH53e9wcFkQrHkgP9MDBIbYcMdJc43zZxC+LOk9USk6uYIOul+ioNd0sjWP+lXE4mhgTR3/EWciTJOYlzRDlkIL59TLXwxevgDXsgO5DwfbNFq9VNzxEEFCsB1TEhhv/madx6N/RZn1K8kryVsRVczL6qSPg64dLTJPutuX0jGxah/69cbIzSeQmQxcFU8Xgrs1wA8hljkN6bfiNt1HGiUzsLQaczTPr36eobPb/rOjnBUSI3rDigl8TLIDXFc/JB+w/pwG14gCI2hFfl0cUkUqmUvTNC/K+d+VroqJWExDz5NTy8XSnVHJK9yne5dYhE8MZUIi+8mfyaq+9wcF1OdZS5hbUu5czB1ZlO94ZhI9W+jBWZHLZcaN/tlbOZnOvA7UQuazCaucnI0pnNZLkUxKM03/kSTQbuc1wVyG3qhBcDkudBJ53fVKNO/aNs9cixATNr9Lf2sWkgY7HaJH1YfSpNs0MrrAU2TSJHGlyvvQ+KpD3mbLl1ZxjhTDuIrC2wO0AtR24/O0RU+sB/rLaGvrTM5WJrOEPvogog3CCeGTKHBUjA8RZnzvOSnc40c="}</script>
+<script>
+(function(){
+  var blob = JSON.parse(document.getElementById('d').textContent);
+  var enc = new TextEncoder(), dec = new TextDecoder();
+  function b64(s){ var b = atob(s), a = new Uint8Array(b.length);
+    for (var i=0;i<b.length;i++) a[i]=b.charCodeAt(i); return a; }
+
+  async function open(pass){
+    var base = await crypto.subtle.importKey('raw', enc.encode(pass),
+      {name:'PBKDF2'}, false, ['deriveKey']);
+    var key = await crypto.subtle.deriveKey(
+      {name:'PBKDF2', salt:b64(blob.salt), iterations:blob.it, hash:'SHA-256'},
+      base, {name:'AES-GCM', length:256}, false, ['decrypt']);
+    var out = await crypto.subtle.decrypt({name:'AES-GCM', iv:b64(blob.iv)}, key, b64(blob.ct));
+    return dec.decode(out);
+  }
+
+  var f=document.getElementById('f'), k=document.getElementById('k'),
+      m=document.getElementById('m'), go=document.getElementById('go');
+  f.addEventListener('submit', async function(e){
+    e.preventDefault();
+    m.textContent=''; go.disabled=true; go.textContent='…';
+    try{
+      var html = await open(k.value);
+      document.getElementById('gate').style.display='none';
+      var b=document.getElementById('body');
+      b.innerHTML=html; b.style.display='block';
+      document.title='Resonance';
+    }catch(err){
+      // 正誤のヒントは出さない
+      m.textContent='復号できません';
+      go.disabled=false; go.textContent='開く'; k.select();
+    }
+  });
+  k.focus();
+})();
+</script>
+</body>
+</html>
