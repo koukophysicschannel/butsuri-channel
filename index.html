@@ -244,6 +244,16 @@
     header.hero{ padding: 64px 0 40px; }
     .filters{ position: static; background:none; }
   }
+
+  /* フッターの装飾（リサージュ曲線）。クリックで /lissajous/ へ。
+     <a> ではマークアップしない＝クローラに辿らせないため。カーソルも default のまま。 */
+  footer .mark{
+    display:inline-block; color:#2f3a44; line-height:0; margin: 0 0 14px;
+    transition: color .5s ease, filter .5s ease; user-select:none;
+  }
+  footer .mark:hover{
+    color:#5f7f62; filter: drop-shadow(0 0 6px rgba(127,176,121,.5));
+  }
 </style>
 </head>
 <body>
@@ -400,6 +410,23 @@
       <p class="empty-note">この分野のリードα解説はまだありません。</p>
     </section>
 
+    <section class="section" id="kakomon">
+      <div class="section-head">
+        <h2>大学入試 過去問解説</h2>
+        <span class="count mono">1 playlist</span>
+      </div>
+      <div class="lecture-grid" id="kakomonGrid">
+
+        <a class="lecture-card" data-cat="mech" style="--cat-color:var(--accent)" href="https://www.youtube.com/playlist?list=PLLBACBwHO_3c" target="_blank" rel="noopener">
+          <div class="icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M13 3L23 8L13 13L3 8L13 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M6 10.2V16C6 16 8.6 18.5 13 18.5C17.4 18.5 20 16 20 16V10.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M23 8V14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <h3>大学入試 過去問解説（2026年収録）</h3>
+          <p>2026年度入試の物理を1問ずつ解説</p>
+          <span class="go mono">再生リストを開く →</span>
+        </a>
+
+      </div>
+    </section>
+
     <section class="section" id="shorts">
       <div class="section-head">
         <h2>要点・公式まとめ（ショート動画）</h2>
@@ -452,6 +479,13 @@
         X（旧Twitter）
       </a>
     </div>
+    <div class="mark" id="lj" role="presentation" aria-hidden="true">
+      <svg width="46" height="26" viewBox="0 0 46 26" fill="none">
+        <ellipse cx="23" cy="13" rx="14" ry="4.6" stroke="currentColor" stroke-width="1"/>
+        <ellipse cx="23" cy="13" rx="14" ry="4.6" stroke="currentColor" stroke-width="1" transform="rotate(60 23 13)"/>
+        <ellipse cx="23" cy="13" rx="14" ry="4.6" stroke="currentColor" stroke-width="1" transform="rotate(120 23 13)"/>
+      </svg>
+    </div>
     <p>本ページは個人が運営する高校物理の解説チャンネルのリンク集です。「リードα」は数研出版の教材名であり、当チャンネルは同社の公式チャンネルではありません。</p>
   </footer>
 
@@ -483,5 +517,14 @@
   });
 </script>
 
+<script>
+  // フッターの装飾をクリックすると『理論物理への道標』全問解説のページへ。
+  // リンクとしてマークアップしていないので、クローラは辿らない。
+  (function(){
+    var m = document.getElementById('lj');
+    if(!m) return;
+    m.addEventListener('click', function(){ location.href = 'lissajous/'; });
+  })();
+</script>
 </body>
 </html>
