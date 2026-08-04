@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- 検索エンジンに載せない。サイト内のどこからもリンクしていない -->
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Google tag (gtag.js) ─ 既存設定のまま -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QCLT8H81TT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QCLT8H81TT');
+</script>
+
+<title>『理論物理への道標』全問解説｜高校物理 解説チャンネル</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #080609;
+    --card: #12161b;
+    --line: #242b33;
+    --chalk: #edf2f0;
+    --chalk-dim: #93a1a8;
+    --accent: #f4c95d;
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0; background: var(--bg); color: var(--chalk);
+    font-family: "Zen Kaku Gothic New", sans-serif; line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono{ font-family: "JetBrains Mono", monospace; }
+  .wrap{ position:relative; z-index:1; max-width: 1080px; margin:0 auto; padding: 0 24px; }
+
+  /* サムネイルと同じ「黒×発光」の空気 */
+  .glow{
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(46vw 46vw at 82% 26%, rgba(63,162,60,.20), transparent 62%),
+      radial-gradient(40vw 40vw at 14% 78%, rgba(179,90,30,.16), transparent 64%),
+      radial-gradient(30vw 30vw at 60% 96%, rgba(31,95,168,.12), transparent 66%);
+    filter: blur(6px);
+  }
+
+  header.hero{ padding: 92px 0 44px; }
+  .kicker{ font-size: 12.5px; letter-spacing:.18em; color: var(--chalk-dim); margin:0 0 14px; }
+  h1{ font-size: clamp(26px, 4.6vw, 44px); line-height:1.28; margin:0 0 18px; font-weight:900; }
+  h1 em{ font-style: normal; color:#c0d8a0; }
+  .lead{ max-width: 46em; color:#cfd8dc; margin:0 0 10px; }
+  .note{
+    margin-top: 26px; padding: 14px 18px; border:1px solid var(--line);
+    border-radius: 12px; background: rgba(255,255,255,.02);
+    font-size: 14px; color: var(--chalk-dim); max-width: 46em;
+  }
+  .note b{ color: var(--chalk); }
+
+  .toc{ display:flex; flex-wrap:wrap; gap:8px; padding: 8px 0 40px; }
+  .toc a{
+    font-size: 13px; text-decoration:none; color: var(--chalk-dim);
+    border:1px solid var(--line); border-radius: 999px; padding: 6px 13px;
+  }
+  .toc a:hover{ color: var(--chalk); border-color: var(--chalk-dim); }
+
+  .fields{ display:grid; gap: 20px; padding-bottom: 64px; }
+  .field{
+    position: relative; border:1px solid var(--line); border-radius:16px;
+    background: var(--card); padding: 24px 24px 8px; overflow:hidden;
+  }
+  .field::before{
+    content:""; position:absolute; right:-18%; top:-58%;
+    width: 62%; aspect-ratio: 1; border-radius: 50%;
+    background: radial-gradient(circle, var(--c), var(--m) 42%, transparent 68%);
+    opacity: .16; filter: blur(2px); pointer-events:none;
+  }
+  .field-head{ display:flex; align-items:center; gap:14px; margin-bottom: 14px; }
+  .chip{
+    font-family:"JetBrains Mono",monospace; font-weight:700; font-size:15px;
+    width: 34px; height: 34px; display:grid; place-items:center;
+    border-radius: 9px; background: var(--a); color:#080609; flex:none;
+  }
+  .field h2{ font-size: 19px; margin:0; font-weight:700; }
+  .vol{ margin:2px 0 0; font-size:12.5px; color: var(--chalk-dim); }
+  .pl{
+    display:inline-block; text-decoration:none; font-size:14px; font-weight:700;
+    color:#080609; background: var(--a); border-radius: 10px;
+    padding: 9px 16px; margin-bottom: 6px;
+  }
+  .pl:hover{ filter: brightness(1.08); }
+  .soon{ color: var(--chalk-dim); font-size:14px; padding-bottom: 14px; }
+
+  ol.qs{ list-style:none; margin: 16px 0 8px; padding:0;
+         display:grid; grid-template-columns: repeat(auto-fill, minmax(268px,1fr)); gap: 2px 18px; }
+  ol.qs li{ display:flex; gap:10px; align-items:baseline;
+            padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.045); font-size:14px; }
+  .no{ color: var(--a); font-weight:700; font-size:12.5px; min-width: 3.1em; }
+  .ttl{ color:#dbe3e6; }
+
+  footer{ border-top:1px solid var(--line); padding: 28px 0 64px;
+          color: var(--chalk-dim); font-size:13px; }
+  footer a{ color: var(--chalk-dim); }
+
+  @media (max-width: 640px){
+    header.hero{ padding: 62px 0 30px; }
+    .field{ padding: 20px 18px 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="glow" aria-hidden="true"></div>
+
+<div class="wrap">
+  <header class="hero">
+    <p class="kicker mono">KOUKO PHYSICS &middot; SPECIAL</p>
+    <h1>『理論物理への道標』<em>全問解説</em></h1>
+    <p class="lead">
+      河合出版『理論物理への道標』（三訂版）上下巻の全問について、1問ずつ動画で解説していきます。
+      本書は高校物理の枠を越えて、大学で学ぶ物理へまっすぐつながる書き方をしているのが特徴です。
+      解説では、式の変形そのものよりも<b>「なぜその式を立てるのか」</b>を中心に話しています。
+    </p>
+    <p class="lead">
+      上下巻あわせて6分野。分野番号は上下巻の通し番号で、問題番号は
+      <span class="mono">分野番号.問番号</span>（例：力学7問目 = <span class="mono">1.7</span>）としています。
+    </p>
+    <div class="note">
+      <b>このページと動画は限定公開です。</b>
+      検索には出ませんし、サイトのどこからもリンクしていません。
+      授業を受けている人だけに URL をお伝えしています。<b>SNS等への転載はご遠慮ください。</b><br>
+      解説動画では問題文・図は扱いません。<b>本書をお手元に用意して</b>ご覧ください。
+    </div>
+  </header>
+
+  <nav class="toc">
+    <a href="#f1">1 力学</a>
+    <a href="#f2">2 熱学</a>
+    <a href="#f3">3 力学的波動</a>
+    <a href="#f4">4 光学</a>
+    <a href="#f5">5 電磁気学</a>
+    <a href="#f6">6 現代物理学入門</a>
+  </nav>
+
+  <main class="fields">
+<article class="field" id="f1" style="--o:#3fa23c;--m:#7fb079;--c:#c0d8a0;--a:#6DB92D">
+  <div class="field-head">
+    <span class="chip">1</span>
+    <div>
+      <h2>力学</h2>
+      <p class="vol">上巻 ／ 全26問</p>
+    </div>
+  </div>
+  <a class="pl" href="https://www.youtube.com/playlist?list=PLBnH5Dg5E5vA" target="_blank" rel="noopener">再生リストを開く（26本・限定公開）<span aria-hidden="true"> →</span></a>
+  <ol class="qs">
+    <li><span class="no mono">1.1</span><span class="ttl">空気抵抗と終端速度</span></li>
+    <li><span class="no mono">1.2</span><span class="ttl">斜面上の放物運動と反発</span></li>
+    <li><span class="no mono">1.3</span><span class="ttl">曲面上のつり合いと安定性</span></li>
+    <li><span class="no mono">1.4</span><span class="ttl">剛体のすべりと転倒条件</span></li>
+    <li><span class="no mono">1.5</span><span class="ttl">重心の決定とモーメント</span></li>
+    <li><span class="no mono">1.6</span><span class="ttl">非慣性系と相対運動</span></li>
+    <li><span class="no mono">1.7</span><span class="ttl">束縛条件と相対加速度</span></li>
+    <li><span class="no mono">1.8</span><span class="ttl">変質量系の運動量保存</span></li>
+    <li><span class="no mono">1.9</span><span class="ttl">運動量保存と摩擦熱</span></li>
+    <li><span class="no mono">1.10</span><span class="ttl">斜衝突と力積</span></li>
+    <li><span class="no mono">1.11</span><span class="ttl">支点が動く振り子</span></li>
+    <li><span class="no mono">1.12</span><span class="ttl">鉛直面内の円運動と放物運動</span></li>
+    <li><span class="no mono">1.13</span><span class="ttl">束縛された円運動と摩擦</span></li>
+    <li><span class="no mono">1.14</span><span class="ttl">中心力を受けた物体の運動</span></li>
+    <li><span class="no mono">1.15</span><span class="ttl">地球の自転と落下のずれ</span></li>
+    <li><span class="no mono">1.16</span><span class="ttl">二体問題と換算質量</span></li>
+    <li><span class="no mono">1.17</span><span class="ttl">楕円軌道と軌道遷移</span></li>
+    <li><span class="no mono">1.18</span><span class="ttl">エネルギーとケプラー則</span></li>
+    <li><span class="no mono">1.19</span><span class="ttl">鉛直ばね振り子と衝突</span></li>
+    <li><span class="no mono">1.20</span><span class="ttl">動く基準系での単振動</span></li>
+    <li><span class="no mono">1.21</span><span class="ttl">ばねを介した衝突と反発係数</span></li>
+    <li><span class="no mono">1.22</span><span class="ttl">摩擦力による単振動</span></li>
+    <li><span class="no mono">1.23</span><span class="ttl">二次元調和振動と円運動</span></li>
+    <li><span class="no mono">1.24</span><span class="ttl">連成振動と基準振動</span></li>
+    <li><span class="no mono">1.25</span><span class="ttl">万有引力による単振動と衝突</span></li>
+    <li><span class="no mono">1.26</span><span class="ttl">重心保存と単振動</span></li>
+  </ol>
+</article>
+<article class="field" id="f2" style="--o:#b35a1e;--m:#e8833a;--c:#f5c78e;--a:#e8833a">
+  <div class="field-head">
+    <span class="chip">2</span>
+    <div>
+      <h2>熱学</h2>
+      <p class="vol">上巻 ／ 全10問</p>
+    </div>
+  </div>
+  <a class="pl" href="https://www.youtube.com/playlist?list=PLKPLDpLkza2g" target="_blank" rel="noopener">再生リストを開く（10本・限定公開）<span aria-hidden="true"> →</span></a>
+  <ol class="qs">
+    <li><span class="no mono">2.1</span><span class="ttl">熱容量と自由電子気体模型</span></li>
+    <li><span class="no mono">2.2</span><span class="ttl">気体分子運動と熱伝導</span></li>
+    <li><span class="no mono">2.3</span><span class="ttl">断熱変化と分子運動</span></li>
+    <li><span class="no mono">2.4</span><span class="ttl">圧力のつり合いと状態変化</span></li>
+    <li><span class="no mono">2.5</span><span class="ttl">熱サイクルと熱効率</span></li>
+    <li><span class="no mono">2.6</span><span class="ttl">スターリングサイクル</span></li>
+    <li><span class="no mono">2.7</span><span class="ttl">比熱比の測定</span></li>
+    <li><span class="no mono">2.8</span><span class="ttl">相変化と潜熱の熱収支</span></li>
+    <li><span class="no mono">2.9</span><span class="ttl">飽和蒸気圧と気体の仕事</span></li>
+    <li><span class="no mono">2.10</span><span class="ttl">気体密度の高度依存性</span></li>
+  </ol>
+</article>
+<article class="field" id="f3" style="--o:#1f5fa8;--m:#4a90d9;--c:#a8cef0;--a:#4a90d9">
+  <div class="field-head">
+    <span class="chip">3</span>
+    <div>
+      <h2>力学的波動</h2>
+      <p class="vol">上巻 ／ 収録準備中</p>
+    </div>
+  </div>
+  <p class="soon">動画を準備中です。収録が済みしだいここに追加します。</p>
+</article>
+<article class="field" id="f4" style="--o:#3a3f46;--m:#6b737d;--c:#aeb6bf;--a:#8b939c">
+  <div class="field-head">
+    <span class="chip">4</span>
+    <div>
+      <h2>光学</h2>
+      <p class="vol">下巻 ／ 収録準備中</p>
+    </div>
+  </div>
+  <p class="soon">動画を準備中です。収録が済みしだいここに追加します。</p>
+</article>
+<article class="field" id="f5" style="--o:#6a3fa8;--m:#9b6dd6;--c:#d0b8ee;--a:#9b6dd6">
+  <div class="field-head">
+    <span class="chip">5</span>
+    <div>
+      <h2>電磁気学</h2>
+      <p class="vol">下巻 ／ 収録準備中</p>
+    </div>
+  </div>
+  <p class="soon">動画を準備中です。収録が済みしだいここに追加します。</p>
+</article>
+<article class="field" id="f6" style="--o:#1f7a74;--m:#3aa8a0;--c:#a0d8d3;--a:#3aa8a0">
+  <div class="field-head">
+    <span class="chip">6</span>
+    <div>
+      <h2>現代物理学入門</h2>
+      <p class="vol">下巻 ／ 収録準備中</p>
+    </div>
+  </div>
+  <p class="soon">動画を準備中です。収録が済みしだいここに追加します。</p>
+</article>
+  </main>
+
+  <footer class="wrap" style="padding-left:0;padding-right:0">
+    <p>高校物理 解説チャンネル ／ 収録済み 36 問（力学・熱学）。残り4分野は順次追加します。</p>
+    <p>最終更新 2026-08-04</p>
+  </footer>
+</div>
+</body>
+</html>
