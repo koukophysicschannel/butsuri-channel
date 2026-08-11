@@ -5,14 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QCLT8H81TT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-QCLT8H81TT');
-</script>
+<!-- 計測タグはゲート画面では読み込まない。復号に成功した時点で初めて注入する
+     （このURLに到達しただけの訪問を外部に記録させないため） -->
 
 <title>Resonance</title>
 
@@ -49,20 +43,9 @@
   button:disabled{ opacity:.5; cursor:default; }
   .msg{ min-height:1.4em; font-size:13px; color:#e08b8b; }
 
+  /* 本文の見た目に関わる規則は、中身の構造が推測できるので暗号化ペイロード側に置く。
+     ここに残すのは「復号前は隠す」ためのものだけ。 */
   #body{ display:none; padding:70px 0 80px; }
-  #body h2{ font-size:clamp(22px,4vw,32px); margin:0 0 18px; font-weight:900; }
-  .lead{ color:#cfd8dc; margin:0 0 26px; }
-  .pl-list{ display:grid; gap:12px; margin-bottom:26px; }
-  a.pl{ display:flex; align-items:center; gap:14px; text-decoration:none;
-        background:var(--card); border:1px solid var(--line); border-radius:14px;
-        padding:16px 18px; color:var(--chalk); }
-  a.pl:hover{ border-color:var(--accent); }
-  a.pl .when{ color:var(--accent); font-size:12.5px; font-weight:700; min-width:4.2em; }
-  a.pl .ttl{ flex:1; font-weight:700; font-size:15px; }
-  a.pl .n{ color:var(--dim); font-size:12.5px; }
-  .note{ border:1px solid var(--line); border-radius:12px; padding:14px 18px;
-         font-size:13.5px; color:var(--dim); background:rgba(255,255,255,.02); }
-  .note b{ color:var(--chalk); }
 </style>
 </head>
 <body>
@@ -90,7 +73,7 @@
   <main id="body"></main>
 </div>
 
-<script id="d" type="application/json">{"v":1,"kdf":"PBKDF2-SHA256","it":310000,"salt":"+yALHCydjmXuNHAW4wo+Ug==","iv":"cgebIZXoM18f7J4O","ct":"kwF0l8nzl3hIg8tr6eR67EniNMNG+3ptPvIvxHPh4v1x1/mknX9KIHEBkW1W81UGcA9fKR1dwOooZ3V5Uhcl/R7tJuYsgQceH4sScw0+HfqiegsJtVB3kncdO80TqjYrV8d9IgmegcdB/2y4k7EOqFPJfheNS4Keg+YUnyUT82+xvA6oR42HJWTAfy/Kl4Cc+rJykbYsacitaMKsnXABbui23jDR6ANXjj7IkF4oXlIh8jZHvLk1GKQdaJ6+fKd7xJl8A/2fMTvdE5zwuDfwpZk84UqGKWNWX4sclMaCLqHa1jjBqBzEt0thRTGu5fou0LVxi9drkNQMVMDZBJxz5q/ie28/z2Mhql4CkQ2VuRSXuo/88V4I48W2suC08mUHUvcuintIJNQWszlEW7UJahxq4uUJKWwuTSDtOYq7ecaeX5O6KNU6BafYmXL0pSO4aDo/VrA4J9+VfI635QWOwAkuJsy+KjVyMWvouWMJpERZlBpvWXmSjLEPLgvQzeJvHBO50JzrvMtTHfuqUM6U7cqyLx7naDB5XrWezyNmRo6b9Pgkhzbxl0BbkrmFe2JAc16rBealaQr6srARsZvuctci1d8W7O08h9NaRhvasNyGdLUraKp7IMYnuiBmIkWrC/+f7rnLkiNFwwCgZEUCYPzPghGc9Mzff6gjtLe7w/8uGd0vV2hR+3yChchE8WjjnwmS56R6JfFOIb8V2hlj6OJdFHdGg9Jp2vJJZjK9ctYXqoo7dBnzwm2e5J5e1lyb9ex/xphICU2pAGaeCItox130keGIGWwxliOKkBp7lfMPapEztIQB4qpDLXUhBpIPHbFO7zQ0zJmGwWfsI3irK3O+gQyKzQH53e9wcFkQrHkgP9MDBIbYcMdJc43zZxC+LOk9USk6uYIOul+ioNd0sjWP+lXE4mhgTR3/EWciTJOYlzRDlkIL59TLXwxevgDXsgO5DwfbNFq9VNzxEEFCsB1TEhhv/madx6N/RZn1K8kryVsRVczL6qSPg64dLTJPutuX0jGxah/69cbIzSeQmQxcFU8Xgrs1wA8hljkN6bfiNt1HGiUzsLQaczTPr36eobPb/rOjnBUSI3rDigl8TLIDXFc/JB+w/pwG14gCI2hFfl0cUkUqmUvTNC/K+d+VroqJWExDz5NTy8XSnVHJK9yne5dYhE8MZUIi+8mfyaq+9wcF1OdZS5hbUu5czB1ZlO94ZhI9W+jBWZHLZcaN/tlbOZnOvA7UQuazCaucnI0pnNZLkUxKM03/kSTQbuc1wVyG3qhBcDkudBJ53fVKNO/aNs9cixATNr9Lf2sWkgY7HaJH1YfSpNs0MrrAU2TSJHGlyvvQ+KpD3mbLl1ZxjhTDuIrC2wO0AtR24/O0RU+sB/rLaGvrTM5WJrOEPvogog3CCeGTKHBUjA8RZnzvOSnc40c="}</script>
+<script id="d" type="application/json">{"v":1,"kdf":"PBKDF2-SHA256","it":310000,"salt":"KU1bZfds4fqMjTpczHMmYg==","iv":"PMg5LHr4szVdk8gn","ct":"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"}</script>
 <script>
 (function(){
   var blob = JSON.parse(document.getElementById('d').textContent);
@@ -108,6 +91,20 @@
     return dec.decode(out);
   }
 
+  // 復号に成功したときだけ計測タグを読み込む（一度きり）
+  function loadGA(){
+    if (window.__gaLoaded) return;
+    window.__gaLoaded = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-QCLT8H81TT';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', 'G-QCLT8H81TT');
+  }
+
   var f=document.getElementById('f'), k=document.getElementById('k'),
       m=document.getElementById('m'), go=document.getElementById('go');
   f.addEventListener('submit', async function(e){
@@ -119,6 +116,8 @@
       var b=document.getElementById('body');
       b.innerHTML=html; b.style.display='block';
       document.title='Resonance';
+      k.value='';
+      loadGA();
     }catch(err){
       // 正誤のヒントは出さない
       m.textContent='復号できません';

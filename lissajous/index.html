@@ -103,6 +103,14 @@
   .no{ color: var(--a); font-weight:700; font-size:12.5px; min-width: 3.1em; }
   .ttl{ color:#dbe3e6; }
 
+  /* 別の限定ページへの控えめな導線 */
+  .side-link{ margin: 30px 0 0; font-size: 13.5px; color: var(--chalk-dim); }
+  .side-link a{
+    color: var(--chalk-dim); border-bottom: 1px solid var(--line);
+    padding-bottom: 2px; transition: color .15s ease, border-color .15s ease;
+  }
+  .side-link a:hover{ color: var(--chalk); border-color: var(--chalk-dim); }
+
   footer{ border-top:1px solid var(--line); padding: 28px 0 64px;
           color: var(--chalk-dim); font-size:13px; }
   footer a{ color: var(--chalk-dim); }
@@ -248,6 +256,10 @@
   <p class="soon">動画を準備中です。収録が済みしだいここに追加します。</p>
 </article>
   </main>
+
+  <p class="side-link">
+    <a href="../resonance/" rel="nofollow">進研模試 解説はこちら（合言葉が必要です）<span aria-hidden="true"> →</span></a>
+  </p>
 
   <footer class="wrap" style="padding-left:0;padding-right:0">
     <p>高校物理 解説チャンネル ／ 収録済み 36 問（力学・熱学）。残り4分野は順次追加します。</p>
