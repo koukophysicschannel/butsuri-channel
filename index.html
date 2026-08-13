@@ -16,7 +16,7 @@
 
 <!-- ▼ 検索・SNS用の基本情報。公開URLが決まったら og:url と canonical を書き換えてください -->
 <title>高校物理 解説チャンネル｜リードα全問解説・授業動画まとめ（力学・熱力学・波動・電磁気・原子）</title>
-<meta name="description" content="高校物理の解説チャンネル「高校物理 解説チャンネル」の動画まとめページです。力学・熱力学・波動・電磁気・原子の授業動画と、リードα物理基礎・物理の全問解説（第1〜27章）を分野別にまとめています。定期テスト対策・大学受験対策にどうぞ。">
+<meta name="description" content="授業動画・リードα全問解説・重要問題集・過去問解説を分野別に掲載。定期考査対策も難関大受験も、高校物理はここだけで足ります。">
 <link rel="canonical" href="https://koukophysicschannel.github.io/butsuri-channel/">
 <meta name="robots" content="index, follow">
 <meta name="google-site-verification" content="PQtqr4HIspzhAX5MmyPYaj5c13fHWHmafrzQSkJnFfU" />
@@ -24,7 +24,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="高校物理 解説チャンネル">
 <meta property="og:title" content="高校物理 解説チャンネル｜リードα全問解説・授業動画まとめ">
-<meta property="og:description" content="力学・熱力学・波動・電磁気・原子の授業動画と、リードα全問解説（第1〜27章）を分野別にまとめました。定期テスト・大学受験対策に。">
+<meta property="og:description" content="授業動画・リードα全問解説・重要問題集・過去問解説を分野別に掲載。定期考査対策も難関大受験も、高校物理はここだけで足ります。">
 <meta property="og:url" content="https://koukophysicschannel.github.io/butsuri-channel/">
 <meta property="og:locale" content="ja_JP">
 
@@ -165,6 +165,25 @@
     .physica-banner .arrow{ order:2; }
   }
 
+  /* セクションジャンプ。分野フィルター(.filters)のピルと見た目が重ならないよう、
+     あえてピルにせず mono のテキストリンク行にしている
+     （ピル行が2段並ぶと「移動」と「絞り込み」の区別がつかなくなるため）。 */
+  .secnav{
+    display:flex; justify-content:center; align-items:center;
+    gap:4px 0; flex-wrap:wrap; margin: 30px 0 2px;
+    font-family:"JetBrains Mono", monospace; font-size:13px;
+  }
+  .secnav a{
+    color: var(--chalk-dim); padding: 6px 14px; border-radius:8px;
+    transition: color .15s ease, background .15s ease;
+  }
+  .secnav a:hover{ color: var(--chalk); background: var(--bg-alt); }
+  .secnav .sep{ color:#3a444e; user-select:none; }
+
+  /* .filters が sticky で上に居座るので、アンカー着地位置を下げないと
+     ジャンプ先の h2 がフィルター行の下に潜る。 */
+  section.section{ scroll-margin-top: 76px; }
+
   .filters{
     position: sticky; top: 0; z-index: 5;
     background: linear-gradient(to bottom, var(--bg) 78%, transparent);
@@ -282,6 +301,22 @@
     .filters{ position: static; background:none; }
   }
 
+  /* 右下固定の「上へ戻る」。一定量スクロールしたら .show が付いて現れる。 */
+  .to-top{
+    position: fixed; right: 22px; bottom: 22px; z-index: 20;
+    width: 46px; height: 46px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--card); border: 1px solid var(--line); color: var(--chalk-dim);
+    opacity: 0; visibility: hidden; transform: translateY(8px);
+    transition: opacity .2s ease, transform .2s ease, visibility .2s ease,
+                border-color .15s ease, color .15s ease;
+    cursor: pointer;
+  }
+  .to-top.show{ opacity:1; visibility:visible; transform:none; }
+  .to-top:hover{ color: var(--chalk); border-color: var(--chalk-dim); }
+  @media (prefers-reduced-motion: reduce){ .to-top{ transition: opacity .2s ease; } }
+  @media (max-width:560px){ .to-top{ right:14px; bottom:14px; width:42px; height:42px; } }
+
   /* フッターの装飾（リサージュ曲線）。クリックで /lissajous/ へ。
      <a> ではマークアップしない＝クローラに辿らせないため。カーソルも default のまま。 */
   footer .mark{
@@ -304,13 +339,25 @@
     <h1 class="title">高校物理 解説チャンネル
       <span class="sub">微積で考える、本質から分かる高校物理</span>
     </h1>
-    <p class="lede">授業動画・リードα全問解説・要点まとめショートを分野別にまとめました。定期テスト前の復習や、大学受験対策にどうぞ。</p>
+    <p class="lede">授業動画で基礎を作り、リードαで固め、重要問題集と過去問で仕上げる。定期考査対策も難関大受験も、初学者からトップレベルまで、高校物理はここだけで足ります。</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="https://www.youtube.com/channel/UCZy3VipvKr3AJc_-okxbDPw?sub_confirmation=1" target="_blank" rel="noopener">チャンネル登録する</a>
       <a class="btn btn-ghost" href="#leadalpha">リードαの解説を見る</a>
       <a class="btn btn-ghost" href="#jumon">重要問題集の解説を見る</a>
     </div>
   </header>
+
+  <nav class="secnav" aria-label="セクション">
+    <a href="#lectures">授業動画</a>
+    <span class="sep">/</span>
+    <a href="#jumon">重要問題集</a>
+    <span class="sep">/</span>
+    <a href="#leadalpha">リードα</a>
+    <span class="sep">/</span>
+    <a href="#kakomon">過去問</a>
+    <span class="sep">/</span>
+    <a href="#shorts">ショート</a>
+  </nav>
 
   <a class="physica-banner" href="physica-about/">
     <span class="ico">📱</span>
@@ -556,6 +603,33 @@
   </footer>
 
 </div>
+
+<button class="to-top" id="toTop" aria-label="ページの先頭へ戻る">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+  // 上へ戻る。600px以上スクロールしたら出す。
+  (function(){
+    var btn = document.getElementById('toTop');
+    if(!btn) return;
+    var ticking = false;
+    function update(){
+      btn.classList.toggle('show', window.scrollY > 600);
+      ticking = false;
+    }
+    window.addEventListener('scroll', function(){
+      if(!ticking){ ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    btn.addEventListener('click', function(){
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+    update();
+  })();
+</script>
 
 <script>
   const chips = document.querySelectorAll('.chip');
