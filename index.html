@@ -136,6 +136,35 @@
   .btn-ghost{ background: transparent; color: var(--chalk); }
   .btn-ghost:hover{ border-color: var(--chalk-dim); }
 
+  /* PHYSICAへの導線。ヒーロー直下に置く1行バナー。
+     色(--pc)は分野5色とも --accent(チャンネル登録)とも被らないローズを当てている。
+     遷移先はアプリ本体ではなく説明ページ physica-about/。 */
+  .physica-banner{
+    --pc: #ef6f9c;
+    display:flex; align-items:center; gap:14px;
+    margin: 26px 0 4px;
+    padding: 13px 20px;
+    border-radius: 12px;
+    border: 1px solid color-mix(in srgb, var(--pc) 42%, transparent);
+    background: linear-gradient(90deg,
+      color-mix(in srgb, var(--pc) 13%, transparent),
+      color-mix(in srgb, var(--pc) 5%, transparent));
+    transition: transform .15s ease, border-color .15s ease;
+  }
+  .physica-banner:hover{ transform: translateY(-1px);
+    border-color: color-mix(in srgb, var(--pc) 70%, transparent); }
+  .physica-banner .ico{ font-size:17px; line-height:1; flex-shrink:0; }
+  .physica-banner .name{ font-weight:900; color:var(--pc); letter-spacing:.04em; flex-shrink:0; }
+  .physica-banner .sep{ color:color-mix(in srgb, var(--pc) 45%, transparent); flex-shrink:0; }
+  .physica-banner .txt{ font-size:14.5px; color:var(--chalk); }
+  .physica-banner .arrow{ margin-left:auto; color:var(--pc);
+    font-family:"JetBrains Mono", monospace; font-size:13px; font-weight:700; flex-shrink:0; }
+  @media (max-width:560px){
+    .physica-banner{ gap:10px; padding:12px 16px; flex-wrap:wrap; }
+    .physica-banner .txt{ font-size:13.5px; width:100%; order:3; }
+    .physica-banner .arrow{ order:2; }
+  }
+
   .filters{
     position: sticky; top: 0; z-index: 5;
     background: linear-gradient(to bottom, var(--bg) 78%, transparent);
@@ -283,15 +312,13 @@
     </div>
   </header>
 
-  <section class="section" id="physica">
-    <div class="section-head">
-      <h2>PHYSICAで自分の物理力を記録する</h2>
-    </div>
-    <p class="lede" style="margin:0 0 20px;">解いた問題をタップして物理力を記録するアプリ。プレ版公開中。</p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="https://koukophysicschannel.github.io/physica/" target="_blank" rel="noopener">PHYSICAを開く</a>
-    </div>
-  </section>
+  <a class="physica-banner" href="physica-about/">
+    <span class="ico">📱</span>
+    <span class="name">PHYSICA</span>
+    <span class="sep">—</span>
+    <span class="txt">解いた問題を記録するアプリ</span>
+    <span class="arrow mono">→</span>
+  </a>
 
   <nav class="filters" id="filters">
     <div class="chip active" data-cat="all">すべて</div>
