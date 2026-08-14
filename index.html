@@ -136,41 +136,22 @@
   .btn-ghost{ background: transparent; color: var(--chalk); }
   .btn-ghost:hover{ border-color: var(--chalk-dim); }
 
-  /* PHYSICAへの導線。ヒーロー直下に置く1行バナー。
-     色(--pc)は分野5色とも --accent(チャンネル登録)とも被らないローズを当てている。
-     遷移先はアプリ本体ではなく説明ページ physica-about/。 */
-  .physica-banner{
-    --pc: #ef6f9c;
-    display:flex; align-items:center; gap:14px;
-    margin: 26px 0 4px;
-    padding: 13px 20px;
-    border-radius: 12px;
-    border: 1px solid color-mix(in srgb, var(--pc) 42%, transparent);
-    background: linear-gradient(90deg,
-      color-mix(in srgb, var(--pc) 13%, transparent),
-      color-mix(in srgb, var(--pc) 5%, transparent));
-    transition: transform .15s ease, border-color .15s ease;
-  }
-  .physica-banner:hover{ transform: translateY(-1px);
-    border-color: color-mix(in srgb, var(--pc) 70%, transparent); }
-  .physica-banner .ico{ font-size:17px; line-height:1; flex-shrink:0; }
-  .physica-banner .name{ font-weight:900; color:var(--pc); letter-spacing:.04em; flex-shrink:0; }
-  .physica-banner .sep{ color:color-mix(in srgb, var(--pc) 45%, transparent); flex-shrink:0; }
-  .physica-banner .txt{ font-size:14.5px; color:var(--chalk); }
-  .physica-banner .arrow{ margin-left:auto; color:var(--pc);
-    font-family:"JetBrains Mono", monospace; font-size:13px; font-weight:700; flex-shrink:0; }
-  @media (max-width:560px){
-    .physica-banner{ gap:10px; padding:12px 16px; flex-wrap:wrap; }
-    .physica-banner .txt{ font-size:13.5px; width:100%; order:3; }
-    .physica-banner .arrow{ order:2; }
-  }
+  /* ヒーロー(誰か・何か) / セクションナビ(移動) / フィルター(絞り込み) / PHYSICA(宣伝) の
+     4つが上部に連続すると役割が混ざって見えるため、次のように分けている。
+       ・ヒーローのCTAは「チャンネル登録」1つだけ（他はナビと重複するので置かない）
+       ・ヒーローとナビの間に区切り線を1本入れて「ここから下は移動」と切り替える
+       ・フィルターは絞り込む対象＝最初の動画セクションの直前へ下ろす
+       ・PHYSICAは最下部のカードが本体。ナビ右端の項目は名前だけの補助導線 */
 
   /* セクションジャンプ。分野フィルター(.filters)のピルと見た目が重ならないよう、
      あえてピルにせず mono のテキストリンク行にしている
      （ピル行が2段並ぶと「移動」と「絞り込み」の区別がつかなくなるため）。 */
   .secnav{
+    --pc: #ef6f9c;
     display:flex; justify-content:center; align-items:center;
-    gap:4px 0; flex-wrap:wrap; margin: 30px 0 2px;
+    gap:4px 0; flex-wrap:wrap;
+    margin: 0 0 8px; padding-top: 26px;
+    border-top: 1px solid var(--line);
     font-family:"JetBrains Mono", monospace; font-size:13px;
   }
   .secnav a{
@@ -179,17 +160,51 @@
   }
   .secnav a:hover{ color: var(--chalk); background: var(--bg-alt); }
   .secnav .sep{ color:#3a444e; user-select:none; }
+  /* 縦罫線で区切ってから、PHYSICAだけローズ色にする（移動先ではなく別物だと示すため） */
+  .secnav .div{ width:1px; height:16px; background:var(--line); margin:0 10px; flex-shrink:0; }
+  .secnav a.pc{ color: var(--pc); font-weight:700; }
+  .secnav a.pc:hover{ background: color-mix(in srgb, var(--pc) 14%, transparent); }
+
+  /* PHYSICAの本体。最下部に置き、1行バナーではなく説明の入るカードにする。 */
+  .physica-card{
+    --pc: #ef6f9c;
+    display:flex; align-items:center; gap:18px;
+    margin: 10px 0 0; padding: 22px 24px; border-radius:14px;
+    border:1px solid color-mix(in srgb, var(--pc) 38%, transparent);
+    background: linear-gradient(90deg,
+      color-mix(in srgb, var(--pc) 12%, transparent),
+      color-mix(in srgb, var(--pc) 4%, transparent));
+    transition: transform .15s ease, border-color .15s ease;
+  }
+  .physica-card:hover{ transform:translateY(-1px);
+    border-color:color-mix(in srgb, var(--pc) 70%, transparent); }
+  .physica-card .ico{ font-size:26px; line-height:1; flex-shrink:0; }
+  .physica-card .body h3{ margin:0 0 3px; font-size:16px; color:var(--pc); letter-spacing:.03em; }
+  .physica-card .body p{ margin:0; font-size:13.5px; color:var(--chalk-dim); }
+  .physica-card .arrow{ margin-left:auto; color:var(--pc);
+    font-family:"JetBrains Mono",monospace; font-size:13px; font-weight:700; flex-shrink:0; }
+  @media (max-width:560px){
+    .physica-card{ gap:14px; padding:18px; flex-wrap:wrap; }
+    .physica-card .arrow{ margin-left:0; width:100%; }
+  }
 
   /* .filters が sticky で上に居座るので、アンカー着地位置を下げないと
      ジャンプ先の h2 がフィルター行の下に潜る。 */
-  section.section{ scroll-margin-top: 76px; }
+  section.section{ scroll-margin-top: 88px; }
 
   .filters{
     position: sticky; top: 0; z-index: 5;
     background: linear-gradient(to bottom, var(--bg) 78%, transparent);
-    padding: 16px 0 20px;
-    display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+    padding: 16px 0 20px; margin-bottom: 4px;
+    display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap;
   }
+  /* 何のためのピル列なのかを明示する。移動用のナビと取り違えないため。 */
+  .filters::before{
+    content:"絞り込み"; font-family:"JetBrains Mono",monospace; font-size:11px;
+    letter-spacing:.1em; color:#6d7880; margin-right:4px;
+  }
+  /* フィルター直後のセクションは上罫線を消す（区切り線が二重に見えるため） */
+  .filters + section.section{ border-top: 0; padding-top: 8px; }
   .chip{
     font-family:"JetBrains Mono", monospace;
     font-size: 12.5px; font-weight: 500;
@@ -342,8 +357,6 @@
     <p class="lede">授業動画で基礎を作り、リードαで固め、重要問題集と過去問で仕上げる。定期考査対策も難関大受験も、初学者からトップレベルまで、高校物理はここだけで足ります。</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="https://www.youtube.com/channel/UCZy3VipvKr3AJc_-okxbDPw?sub_confirmation=1" target="_blank" rel="noopener">チャンネル登録する</a>
-      <a class="btn btn-ghost" href="#leadalpha">リードαの解説を見る</a>
-      <a class="btn btn-ghost" href="#jumon">重要問題集の解説を見る</a>
     </div>
   </header>
 
@@ -357,26 +370,20 @@
     <a href="#kakomon">過去問</a>
     <span class="sep">/</span>
     <a href="#shorts">ショート</a>
-  </nav>
-
-  <a class="physica-banner" href="physica-about/">
-    <span class="ico">📱</span>
-    <span class="name">PHYSICA</span>
-    <span class="sep">—</span>
-    <span class="txt">解いた問題を記録するアプリ</span>
-    <span class="arrow mono">→</span>
-  </a>
-
-  <nav class="filters" id="filters">
-    <div class="chip active" data-cat="all">すべて</div>
-    <div class="chip" data-cat="mech"><span class="dot"></span>力学</div>
-    <div class="chip" data-cat="therm"><span class="dot"></span>熱力学</div>
-    <div class="chip" data-cat="wave"><span class="dot"></span>波動</div>
-    <div class="chip" data-cat="electro"><span class="dot"></span>電磁気</div>
-    <div class="chip" data-cat="atom"><span class="dot"></span>原子</div>
+    <span class="div" aria-hidden="true"></span>
+    <a class="pc" href="physica-about/">📱 PHYSICA</a>
   </nav>
 
   <main>
+
+    <nav class="filters" id="filters">
+      <div class="chip active" data-cat="all">すべて</div>
+      <div class="chip" data-cat="mech"><span class="dot"></span>力学</div>
+      <div class="chip" data-cat="therm"><span class="dot"></span>熱力学</div>
+      <div class="chip" data-cat="wave"><span class="dot"></span>波動</div>
+      <div class="chip" data-cat="electro"><span class="dot"></span>電磁気</div>
+      <div class="chip" data-cat="atom"><span class="dot"></span>原子</div>
+    </nav>
 
     <section class="section" id="lectures">
       <div class="section-head">
@@ -578,6 +585,15 @@
         配布プリントやPDFを追加すると、ここに一覧表示されます。
       </div>
     </section>
+
+    <a class="physica-card" href="physica-about/">
+      <span class="ico">📱</span>
+      <span class="body">
+        <h3>PHYSICA</h3>
+        <p>解いた問題をタップして記録する学習記録アプリ。無料・登録なし。</p>
+      </span>
+      <span class="arrow mono">詳しく見る →</span>
+    </a>
 
   </main>
 
