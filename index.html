@@ -118,9 +118,15 @@
     letter-spacing: 0;
   }
   .lede{
-    max-width: 560px; margin: 0 auto 34px;
+    max-width: 560px; margin: 0 auto 14px;
     color: var(--chalk-dim);
     font-size: 15.5px;
+  }
+  /* 「このページは何をする場所か」の一行案内。売り文句(.lede)より一段落として
+     読ませたいので、色も文字サイズも控えめにする。 */
+  .site-note{
+    max-width: 560px; margin: 0 auto 30px;
+    color: #7d8990; font-size: 13px; line-height: 1.7;
   }
   .cta-row{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
   .btn{
@@ -136,34 +142,81 @@
   .btn-ghost{ background: transparent; color: var(--chalk); }
   .btn-ghost:hover{ border-color: var(--chalk-dim); }
 
-  /* ヒーロー(誰か・何か) / セクションナビ(移動) / フィルター(絞り込み) / PHYSICA(宣伝) の
-     4つが上部に連続すると役割が混ざって見えるため、次のように分けている。
-       ・ヒーローのCTAは「チャンネル登録」1つだけ（他はナビと重複するので置かない）
-       ・ヒーローとナビの間に区切り線を1本入れて「ここから下は移動」と切り替える
-       ・フィルターは絞り込む対象＝最初の動画セクションの直前へ下ろす
-       ・PHYSICAは最下部のカードが本体。ナビ右端の項目は名前だけの補助導線 */
+  /* 上部は「ヒーロー(誰か・何か) → ①教材から探す → ②分野から探す → ③PHYSICA → 棚」の
+     5段。役割が混ざって見えないよう、次のように分けている。
+       ・ヒーローのCTAは「YouTubeへ移動」1つだけ（サイト内の導線は①②が持つ）
+       ・①②③には同じ書式の小見出し(.steplabel)を付け、段の役割を先に読ませる
+       ・段の間には既存の罫線(var(--line))を1本ずつ入れる
+         （ヒーロー/① は .findbar の border-top、①/② は .findbar の border-bottom、
+           ②/③ は .pcbar の border-top、③/棚 は section.section の border-top）
+       ・①②はニュートラル色のピルで対にし、③だけローズ色の枠にして別物だと示す
+       ・PHYSICAの本体は最下部のカード。③は名前と一言だけの補助導線 */
 
-  /* セクションジャンプ。分野フィルター(.filters)のピルと見た目が重ならないよう、
-     あえてピルにせず mono のテキストリンク行にしている
-     （ピル行が2段並ぶと「移動」と「絞り込み」の区別がつかなくなるため）。 */
-  .secnav{
-    --pc: #ef6f9c;
-    display:flex; justify-content:center; align-items:center;
-    gap:4px 0; flex-wrap:wrap;
-    margin: 0 0 8px; padding-top: 26px;
+  /* 3ブロック（教材から探す / 分野から探す / 学習記録アプリ）の見出し。
+     3つが同じ書式であることが「並列の入口」に見せる肝なので .steplabel を共通で使う
+     （.filters では ::before の中身として同じ書式を再現）。 */
+  .steplabel{
+    font-family:"JetBrains Mono", monospace; font-size:11px;
+    letter-spacing:.1em; color:#6d7880;
+    display:block; text-align:center; margin: 0 0 10px;
+  }
+
+  /* ①教材 と ②分野 の区切り線。上下とも .findbar が持つ
+     （②は sticky なので、②側に線を付けると画面上端に線が貼り付いてしまう）。 */
+  .findbar{
     border-top: 1px solid var(--line);
-    font-family:"JetBrains Mono", monospace; font-size:13px;
+    border-bottom: 1px solid var(--line);
+    padding: 24px 0 22px;
+  }
+
+  /* セクションジャンプ。②の分野ピルと対に見せるため同じ形・同じニュートラル色のピルにし、
+     段の違いはラベルと上下の罫線で示す。色が付くのは②のカテゴリ点と③のローズだけ、
+     という配色にして「①②＝探す／③＝別物」を色でも読ませる。 */
+  .secnav{
+    display:flex; justify-content:center; align-items:center;
+    gap:10px; flex-wrap:wrap;
+    margin: 0;
   }
   .secnav a{
-    color: var(--chalk-dim); padding: 6px 14px; border-radius:8px;
-    transition: color .15s ease, background .15s ease;
+    font-family:"JetBrains Mono", monospace;
+    font-size: 12.5px; font-weight: 500;
+    padding: 8px 16px; border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--bg-alt);
+    color: var(--chalk-dim);
+    transition: color .15s ease, border-color .15s ease;
   }
-  .secnav a:hover{ color: var(--chalk); background: var(--bg-alt); }
-  .secnav .sep{ color:#3a444e; user-select:none; }
-  /* 縦罫線で区切ってから、PHYSICAだけローズ色にする（移動先ではなく別物だと示すため） */
-  .secnav .div{ width:1px; height:16px; background:var(--line); margin:0 10px; flex-shrink:0; }
-  .secnav a.pc{ color: var(--pc); font-weight:700; }
-  .secnav a.pc:hover{ background: color-mix(in srgb, var(--pc) 14%, transparent); }
+  .secnav a:hover{ color: var(--chalk); border-color: var(--chalk-dim); }
+
+  /* PHYSICAの上部導線。教材でも分野でもない「別物」なので、
+     ローズ色＋角丸の枠で、mono テキスト行(.secnav)ともピル(.chip)とも別の形にする。
+     本体は最下部の .physica-card。ここは名前と一言だけの補助導線。 */
+  .pcbar{
+    --pc: #ef6f9c;
+    border-top: 1px solid var(--line);
+    padding-top: 22px; margin-top: 26px; text-align:center;
+  }
+  .pclink{
+    display:inline-flex; align-items:center; gap:10px;
+    padding: 9px 18px; border-radius: 10px;
+    border:1px solid color-mix(in srgb, var(--pc) 40%, transparent);
+    background: color-mix(in srgb, var(--pc) 9%, transparent);
+    transition: border-color .15s ease, background .15s ease, transform .15s ease;
+  }
+  .pclink:hover{
+    transform: translateY(-1px);
+    border-color: color-mix(in srgb, var(--pc) 75%, transparent);
+    background: color-mix(in srgb, var(--pc) 14%, transparent);
+  }
+  .pclink .ico{ font-size:16px; line-height:1; }
+  .pclink .name{ font-family:"JetBrains Mono",monospace; font-size:13.5px;
+    font-weight:700; color:var(--pc); letter-spacing:.04em; }
+  .pclink .desc{ font-size:12.5px; color:var(--chalk-dim); }
+  .pclink .arrow{ font-family:"JetBrains Mono",monospace; font-size:12px; color:var(--pc); }
+  @media (max-width:560px){
+    .pclink{ flex-wrap:wrap; justify-content:center; gap:6px 8px; }
+    .pclink .desc{ flex-basis:100%; }
+  }
 
   /* PHYSICAの本体。最下部に置き、1行バナーではなく説明の入るカードにする。 */
   .physica-card{
@@ -189,22 +242,23 @@
   }
 
   /* .filters が sticky で上に居座るので、アンカー着地位置を下げないと
-     ジャンプ先の h2 がフィルター行の下に潜る。 */
-  section.section{ scroll-margin-top: 88px; }
+     ジャンプ先の h2 がフィルター行の下に潜る。ラベル1行ぶん高くなったので余裕も増やす。 */
+  section.section{ scroll-margin-top: 112px; }
 
   .filters{
     position: sticky; top: 0; z-index: 5;
     background: linear-gradient(to bottom, var(--bg) 78%, transparent);
-    padding: 16px 0 20px; margin-bottom: 4px;
+    padding: 20px 0 18px; margin-bottom: 0;
     display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap;
   }
-  /* 何のためのピル列なのかを明示する。移動用のナビと取り違えないため。 */
+  /* 何のためのピル列なのかを明示する。教材ナビと取り違えないため。
+     ①「教材から探す」と対に見せたいので、同じ書式・同じ位置（列の真上・中央）に置く。
+     flex-basis:100% でラベルだけが1行を占め、ピルが次の行に落ちる。 */
   .filters::before{
-    content:"絞り込み"; font-family:"JetBrains Mono",monospace; font-size:11px;
-    letter-spacing:.1em; color:#6d7880; margin-right:4px;
+    content:"分野から探す"; flex-basis:100%;
+    font-family:"JetBrains Mono",monospace; font-size:11px;
+    letter-spacing:.1em; color:#6d7880; text-align:center; margin: 0 0 10px;
   }
-  /* フィルター直後のセクションは上罫線を消す（区切り線が二重に見えるため） */
-  .filters + section.section{ border-top: 0; padding-top: 8px; }
   .chip{
     font-family:"JetBrains Mono", monospace;
     font-size: 12.5px; font-weight: 500;
@@ -355,24 +409,22 @@
       <span class="sub">微積で考える、本質から分かる高校物理</span>
     </h1>
     <p class="lede">授業動画で基礎を作り、リードαで固め、重要問題集と過去問で仕上げる。定期考査対策も難関大受験も、初学者からトップレベルまで、高校物理はここだけで足ります。</p>
+    <p class="site-note">このサイトは、YouTubeの全動画を教材別・分野別に整理した目次です。</p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="https://www.youtube.com/channel/UCZy3VipvKr3AJc_-okxbDPw?sub_confirmation=1" target="_blank" rel="noopener">チャンネル登録する</a>
+      <a class="btn btn-primary" href="https://www.youtube.com/channel/UCZy3VipvKr3AJc_-okxbDPw" target="_blank" rel="noopener">YouTubeチャンネルへ移動</a>
     </div>
   </header>
 
-  <nav class="secnav" aria-label="セクション">
-    <a href="#lectures">授業動画</a>
-    <span class="sep">/</span>
-    <a href="#jumon">重要問題集</a>
-    <span class="sep">/</span>
-    <a href="#leadalpha">リードα</a>
-    <span class="sep">/</span>
-    <a href="#kakomon">過去問</a>
-    <span class="sep">/</span>
-    <a href="#shorts">ショート</a>
-    <span class="div" aria-hidden="true"></span>
-    <a class="pc" href="physica-about/">📱 PHYSICA</a>
-  </nav>
+  <div class="findbar">
+    <span class="steplabel">教材から探す</span>
+    <nav class="secnav" aria-label="教材セクション">
+      <a href="#lectures">授業動画</a>
+      <a href="#jumon">重要問題集</a>
+      <a href="#leadalpha">リードα</a>
+      <a href="#kakomon">過去問</a>
+      <a href="#shorts">ショート</a>
+    </nav>
+  </div>
 
   <main>
 
@@ -384,6 +436,16 @@
       <div class="chip" data-cat="electro"><span class="dot"></span>電磁気</div>
       <div class="chip" data-cat="atom"><span class="dot"></span>原子</div>
     </nav>
+
+    <div class="pcbar">
+      <span class="steplabel">学習記録アプリ</span>
+      <a class="pclink" href="physica-about/">
+        <span class="ico" aria-hidden="true">📱</span>
+        <span class="name">PHYSICA</span>
+        <span class="desc">解いた問題をタップして記録・無料</span>
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
 
     <section class="section" id="lectures">
       <div class="section-head">
