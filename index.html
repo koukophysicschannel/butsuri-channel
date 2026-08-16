@@ -191,10 +191,13 @@
   /* PHYSICAの上部導線。教材でも分野でもない「別物」なので、
      ローズ色＋角丸の枠で、mono テキスト行(.secnav)ともピル(.chip)とも別の形にする。
      本体は最下部の .physica-card。ここは名前と一言だけの補助導線。 */
+  /* flex にしているのは、インライン要素として置くと行box の余りが
+     バナー下に数px入って、下の罫線との間隔が指定値どおりにならないため。 */
   .pcbar{
     --pc: #ef6f9c;
+    display:flex; flex-direction:column; align-items:center;
     border-top: 1px solid var(--line);
-    padding-top: 22px; margin-top: 26px; text-align:center;
+    padding-top: 22px; margin: 26px 0 26px;
   }
   .pclink{
     display:inline-flex; align-items:center; gap:10px;
