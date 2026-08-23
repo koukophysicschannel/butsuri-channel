@@ -1,0 +1,13 @@
+#!/bin/sh
+# butsuri-channel: push直前にHTMLの構造を検査する。
+#
+# 導入(各Macで1回だけ):
+#     ln -sf ../../tools/pre-push .git/hooks/pre-push
+#   ※シンボリックリンクなので、tools/pre-push を直せば両方に反映される。
+#
+# 一時的に飛ばしたいとき:
+#     git push --no-verify
+#
+# 外したいとき:
+#     rm .git/hooks/pre-push
+exec python3 "$(git rev-parse --show-toplevel)/tools/check_html.py" --quiet
