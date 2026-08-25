@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QCLT8H81TT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QCLT8H81TT');
+</script>
+
+<title>物理重要問題集 2025年版をお使いの方へ｜2026年版との対応</title>
+<meta name="description" content="物理重要問題集2025年版と2026年版の対応。力学（問1〜63）は問題番号が完全に一致し、変更は問5の内容差し替えのみです。">
+<link rel="canonical" href="https://koukophysicschannel.github.io/butsuri-channel/juyomon/2025/">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="高校物理 解説チャンネル">
+<meta property="og:title" content="物理重要問題集 2025年版をお使いの方へ｜2026年版との対応">
+<meta property="og:description" content="物理重要問題集2025年版と2026年版の対応。力学（問1〜63）は問題番号が完全に一致し、変更は問5の内容差し替えのみです。">
+<meta property="og:url" content="https://koukophysicschannel.github.io/butsuri-channel/juyomon/2025/">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="物理重要問題集 2025年版をお使いの方へ｜2026年版との対応">
+<meta name="twitter:description" content="物理重要問題集2025年版と2026年版の対応。力学（問1〜63）は問題番号が完全に一致し、変更は問5の内容差し替えのみです。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* サイト index.html のトークンをそのまま継承 */
+    --bg:#10151b; --bg-alt:#171e26; --card:#1a222b; --line:#2a333d;
+    --chalk:#edf2f0; --chalk-dim:#93a1a8; --accent:#f4c95d;
+    --mech:#7fd1a4; --therm:#ef8b6b; --wave:#6fb8e0;
+    --electro:#c497e0; --atom:#5fd3c4;
+    /* 6色目。重要問題集163問チェックリスト.pdf の考察色 (122,132,145) に合わせた */
+    --survey:#7a8491;
+
+    --sans:"Zen Kaku Gothic New",sans-serif;
+    --mono:"JetBrains Mono",monospace;
+  }
+
+  /* サイト全体が黒板の暗い世界に振り切っているので、このページも単一テーマ。 */
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0; background:var(--bg); color:var(--chalk);
+    font-family:var(--sans); line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{ font-family:var(--mono); font-variant-numeric:tabular-nums; }
+  a{ color:inherit; text-decoration:none; }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
+
+  .grid-bg{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+    background-size:42px 42px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,black 40%,transparent 85%);
+  }
+  .wrap{ position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 24px; }
+
+  .crumb{ padding:26px 0 0; font-family:var(--mono); font-size:12.5px; color:var(--chalk-dim); }
+  .crumb a:hover{ color:var(--chalk); }
+  header.top{ padding:22px 0 30px; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:12.5px; letter-spacing:.12em;
+    color:var(--accent); border:1px solid rgba(244,201,93,.35);
+    padding:5px 12px; border-radius:999px; margin-bottom:20px;
+  }
+  .eyebrow::before{ content:"\25CF"; font-size:8px; }
+  h1{ font-size:clamp(28px,4.2vw,42px); font-weight:900; margin:0 0 14px;
+      letter-spacing:-.01em; text-wrap:balance; }
+  h1 .sub{ display:block; font-size:.4em; font-weight:500; color:var(--chalk-dim);
+           margin-top:10px; letter-spacing:0; }
+  .lede{ max-width:62ch; color:var(--chalk-dim); font-size:15px; margin:0 0 26px; }
+
+  .summary{
+    background:var(--bg-alt); border:1px solid var(--line); border-radius:14px;
+    padding:20px 22px; display:flex; flex-direction:column; gap:14px;
+  }
+  .stats{ display:flex; gap:26px; flex-wrap:wrap; align-items:baseline; }
+  .stat{ display:flex; flex-direction:column; gap:2px; }
+  .stat b{ font-family:var(--mono); font-size:25px; font-weight:700; line-height:1.2;
+           font-variant-numeric:tabular-nums; }
+  .stat span{ font-size:11.5px; color:var(--chalk-dim); letter-spacing:.04em; }
+  .stat.s-live b{ color:var(--mech); }
+  .stat.s-sched b{ color:var(--accent); }
+  .stat.s-prep b{ color:var(--chalk-dim); }
+  .stat.s-all b{ color:var(--chalk); }
+
+  .bar{ display:flex; height:6px; border-radius:999px; overflow:hidden;
+        background:var(--line); gap:1.5px; }
+  .b-live{ background:var(--c,var(--mech)); }
+  .b-sched{ background:rgba(244,201,93,.55); }
+  .b-prep{ background:#232c36; }
+  .summary .bar{ height:8px; }
+  .summary .b-live{ background:var(--mech); }
+
+  .yearnote{
+    margin:22px 0 0; border:1px solid rgba(244,201,93,.3);
+    background:linear-gradient(180deg,rgba(244,201,93,.06),rgba(244,201,93,.02));
+    border-radius:14px; padding:18px 20px;
+    display:flex; gap:14px; align-items:flex-start;
+  }
+  .yearnote .ic{ color:var(--accent); flex-shrink:0; margin-top:3px; }
+  .yearnote h2{ font-size:15px; margin:0 0 6px; font-weight:700; }
+  .yearnote p{ margin:0; font-size:13.5px; color:var(--chalk-dim); max-width:66ch; }
+  .yearnote p + p{ margin-top:8px; }
+  .yearnote strong{ color:var(--chalk); font-weight:700; }
+  .yearnote .cav{ font-size:12.5px; color:#7d8890; }
+  .yearnote a.more{ color:var(--accent); border-bottom:1px solid rgba(244,201,93,.4); }
+
+  .filters{
+    position:sticky; top:0; z-index:5;
+    background:linear-gradient(to bottom,var(--bg) 76%,transparent);
+    padding:18px 0 22px; display:flex; gap:9px; flex-wrap:wrap; align-items:center;
+  }
+  .chip{
+    font-family:var(--mono); font-size:12.5px; font-weight:500;
+    padding:7px 14px; border-radius:999px; border:1px solid var(--line);
+    background:var(--bg-alt); color:var(--chalk-dim); cursor:pointer;
+    display:flex; align-items:center; gap:7px; transition:all .15s ease;
+  }
+  .chip .dot{ width:7px; height:7px; border-radius:50%; background:currentColor; }
+  .chip[data-cat="mech"]{ color:var(--mech); }
+  .chip[data-cat="therm"]{ color:var(--therm); }
+  .chip[data-cat="wave"]{ color:var(--wave); }
+  .chip[data-cat="electro"]{ color:var(--electro); }
+  .chip[data-cat="atom"]{ color:var(--atom); }
+  .chip[data-cat="survey"]{ color:var(--survey); }
+  .chip.active{ background:var(--card); border-color:currentColor;
+                box-shadow:0 0 0 1px currentColor inset; }
+  .chip:hover{ border-color:var(--chalk-dim); }
+  .sep{ width:1px; height:22px; background:var(--line); margin:0 4px; }
+  .chip.toggle.active{ color:var(--accent); }
+
+  .fs{ padding:34px 0; border-top:1px solid var(--line); }
+  .fs.hidden{ display:none; }
+  .fh{ display:flex; align-items:baseline; justify-content:space-between;
+       gap:16px; margin-bottom:12px; flex-wrap:wrap; }
+  .fh h2{ font-size:20px; margin:0; font-weight:700;
+          display:flex; align-items:center; gap:10px; }
+  .fd{ width:9px; height:9px; border-radius:50%; background:var(--c); flex-shrink:0; }
+  .fc{ font-size:12.5px; color:var(--chalk-dim); }
+
+  .qgrid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
+    gap:8px; margin-top:18px;
+  }
+
+  .q{
+    position:relative; display:flex; align-items:center; gap:13px;
+    background:var(--card); border:1px solid var(--line); border-radius:11px;
+    padding:11px 14px; transition:border-color .15s ease, transform .15s ease;
+  }
+  .q.hidden{ display:none; }
+  .qn{
+    font-weight:700; font-size:13px; color:var(--c);
+    background:color-mix(in srgb,var(--c) 15%,transparent);
+    border-radius:7px; padding:5px 7px; flex-shrink:0;
+    min-width:38px; text-align:center;
+  }
+  .qb{ flex:1; min-width:0; }
+  .qb h3{ font-size:13.5px; margin:0 0 2px; font-weight:500; line-height:1.45; }
+  .qm{ margin:0; font-size:11px; color:#7d8890;
+       display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+  .lv{ border:1px solid var(--line); border-radius:4px; padding:0 4px;
+       font-size:10px; letter-spacing:.03em; }
+  .lv-B{ color:var(--accent); border-color:rgba(244,201,93,.4); }
+  .yr{ color:var(--accent); border:1px solid rgba(244,201,93,.4);
+       border-radius:4px; padding:0 5px; font-size:10px; }
+
+  .qs{ display:flex; align-items:center; gap:7px; flex-shrink:0; }
+  .st{ font-family:var(--mono); font-size:11px; white-space:nowrap;
+       font-variant-numeric:tabular-nums; }
+  .alt{
+    position:relative; z-index:2;
+    font-family:var(--mono); font-size:10.5px; padding:2px 7px; border-radius:5px;
+    border:1px solid color-mix(in srgb,var(--c) 40%,transparent);
+    color:var(--c); background:color-mix(in srgb,var(--c) 10%,transparent);
+  }
+  .alt:hover{ background:color-mix(in srgb,var(--c) 22%,transparent); }
+  .alt.locked{ color:#7d8890; border-color:var(--line); background:none;
+               pointer-events:none; }
+
+  /* カード全体をクリック可能にする（h3のリンクを広げる） */
+  .stretch::after{ content:""; position:absolute; inset:0; z-index:1; }
+
+  /* 状態は色だけでなく形でも出す。実線=公開済 / 破線=公開予定 / 枠のみ=準備中。
+     破線が「まだ見られない」を指すのは、トップの is-prep カードと同じ約束。 */
+  .q[data-state="live"]{ cursor:pointer; }
+  .q[data-state="live"]:hover{ border-color:var(--c); transform:translateY(-1px); }
+  .q[data-state="live"] .st{ color:var(--c); }
+  .q[data-state="live"] .st::before{ content:"\25B6 "; }
+
+  .q[data-state="sched"]{ border-style:dashed; background:transparent; }
+  .q[data-state="sched"] .st{ color:var(--accent); }
+  .q[data-state="sched"] .qn{ color:var(--accent);
+    background:color-mix(in srgb,var(--accent) 12%,transparent); }
+  .q[data-state="sched"] .stretch{ pointer-events:none; }
+
+  .q[data-state="prep"]{ background:transparent; border-color:#212a33; }
+  .q[data-state="prep"] .qb h3{ color:#8e99a2; }
+  .q[data-state="prep"] .qn{ color:#6d7883; background:#1c242c; }
+  .q[data-state="prep"] .st{ color:#68737d; }
+  .q[data-state="prep"] .stretch{ pointer-events:none; }
+
+  .none{ display:none; border:1.5px dashed var(--line); border-radius:14px;
+         padding:26px 20px; text-align:center; color:var(--chalk-dim); font-size:13.5px; }
+  .none.show{ display:block; }
+
+  /* 2025年版ページ */
+  .y-body{ padding:10px 0 40px; }
+  .y-body h2{ font-size:17px; margin:34px 0 10px; font-weight:700; }
+  .y-body p{ max-width:64ch; color:var(--chalk-dim); font-size:14.5px; margin:0 0 12px; }
+  .y-body strong{ color:var(--chalk); }
+  .y-table{ width:100%; border-collapse:collapse; margin:16px 0 8px; font-size:13.5px; }
+  .y-table th, .y-table td{ text-align:left; padding:11px 14px;
+    border-bottom:1px solid var(--line); }
+  .y-table th{ color:var(--chalk-dim); font-weight:500; font-size:12px;
+    letter-spacing:.04em; }
+  .y-table td.n{ font-family:var(--mono); font-variant-numeric:tabular-nums;
+    white-space:nowrap; }
+  .y-wrap{ overflow-x:auto; }
+  .cta{ display:inline-flex; align-items:center; gap:8px; margin-top:22px;
+    padding:12px 22px; border-radius:10px; font-weight:700; font-size:14.5px;
+    background:var(--accent); color:#1a1607; border:1px solid var(--accent);
+    transition:background .15s ease; }
+  .cta:hover{ background:#f7d374; }
+
+  footer{ padding:40px 0 60px; text-align:center; border-top:1px solid var(--line); }
+  footer p{ color:#7d8890; font-size:12px; max-width:60ch; margin:0 auto; }
+  footer a{ color:var(--chalk-dim); }
+  footer a:hover{ color:var(--chalk); }
+
+  @media (prefers-reduced-motion:reduce){
+    *{ transition:none !important; animation:none !important; }
+    html{ scroll-behavior:auto; }
+  }
+  @media (max-width:560px){
+    .filters{ position:static; background:none; }
+    .qgrid{ grid-template-columns:1fr; }
+    .stats{ gap:18px; }
+  }
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="wrap">
+
+  <nav class="crumb mono"><a href="../../">高校物理 解説チャンネル</a> / 重要問題集 / 2025年版</nav>
+
+  <header class="top">
+    <span class="eyebrow mono">JUYOMON 2025</span>
+    <h1 id="y2025">2025年版をお使いの方へ
+      <span class="sub">2026年版との対応。力学は問題番号がそのまま使えます</span>
+    </h1>
+  </header>
+
+  <div class="y-body">
+    <p>解説動画は<strong>2026年版</strong>の問題番号でつくっています。
+       2025年版をお持ちの方のために、年度間で何が変わったかをまとめました。</p>
+
+    <h2>力学（問1〜63）</h2>
+    <p><strong>問題番号は完全に一致します。読み替えは要りません。</strong>
+       2025年版の問12は、2026年版でも問12です。
+       中身が変わったのは<strong>問5だけ</strong>で、
+       残りの62問は番号・内容とも同じものです。</p>
+
+    <div class="y-wrap">
+      <table class="y-table">
+        <thead>
+          <tr><th>問</th><th>2025年版 → 2026年版</th><th>解説動画の使い方</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="n">1〜63<br>（問5を除く）</td>
+              <td>番号・内容とも同じ</td>
+              <td>そのまま見られます</td></tr>
+          <tr><td class="n">問5</td>
+              <td>番号は同じ。<strong>問題が差し替わっています</strong></td>
+              <td>解説は2026年版の問題のものです。2025年版の問5とは別の問題なのでご注意ください</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>そのほかの分野</h2>
+    <p>熱力学・波動・電磁気・原子・考察問題は、まだ2025年版との照合をしていません。
+       「番号が同じはず」とは考えず、お手元の問題集で問題文をお確かめください。
+       照合ができ次第このページを更新します。</p>
+
+    <a class="cta" href="../2026/">2026年版の全問インデックスを開く →</a>
+  </div>
+
+  <footer>
+    <p><a href="../../">高校物理 解説チャンネル トップへ</a></p>
+    <p style="margin-top:14px;">『物理重要問題集』は数研出版の教材名です。当ページは個人が運営する解説チャンネルの索引であり、同社の公式ページではありません。</p>
+  </footer>
+</div>
+</body>
+</html>

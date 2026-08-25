@@ -61,7 +61,23 @@ LANDMARKS = {
             "physica-card": 1,     # PHYSICA導線
             "empty-note": 4,       # 各グリッドの「該当なし」表示
             "section-head": 6,     # 節の見出し
+            "jm-index": 1,         # 重問インデックスへの導線(build_site_index.pyが管理)
         },
+    },
+    # 重問インデックス。002 物理重要問題集/scripts/build_site_index.py が生成する。
+    # 問題が減ることはないので、min_counts は現状の163問をそのまま下限にしてある。
+    "juyomon/2026/index.html": {
+        "ids": ["filters", "qIndex", "nLive", "nSched", "onlyLive",
+                "f-mech", "f-therm", "f-wave", "f-electro", "f-atom", "f-survey"],
+        "min_counts": {
+            "q": 163,      # 1問1枚のカード
+            "fs": 6,       # 分野セクション
+            "none": 6,     # 各分野の「該当なし」表示
+        },
+    },
+    "juyomon/2025/index.html": {
+        "ids": ["y2025"],
+        "min_counts": {"y-table": 1},
     },
 }
 
