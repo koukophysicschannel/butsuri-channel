@@ -71,6 +71,8 @@ LANDMARKS = {
                 "f-mech", "f-therm", "f-wave", "f-electro", "f-atom", "f-survey"],
         "min_counts": {
             "q": 163,      # 1問1枚のカード
+            "qmain": 163,  # 本編の行(カード1枚に必ず1行)
+            "qa": 2,       # 別解の行(問25(7)と問26。増える分には通る)
             "fs": 6,       # 分野セクション
             "none": 6,     # 各分野の「該当なし」表示
         },

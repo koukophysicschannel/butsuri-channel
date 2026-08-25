@@ -158,12 +158,26 @@
     gap:8px; margin-top:18px;
   }
 
+  /* 1問1枚。中は「本編の行」と「別解の行」の縦積み。本編と別解では
+     公開時刻が違う（本編18:00 / 別解19:00）ので、行ごとに時刻を持たせる。
+     overflow:hidden は、行にホバー色を敷いたときカドを丸く保つため。 */
   .q{
-    position:relative; display:flex; align-items:center; gap:13px;
+    position:relative; display:flex; flex-direction:column;
     background:var(--card); border:1px solid var(--line); border-radius:11px;
-    padding:11px 14px; transition:border-color .15s ease, transform .15s ease;
+    overflow:hidden; transition:border-color .15s ease;
   }
   .q.hidden{ display:none; }
+
+  .qrow{ position:relative; display:flex; align-items:center; gap:13px;
+         padding:11px 14px; }
+  .qa{ gap:10px; padding:9px 14px 10px; border-top:1px solid var(--line); }
+  .ab{
+    font-family:var(--mono); font-size:10.5px; padding:2px 7px; border-radius:5px;
+    border:1px solid color-mix(in srgb,var(--c) 40%,transparent);
+    color:var(--c); background:color-mix(in srgb,var(--c) 10%,transparent);
+    flex-shrink:0;
+  }
+  .ag{ flex:1; min-width:0; font-size:12.5px; color:var(--chalk-dim); line-height:1.45; }
   .qn{
     font-weight:700; font-size:13px; color:var(--c);
     background:color-mix(in srgb,var(--c) 15%,transparent);
@@ -180,40 +194,41 @@
   .yr{ color:var(--accent); border:1px solid rgba(244,201,93,.4);
        border-radius:4px; padding:0 5px; font-size:10px; }
 
-  .qs{ display:flex; align-items:center; gap:7px; flex-shrink:0; }
   .st{ font-family:var(--mono); font-size:11px; white-space:nowrap;
-       font-variant-numeric:tabular-nums; }
-  .alt{
-    position:relative; z-index:2;
-    font-family:var(--mono); font-size:10.5px; padding:2px 7px; border-radius:5px;
-    border:1px solid color-mix(in srgb,var(--c) 40%,transparent);
-    color:var(--c); background:color-mix(in srgb,var(--c) 10%,transparent);
-  }
-  .alt:hover{ background:color-mix(in srgb,var(--c) 22%,transparent); }
-  .alt.locked{ color:#7d8890; border-color:var(--line); background:none;
-               pointer-events:none; }
+       font-variant-numeric:tabular-nums; flex-shrink:0; }
 
-  /* カード全体をクリック可能にする（h3のリンクを広げる） */
+  /* 行全体をクリック可能にする（見出しのリンクを行いっぱいに広げる）。
+     .qrow ごとに position:relative なので、別解の行は別解の動画に飛ぶ。 */
   .stretch::after{ content:""; position:absolute; inset:0; z-index:1; }
 
   /* 状態は色だけでなく形でも出す。実線=公開済 / 破線=公開予定 / 枠のみ=準備中。
-     破線が「まだ見られない」を指すのは、トップの is-prep カードと同じ約束。 */
-  .q[data-state="live"]{ cursor:pointer; }
-  .q[data-state="live"]:hover{ border-color:var(--c); transform:translateY(-1px); }
-  .q[data-state="live"] .st{ color:var(--c); }
-  .q[data-state="live"] .st::before{ content:"\25B6 "; }
+     破線が「まだ見られない」を指すのは、トップの is-prep カードと同じ約束。
+     カード枠は本編の状態、行の文字色は行ごとの状態で決まる。
+     （本編が公開済で別解がまだ、という1時間がある） */
+  .qrow[data-state="live"]{ cursor:pointer; }
+  .qrow[data-state="live"]:hover{ background:color-mix(in srgb,var(--c) 8%,transparent); }
+  .qrow[data-state="live"] .st{ color:var(--c); }
+  .qrow[data-state="live"] .st::before{ content:"\25B6 "; }
+
+  .qrow[data-state="sched"] .st{ color:var(--accent); }
+  .qrow[data-state="sched"] .stretch{ pointer-events:none; }
+  .qrow[data-state="sched"] .ab{ color:var(--accent);
+    border-color:rgba(244,201,93,.4); background:rgba(244,201,93,.08); }
+
+  .qrow[data-state="prep"] .st{ color:#68737d; }
+  .qrow[data-state="prep"] .stretch{ pointer-events:none; }
+  .qrow[data-state="prep"] .ab{ color:#6d7883; border-color:var(--line);
+    background:none; }
+
+  .q[data-state="live"]:hover{ border-color:var(--c); }
 
   .q[data-state="sched"]{ border-style:dashed; background:transparent; }
-  .q[data-state="sched"] .st{ color:var(--accent); }
   .q[data-state="sched"] .qn{ color:var(--accent);
     background:color-mix(in srgb,var(--accent) 12%,transparent); }
-  .q[data-state="sched"] .stretch{ pointer-events:none; }
 
   .q[data-state="prep"]{ background:transparent; border-color:#212a33; }
   .q[data-state="prep"] .qb h3{ color:#8e99a2; }
   .q[data-state="prep"] .qn{ color:#6d7883; background:#1c242c; }
-  .q[data-state="prep"] .st{ color:#68737d; }
-  .q[data-state="prep"] .stretch{ pointer-events:none; }
 
   .none{ display:none; border:1.5px dashed var(--line); border-radius:14px;
          padding:26px 20px; text-align:center; color:var(--chalk-dim); font-size:13.5px; }
@@ -310,509 +325,645 @@
   </div>
   <div class="bar"><span style="flex:11" class="b-live"></span><span style="flex:21" class="b-sched"></span><span style="flex:31" class="b-prep"></span></div>
   <div class="qgrid">
-  <article class="q" data-cat="mech" data-state="live" data-url="https://www.youtube.com/watch?v=ajLDga2u_J0">
-    <span class="qn mono">1</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=ajLDga2u_J0" target="_blank" rel="noopener" title="気球から投げた小球を相対運動でとらえる">斜方投射と相対運動</a></h3>
-      <p class="qm mono">24 防衛医大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="live">
+    <div class="qrow qmain" data-state="live" data-url="https://www.youtube.com/watch?v=ajLDga2u_J0">
+      <span class="qn mono">1</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=ajLDga2u_J0" target="_blank" rel="noopener" title="気球から投げた小球を相対運動でとらえる">斜方投射と相対運動</a></h3>
+        <p class="qm mono">24 防衛医大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="live" data-url="https://www.youtube.com/watch?v=AGNf-P4gWDg">
-    <span class="qn mono">2</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=AGNf-P4gWDg" target="_blank" rel="noopener" title="流れる川を渡る船の速度合成と往復時間">速度の合成</a></h3>
-      <p class="qm mono">21 東京都立大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="live">
+    <div class="qrow qmain" data-state="live" data-url="https://www.youtube.com/watch?v=AGNf-P4gWDg">
+      <span class="qn mono">2</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=AGNf-P4gWDg" target="_blank" rel="noopener" title="流れる川を渡る船の速度合成と往復時間">速度の合成</a></h3>
+        <p class="qm mono">21 東京都立大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="live" data-url="https://www.youtube.com/watch?v=exG9cLnvWhA">
-    <span class="qn mono">3</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=exG9cLnvWhA" target="_blank" rel="noopener" title="v-tグラフから加速度と移動距離を読み取る">斜面をすべり上がる物体の速度測定</a></h3>
-      <p class="qm mono">17 広島工大 改<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="live">
+    <div class="qrow qmain" data-state="live" data-url="https://www.youtube.com/watch?v=exG9cLnvWhA">
+      <span class="qn mono">3</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=exG9cLnvWhA" target="_blank" rel="noopener" title="v-tグラフから加速度と移動距離を読み取る">斜面をすべり上がる物体の速度測定</a></h3>
+        <p class="qm mono">17 広島工大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="live" data-url="https://www.youtube.com/watch?v=i1XDIcO4U0c">
-    <span class="qn mono">4</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=i1XDIcO4U0c" target="_blank" rel="noopener" title="台の斜面から水平投射した小球の飛距離">水平投射</a></h3>
-      <p class="qm mono">22 北海道大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="live">
+    <div class="qrow qmain" data-state="live" data-url="https://www.youtube.com/watch?v=i1XDIcO4U0c">
+      <span class="qn mono">4</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=i1XDIcO4U0c" target="_blank" rel="noopener" title="台の斜面から水平投射した小球の飛距離">水平投射</a></h3>
+        <p class="qm mono">22 北海道大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="live" data-url="https://www.youtube.com/watch?v=yPmkh4DYTuc">
-    <span class="qn mono">5</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=yPmkh4DYTuc" target="_blank" rel="noopener" title="斜方投射と自由落下が衝突する条件を求める">斜方投射と自由落下</a></h3>
-      <p class="qm mono">25 福島大<span class="lv lv-A">A</span><span class="yr">2026年版で差し替え</span></p>
+  <article class="q" data-cat="mech" data-state="live">
+    <div class="qrow qmain" data-state="live" data-url="https://www.youtube.com/watch?v=yPmkh4DYTuc">
+      <span class="qn mono">5</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=yPmkh4DYTuc" target="_blank" rel="noopener" title="斜方投射と自由落下が衝突する条件を求める">斜方投射と自由落下</a></h3>
+        <p class="qm mono">25 福島大<span class="lv lv-A">A</span><span class="yr">2026年版で差し替え</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="live" data-url="https://www.youtube.com/watch?v=puC2-SmsjGM">
-    <span class="qn mono">6</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=puC2-SmsjGM" target="_blank" rel="noopener" title="斜面上の的に斜方投射で命中させる条件">斜面への斜方投射</a></h3>
-      <p class="qm mono">18 横浜市大 改<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="live">
+    <div class="qrow qmain" data-state="live" data-url="https://www.youtube.com/watch?v=puC2-SmsjGM">
+      <span class="qn mono">6</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=puC2-SmsjGM" target="_blank" rel="noopener" title="斜面上の的に斜方投射で命中させる条件">斜面への斜方投射</a></h3>
+        <p class="qm mono">18 横浜市大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="live" data-url="https://www.youtube.com/watch?v=v_fsVW1XoAE">
-    <span class="qn mono">7</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=v_fsVW1XoAE" target="_blank" rel="noopener" title="斜面をのぼりきる小球の運動を座標変換で追う">斜面をのぼる小球の運動</a></h3>
-      <p class="qm mono">上智大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="live">
+    <div class="qrow qmain" data-state="live" data-url="https://www.youtube.com/watch?v=v_fsVW1XoAE">
+      <span class="qn mono">7</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=v_fsVW1XoAE" target="_blank" rel="noopener" title="斜面をのぼりきる小球の運動を座標変換で追う">斜面をのぼる小球の運動</a></h3>
+        <p class="qm mono">上智大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="live" data-url="https://www.youtube.com/watch?v=sgYAzMWId7E">
-    <span class="qn mono">8</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=sgYAzMWId7E" target="_blank" rel="noopener" title="ゴンドラ内の人と体重計にはたらく力のつりあい">人と体重計を乗せたゴンドラのつりあい</a></h3>
-      <p class="qm mono">17 藤田保健衛生大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="live">
+    <div class="qrow qmain" data-state="live" data-url="https://www.youtube.com/watch?v=sgYAzMWId7E">
+      <span class="qn mono">8</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=sgYAzMWId7E" target="_blank" rel="noopener" title="ゴンドラ内の人と体重計にはたらく力のつりあい">人と体重計を乗せたゴンドラのつりあい</a></h3>
+        <p class="qm mono">17 藤田保健衛生大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="live" data-url="https://www.youtube.com/watch?v=7af-1GUyuaY">
-    <span class="qn mono">9</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=7af-1GUyuaY" target="_blank" rel="noopener" title="2本のばねにはさまれた物体のつりあい">フックの法則とつりあい</a></h3>
-      <p class="qm mono">湘南工科大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="live">
+    <div class="qrow qmain" data-state="live" data-url="https://www.youtube.com/watch?v=7af-1GUyuaY">
+      <span class="qn mono">9</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=7af-1GUyuaY" target="_blank" rel="noopener" title="2本のばねにはさまれた物体のつりあい">フックの法則とつりあい</a></h3>
+        <p class="qm mono">湘南工科大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="live" data-url="https://www.youtube.com/watch?v=8IJwye7p_uQ">
-    <span class="qn mono">10</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=8IJwye7p_uQ" target="_blank" rel="noopener" title="あらい斜面上のロープのつりあいを調べる">斜面に置かれたロープのつりあい</a></h3>
-      <p class="qm mono">鳥取大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="live">
+    <div class="qrow qmain" data-state="live" data-url="https://www.youtube.com/watch?v=8IJwye7p_uQ">
+      <span class="qn mono">10</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=8IJwye7p_uQ" target="_blank" rel="noopener" title="あらい斜面上のロープのつりあいを調べる">斜面に置かれたロープのつりあい</a></h3>
+        <p class="qm mono">鳥取大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="live" data-url="https://www.youtube.com/watch?v=ZRFm-GlhJDY">
-    <span class="qn mono">11</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=ZRFm-GlhJDY" target="_blank" rel="noopener" title="斜面をもつ台と物体にはたらく力のつりあい">斜面をもつ台にはたらく力のつりあい</a></h3>
-      <p class="qm mono">山形大 改<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="live">
+    <div class="qrow qmain" data-state="live" data-url="https://www.youtube.com/watch?v=ZRFm-GlhJDY">
+      <span class="qn mono">11</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=ZRFm-GlhJDY" target="_blank" rel="noopener" title="斜面をもつ台と物体にはたらく力のつりあい">斜面をもつ台にはたらく力のつりあい</a></h3>
+        <p class="qm mono">山形大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-08-19T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=zdKBnGwu0XY">
-    <span class="qn mono">12</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=zdKBnGwu0XY" target="_blank" rel="noopener" title="くさび形の支柱で支えた棒のつりあい">支柱で支えた棒のつりあい</a></h3>
-      <p class="qm mono">20 名城大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-08-19T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=zdKBnGwu0XY">
+      <span class="qn mono">12</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=zdKBnGwu0XY" target="_blank" rel="noopener" title="くさび形の支柱で支えた棒のつりあい">支柱で支えた棒のつりあい</a></h3>
+        <p class="qm mono">20 名城大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-08-20T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=l53vT0cSgOc">
-    <span class="qn mono">13</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=l53vT0cSgOc" target="_blank" rel="noopener" title="糸でつるされた棒にはたらく力のつりあい">糸でつるされた棒のつりあい</a></h3>
-      <p class="qm mono">24 山形大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-08-20T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=l53vT0cSgOc">
+      <span class="qn mono">13</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=l53vT0cSgOc" target="_blank" rel="noopener" title="糸でつるされた棒にはたらく力のつりあい">糸でつるされた棒のつりあい</a></h3>
+        <p class="qm mono">24 山形大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-08-21T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=5y-XKU576CI">
-    <span class="qn mono">14</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=5y-XKU576CI" target="_blank" rel="noopener" title="壁に立てかけた棒のつりあいを調べる">壁に立てかけた棒のつりあい</a></h3>
-      <p class="qm mono">20 千葉大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-08-21T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=5y-XKU576CI">
+      <span class="qn mono">14</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=5y-XKU576CI" target="_blank" rel="noopener" title="壁に立てかけた棒のつりあいを調べる">壁に立てかけた棒のつりあい</a></h3>
+        <p class="qm mono">20 千葉大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-08-22T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=1Qdify7xYSc">
-    <span class="qn mono">15</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=1Qdify7xYSc" target="_blank" rel="noopener" title="半円形の剛体にはたらく力のつりあい">半円形の剛体のつりあい</a></h3>
-      <p class="qm mono">18 立命館大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-08-22T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=1Qdify7xYSc">
+      <span class="qn mono">15</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=1Qdify7xYSc" target="_blank" rel="noopener" title="半円形の剛体にはたらく力のつりあい">半円形の剛体のつりあい</a></h3>
+        <p class="qm mono">18 立命館大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-08-24T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=E5yZdeAVycc">
-    <span class="qn mono">16</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=E5yZdeAVycc" target="_blank" rel="noopener" title="斜面上の直方体が倒れない条件を調べる">斜面に置かれた直方体のつりあい</a></h3>
-      <p class="qm mono">17 東海大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-08-24T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=E5yZdeAVycc">
+      <span class="qn mono">16</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=E5yZdeAVycc" target="_blank" rel="noopener" title="斜面上の直方体が倒れない条件を調べる">斜面に置かれた直方体のつりあい</a></h3>
+        <p class="qm mono">17 東海大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-08-25T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=O8E1_p-ObK0">
-    <span class="qn mono">17</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=O8E1_p-ObK0" target="_blank" rel="noopener" title="液体に浮かぶ棒のつりあいと浮力を調べる">液体に浮く棒のつりあい</a></h3>
-      <p class="qm mono">参考<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-08-25T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=O8E1_p-ObK0">
+      <span class="qn mono">17</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=O8E1_p-ObK0" target="_blank" rel="noopener" title="液体に浮かぶ棒のつりあいと浮力を調べる">液体に浮く棒のつりあい</a></h3>
+        <p class="qm mono">参考<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-08-26T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=RYPZQysBHvg">
-    <span class="qn mono">18</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=RYPZQysBHvg" target="_blank" rel="noopener" title="斜面上で糸連結された物体の運動">糸で連結された物体の運動</a></h3>
-      <p class="qm mono">24 島根大 改<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-08-26T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=RYPZQysBHvg">
+      <span class="qn mono">18</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=RYPZQysBHvg" target="_blank" rel="noopener" title="斜面上で糸連結された物体の運動">糸で連結された物体の運動</a></h3>
+        <p class="qm mono">24 島根大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-08-27T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=63dHKLdJFbo">
-    <span class="qn mono">19</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=63dHKLdJFbo" target="_blank" rel="noopener" title="つり上げられる箱の中の小球の相対運動">上昇する箱の中の小球の運動</a></h3>
-      <p class="qm mono">18 愛知工大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-08-27T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=63dHKLdJFbo">
+      <span class="qn mono">19</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=63dHKLdJFbo" target="_blank" rel="noopener" title="つり上げられる箱の中の小球の相対運動">上昇する箱の中の小球の運動</a></h3>
+        <p class="qm mono">18 愛知工大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-08-28T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=jn49yoBjaiA">
-    <span class="qn mono">20</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=jn49yoBjaiA" target="_blank" rel="noopener" title="上昇する気球とつるされた小球の運動">気球と気球につるされた小球の運動</a></h3>
-      <p class="qm mono">22 佐賀大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-08-28T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=jn49yoBjaiA">
+      <span class="qn mono">20</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=jn49yoBjaiA" target="_blank" rel="noopener" title="上昇する気球とつるされた小球の運動">気球と気球につるされた小球の運動</a></h3>
+        <p class="qm mono">22 佐賀大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-08-29T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=TFUKo2NVzA0">
-    <span class="qn mono">21</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=TFUKo2NVzA0" target="_blank" rel="noopener" title="手で押す物体の運動方程式と等加速度運動">運動の法則と等加速度運動</a></h3>
-      <p class="qm mono">福岡大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-08-29T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=TFUKo2NVzA0">
+      <span class="qn mono">21</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=TFUKo2NVzA0" target="_blank" rel="noopener" title="手で押す物体の運動方程式と等加速度運動">運動の法則と等加速度運動</a></h3>
+        <p class="qm mono">福岡大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-08-31T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=VTLHmTt4PGY">
-    <span class="qn mono">22</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=VTLHmTt4PGY" target="_blank" rel="noopener" title="複数の滑車と物体のつりあいと運動">滑車と物体の運動</a></h3>
-      <p class="qm mono">19 九州工大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-08-31T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=VTLHmTt4PGY">
+      <span class="qn mono">22</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=VTLHmTt4PGY" target="_blank" rel="noopener" title="複数の滑車と物体のつりあいと運動">滑車と物体の運動</a></h3>
+        <p class="qm mono">19 九州工大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-09-01T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=Rz8_4Z-6ZJw">
-    <span class="qn mono">23</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=Rz8_4Z-6ZJw" target="_blank" rel="noopener" title="斜面上の運動を力学的エネルギーで追う">力学的エネルギー</a></h3>
-      <p class="qm mono">拓殖大 改<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-09-01T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=Rz8_4Z-6ZJw">
+      <span class="qn mono">23</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=Rz8_4Z-6ZJw" target="_blank" rel="noopener" title="斜面上の運動を力学的エネルギーで追う">力学的エネルギー</a></h3>
+        <p class="qm mono">拓殖大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-09-02T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=XC5VhL3smTw">
-    <span class="qn mono">24</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=XC5VhL3smTw" target="_blank" rel="noopener" title="動く斜面上で糸につるされた小球の運動">動く斜面上の糸でつるした小球</a></h3>
-      <p class="qm mono">静岡大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-09-02T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=XC5VhL3smTw">
+      <span class="qn mono">24</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=XC5VhL3smTw" target="_blank" rel="noopener" title="動く斜面上で糸につるされた小球の運動">動く斜面上の糸でつるした小球</a></h3>
+        <p class="qm mono">静岡大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-09-03T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=6QOAE-GjubM">
-    <span class="qn mono">25</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=6QOAE-GjubM" target="_blank" rel="noopener" title="斜面をもつ台上での物体の運動">斜面上の物体の運動</a></h3>
-      <p class="qm mono">名城大 改<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-09-03T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=6QOAE-GjubM">
+      <span class="qn mono">25</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=6QOAE-GjubM" target="_blank" rel="noopener" title="斜面をもつ台上での物体の運動">斜面上の物体の運動</a></h3>
+        <p class="qm mono">名城大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><a class="alt" data-pub="2026-09-03T19:00:00+09:00" data-url="https://www.youtube.com/watch?v=yMonVJOjyKw" href="https://www.youtube.com/watch?v=yMonVJOjyKw" target="_blank" rel="noopener">別解(7)</a><span class="st"></span></div>
+    <div class="qrow qa" data-state="sched" data-pub="2026-09-03T19:00:00+09:00" data-url="https://www.youtube.com/watch?v=yMonVJOjyKw">
+      <span class="ab mono">別解(7)</span>
+      <a class="stretch ag" href="https://www.youtube.com/watch?v=yMonVJOjyKw" target="_blank" rel="noopener">重心の速度一定から内分点へ</a>
+      <span class="st"></span>
+    </div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-09-04T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=cnHQmX-t3CU">
-    <span class="qn mono">26</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=cnHQmX-t3CU" target="_blank" rel="noopener" title="斜面をもつ台と小球が一体で動く条件">斜面をもつ台と小球の運動</a></h3>
-      <p class="qm mono">23 北海道大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-09-04T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=cnHQmX-t3CU">
+      <span class="qn mono">26</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=cnHQmX-t3CU" target="_blank" rel="noopener" title="斜面をもつ台と小球が一体で動く条件">斜面をもつ台と小球の運動</a></h3>
+        <p class="qm mono">23 北海道大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><a class="alt" data-pub="2026-09-04T19:00:00+09:00" data-url="https://www.youtube.com/watch?v=Ggb6TKKYbqQ" href="https://www.youtube.com/watch?v=Ggb6TKKYbqQ" target="_blank" rel="noopener">別解</a><span class="st"></span></div>
+    <div class="qrow qa" data-state="sched" data-pub="2026-09-04T19:00:00+09:00" data-url="https://www.youtube.com/watch?v=Ggb6TKKYbqQ">
+      <span class="ab mono">別解</span>
+      <a class="stretch ag" href="https://www.youtube.com/watch?v=Ggb6TKKYbqQ" target="_blank" rel="noopener">運動量保存と力学的エネルギー保存が使える条件</a>
+      <span class="st"></span>
+    </div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-09-05T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=7wlXiAy8ZsI">
-    <span class="qn mono">27</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=7wlXiAy8ZsI" target="_blank" rel="noopener" title="斜面上の物体と動く台の運動を滑車でつなぐ">斜面上の物体の運動と水平面上の台の運動</a></h3>
-      <p class="qm mono">15 関西学院大<span class="lv lv-B">B</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-09-05T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=7wlXiAy8ZsI">
+      <span class="qn mono">27</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=7wlXiAy8ZsI" target="_blank" rel="noopener" title="斜面上の物体と動く台の運動を滑車でつなぐ">斜面上の物体の運動と水平面上の台の運動</a></h3>
+        <p class="qm mono">15 関西学院大<span class="lv lv-B">B</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-09-07T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=LPxKuR1EBXo">
-    <span class="qn mono">28</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=LPxKuR1EBXo" target="_blank" rel="noopener" title="2物体があらい面を滑って止まる運動を比べる">2物体のあらい面上での運動</a></h3>
-      <p class="qm mono">愛知工大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-09-07T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=LPxKuR1EBXo">
+      <span class="qn mono">28</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=LPxKuR1EBXo" target="_blank" rel="noopener" title="2物体があらい面を滑って止まる運動を比べる">2物体のあらい面上での運動</a></h3>
+        <p class="qm mono">愛知工大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-09-08T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=uCEGtttflbg">
-    <span class="qn mono">29</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=uCEGtttflbg" target="_blank" rel="noopener" title="あらい台上の物体と滑車でつながれた運動">あらい水平面上の物体の運動</a></h3>
-      <p class="qm mono">24 佐賀大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-09-08T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=uCEGtttflbg">
+      <span class="qn mono">29</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=uCEGtttflbg" target="_blank" rel="noopener" title="あらい台上の物体と滑車でつながれた運動">あらい水平面上の物体の運動</a></h3>
+        <p class="qm mono">24 佐賀大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-09-09T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=q40iV7TUB0c">
-    <span class="qn mono">30</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=q40iV7TUB0c" target="_blank" rel="noopener" title="斜面台上を滑る小物体の運動を調べる">斜面台上の小物体の運動</a></h3>
-      <p class="qm mono">23 広島大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-09-09T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=q40iV7TUB0c">
+      <span class="qn mono">30</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=q40iV7TUB0c" target="_blank" rel="noopener" title="斜面台上を滑る小物体の運動を調べる">斜面台上の小物体の運動</a></h3>
+        <p class="qm mono">23 広島大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-09-10T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=ZxX0-bfBHBs">
-    <span class="qn mono">31</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=ZxX0-bfBHBs" target="_blank" rel="noopener" title="ばねで押し出された物体の摩擦運動">弾性力と摩擦力による運動</a></h3>
-      <p class="qm mono">岡山大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-09-10T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=ZxX0-bfBHBs">
+      <span class="qn mono">31</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=ZxX0-bfBHBs" target="_blank" rel="noopener" title="ばねで押し出された物体の摩擦運動">弾性力と摩擦力による運動</a></h3>
+        <p class="qm mono">岡山大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
-  <article class="q" data-cat="mech" data-state="sched" data-pub="2026-09-11T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=GcS6ClHQpUQ">
-    <span class="qn mono">32</span>
-    <div class="qb">
-      <h3><a class="stretch" href="https://www.youtube.com/watch?v=GcS6ClHQpUQ" target="_blank" rel="noopener" title="ゴムひもにつながれた物体の運動">ゴムひもに取りつけられた物体の運動</a></h3>
-      <p class="qm mono">学習院大<span class="lv lv-A">A</span></p>
+  <article class="q" data-cat="mech" data-state="sched">
+    <div class="qrow qmain" data-state="sched" data-pub="2026-09-11T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=GcS6ClHQpUQ">
+      <span class="qn mono">32</span>
+      <div class="qb">
+        <h3><a class="stretch" href="https://www.youtube.com/watch?v=GcS6ClHQpUQ" target="_blank" rel="noopener" title="ゴムひもにつながれた物体の運動">ゴムひもに取りつけられた物体の運動</a></h3>
+        <p class="qm mono">学習院大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
-  </article>
-  <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">33</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="空気抵抗を受ける物体の斜面上の運動">空気の抵抗がある物体の運動</a></h3>
-      <p class="qm mono">岐阜大 改<span class="lv lv-A">A</span></p>
-    </div>
-    <div class="qs"><span class="st"></span></div>
-  </article>
-  <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">34</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="液体中を落下する物体が水槽に及ぼす力">液体の抵抗を受ける物体</a></h3>
-      <p class="qm mono">24 名古屋大<span class="lv lv-A">A</span></p>
-    </div>
-    <div class="qs"><span class="st"></span></div>
-  </article>
-  <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">35</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ばねにつながれた物体の運動とエネルギー">ばねにつながれた物体の運動と運動エネルギー</a></h3>
-      <p class="qm mono">東京工大<span class="lv lv-B">B</span></p>
-    </div>
-    <div class="qs"><span class="st"></span></div>
-  </article>
-  <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">36</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="木材に撃ちこまれる弾丸の運動量とエネルギー">木材に打ちこまれた弾丸</a></h3>
-      <p class="qm mono">18 大阪医大<span class="lv lv-A">A</span></p>
-    </div>
-    <div class="qs"><span class="st"></span></div>
-  </article>
-  <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">37</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="動く台車の上に乗る物体の運動量保存">動く台車に乗る物体</a></h3>
-      <p class="qm mono">20 大分大 改<span class="lv lv-A">A</span></p>
-    </div>
-    <div class="qs"><span class="st"></span></div>
-  </article>
-  <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">38</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="水平面上で衝突する2物体のエネルギー変化">水平面上での2物体の衝突</a></h3>
-      <p class="qm mono">15 名古屋工大<span class="lv lv-A">A</span></p>
-    </div>
-    <div class="qs"><span class="st"></span></div>
-  </article>
-  <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">39</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="小球が壁と繰り返し衝突する運動を反発係数で追う">小球と壁面との衝突</a></h3>
-      <p class="qm mono">24 長崎大<span class="lv lv-A">A</span></p>
-    </div>
-    <div class="qs"><span class="st"></span></div>
-  </article>
-  <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">40</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="小球が斜面と繰り返し衝突する運動">小球と斜面とのくり返し衝突</a></h3>
-      <p class="qm mono">25 熊本大<span class="lv lv-A">A</span></p>
-    </div>
-    <div class="qs"><span class="st"></span></div>
-  </article>
-  <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">41</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="曲面をもつ台上での小球の運動量保存">曲面をもつ台上の小球の運動</a></h3>
-      <p class="qm mono">23 京都府大<span class="lv lv-A">A</span></p>
-    </div>
-    <div class="qs"><span class="st"></span></div>
-  </article>
-  <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">42</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="上昇する板に繰り返し衝突する小球の運動">上昇する板へのくり返し衝突</a></h3>
-      <p class="qm mono">23 大阪公大<span class="lv lv-A">A</span></p>
-    </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">43</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="円盤が円環に繰り返し衝突する運動">円盤と円環の多数回の衝突</a></h3>
-      <p class="qm mono">22 浜松医大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">33</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="空気抵抗を受ける物体の斜面上の運動">空気の抵抗がある物体の運動</a></h3>
+        <p class="qm mono">岐阜大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">44</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="棒でつながれた2物体の運動量保存">棒でつながれた2物体の運動</a></h3>
-      <p class="qm mono">東京大<span class="lv lv-B">B</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">34</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="液体中を落下する物体が水槽に及ぼす力">液体の抵抗を受ける物体</a></h3>
+        <p class="qm mono">24 名古屋大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">45</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="回転台上で物体がすべり出す条件">摩擦のある回転台上の物体</a></h3>
-      <p class="qm mono">福島県医大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">35</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ばねにつながれた物体の運動とエネルギー">ばねにつながれた物体の運動と運動エネルギー</a></h3>
+        <p class="qm mono">東京工大<span class="lv lv-B">B</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">46</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="摩擦を受けながら回転する小球の円運動">摩擦を受ける小球の円運動</a></h3>
-      <p class="qm mono">24 京都産業大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">36</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="木材に撃ちこまれる弾丸の運動量とエネルギー">木材に打ちこまれた弾丸</a></h3>
+        <p class="qm mono">18 大阪医大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">47</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="円筒面をすべり落ちる小物体の運動">円筒表面をすべり落ちる小物体の運動</a></h3>
-      <p class="qm mono">15 東京電機大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">37</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="動く台車の上に乗る物体の運動量保存">動く台車に乗る物体</a></h3>
+        <p class="qm mono">20 大分大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">48</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="鉛直面内で円運動する条件を求める">鉛直面内の円運動</a></h3>
-      <p class="qm mono">20 信州大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">38</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="水平面上で衝突する2物体のエネルギー変化">水平面上での2物体の衝突</a></h3>
+        <p class="qm mono">15 名古屋工大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">49</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="振り子運動における糸の張力と速さ">振り子の運動</a></h3>
-      <p class="qm mono">24 富山県大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">39</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="小球が壁と繰り返し衝突する運動を反発係数で追う">小球と壁面との衝突</a></h3>
+        <p class="qm mono">24 長崎大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">50</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="半円形の面に沿う小球の円運動">半円形状の面にそった円運動</a></h3>
-      <p class="qm mono">25 岡山大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">40</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="小球が斜面と繰り返し衝突する運動">小球と斜面とのくり返し衝突</a></h3>
+        <p class="qm mono">25 熊本大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">51</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="人工衛星の円軌道とだ円軌道をケプラーの法則で追う">ケプラーの法則</a></h3>
-      <p class="qm mono">大阪市大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">41</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="曲面をもつ台上での小球の運動量保存">曲面をもつ台上の小球の運動</a></h3>
+        <p class="qm mono">23 京都府大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">52</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="地球と月の万有引力による運動とエネルギー">万有引力</a></h3>
-      <p class="qm mono">関西学院大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">42</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="上昇する板に繰り返し衝突する小球の運動">上昇する板へのくり返し衝突</a></h3>
+        <p class="qm mono">23 大阪公大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">53</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="半球内面に沿う物体の円運動">半球内での物体の円運動</a></h3>
-      <p class="qm mono">東北大<span class="lv lv-B">B</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">43</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="円盤が円環に繰り返し衝突する運動">円盤と円環の多数回の衝突</a></h3>
+        <p class="qm mono">22 浜松医大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">54</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="水平ばね振り子の単振動を調べる">水平ばね振り子</a></h3>
-      <p class="qm mono">24 広島工大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">44</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="棒でつながれた2物体の運動量保存">棒でつながれた2物体の運動</a></h3>
+        <p class="qm mono">東京大<span class="lv lv-B">B</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">55</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="2本のばねにつながれた物体の単振動">2本のばねによる単振動</a></h3>
-      <p class="qm mono">香川大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">45</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="回転台上で物体がすべり出す条件">摩擦のある回転台上の物体</a></h3>
+        <p class="qm mono">福島県医大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">56</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="あらい面上でのばね振り子の減衰運動">あらい面上で振動する物体の運動</a></h3>
-      <p class="qm mono">23 横浜市大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">46</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="摩擦を受けながら回転する小球の円運動">摩擦を受ける小球の円運動</a></h3>
+        <p class="qm mono">24 京都産業大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">57</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ばね振り子に衝突する物体の運動">ばねにつながれた物体との衝突</a></h3>
-      <p class="qm mono">18 広島大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">47</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="円筒面をすべり落ちる小物体の運動">円筒表面をすべり落ちる小物体の運動</a></h3>
+        <p class="qm mono">15 東京電機大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">58</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="鉛直に立てたばねによる単振動">たてばねによる単振動</a></h3>
-      <p class="qm mono">22 千葉大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">48</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="鉛直面内で円運動する条件を求める">鉛直面内の円運動</a></h3>
+        <p class="qm mono">20 信州大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">59</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="単振り子の周期と張力を調べる">単振り子</a></h3>
-      <p class="qm mono">武蔵工大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">49</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="振り子運動における糸の張力と速さ">振り子の運動</a></h3>
+        <p class="qm mono">24 富山県大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">60</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="浮力を受けて浮く物体の単振動">浮力と単振動</a></h3>
-      <p class="qm mono">20 福岡大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">50</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="半円形の面に沿う小球の円運動">半円形状の面にそった円運動</a></h3>
+        <p class="qm mono">25 岡山大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">61</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ばねでつながれた2物体の単振動">ばねに連結された2物体</a></h3>
-      <p class="qm mono">佐賀大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">51</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="人工衛星の円軌道とだ円軌道をケプラーの法則で追う">ケプラーの法則</a></h3>
+        <p class="qm mono">大阪市大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">62</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="地球を貫くトンネル内の物体の運動">地球のトンネル</a></h3>
-      <p class="qm mono">23 東北大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">52</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="地球と月の万有引力による運動とエネルギー">万有引力</a></h3>
+        <p class="qm mono">関西学院大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="mech" data-state="prep">
-    <span class="qn mono">63</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="動くベルト上のばね振り子の単振動">ベルト上での物体の単振動</a></h3>
-      <p class="qm mono">17 東北大<span class="lv lv-B">B</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">53</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="半球内面に沿う物体の円運動">半球内での物体の円運動</a></h3>
+        <p class="qm mono">東北大<span class="lv lv-B">B</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
+  </article>
+  <article class="q" data-cat="mech" data-state="prep">
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">54</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="水平ばね振り子の単振動を調べる">水平ばね振り子</a></h3>
+        <p class="qm mono">24 広島工大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
+    </div>
+  </article>
+  <article class="q" data-cat="mech" data-state="prep">
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">55</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="2本のばねにつながれた物体の単振動">2本のばねによる単振動</a></h3>
+        <p class="qm mono">香川大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
+    </div>
+  </article>
+  <article class="q" data-cat="mech" data-state="prep">
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">56</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="あらい面上でのばね振り子の減衰運動">あらい面上で振動する物体の運動</a></h3>
+        <p class="qm mono">23 横浜市大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
+    </div>
+  </article>
+  <article class="q" data-cat="mech" data-state="prep">
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">57</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ばね振り子に衝突する物体の運動">ばねにつながれた物体との衝突</a></h3>
+        <p class="qm mono">18 広島大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
+    </div>
+  </article>
+  <article class="q" data-cat="mech" data-state="prep">
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">58</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="鉛直に立てたばねによる単振動">たてばねによる単振動</a></h3>
+        <p class="qm mono">22 千葉大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
+    </div>
+  </article>
+  <article class="q" data-cat="mech" data-state="prep">
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">59</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="単振り子の周期と張力を調べる">単振り子</a></h3>
+        <p class="qm mono">武蔵工大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
+    </div>
+  </article>
+  <article class="q" data-cat="mech" data-state="prep">
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">60</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="浮力を受けて浮く物体の単振動">浮力と単振動</a></h3>
+        <p class="qm mono">20 福岡大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
+    </div>
+  </article>
+  <article class="q" data-cat="mech" data-state="prep">
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">61</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ばねでつながれた2物体の単振動">ばねに連結された2物体</a></h3>
+        <p class="qm mono">佐賀大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
+    </div>
+  </article>
+  <article class="q" data-cat="mech" data-state="prep">
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">62</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="地球を貫くトンネル内の物体の運動">地球のトンネル</a></h3>
+        <p class="qm mono">23 東北大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
+    </div>
+  </article>
+  <article class="q" data-cat="mech" data-state="prep">
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">63</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="動くベルト上のばね振り子の単振動">ベルト上での物体の単振動</a></h3>
+        <p class="qm mono">17 東北大<span class="lv lv-B">B</span></p>
+      </div>
+      <span class="st"></span>
+    </div>
   </article>
   </div>
   <p class="none">この分野に該当する問題はありません。</p>
@@ -825,116 +976,144 @@
   <div class="bar"><span style="flex:0" class="b-live"></span><span style="flex:0" class="b-sched"></span><span style="flex:14" class="b-prep"></span></div>
   <div class="qgrid">
   <article class="q" data-cat="therm" data-state="prep">
-    <span class="qn mono">64</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="熱量計を用いて金属の比熱を求める">熱量の保存</a></h3>
-      <p class="qm mono">16 岩手大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">64</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="熱量計を用いて金属の比熱を求める">熱量の保存</a></h3>
+        <p class="qm mono">16 岩手大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="therm" data-state="prep">
-    <span class="qn mono">65</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="氷から水蒸気までの状態変化と加熱のようすを調べる">水の状態変化</a></h3>
-      <p class="qm mono">15 近畿大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">65</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="氷から水蒸気までの状態変化と加熱のようすを調べる">水の状態変化</a></h3>
+        <p class="qm mono">15 近畿大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="therm" data-state="prep">
-    <span class="qn mono">66</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="燃料を燃焼させるエンジンの熱効率を求める">比熱と熱機関</a></h3>
-      <p class="qm mono">25 防衛医大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">66</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="燃料を燃焼させるエンジンの熱効率を求める">比熱と熱機関</a></h3>
+        <p class="qm mono">25 防衛医大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="therm" data-state="prep">
-    <span class="qn mono">67</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="熱気球が浮き上がる仕組みを気体の状態方程式から考える">熱気球</a></h3>
-      <p class="qm mono">16 大阪工大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">67</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="熱気球が浮き上がる仕組みを気体の状態方程式から考える">熱気球</a></h3>
+        <p class="qm mono">16 大阪工大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="therm" data-state="prep">
-    <span class="qn mono">68</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="コックでつながれた容器間の気体の混合を調べる">気体の混合</a></h3>
-      <p class="qm mono">21 岩手大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">68</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="コックでつながれた容器間の気体の混合を調べる">気体の混合</a></h3>
+        <p class="qm mono">21 岩手大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="therm" data-state="prep">
-    <span class="qn mono">69</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="気体分子の運動から圧力と内部エネルギーの関係を導く">気体分子の運動</a></h3>
-      <p class="qm mono">24 大阪公大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">69</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="気体分子の運動から圧力と内部エネルギーの関係を導く">気体分子の運動</a></h3>
+        <p class="qm mono">24 大阪公大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="therm" data-state="prep">
-    <span class="qn mono">70</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="傾けたガラス管内の気体の状態変化をくり返す過程を調べる">気体の状態変化</a></h3>
-      <p class="qm mono">22 電気通信大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">70</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="傾けたガラス管内の気体の状態変化をくり返す過程を調べる">気体の状態変化</a></h3>
+        <p class="qm mono">22 電気通信大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="therm" data-state="prep">
-    <span class="qn mono">71</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ばねにつながれたピストンで封じた気体の状態変化を調べる">ばね付きピストンで封じられた気体</a></h3>
-      <p class="qm mono">18 東北学院大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">71</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ばねにつながれたピストンで封じた気体の状態変化を調べる">ばね付きピストンで封じられた気体</a></h3>
+        <p class="qm mono">18 東北学院大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="therm" data-state="prep">
-    <span class="qn mono">72</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="気体の循環過程を熱効率の立場から調べる">気体の状態変化と熱効率</a></h3>
-      <p class="qm mono">22 岐阜大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">72</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="気体の循環過程を熱効率の立場から調べる">気体の状態変化と熱効率</a></h3>
+        <p class="qm mono">22 岐阜大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="therm" data-state="prep">
-    <span class="qn mono">73</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="断熱変化を含む循環過程の熱効率を求める">気体の状態変化と熱効率</a></h3>
-      <p class="qm mono">19 神戸大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">73</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="断熱変化を含む循環過程の熱効率を求める">気体の状態変化と熱効率</a></h3>
+        <p class="qm mono">19 神戸大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="therm" data-state="prep">
-    <span class="qn mono">74</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="体積と温度のグラフから気体の循環過程を調べる">気体の状態変化</a></h3>
-      <p class="qm mono">15 佐賀大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">74</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="体積と温度のグラフから気体の循環過程を調べる">気体の状態変化</a></h3>
+        <p class="qm mono">15 佐賀大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="therm" data-state="prep">
-    <span class="qn mono">75</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="断面積が変わる容器内の気体の圧力変化を調べる">ピストンで封じられた気体</a></h3>
-      <p class="qm mono">東京大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">75</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="断面積が変わる容器内の気体の圧力変化を調べる">ピストンで封じられた気体</a></h3>
+        <p class="qm mono">東京大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="therm" data-state="prep">
-    <span class="qn mono">76</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="熱機関を利用したエレベータの熱効率を求める">気体の状態変化と熱効率</a></h3>
-      <p class="qm mono">弘前大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">76</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="熱機関を利用したエレベータの熱効率を求める">気体の状態変化と熱効率</a></h3>
+        <p class="qm mono">弘前大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="therm" data-state="prep">
-    <span class="qn mono">77</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="半透膜で仕切られた2種類の気体のふるまいを調べる">半透膜で仕切られた2種類の気体</a></h3>
-      <p class="qm mono">22 東京大<span class="lv lv-B">B</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">77</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="半透膜で仕切られた2種類の気体のふるまいを調べる">半透膜で仕切られた2種類の気体</a></h3>
+        <p class="qm mono">22 東京大<span class="lv lv-B">B</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   </div>
   <p class="none">この分野に該当する問題はありません。</p>
@@ -947,180 +1126,224 @@
   <div class="bar"><span style="flex:0" class="b-live"></span><span style="flex:0" class="b-sched"></span><span style="flex:22" class="b-prep"></span></div>
   <div class="qgrid">
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">78</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="波形のグラフから媒質の振動と合成波を調べる">正弦波の波形</a></h3>
-      <p class="qm mono">香川大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">78</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="波形のグラフから媒質の振動と合成波を調べる">正弦波の波形</a></h3>
+        <p class="qm mono">香川大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">79</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="入射波と反射波が重なってできる定在波を式で示す">正弦波の式と定在波</a></h3>
-      <p class="qm mono">16 神戸大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">79</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="入射波と反射波が重なってできる定在波を式で示す">正弦波の式と定在波</a></h3>
+        <p class="qm mono">16 神戸大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">80</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="水面を伝わる円形波の反射と干渉を調べる">円形波の反射</a></h3>
-      <p class="qm mono">千葉工大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">80</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="水面を伝わる円形波の反射と干渉を調べる">円形波の反射</a></h3>
+        <p class="qm mono">千葉工大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">81</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="水深が変わる境界での平面波の屈折と定在波を調べる">平面波の反射・屈折・干渉</a></h3>
-      <p class="qm mono">19 埼玉大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">81</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="水深が変わる境界での平面波の屈折と定在波を調べる">平面波の反射・屈折・干渉</a></h3>
+        <p class="qm mono">19 埼玉大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">82</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="水深が異なる境界での波の反射と屈折を調べる">水面波の反射と屈折</a></h3>
-      <p class="qm mono">16 東京大<span class="lv lv-B">B</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">82</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="水深が異なる境界での波の反射と屈折を調べる">水面波の反射と屈折</a></h3>
+        <p class="qm mono">16 東京大<span class="lv lv-B">B</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">83</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="クインケ管を使った音波の干渉から波長を求める">音波の干渉</a></h3>
-      <p class="qm mono">25 東北学院大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">83</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="クインケ管を使った音波の干渉から波長を求める">音波の干渉</a></h3>
+        <p class="qm mono">25 東北学院大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">84</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="おもりではった弦の固有振動を調べる">弦の振動</a></h3>
-      <p class="qm mono">帯広畜産大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">84</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="おもりではった弦の固有振動を調べる">弦の振動</a></h3>
+        <p class="qm mono">帯広畜産大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">85</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="気柱の共鳴が起こる条件を振動数や管の長さから調べる">気柱の共鳴</a></h3>
-      <p class="qm mono">19 佐賀大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">85</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="気柱の共鳴が起こる条件を振動数や管の長さから調べる">気柱の共鳴</a></h3>
+        <p class="qm mono">19 佐賀大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">86</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="壁の反射を含むドップラー効果とうなりを調べる">反射板がある場合のドップラー効果</a></h3>
-      <p class="qm mono">19 京都府大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">86</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="壁の反射を含むドップラー効果とうなりを調べる">反射板がある場合のドップラー効果</a></h3>
+        <p class="qm mono">19 京都府大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">87</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="斜め方向に進む音源が出す音のドップラー効果を導く">斜め方向のドップラー効果</a></h3>
-      <p class="qm mono">19 関西大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">87</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="斜め方向に進む音源が出す音のドップラー効果を導く">斜め方向のドップラー効果</a></h3>
+        <p class="qm mono">19 関西大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">88</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="反射波を利用した位置測定のしくみをドップラー効果から調べる">エコーロケーションのしくみ</a></h3>
-      <p class="qm mono">20 帯広畜産大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">88</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="反射波を利用した位置測定のしくみをドップラー効果から調べる">エコーロケーションのしくみ</a></h3>
+        <p class="qm mono">20 帯広畜産大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">89</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="光ファイバー内を全反射で進む光の条件を調べる">光の屈折</a></h3>
-      <p class="qm mono">17 法政大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">89</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="光ファイバー内を全反射で進む光の条件を調べる">光の屈折</a></h3>
+        <p class="qm mono">17 法政大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">90</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="プリズム内での光の反射と屈折の進み方を調べる">プリズムによる光の進路</a></h3>
-      <p class="qm mono">25 関西学院大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">90</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="プリズム内での光の反射と屈折の進み方を調べる">プリズムによる光の進路</a></h3>
+        <p class="qm mono">25 関西学院大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">91</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="2枚のレンズを組み合わせたときの像と倍率を調べる">組合せレンズ</a></h3>
-      <p class="qm mono">17 長崎大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">91</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="2枚のレンズを組み合わせたときの像と倍率を調べる">組合せレンズ</a></h3>
+        <p class="qm mono">17 長崎大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">92</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="凹面鏡による像の公式を近似を使って導く">凹面鏡</a></h3>
-      <p class="qm mono">15 筑波大(前期)<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">92</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="凹面鏡による像の公式を近似を使って導く">凹面鏡</a></h3>
+        <p class="qm mono">15 筑波大(前期)<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">93</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ヤングの実験による光の干渉縞を調べる">ヤングの実験</a></h3>
-      <p class="qm mono">21 山形大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">93</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ヤングの実験による光の干渉縞を調べる">ヤングの実験</a></h3>
+        <p class="qm mono">21 山形大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">94</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="回折格子による光の干渉から明線の位置を求める">回折格子</a></h3>
-      <p class="qm mono">22 岡山大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">94</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="回折格子による光の干渉から明線の位置を求める">回折格子</a></h3>
+        <p class="qm mono">22 岡山大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">95</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="薄膜の上下面で反射した光の干渉条件を調べる">薄膜による光の干渉</a></h3>
-      <p class="qm mono">17 大阪府大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">95</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="薄膜の上下面で反射した光の干渉条件を調べる">薄膜による光の干渉</a></h3>
+        <p class="qm mono">17 大阪府大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">96</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="くさび形の空気層による光の干渉縞を調べる">くさび形領域による光の干渉</a></h3>
-      <p class="qm mono">佐賀大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">96</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="くさび形の空気層による光の干渉縞を調べる">くさび形領域による光の干渉</a></h3>
+        <p class="qm mono">佐賀大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">97</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="平凸レンズと平面ガラスの間の干渉でできる同心円状の模様を調べる">ニュートンリング</a></h3>
-      <p class="qm mono">21 千葉大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">97</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="平凸レンズと平面ガラスの間の干渉でできる同心円状の模様を調べる">ニュートンリング</a></h3>
+        <p class="qm mono">21 千葉大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">98</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="干渉計を使って光路差や気体の屈折率を求める">マイケルソン干渉計</a></h3>
-      <p class="qm mono">24 横浜市大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">98</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="干渉計を使って光路差や気体の屈折率を求める">マイケルソン干渉計</a></h3>
+        <p class="qm mono">24 横浜市大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="wave" data-state="prep">
-    <span class="qn mono">99</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ピンホールの大きさと像のぼやけの関係を回折から調べる">ピンホールカメラによる像のぼやけ幅</a></h3>
-      <p class="qm mono">22 名古屋工大 改<span class="lv lv-B">B</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">99</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ピンホールの大きさと像のぼやけの関係を回折から調べる">ピンホールカメラによる像のぼやけ幅</a></h3>
+        <p class="qm mono">22 名古屋工大 改<span class="lv lv-B">B</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   </div>
   <p class="none">この分野に該当する問題はありません。</p>
@@ -1133,380 +1356,474 @@
   <div class="bar"><span style="flex:0" class="b-live"></span><span style="flex:0" class="b-sched"></span><span style="flex:47" class="b-prep"></span></div>
   <div class="qgrid">
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">100</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="箔検電器のはくの開閉から帯電のようすを調べる">箔検電器</a></h3>
-      <p class="qm mono">23 茨城大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">100</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="箔検電器のはくの開閉から帯電のようすを調べる">箔検電器</a></h3>
+        <p class="qm mono">23 茨城大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">101</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="帯電した平面がつくる電場を調べる">帯電した平面による電場</a></h3>
-      <p class="qm mono">信州大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">101</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="帯電した平面がつくる電場を調べる">帯電した平面による電場</a></h3>
+        <p class="qm mono">信州大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">102</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="静電気力が点電荷にする仕事を求める">静電気力がする仕事</a></h3>
-      <p class="qm mono">静岡大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">102</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="静電気力が点電荷にする仕事を求める">静電気力がする仕事</a></h3>
+        <p class="qm mono">静岡大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">103</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="座標平面上の点電荷がつくる電場と電位を調べる">電場と電位</a></h3>
-      <p class="qm mono">22 筑波大(前期)<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">103</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="座標平面上の点電荷がつくる電場と電位を調べる">電場と電位</a></h3>
+        <p class="qm mono">22 筑波大(前期)<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">104</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="電場中を運動する荷電粒子の運動を調べる">荷電粒子の運動</a></h3>
-      <p class="qm mono">22 電気通信大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">104</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="電場中を運動する荷電粒子の運動を調べる">荷電粒子の運動</a></h3>
+        <p class="qm mono">22 電気通信大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">105</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="帯電した導体のまわりにできる電場を調べる">帯電した導体がつくる電場</a></h3>
-      <p class="qm mono">20 関西大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">105</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="帯電した導体のまわりにできる電場を調べる">帯電した導体がつくる電場</a></h3>
+        <p class="qm mono">20 関西大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">106</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ブラウン管内での荷電粒子の運動の原理を調べる">ブラウン管の原理</a></h3>
-      <p class="qm mono">16 立命館大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">106</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ブラウン管内での荷電粒子の運動の原理を調べる">ブラウン管の原理</a></h3>
+        <p class="qm mono">16 立命館大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">107</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="点電荷がつくる電気力線のようすを調べる">電気力線</a></h3>
-      <p class="qm mono">東京大<span class="lv lv-B">B</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">107</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="点電荷がつくる電気力線のようすを調べる">電気力線</a></h3>
+        <p class="qm mono">東京大<span class="lv lv-B">B</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">108</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="複数のコンデンサーを組み合わせた合成容量を求める">コンデンサーの合成容量</a></h3>
-      <p class="qm mono">群馬大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">108</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="複数のコンデンサーを組み合わせた合成容量を求める">コンデンサーの合成容量</a></h3>
+        <p class="qm mono">群馬大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">109</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ばねで支えられた極板をもつコンデンサーのつりあいを調べる">ばね付きコンデンサー</a></h3>
-      <p class="qm mono">15 広島市大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">109</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ばねで支えられた極板をもつコンデンサーのつりあいを調べる">ばね付きコンデンサー</a></h3>
+        <p class="qm mono">15 広島市大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">110</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="コンデンサーの極板間の電場と電位を求める">極板間の電場と電位</a></h3>
-      <p class="qm mono">大阪府大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">110</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="コンデンサーの極板間の電場と電位を求める">極板間の電場と電位</a></h3>
+        <p class="qm mono">大阪府大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">111</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="コンデンサーの極板どうしにはたらく力を求める">コンデンサーの極板が受ける力</a></h3>
-      <p class="qm mono">25 和歌山県医大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">111</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="コンデンサーの極板どうしにはたらく力を求める">コンデンサーの極板が受ける力</a></h3>
+        <p class="qm mono">25 和歌山県医大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">112</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="スイッチの切りかえによる電荷の移動を調べる">スイッチの切りかえによる電荷の移動</a></h3>
-      <p class="qm mono">17 大阪市大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">112</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="スイッチの切りかえによる電荷の移動を調べる">スイッチの切りかえによる電荷の移動</a></h3>
+        <p class="qm mono">17 大阪市大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">113</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ダイオードを含むコンデンサー回路のつなぎかえを調べる">ダイオードを含むコンデンサー回路とつなぎかえ</a></h3>
-      <p class="qm mono">24 芝浦工大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">113</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ダイオードを含むコンデンサー回路のつなぎかえを調べる">ダイオードを含むコンデンサー回路とつなぎかえ</a></h3>
+        <p class="qm mono">24 芝浦工大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">114</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="複数の導体板を組み合わせたコンデンサー回路を調べる">4枚の導体板によるコンデンサー回路</a></h3>
-      <p class="qm mono">東京理大 改<span class="lv lv-B">B</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">114</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="複数の導体板を組み合わせたコンデンサー回路を調べる">4枚の導体板によるコンデンサー回路</a></h3>
+        <p class="qm mono">東京理大 改<span class="lv lv-B">B</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">115</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="導体中を運動する自由電子から電流を調べる">導体中の自由電子の運動</a></h3>
-      <p class="qm mono">24 佐賀大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">115</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="導体中を運動する自由電子から電流を調べる">導体中の自由電子の運動</a></h3>
+        <p class="qm mono">24 佐賀大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">116</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="キルヒホッフの法則を使って回路の電流を求める">キルヒホッフの法則</a></h3>
-      <p class="qm mono">17 東京農大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">116</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="キルヒホッフの法則を使って回路の電流を求める">キルヒホッフの法則</a></h3>
+        <p class="qm mono">17 東京農大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">117</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ホイートストンブリッジのつりあい条件を調べる">ホイートストンブリッジ</a></h3>
-      <p class="qm mono">15 香川大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">117</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ホイートストンブリッジのつりあい条件を調べる">ホイートストンブリッジ</a></h3>
+        <p class="qm mono">15 香川大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">118</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="電池の内部抵抗を考慮した回路を調べる">電池の内部抵抗</a></h3>
-      <p class="qm mono">宮城教育大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">118</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="電池の内部抵抗を考慮した回路を調べる">電池の内部抵抗</a></h3>
+        <p class="qm mono">宮城教育大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">119</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="コンデンサーを含む直流回路の電荷と電流を調べる">コンデンサーを含む直流回路</a></h3>
-      <p class="qm mono">22 熊本大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">119</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="コンデンサーを含む直流回路の電荷と電流を調べる">コンデンサーを含む直流回路</a></h3>
+        <p class="qm mono">22 熊本大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">120</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="電球とダイオードを含む回路の特性を調べる">電球とダイオードを含む直流回路</a></h3>
-      <p class="qm mono">22 東京都立大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">120</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="電球とダイオードを含む回路の特性を調べる">電球とダイオードを含む直流回路</a></h3>
+        <p class="qm mono">22 東京都立大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">121</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="発光ダイオードを含む回路の電流と電圧を調べる">発光ダイオードを含む直流回路</a></h3>
-      <p class="qm mono">20 大阪工大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">121</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="発光ダイオードを含む回路の電流と電圧を調べる">発光ダイオードを含む直流回路</a></h3>
+        <p class="qm mono">20 大阪工大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">122</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="コンデンサーを含む回路の消費電力を調べる">コンデンサーを含む直流回路・最大消費電力</a></h3>
-      <p class="qm mono">25 徳島大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">122</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="コンデンサーを含む回路の消費電力を調べる">コンデンサーを含む直流回路・最大消費電力</a></h3>
+        <p class="qm mono">25 徳島大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">123</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="素子の電圧と電流の関係を実験から調べる">電圧と電流の関係</a></h3>
-      <p class="qm mono">17 長崎大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">123</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="素子の電圧と電流の関係を実験から調べる">電圧と電流の関係</a></h3>
+        <p class="qm mono">17 長崎大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">124</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ハシゴ状に素子を増やしていく回路の規則性を調べる">ハシゴ型に連結を増やしていく回路</a></h3>
-      <p class="qm mono">24 横浜市大<span class="lv lv-B">B</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">124</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ハシゴ状に素子を増やしていく回路の規則性を調べる">ハシゴ型に連結を増やしていく回路</a></h3>
+        <p class="qm mono">24 横浜市大<span class="lv lv-B">B</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">125</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="直線電流と円形電流がつくる磁場を調べる">直線電流と円形電流がつくる磁場</a></h3>
-      <p class="qm mono">23 日本女子大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">125</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="直線電流と円形電流がつくる磁場を調べる">直線電流と円形電流がつくる磁場</a></h3>
+        <p class="qm mono">23 日本女子大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">126</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="磁場中の電流が受ける力を調べる">電流が磁場から受ける力</a></h3>
-      <p class="qm mono">25 鳥取大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">126</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="磁場中の電流が受ける力を調べる">電流が磁場から受ける力</a></h3>
+        <p class="qm mono">25 鳥取大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">127</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="一様な磁場内での荷電粒子の運動を調べる">一様な磁場内の荷電粒子の運動</a></h3>
-      <p class="qm mono">23 群馬大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">127</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="一様な磁場内での荷電粒子の運動を調べる">一様な磁場内の荷電粒子の運動</a></h3>
+        <p class="qm mono">23 群馬大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">128</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="半導体に生じるホール効果を調べる">半導体とホール効果</a></h3>
-      <p class="qm mono">19 浜松医大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">128</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="半導体に生じるホール効果を調べる">半導体とホール効果</a></h3>
+        <p class="qm mono">19 浜松医大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">129</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="サイクロトロンによる荷電粒子の加速を調べる">サイクロトロン</a></h3>
-      <p class="qm mono">24 徳島大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">129</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="サイクロトロンによる荷電粒子の加速を調べる">サイクロトロン</a></h3>
+        <p class="qm mono">24 徳島大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">130</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="電場と磁場が重なった空間での荷電粒子の運動を調べる">電磁場中の荷電粒子の運動</a></h3>
-      <p class="qm mono">東京大<span class="lv lv-B">B</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">130</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="電場と磁場が重なった空間での荷電粒子の運動を調べる">電磁場中の荷電粒子の運動</a></h3>
+        <p class="qm mono">東京大<span class="lv lv-B">B</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">131</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="金属円筒中を落下する磁石にはたらく力を調べる">金属円筒中を落下するネオジム磁石</a></h3>
-      <p class="qm mono">18 千葉工大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">131</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="金属円筒中を落下する磁石にはたらく力を調べる">金属円筒中を落下するネオジム磁石</a></h3>
+        <p class="qm mono">18 千葉工大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">132</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="磁場中を運動する導体棒に生じる誘導起電力を調べる">磁場中を運動する導体棒</a></h3>
-      <p class="qm mono">24 関西学院大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">132</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="磁場中を運動する導体棒に生じる誘導起電力を調べる">磁場中を運動する導体棒</a></h3>
+        <p class="qm mono">24 関西学院大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">133</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="傾斜レール上をすべる導体棒の誘導起電力を調べる">傾斜したレール上をすべる導体棒</a></h3>
-      <p class="qm mono">21 京都工繊大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">133</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="傾斜レール上をすべる導体棒の誘導起電力を調べる">傾斜したレール上をすべる導体棒</a></h3>
+        <p class="qm mono">21 京都工繊大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">134</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="長方形コイルを貫く磁束の変化から誘導起電力を調べる">長方形コイルに生じる誘導起電力</a></h3>
-      <p class="qm mono">21 高知大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">134</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="長方形コイルを貫く磁束の変化から誘導起電力を調べる">長方形コイルに生じる誘導起電力</a></h3>
+        <p class="qm mono">21 高知大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">135</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="斜面上を動くコイルに生じる誘導起電力を調べる">斜面上を動く正方形コイルに生じる誘導起電力</a></h3>
-      <p class="qm mono">21 新潟大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">135</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="斜面上を動くコイルに生じる誘導起電力を調べる">斜面上を動く正方形コイルに生じる誘導起電力</a></h3>
+        <p class="qm mono">21 新潟大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">136</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="回転する導体棒に生じる誘導起電力を調べる">回転する導体棒に生じる誘導起電力</a></h3>
-      <p class="qm mono">15 同志社大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">136</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="回転する導体棒に生じる誘導起電力を調べる">回転する導体棒に生じる誘導起電力</a></h3>
+        <p class="qm mono">15 同志社大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">137</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="2つのコイル間の相互誘導を調べる">相互誘導</a></h3>
-      <p class="qm mono">19 大阪府大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">137</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="2つのコイル間の相互誘導を調べる">相互誘導</a></h3>
+        <p class="qm mono">19 大阪府大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">138</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="コイルを含む直流回路の電流の変化を調べる">コイルを含む直流回路</a></h3>
-      <p class="qm mono">20 中央大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">138</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="コイルを含む直流回路の電流の変化を調べる">コイルを含む直流回路</a></h3>
+        <p class="qm mono">20 中央大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">139</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ベータトロンによる荷電粒子の加速原理を調べる">ベータトロン</a></h3>
-      <p class="qm mono">25 横浜市大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">139</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ベータトロンによる荷電粒子の加速原理を調べる">ベータトロン</a></h3>
+        <p class="qm mono">25 横浜市大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">140</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="磁場中を運動する導体棒に生じる現象を調べる">磁場中を運動する導体棒</a></h3>
-      <p class="qm mono">21 同志社大<span class="lv lv-B">B</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">140</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="磁場中を運動する導体棒に生じる現象を調べる">磁場中を運動する導体棒</a></h3>
+        <p class="qm mono">21 同志社大<span class="lv lv-B">B</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">141</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="磁場中で回転するコイルに生じる交流を調べる">交流の発生</a></h3>
-      <p class="qm mono">23 徳島大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">141</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="磁場中で回転するコイルに生じる交流を調べる">交流の発生</a></h3>
+        <p class="qm mono">23 徳島大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">142</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="変圧器を利用した交流の送電のしくみを調べる">交流の送電</a></h3>
-      <p class="qm mono">九州工大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">142</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="変圧器を利用した交流の送電のしくみを調べる">交流の送電</a></h3>
+        <p class="qm mono">九州工大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">143</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="抵抗・コイル・コンデンサーを直列につないだ回路を調べる">RLC直列回路</a></h3>
-      <p class="qm mono">25 東京農工大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">143</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="抵抗・コイル・コンデンサーを直列につないだ回路を調べる">RLC直列回路</a></h3>
+        <p class="qm mono">25 東京農工大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">144</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="抵抗・コイル・コンデンサーを並列につないだ回路を調べる">RLC並列回路</a></h3>
-      <p class="qm mono">20 福井大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">144</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="抵抗・コイル・コンデンサーを並列につないだ回路を調べる">RLC並列回路</a></h3>
+        <p class="qm mono">20 福井大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">145</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="コイルとコンデンサーがつくる電気振動を調べる">電気振動</a></h3>
-      <p class="qm mono">18 東京農工大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">145</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="コイルとコンデンサーがつくる電気振動を調べる">電気振動</a></h3>
+        <p class="qm mono">18 東京農工大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="electro" data-state="prep">
-    <span class="qn mono">146</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="スイッチの切りかえによる過渡現象と電気振動を調べる">過渡現象と電気振動</a></h3>
-      <p class="qm mono">京都工繊大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">146</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="スイッチの切りかえによる過渡現象と電気振動を調べる">過渡現象と電気振動</a></h3>
+        <p class="qm mono">京都工繊大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   </div>
   <p class="none">この分野に該当する問題はありません。</p>
@@ -1519,100 +1836,124 @@
   <div class="bar"><span style="flex:0" class="b-live"></span><span style="flex:0" class="b-sched"></span><span style="flex:12" class="b-prep"></span></div>
   <div class="qgrid">
   <article class="q" data-cat="atom" data-state="prep">
-    <span class="qn mono">147</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="加速した荷電粒子を磁場で分けて質量を測定する装置を調べる">質量分析器</a></h3>
-      <p class="qm mono">25 岡山大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">147</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="加速した荷電粒子を磁場で分けて質量を測定する装置を調べる">質量分析器</a></h3>
+        <p class="qm mono">25 岡山大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="atom" data-state="prep">
-    <span class="qn mono">148</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="電場と磁場を利用して電子の比電荷を測定する方法を調べる">電子の比電荷の測定</a></h3>
-      <p class="qm mono">24 京都産業大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">148</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="電場と磁場を利用して電子の比電荷を測定する方法を調べる">電子の比電荷の測定</a></h3>
+        <p class="qm mono">24 京都産業大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="atom" data-state="prep">
-    <span class="qn mono">149</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="微粒子の運動から電気素量を測定する実験を調べる">ミリカンの実験</a></h3>
-      <p class="qm mono">19 同志社大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">149</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="微粒子の運動から電気素量を測定する実験を調べる">ミリカンの実験</a></h3>
+        <p class="qm mono">19 同志社大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="atom" data-state="prep">
-    <span class="qn mono">150</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="金属に光を当てたときに電子が飛び出す現象を調べる">光電効果</a></h3>
-      <p class="qm mono">17 香川大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">150</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="金属に光を当てたときに電子が飛び出す現象を調べる">光電効果</a></h3>
+        <p class="qm mono">17 香川大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="atom" data-state="prep">
-    <span class="qn mono">151</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="X線の発生スペクトルと結晶によるX線回折を調べる">X線の発生とX線回折</a></h3>
-      <p class="qm mono">18 近畿大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">151</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="X線の発生スペクトルと結晶によるX線回折を調べる">X線の発生とX線回折</a></h3>
+        <p class="qm mono">18 近畿大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="atom" data-state="prep">
-    <span class="qn mono">152</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="X線と電子の衝突によるコンプトン効果を調べる">コンプトン効果</a></h3>
-      <p class="qm mono">25 熊本大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">152</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="X線と電子の衝突によるコンプトン効果を調べる">コンプトン効果</a></h3>
+        <p class="qm mono">25 熊本大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="atom" data-state="prep">
-    <span class="qn mono">153</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="結晶による反射と金属からの光の発生を調べる">ブラッグ反射と金属からの光の発生</a></h3>
-      <p class="qm mono">東北大<span class="lv lv-B">B</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">153</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="結晶による反射と金属からの光の発生を調べる">ブラッグ反射と金属からの光の発生</a></h3>
+        <p class="qm mono">東北大<span class="lv lv-B">B</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="atom" data-state="prep">
-    <span class="qn mono">154</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ボーアの水素原子モデルからエネルギー準位を導く">水素原子モデル</a></h3>
-      <p class="qm mono">20 九州工大 改<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">154</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ボーアの水素原子モデルからエネルギー準位を導く">水素原子モデル</a></h3>
+        <p class="qm mono">20 九州工大 改<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="atom" data-state="prep">
-    <span class="qn mono">155</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="原子核の崩壊と核分裂で生じるエネルギーを調べる">原子核</a></h3>
-      <p class="qm mono">19 大阪市大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">155</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="原子核の崩壊と核分裂で生じるエネルギーを調べる">原子核</a></h3>
+        <p class="qm mono">19 大阪市大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="atom" data-state="prep">
-    <span class="qn mono">156</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="核反応の前後の質量から生じるエネルギーを求める">核反応で生じるエネルギー</a></h3>
-      <p class="qm mono">16 名古屋市大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">156</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="核反応の前後の質量から生じるエネルギーを求める">核反応で生じるエネルギー</a></h3>
+        <p class="qm mono">16 名古屋市大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="atom" data-state="prep">
-    <span class="qn mono">157</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="中性子を利用した核反応とその応用を調べる">中性子による核反応</a></h3>
-      <p class="qm mono">18 同志社大<span class="lv lv-A">A</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">157</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="中性子を利用した核反応とその応用を調べる">中性子による核反応</a></h3>
+        <p class="qm mono">18 同志社大<span class="lv lv-A">A</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="atom" data-state="prep">
-    <span class="qn mono">158</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="中性子の発見に至る実験と考察の経緯をたどる">中性子の発見</a></h3>
-      <p class="qm mono">20 大阪工大<span class="lv lv-B">B</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">158</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="中性子の発見に至る実験と考察の経緯をたどる">中性子の発見</a></h3>
+        <p class="qm mono">20 大阪工大<span class="lv lv-B">B</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   </div>
   <p class="none">この分野に該当する問題はありません。</p>
@@ -1625,44 +1966,54 @@
   <div class="bar"><span style="flex:0" class="b-live"></span><span style="flex:0" class="b-sched"></span><span style="flex:5" class="b-prep"></span></div>
   <div class="qgrid">
   <article class="q" data-cat="survey" data-state="prep">
-    <span class="qn mono">159</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ハンマー投げを回転する棒のモデルで力学的に考察する">ハンマー投げの力学モデル</a></h3>
-      <p class="qm mono">24 名古屋市大 改<span class="lv lv-−">−</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">159</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ハンマー投げを回転する棒のモデルで力学的に考察する">ハンマー投げの力学モデル</a></h3>
+        <p class="qm mono">24 名古屋市大 改<span class="lv lv-−">−</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="survey" data-state="prep">
-    <span class="qn mono">160</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="波の屈折の原理から虹ができるしくみを考察する">波の屈折と虹のしくみ</a></h3>
-      <p class="qm mono">16 北海道大<span class="lv lv-−">−</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">160</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="波の屈折の原理から虹ができるしくみを考察する">波の屈折と虹のしくみ</a></h3>
+        <p class="qm mono">16 北海道大<span class="lv lv-−">−</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="survey" data-state="prep">
-    <span class="qn mono">161</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="気体分子の運動から音の伝わる速さを導く">気体の分子運動と音の速さ</a></h3>
-      <p class="qm mono">23 九州大<span class="lv lv-−">−</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">161</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="気体分子の運動から音の伝わる速さを導く">気体の分子運動と音の速さ</a></h3>
+        <p class="qm mono">23 九州大<span class="lv lv-−">−</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="survey" data-state="prep">
-    <span class="qn mono">162</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="未知の回路素子が抵抗・コイル・コンデンサーのどれかを測定から決定する">回路素子の決定</a></h3>
-      <p class="qm mono">22 東京理大<span class="lv lv-−">−</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">162</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="未知の回路素子が抵抗・コイル・コンデンサーのどれかを測定から決定する">回路素子の決定</a></h3>
+        <p class="qm mono">22 東京理大<span class="lv lv-−">−</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   <article class="q" data-cat="survey" data-state="prep">
-    <span class="qn mono">163</span>
-    <div class="qb">
-      <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="陽電子と電子の対消滅を利用した画像化のしくみを考察する">陽電子断層撮影法のしくみ</a></h3>
-      <p class="qm mono">20 福井大 改<span class="lv lv-−">−</span></p>
+    <div class="qrow qmain" data-state="prep">
+      <span class="qn mono">163</span>
+      <div class="qb">
+        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="陽電子と電子の対消滅を利用した画像化のしくみを考察する">陽電子断層撮影法のしくみ</a></h3>
+        <p class="qm mono">20 福井大 改<span class="lv lv-−">−</span></p>
+      </div>
+      <span class="st"></span>
     </div>
-    <div class="qs"><span class="st"></span></div>
   </article>
   </div>
   <p class="none">この分野に該当する問題はありません。</p>
@@ -1691,35 +2042,32 @@
   function settle(){
     var now = new Date(), live = 0, sched = 0;
 
-    document.querySelectorAll(".q").forEach(function(q){
-      var pub = q.dataset.pub ? new Date(q.dataset.pub) : null;
-      var url = q.dataset.url || "";
-      var st  = q.querySelector(".st");
-      var a   = q.querySelector(".stretch");
+    // 本編の行も別解の行も同じ扱い。行ごとに予約時刻を持っているので、
+    // 本編が公開済みで別解がまだ、という1時間もそのまま出る。
+    document.querySelectorAll(".qrow").forEach(function(row){
+      var pub  = row.dataset.pub ? new Date(row.dataset.pub) : null;
+      var url  = row.dataset.url || "";
+      var st   = row.querySelector(".st");
+      var a    = row.querySelector(".stretch");
+      var main = row.classList.contains("qmain");
 
       if (!url){
-        q.dataset.state = "prep";
+        row.dataset.state = "prep";
         st.textContent = "準備中";
       } else if (!pub || pub <= now){
-        q.dataset.state = "live";
+        row.dataset.state = "live";
         st.textContent = "解説";
         a.href = url;
-        live++;
+        if (main) live++;
       } else {
-        q.dataset.state = "sched";
+        row.dataset.state = "sched";
         st.textContent = fmt(pub) + " 公開";
         a.removeAttribute("href");
-        sched++;
+        if (main) sched++;
       }
-    });
 
-    document.querySelectorAll(".alt").forEach(function(alt){
-      var pub = alt.dataset.pub ? new Date(alt.dataset.pub) : null;
-      if (pub && pub > now){
-        alt.classList.add("locked");
-        alt.removeAttribute("href");
-        alt.title = fmt(pub) + " 公開";
-      }
+      // カードの枠線は本編の状態で決める（実線=公開済 / 破線=公開予定）
+      if (main) row.closest(".q").dataset.state = row.dataset.state;
     });
 
     document.getElementById("nLive").textContent = live;
