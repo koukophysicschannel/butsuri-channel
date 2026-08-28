@@ -304,7 +304,7 @@
         <div class="stat s-all"><b>163</b><span>収録問題</span></div>
         <div class="stat s-live"><b id="nLive">11</b><span>公開済み</span></div>
         <div class="stat s-sched"><b id="nSched">23</b><span>公開予定</span></div>
-        <div class="stat s-prep"><b>129</b><span>準備中</span></div>
+        <div class="stat s-prep"><b id="nPrep">129</b><span>準備中</span></div>
       </div>
       <div class="bar"><span style="flex:11" class="b-live"></span><span style="flex:23" class="b-sched"></span><span style="flex:129" class="b-prep"></span></div>
     </div>
@@ -2056,39 +2056,64 @@
 
   function fmt(d){ return JST.format(d).replace(/\s+/g, " ").trim(); }
 
+  // 集計はすべて閲覧時に数え直す。**ビルド時点の数を焼いてはいけない。**
+  // 公開予定は時刻が来ると公開済みに変わるので、焼くと必ず古くなる
+  // （2026-08-28、バーと分野の件数がビルド時の 11/23 のままで、
+  //   実際の 19/15 と食い違っていた）。
+  function setBar(bar, n){
+    if (!bar) return;
+    var q = function(c){ return bar.querySelector(c); };
+    if (q(".b-live"))  q(".b-live").style.flex  = String(n.live);
+    if (q(".b-sched")) q(".b-sched").style.flex = String(n.sched);
+    if (q(".b-prep"))  q(".b-prep").style.flex  = String(n.prep);
+  }
+
   function settle(){
-    var now = new Date(), live = 0, sched = 0;
+    var now = new Date(), total = {live: 0, sched: 0, prep: 0};
 
-    // 本編の行も別解の行も同じ扱い。行ごとに予約時刻を持っているので、
-    // 本編が公開済みで別解がまだ、という1時間もそのまま出る。
-    document.querySelectorAll(".qrow").forEach(function(row){
-      var pub  = row.dataset.pub ? new Date(row.dataset.pub) : null;
-      var url  = row.dataset.url || "";
-      var st   = row.querySelector(".st");
-      var a    = row.querySelector(".stretch");
-      var main = row.classList.contains("qmain");
+    document.querySelectorAll(".fs").forEach(function(sec){
+      var n = {live: 0, sched: 0, prep: 0};
 
-      if (!url){
-        row.dataset.state = "prep";
-        st.textContent = "準備中";
-      } else if (!pub || pub <= now){
-        row.dataset.state = "live";
-        st.textContent = "解説";
-        a.href = url;
-        if (main) live++;
-      } else {
-        row.dataset.state = "sched";
-        st.textContent = fmt(pub) + " 公開";
-        a.removeAttribute("href");
-        if (main) sched++;
-      }
+      // 本編の行も別解の行も同じ扱い。行ごとに予約時刻を持っているので、
+      // 本編が公開済みで別解がまだ、という1時間もそのまま出る。
+      // 件数に数えるのは本編の行だけ（分野の総数＝問数に合わせる）。
+      sec.querySelectorAll(".qrow").forEach(function(row){
+        var pub  = row.dataset.pub ? new Date(row.dataset.pub) : null;
+        var url  = row.dataset.url || "";
+        var st   = row.querySelector(".st");
+        var a    = row.querySelector(".stretch");
+        var main = row.classList.contains("qmain");
 
-      // カードの枠線は本編の状態で決める（実線=公開済 / 破線=公開予定）
-      if (main) row.closest(".q").dataset.state = row.dataset.state;
+        if (!url){
+          row.dataset.state = "prep";
+          st.textContent = "準備中";
+        } else if (!pub || pub <= now){
+          row.dataset.state = "live";
+          st.textContent = "解説";
+          a.href = url;
+        } else {
+          row.dataset.state = "sched";
+          st.textContent = fmt(pub) + " 公開";
+          a.removeAttribute("href");
+        }
+
+        if (main){
+          n[row.dataset.state]++;
+          // カードの枠線は本編の状態で決める（実線=公開済 / 破線=公開予定）
+          row.closest(".q").dataset.state = row.dataset.state;
+        }
+      });
+
+      setBar(sec.querySelector(".bar"), n);
+      var fc = sec.querySelector(".fc");
+      if (fc) fc.textContent = n.live + " / " + (n.live + n.sched + n.prep) + " 公開";
+      total.live += n.live; total.sched += n.sched; total.prep += n.prep;
     });
 
-    document.getElementById("nLive").textContent = live;
-    document.getElementById("nSched").textContent = sched;
+    setBar(document.querySelector(".summary .bar"), total);
+    document.getElementById("nLive").textContent = total.live;
+    document.getElementById("nSched").textContent = total.sched;
+    document.getElementById("nPrep").textContent = total.prep;
   }
 
   // ── 絞り込み ────────────────────────────────────────────
