@@ -1,0 +1,8 @@
+# node_modules は 2026-08-28 の eaa90c6 で誤って入った（重問ページのJSを
+# jsdom で検証したときの副産物）。package.json も lock も無く、依存を管理
+# する意図は無い。GitHub Pages で配信されるリポジトリなので、置いたままだと
+# 公開URLにも乗る。
+node_modules/
+
+# macOS が勝手に作る
+.DS_Store
