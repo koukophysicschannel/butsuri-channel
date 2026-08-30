@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ▼ アイコン一式。パスは各ページからの相対（配信先が変わっても書き換え不要） -->
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="apple-mobile-web-app-title" content="高校物理解説チャンネル">
+<meta name="theme-color" content="#10151b">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QCLT8H81TT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QCLT8H81TT');
+</script>
+
+<title>東京理科大 物理 過去問解説｜高校物理 解説チャンネル</title>
+<meta name="description" content="東京理科大学の物理入試問題（2026年度）を1問ずつ解説した動画のインデックス。大問・小問から解説動画に直接飛べます。">
+<link rel="canonical" href="https://koukophysicschannel.github.io/butsuri-channel/kakomon/tokyo-rika/">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="高校物理 解説チャンネル">
+<meta property="og:title" content="東京理科大 物理 過去問解説｜高校物理 解説チャンネル">
+<meta property="og:description" content="東京理科大学の物理入試問題（2026年度）を1問ずつ解説した動画のインデックス。大問・小問から解説動画に直接飛べます。">
+<meta property="og:url" content="https://koukophysicschannel.github.io/butsuri-channel/kakomon/tokyo-rika/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://koukophysicschannel.github.io/butsuri-channel/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://koukophysicschannel.github.io/butsuri-channel/og-image.png">
+<meta name="twitter:title" content="東京理科大 物理 過去問解説｜高校物理 解説チャンネル">
+<meta name="twitter:description" content="東京理科大学の物理入試問題（2026年度）を1問ずつ解説した動画のインデックス。大問・小問から解説動画に直接飛べます。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* サイト index.html のトークンをそのまま継承 */
+    --bg:#10151b; --bg-alt:#171e26; --card:#1a222b; --line:#2a333d;
+    --chalk:#edf2f0; --chalk-dim:#93a1a8; --accent:#f4c95d;
+    --mech:#7fd1a4; --therm:#ef8b6b; --wave:#6fb8e0;
+    --electro:#c497e0; --atom:#5fd3c4;
+
+    --sans:"Zen Kaku Gothic New",sans-serif;
+    --mono:"JetBrains Mono",monospace;
+  }
+
+  /* サイト全体が黒板の暗い世界に振り切っているので、このページも単一テーマ。 */
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:var(--bg); color:var(--chalk);
+        font-family:var(--sans); line-height:1.7; -webkit-font-smoothing:antialiased; }
+  .mono{ font-family:var(--mono); font-variant-numeric:tabular-nums; }
+  a{ color:inherit; text-decoration:none; }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
+
+  .grid-bg{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+    background-size:42px 42px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,black 40%,transparent 85%);
+  }
+  .wrap{ position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 24px; }
+
+  .crumb{ padding:26px 0 0; font-family:var(--mono); font-size:12.5px; color:var(--chalk-dim); }
+  .crumb a:hover{ color:var(--chalk); }
+  header.top{ padding:22px 0 30px; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:12.5px; letter-spacing:.12em;
+    color:var(--eb,var(--accent));
+    border:1px solid color-mix(in srgb,var(--eb,var(--accent)) 38%,transparent);
+    padding:5px 12px; border-radius:999px; margin-bottom:20px;
+  }
+  .eyebrow::before{ content:"\25CF"; font-size:8px; }
+  h1{ font-size:clamp(27px,4vw,40px); font-weight:900; margin:0 0 14px;
+      letter-spacing:-.01em; text-wrap:balance; }
+  h1 .sub{ display:block; font-size:.42em; font-weight:500; color:var(--chalk-dim);
+           margin-top:10px; letter-spacing:0; }
+  .lede{ max-width:62ch; color:var(--chalk-dim); font-size:15px; margin:0 0 26px; }
+
+  .summary{
+    background:var(--bg-alt); border:1px solid var(--line); border-radius:14px;
+    padding:20px 22px; display:flex; flex-direction:column; gap:14px;
+  }
+  .stats{ display:flex; gap:26px; flex-wrap:wrap; align-items:baseline; }
+  .stat{ display:flex; flex-direction:column; gap:2px; }
+  .stat b{ font-family:var(--mono); font-size:25px; font-weight:700; line-height:1.2;
+           font-variant-numeric:tabular-nums; }
+  .stat span{ font-size:11.5px; color:var(--chalk-dim); letter-spacing:.04em; }
+  .stat.s-live b{ color:var(--mech); }
+  .stat.s-prep b{ color:var(--chalk-dim); }
+
+  .bar{ display:flex; height:8px; border-radius:999px; overflow:hidden;
+        background:var(--line); gap:1.5px; }
+  .b-live{ background:var(--mech); }
+  .b-prep{ background:#232c36; }
+
+  footer{ margin-top:44px; padding:34px 0 60px; text-align:center;
+          border-top:1px solid var(--line); }
+  footer p{ color:#7d8890; font-size:12px; max-width:66ch; margin:0 auto; }
+  footer a{ color:var(--chalk-dim); }
+  footer a:hover{ color:var(--chalk); }
+
+  @media (prefers-reduced-motion:reduce){
+    *{ transition:none !important; animation:none !important; }
+    html{ scroll-behavior:auto; }
+  }
+  @media (max-width:560px){ .stats{ gap:18px; } }
+
+  main{ padding:6px 0 10px; }
+
+  /* 年度。ページ内で一番重い区切り。 */
+  .yr-sec{ padding-top:30px; margin-top:34px; border-top:1px solid var(--line); }
+  .yr-sec:first-child{ margin-top:14px; }
+  .yr-head{ display:flex; align-items:baseline; justify-content:space-between;
+            gap:16px; flex-wrap:wrap; margin-bottom:6px; }
+  .yr-head h2{ font-size:26px; margin:0; font-weight:900; letter-spacing:-.01em; }
+  .yr-head h2 span{ font-size:15px; font-weight:500; color:var(--chalk-dim); margin-left:2px; }
+  .yr-head .fc{ font-family:var(--mono); font-size:12.5px; color:var(--chalk-dim); }
+
+  /* 実施回（学部・方式）。大学色の縦線でくくり、中身を字下げする。
+     複数学部が並んだとき、どこからどこまでが同じ試験かを線で示すため。 */
+  .ex-sec{ margin-top:20px; padding-left:17px; border-left:2px solid
+           color-mix(in srgb,var(--uni) 42%,transparent); }
+  .ex-head{ display:flex; align-items:baseline; gap:11px; flex-wrap:wrap; margin:0 0 4px; }
+  .ex-head h3{ font-size:17px; margin:0; font-weight:700; color:var(--uni); }
+  .ex-meta{ display:flex; gap:6px; flex-wrap:wrap; margin:0 0 16px; }
+  .ex-meta span{ font-family:var(--mono); font-size:11px; color:#7d8890;
+    border:1px solid var(--line); border-radius:5px; padding:1px 8px; }
+  .ex-meta span.live{ color:var(--mech);
+    border-color:color-mix(in srgb,var(--mech) 38%,transparent); }
+
+  /* 大問。 */
+  .fs{ margin-top:22px; }
+  .fh{ display:flex; align-items:baseline; justify-content:space-between;
+       gap:16px; margin-bottom:11px; flex-wrap:wrap; }
+  .fh h4{ font-size:15px; margin:0; font-weight:700;
+          display:flex; align-items:center; gap:9px; }
+  .fd{ width:8px; height:8px; border-radius:50%; background:var(--uni); flex-shrink:0; }
+  .fc{ font-size:12px; color:#7d8890; font-family:var(--mono); }
+  .haiten{ font-family:var(--mono); font-size:11px; color:var(--uni);
+    border:1px solid color-mix(in srgb,var(--uni) 35%,transparent);
+    border-radius:5px; padding:1px 8px; }
+
+  .qgrid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:8px; }
+
+  /* 1問1枚。juyomon の .q と同じ骨格。--c は問の分野色（大学色ではない）。 */
+  .q{ position:relative; display:flex; background:var(--card);
+      border:1px solid var(--line); border-radius:11px; overflow:hidden;
+      transition:border-color .15s ease; }
+  .q:hover{ border-color:var(--c); }
+  .qrow{ position:relative; display:flex; align-items:flex-start; gap:13px;
+         padding:12px 14px; width:100%; cursor:pointer; }
+  .qrow:hover{ background:color-mix(in srgb,var(--c) 8%,transparent); }
+  .qn{ font-weight:700; font-size:13px; color:var(--c);
+       background:color-mix(in srgb,var(--c) 15%,transparent);
+       border-radius:7px; padding:5px 7px; flex-shrink:0;
+       min-width:44px; text-align:center; margin-top:1px; }
+  .qb{ flex:1; min-width:0; }
+  .qb h5{ font-size:13.5px; margin:0 0 3px; font-weight:500; line-height:1.5; }
+  .qm{ margin:0 0 5px; font-size:11px; color:#7d8890; font-family:var(--mono);
+       display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+  .fb{ color:var(--c); border:1px solid color-mix(in srgb,var(--c) 40%,transparent);
+       background:color-mix(in srgb,var(--c) 10%,transparent);
+       border-radius:4px; padding:0 6px; font-size:10.5px; }
+  .note{ color:var(--accent); border:1px solid rgba(244,201,93,.4);
+         border-radius:4px; padding:0 5px; font-size:10px; }
+  /* 使う考え方。videos.py の SLIDE[].chips をそのまま出している。 */
+  .chips{ display:flex; gap:5px; flex-wrap:wrap; }
+  .chips span{ font-size:10.5px; color:#7d8890; border:1px solid var(--line);
+    border-radius:4px; padding:0 6px; line-height:1.7; }
+  .st{ font-family:var(--mono); font-size:11px; color:var(--c);
+       white-space:nowrap; flex-shrink:0; margin-top:6px; }
+  .st::before{ content:"\25B6 "; }
+  /* 行全体をクリック可能にする（見出しのリンクを行いっぱいに広げる）。 */
+  .stretch::after{ content:""; position:absolute; inset:0; z-index:1; }
+
+  /* まだ動画IDが無い問。破線＝まだ見られない、はトップの is-prep と同じ約束。 */
+  .q.is-prep{ background:transparent; border-style:dashed; }
+  .q.is-prep .qrow{ cursor:default; }
+  .q.is-prep .qrow:hover{ background:none; }
+  .q.is-prep .qb h5{ color:#8e99a2; }
+  .q.is-prep .qn{ color:#6d7883; background:#1c242c; }
+  .q.is-prep .st{ color:#68737d; }
+  .q.is-prep .st::before{ content:""; }
+
+  /* 年度が2つ以上になったときだけ出る年度ジャンプ。 */
+  .ynav{ display:flex; gap:8px; flex-wrap:wrap; margin:22px 0 0; }
+  .ynav a{ font-family:var(--mono); font-size:12.5px; padding:6px 13px;
+    border-radius:999px; border:1px solid var(--line); background:var(--bg-alt);
+    color:var(--chalk-dim); }
+  .ynav a:hover{ border-color:var(--uni); color:var(--chalk); }
+
+  .soon{ border:1.5px dashed var(--line); border-radius:12px; padding:18px 20px;
+    color:#68737d; font-size:13px; margin-top:20px; }
+
+  @media (max-width:560px){
+    .qgrid{ grid-template-columns:1fr; }
+    .ex-sec{ padding-left:12px; }
+  }
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="wrap">
+  <nav class="crumb mono"><a href="../../">高校物理 解説チャンネル</a> / <a href="../">過去問</a> / 東京理科大</nav>
+
+  <header class="top">
+    <span class="eyebrow mono" style="--eb:#D77E88">TOKYO RIKA</span>
+    <h1>東京理科大学 物理
+      <span class="sub">収録した年度の全問を、1問ずつ解説動画に分けています</span>
+    </h1>
+    <p class="lede">年度ごとに、大問の順で並べています。問題を選ぶとその解説動画が開きます。</p>
+
+    <div class="summary">
+      <div class="stats">
+        <div class="stat s-all"><b>1</b><span>収録年度</span></div>
+        <div class="stat s-all"><b>9</b><span>収録問題</span></div>
+        <div class="stat s-live"><b>9</b><span>公開済み</span></div>
+      </div>
+      <div class="bar"><span style="flex:9" class="b-live"></span></div>
+    </div>
+  </header>
+
+  <main id="uniIndex" style="--uni:#D77E88">
+  <section class="yr-sec" id="y2026">
+    <div class="yr-head">
+      <h2>2026<span>年度</span></h2>
+      <span class="fc mono">9問 / 9問 公開済み</span>
+    </div>
+    <section class="ex-sec" id="y2026-rigaku">
+      <div class="ex-head"><h3>理学部</h3></div>
+      <div class="ex-meta"><span>2月5日</span><span>全9問・空所54</span><span class="live">9問 公開済み</span></div>
+      <section class="fs">
+        <div class="fh">
+          <h4><span class="fd"></span>第1問<span class="haiten mono">30点</span></h4>
+          <span class="fc mono">3本 / 空所17</span>
+        </div>
+        <div class="qgrid">
+          <article class="q" style="--c:var(--mech)">
+            <div class="qrow">
+              <span class="qn mono">(1)</span>
+              <div class="qb">
+                <h5><a class="stretch" href="https://www.youtube.com/watch?v=AUnuVY0RyeI" target="_blank" rel="noopener" title="衝突を繰り返すと速さはどこまで増える">1次元衝突の繰り返しによる速度収束</a></h5>
+                <p class="qm"><span class="fb">力学</span>ア〜エ・4空所</p>
+                <div class="chips"><span>運動量保存則</span><span>反発係数</span><span>等比数列の和</span><span>極限</span></div>
+              </div>
+              <span class="st mono"></span>
+            </div>
+          </article>
+          <article class="q" style="--c:var(--mech)">
+            <div class="qrow">
+              <span class="qn mono">(2)</span>
+              <div class="qb">
+                <h5><a class="stretch" href="https://www.youtube.com/watch?v=I1bB_t7Dz-Y" target="_blank" rel="noopener" title="ばねでつながれた2物体の重心運動と周期">ばねでつながれた2物体の重心運動と単振動</a></h5>
+                <p class="qm"><span class="fb">力学</span>オ〜シ・8空所</p>
+                <div class="chips"><span>運動量保存則</span><span>力学的エネルギー保存則</span><span>重心の運動</span><span>単振動の周期</span></div>
+              </div>
+              <span class="st mono"></span>
+            </div>
+          </article>
+          <article class="q" style="--c:var(--mech)">
+            <div class="qrow">
+              <span class="qn mono">(3)</span>
+              <div class="qb">
+                <h5><a class="stretch" href="https://www.youtube.com/watch?v=KO9l67fJ6Xg" target="_blank" rel="noopener" title="宇宙の建造物にはたらく見かけの力とは">万有引力による2天体の等速円運動と見かけの力</a></h5>
+                <p class="qm"><span class="fb">力学</span>ス〜チ・5空所</p>
+                <div class="chips"><span>万有引力</span><span>等速円運動</span><span>見かけの力</span><span>1次近似</span></div>
+              </div>
+              <span class="st mono"></span>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section class="fs">
+        <div class="fh">
+          <h4><span class="fd"></span>第2問<span class="haiten mono">20点</span></h4>
+          <span class="fc mono">2本 / 空所10</span>
+        </div>
+        <div class="qgrid">
+          <article class="q" style="--c:var(--therm)">
+            <div class="qrow">
+              <span class="qn mono">(1)</span>
+              <div class="qb">
+                <h5><a class="stretch" href="https://www.youtube.com/watch?v=jw1-07nCRqI" target="_blank" rel="noopener" title="気体の状態変化サイクルを式で追う">単原子分子理想気体のp-Vサイクルと熱力学第一法則</a></h5>
+                <p class="qm"><span class="fb">熱</span>ア〜キ・7空所</p>
+                <div class="chips"><span>ボイル・シャルルの法則</span><span>ポアソンの式</span><span>熱力学第一法則</span><span>p-Vサイクル</span></div>
+              </div>
+              <span class="st mono"></span>
+            </div>
+          </article>
+          <article class="q" style="--c:var(--therm)">
+            <div class="qrow">
+              <span class="qn mono">(2)</span>
+              <div class="qb">
+                <h5><a class="stretch" href="https://www.youtube.com/watch?v=LvJt-gABuqs" target="_blank" rel="noopener" title="ピストンで仕切られた気体の圧縮">ピストンで仕切られた気体の圧縮とポアソンの式</a></h5>
+                <p class="qm"><span class="fb">熱</span>ク〜コ・3空所</p>
+                <div class="chips"><span>ボイルの法則</span><span>力のつり合い</span><span>断熱変化</span><span>ポアソンの式</span></div>
+              </div>
+              <span class="st mono"></span>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section class="fs">
+        <div class="fh">
+          <h4><span class="fd"></span>第3問<span class="haiten mono">30点</span></h4>
+          <span class="fc mono">2本 / 空所16</span>
+        </div>
+        <div class="qgrid">
+          <article class="q" style="--c:var(--electro)">
+            <div class="qrow">
+              <span class="qn mono">(1)</span>
+              <div class="qb">
+                <h5><a class="stretch" href="https://www.youtube.com/watch?v=eO1ew0FPatE" target="_blank" rel="noopener" title="スイッチ操作で変わるコンデンサーの電荷">コンデンサーを含む直流回路の充放電と静電エネルギー</a></h5>
+                <p class="qm"><span class="fb">電磁気</span>ア〜エ・4空所</p>
+                <div class="chips"><span>コンデンサーの充放電</span><span>電荷保存則</span><span>キルヒホッフの法則</span><span>静電エネルギー</span></div>
+              </div>
+              <span class="st mono"></span>
+            </div>
+          </article>
+          <article class="q" style="--c:var(--electro)">
+            <div class="qrow">
+              <span class="qn mono">(2)(3)</span>
+              <div class="qb">
+                <h5><a class="stretch" href="https://www.youtube.com/watch?v=QBv4Xq6Bdjs" target="_blank" rel="noopener" title="磁場中を進む電子のらせん運動を追う">磁場中を運動する電子のらせん運動と地球磁場評価</a></h5>
+                <p class="qm"><span class="fb">電磁気</span>オ〜タ・12空所<span class="note">(2)(3)をまとめた1本</span></p>
+                <div class="chips"><span>ローレンツ力</span><span>円運動</span><span>らせん運動</span><span>磁場の重ね合わせ</span></div>
+              </div>
+              <span class="st mono"></span>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section class="fs">
+        <div class="fh">
+          <h4><span class="fd"></span>第4問<span class="haiten mono">20点</span></h4>
+          <span class="fc mono">2本 / 空所11</span>
+        </div>
+        <div class="qgrid">
+          <article class="q" style="--c:var(--wave)">
+            <div class="qrow">
+              <span class="qn mono">(1)</span>
+              <div class="qb">
+                <h5><a class="stretch" href="https://www.youtube.com/watch?v=5RWfpdcWw1A" target="_blank" rel="noopener" title="単スリットの干渉をホイヘンスの原理で">ホイヘンスの原理による単スリットの回折・干渉</a></h5>
+                <p class="qm"><span class="fb">波動</span>ア〜キ・7空所</p>
+                <div class="chips"><span>ホイヘンスの原理</span><span>波の干渉</span><span>正弦波の式</span><span>位相差</span></div>
+              </div>
+              <span class="st mono"></span>
+            </div>
+          </article>
+          <article class="q" style="--c:var(--wave)">
+            <div class="qrow">
+              <span class="qn mono">(2)</span>
+              <div class="qb">
+                <h5><a class="stretch" href="https://www.youtube.com/watch?v=OFALHa9qjE0" target="_blank" rel="noopener" title="光の屈折の法則はどう導かれるのか">ホイヘンスの原理による光の屈折の法則の導出</a></h5>
+                <p class="qm"><span class="fb">波動</span>ク〜サ・4空所</p>
+                <div class="chips"><span>ホイヘンスの原理</span><span>素元波</span><span>入射角と屈折角</span><span>屈折の法則</span></div>
+              </div>
+              <span class="st mono"></span>
+            </div>
+          </article>
+        </div>
+      </section>
+    </section>
+  </section>
+
+    <div class="soon">ほかの学部・年度は順次追加します。追加するとこのページに新しい見出しが増えます。</div>
+  </main>
+
+  <footer>
+    <p>解説動画は YouTube「高校物理 解説チャンネル」で公開しています。問題文・図は掲載していません。手元の問題を見ながらお使いください。</p>
+  </footer>
+</div>
+</body>
+</html>

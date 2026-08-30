@@ -37,6 +37,7 @@
 6. 警告のみ       getElementById('x') の x が無い(防御的に書かれている場合もあるため)
 """
 import argparse
+import fnmatch
 import re
 import sys
 from html.parser import HTMLParser
@@ -62,6 +63,7 @@ LANDMARKS = {
             "empty-note": 4,       # 各グリッドの「該当なし」表示
             "section-head": 6,     # 節の見出し
             "jm-index": 1,         # 重問インデックスへの導線(build_site_index.pyが管理)
+            "km-index": 1,         # 過去問インデックスへの導線(build_kakomon.pyが管理)
         },
     },
     # 重問インデックス。002 物理重要問題集/scripts/build_site_index.py が生成する。
@@ -80,6 +82,28 @@ LANDMARKS = {
     "juyomon/2025/index.html": {
         "ids": ["y2025"],
         "min_counts": {"y-table": 1},
+    },
+    # 過去問。GAS/slidekit/build_kakomon.py が生成する。
+    # 大学一覧は「区分グループの数」を下限にする。準備中の大学は公開に
+    # 切り替わると prep が減るので、減る側の数は下限に使わない。
+    "kakomon/index.html": {
+        "ids": ["kakomonList"],
+        "min_counts": {
+            "grp": 3,      # 区分グループの見出し(旧帝/関東/私立)
+            "ugrid": 3,    # グループごとのタイル並び
+            "uni": 1,      # 公開中の大学(増える分には通る)
+        },
+    },
+    # 大学ページ。大学が増えるたびに手で足さずに済むよう glob で受ける。
+    # 収録数は大学ごとに違うので、下限は「1つは在る」に留める。
+    "kakomon/*/index.html": {
+        "ids": ["uniIndex"],
+        "min_counts": {
+            "yr-sec": 1,   # 年度セクション
+            "ex-sec": 1,   # 実施回(学部・方式)
+            "qgrid": 1,    # 大問ごとの問の並び
+            "q": 1,        # 1問1枚のカード
+        },
     },
 }
 
@@ -163,8 +187,23 @@ def check_nesting(masked):
     return p.finish()
 
 
+def landmark_spec(rel):
+    """LANDMARKS の引き当て。完全一致が無ければ glob キーを試す。
+
+    glob を入れたのは kakomon/<大学>/index.html のため。大学が増えるたびに
+    LANDMARKS へ手で足すのは忘れるので、まとめて1行で受ける。
+    完全一致を先に見るので、特定の1枚だけ強い目印を課すこともできる。
+    """
+    if rel in LANDMARKS:
+        return LANDMARKS[rel]
+    for pat, spec in LANDMARKS.items():
+        if "*" in pat and fnmatch.fnmatch(rel, pat):
+            return spec
+    return None
+
+
 def check_landmarks(rel, masked, ids):
-    spec = LANDMARKS.get(rel)
+    spec = landmark_spec(rel)
     if not spec:
         return []
     problems = []

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ▼ アイコン一式。パスは各ページからの相対（配信先が変わっても書き換え不要） -->
+<link rel="icon" href="../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="apple-mobile-web-app-title" content="高校物理解説チャンネル">
+<meta name="theme-color" content="#10151b">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QCLT8H81TT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QCLT8H81TT');
+</script>
+
+<title>大学入試 過去問解説 大学一覧｜高校物理 解説チャンネル</title>
+<meta name="description" content="大学入試の物理を1問ずつ解説した動画のインデックス。公開中は東京理科大。問題から解説動画に直接飛べます。">
+<link rel="canonical" href="https://koukophysicschannel.github.io/butsuri-channel/kakomon/">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="高校物理 解説チャンネル">
+<meta property="og:title" content="大学入試 過去問解説 大学一覧｜高校物理 解説チャンネル">
+<meta property="og:description" content="大学入試の物理を1問ずつ解説した動画のインデックス。公開中は東京理科大。問題から解説動画に直接飛べます。">
+<meta property="og:url" content="https://koukophysicschannel.github.io/butsuri-channel/kakomon/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://koukophysicschannel.github.io/butsuri-channel/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://koukophysicschannel.github.io/butsuri-channel/og-image.png">
+<meta name="twitter:title" content="大学入試 過去問解説 大学一覧｜高校物理 解説チャンネル">
+<meta name="twitter:description" content="大学入試の物理を1問ずつ解説した動画のインデックス。公開中は東京理科大。問題から解説動画に直接飛べます。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* サイト index.html のトークンをそのまま継承 */
+    --bg:#10151b; --bg-alt:#171e26; --card:#1a222b; --line:#2a333d;
+    --chalk:#edf2f0; --chalk-dim:#93a1a8; --accent:#f4c95d;
+    --mech:#7fd1a4; --therm:#ef8b6b; --wave:#6fb8e0;
+    --electro:#c497e0; --atom:#5fd3c4;
+
+    --sans:"Zen Kaku Gothic New",sans-serif;
+    --mono:"JetBrains Mono",monospace;
+  }
+
+  /* サイト全体が黒板の暗い世界に振り切っているので、このページも単一テーマ。 */
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:var(--bg); color:var(--chalk);
+        font-family:var(--sans); line-height:1.7; -webkit-font-smoothing:antialiased; }
+  .mono{ font-family:var(--mono); font-variant-numeric:tabular-nums; }
+  a{ color:inherit; text-decoration:none; }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
+
+  .grid-bg{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+    background-size:42px 42px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,black 40%,transparent 85%);
+  }
+  .wrap{ position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 24px; }
+
+  .crumb{ padding:26px 0 0; font-family:var(--mono); font-size:12.5px; color:var(--chalk-dim); }
+  .crumb a:hover{ color:var(--chalk); }
+  header.top{ padding:22px 0 30px; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:12.5px; letter-spacing:.12em;
+    color:var(--eb,var(--accent));
+    border:1px solid color-mix(in srgb,var(--eb,var(--accent)) 38%,transparent);
+    padding:5px 12px; border-radius:999px; margin-bottom:20px;
+  }
+  .eyebrow::before{ content:"\25CF"; font-size:8px; }
+  h1{ font-size:clamp(27px,4vw,40px); font-weight:900; margin:0 0 14px;
+      letter-spacing:-.01em; text-wrap:balance; }
+  h1 .sub{ display:block; font-size:.42em; font-weight:500; color:var(--chalk-dim);
+           margin-top:10px; letter-spacing:0; }
+  .lede{ max-width:62ch; color:var(--chalk-dim); font-size:15px; margin:0 0 26px; }
+
+  .summary{
+    background:var(--bg-alt); border:1px solid var(--line); border-radius:14px;
+    padding:20px 22px; display:flex; flex-direction:column; gap:14px;
+  }
+  .stats{ display:flex; gap:26px; flex-wrap:wrap; align-items:baseline; }
+  .stat{ display:flex; flex-direction:column; gap:2px; }
+  .stat b{ font-family:var(--mono); font-size:25px; font-weight:700; line-height:1.2;
+           font-variant-numeric:tabular-nums; }
+  .stat span{ font-size:11.5px; color:var(--chalk-dim); letter-spacing:.04em; }
+  .stat.s-live b{ color:var(--mech); }
+  .stat.s-prep b{ color:var(--chalk-dim); }
+
+  .bar{ display:flex; height:8px; border-radius:999px; overflow:hidden;
+        background:var(--line); gap:1.5px; }
+  .b-live{ background:var(--mech); }
+  .b-prep{ background:#232c36; }
+
+  footer{ margin-top:44px; padding:34px 0 60px; text-align:center;
+          border-top:1px solid var(--line); }
+  footer p{ color:#7d8890; font-size:12px; max-width:66ch; margin:0 auto; }
+  footer a{ color:var(--chalk-dim); }
+  footer a:hover{ color:var(--chalk); }
+
+  @media (prefers-reduced-motion:reduce){
+    *{ transition:none !important; animation:none !important; }
+    html{ scroll-behavior:auto; }
+  }
+  @media (max-width:560px){ .stats{ gap:18px; } }
+
+  main{ padding:0 0 10px; }
+
+  /* 一覧に出せるのは大学名と、公開中か準備中かだけ。全校を区分ごとの
+     ひとつながりのタイル並びにし、状態の違いは「実線か破線か」
+     「名前と色の強さ」だけで出す。学部・試験日・問題数は大学ページ側が持つ。 */
+  .ugrid{ display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(178px,1fr)); gap:7px; }
+
+  .uni, .prep{ position:relative; display:flex; align-items:center; gap:10px;
+    border-radius:9px; padding:10px 12px 10px 13px; overflow:hidden; }
+  .uni::before, .prep::before{ content:""; position:absolute; left:0; top:0; bottom:0;
+    width:3px; background:var(--c); }
+
+  /* 公開中。タイル全体がリンク。 */
+  .uni{ background:var(--card); border:1px solid var(--line);
+    transition:border-color .15s ease, transform .15s ease; }
+  .uni:hover{ border-color:var(--c); transform:translateY(-1px); }
+  .uni .nm{ flex:1; min-width:0; font-size:13.5px; font-weight:700; color:var(--chalk);
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .uni .go{ font-family:var(--mono); font-size:13px; color:var(--c); flex-shrink:0; }
+
+  /* 準備中。クリックできない（a ではなく div）。スクールカラーは残すが
+     彩度を落として「まだ中身が無い」を示す。 */
+  .prep{ border:1px dashed var(--line); background:transparent; cursor:default; }
+  .prep::before{ opacity:.75; }
+  .prep .nm{ flex:1; min-width:0; font-size:13px; color:#9aa5ad; font-weight:500;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .prep .lb{ font-family:var(--mono); font-size:10px; color:#5f6a74; flex-shrink:0; }
+
+  .grp{ margin:26px 0 10px; display:flex; align-items:center; gap:11px; }
+  .grp:first-child{ margin-top:0; padding-top:30px; border-top:1px solid var(--line); }
+  .grp h2{ font-size:13px; margin:0; font-weight:700; color:var(--chalk-dim); }
+  .grp .ln{ flex:1; height:1px; background:var(--line); }
+  .grp .cnt{ font-family:var(--mono); font-size:11.5px; color:#68737d; }
+
+  @media (max-width:560px){
+    .ugrid{ grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); } }
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="wrap">
+  <nav class="crumb mono"><a href="../">高校物理 解説チャンネル</a> / 過去問</nav>
+
+  <header class="top">
+    <span class="eyebrow mono">KAKOMON</span>
+    <h1>大学入試 過去問解説
+      <span class="sub">大学ごとに、1問ずつ解説動画に分けて公開しています</span>
+    </h1>
+    <p class="lede">大学を選ぶと、収録した年度の全問が大問ごとに並びます。問題を選べばそのまま解説動画に飛べます。準備中の大学はまだ選べません。</p>
+
+    <div class="summary">
+      <div class="stats">
+        <div class="stat s-all"><b>1</b><span>公開中の大学</span></div>
+        <div class="stat s-all"><b>9</b><span>収録問題</span></div>
+        <div class="stat s-live"><b>9</b><span>公開済み</span></div>
+        <div class="stat s-prep"><b>24</b><span>準備中の大学</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main id="kakomonList">
+    <div class="grp"><h2>国公立大学／旧帝大</h2><span class="ln"></span><span class="cnt mono">7</span></div>
+    <div class="ugrid">
+      <div class="prep" style="--c:#5AAE8D"><span class="nm">北海道大</span><span class="lb mono">準備中</span></div>
+      <div class="prep" style="--c:#9272AE"><span class="nm">東北大</span><span class="lb mono">準備中</span></div>
+      <div class="prep" style="--c:#8CA4BA"><span class="nm">東京大</span><span class="lb mono">準備中</span></div>
+      <div class="prep" style="--c:#5FB096"><span class="nm">名古屋大</span><span class="lb mono">準備中</span></div>
+      <div class="prep" style="--c:#677FAA"><span class="nm">京都大</span><span class="lb mono">準備中</span></div>
+      <div class="prep" style="--c:#6088B1"><span class="nm">大阪大</span><span class="lb mono">準備中</span></div>
+      <div class="prep" style="--c:#668FB3"><span class="nm">九州大</span><span class="lb mono">準備中</span></div>
+    </div>
+
+    <div class="grp"><h2>国公立大学／関東の主要国公立</h2><span class="ln"></span><span class="cnt mono">9</span></div>
+    <div class="ugrid">
+      <div class="prep" style="--c:#6A8AB5"><span class="nm">東京科学大</span><span class="lb mono">準備中</span></div>
+      <div class="prep" style="--c:#957BB0"><span class="nm">筑波大</span><span class="lb mono">準備中</span></div>
+      <div class="prep" style="--c:#6690B4"><span class="nm">千葉大</span><span class="lb mono">準備中</span></div>
+      <div class="prep" style="--c:#6892B5"><span class="nm">横浜国立大</span><span class="lb mono">準備中</span></div>
+      <div class="prep" style="--c:#698BB5"><span class="nm">電気通信大</span><span class="lb mono">準備中</span></div>
+      <div class="prep" style="--c:#5DAF89"><span class="nm">東京農工大</span><span class="lb mono">準備中</span></div>
+      <div class="prep" style="--c:#64B0B0"><span class="nm">東京都立大</span><span class="lb mono">準備中</span></div>
+      <div class="prep" style="--c:#AE7CA8"><span class="nm">お茶の水女子大</span><span class="lb mono">準備中</span></div>
+      <div class="prep" style="--c:#6AAB82"><span class="nm">埼玉大</span><span class="lb mono">準備中</span></div>
+    </div>
+
+    <div class="grp"><h2>私立大学／首都圏の私立</h2><span class="ln"></span><span class="cnt mono">9（1校 公開中）</span></div>
+    <div class="ugrid">
+      <div class="prep" style="--c:#B36F7B"><span class="nm">早稲田大</span><span class="lb mono">準備中</span></div>
+      <div class="prep" style="--c:#6476AA"><span class="nm">慶應義塾大</span><span class="lb mono">準備中</span></div>
+      <div class="prep" style="--c:#658CB3"><span class="nm">上智大</span><span class="lb mono">準備中</span></div>
+      <a class="uni" style="--c:#D77E88" href="tokyo-rika/"><span class="nm">東京理科大</span><span class="go mono">→</span></a>
+      <div class="prep" style="--c:#8C6BAD"><span class="nm">明治大</span><span class="lb mono">準備中</span></div>
+      <div class="prep" style="--c:#5CAF8B"><span class="nm">青山学院大</span><span class="lb mono">準備中</span></div>
+      <div class="prep" style="--c:#A17AAE"><span class="nm">立教大</span><span class="lb mono">準備中</span></div>
+      <div class="prep" style="--c:#B9727E"><span class="nm">中央大</span><span class="lb mono">準備中</span></div>
+      <div class="prep" style="--c:#BC9878"><span class="nm">法政大</span><span class="lb mono">準備中</span></div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>解説動画は YouTube「高校物理 解説チャンネル」で公開しています。問題文・図は掲載していません。手元の問題を見ながらお使いください。</p>
+  </footer>
+</div>
+</body>
+</html>
