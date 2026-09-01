@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="apple-mobile-web-app-title" content="高校物理解説チャンネル">
+<meta name="theme-color" content="#10151b">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QCLT8H81TT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QCLT8H81TT');
+</script>
+
+<title>MARCH理系 方式別・理科科目 一覧｜高校物理 解説チャンネル</title>
+<meta name="description" content="明治・青山学院・立教・中央・法政の理系49学科について、入試方式ごとに物理・化学・生物のどれを選べるかを一覧にしました（2027年度入試）。方式で可否が変わる学科には印をつけています。">
+<link rel="canonical" href="https://koukophysicschannel.github.io/butsuri-channel/shingaku/march-rikei-2027/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="高校物理 解説チャンネル">
+<meta property="og:title" content="MARCH理系 方式別・理科科目 一覧｜高校物理 解説チャンネル">
+<meta property="og:description" content="明治・青山学院・立教・中央・法政の理系49学科について、入試方式ごとに物理・化学・生物のどれを選べるかを一覧にしました（2027年度入試）。方式で可否が変わる学科には印をつけています。">
+<meta property="og:url" content="https://koukophysicschannel.github.io/butsuri-channel/shingaku/march-rikei-2027/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://koukophysicschannel.github.io/butsuri-channel/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://koukophysicschannel.github.io/butsuri-channel/og-image.png">
+<meta name="twitter:title" content="MARCH理系 方式別・理科科目 一覧｜高校物理 解説チャンネル">
+<meta name="twitter:description" content="明治・青山学院・立教・中央・法政の理系49学科について、入試方式ごとに物理・化学・生物のどれを選べるかを一覧にしました（2027年度入試）。方式で可否が変わる学科には印をつけています。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#10151b; --bg-alt:#171e26; --card:#1a222b; --line:#2a333d;
+    --chalk:#edf2f0; --chalk-dim:#93a1a8; --accent:#f4c95d;
+    --buturi:#6fb8e0; --kagaku:#ef8b6b; --seibutu:#7fd1a4;
+    --sans:"Zen Kaku Gothic New",sans-serif;
+    --mono:"JetBrains Mono",monospace;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:var(--bg); color:var(--chalk);
+        font-family:var(--sans); line-height:1.7; -webkit-font-smoothing:antialiased; }
+  .mono{ font-family:var(--mono); font-variant-numeric:tabular-nums; }
+  a{ color:inherit; text-decoration:none; }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
+  .grid-bg{ position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+    background-size:42px 42px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,black 40%,transparent 85%); }
+  .wrap{ position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 24px; }
+  .crumb{ padding:26px 0 0; font-family:var(--mono); font-size:12.5px; color:var(--chalk-dim); }
+  .crumb a:hover{ color:var(--chalk); }
+  header.top{ padding:22px 0 30px; }
+  .eyebrow{ display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:12.5px; letter-spacing:.12em;
+    color:var(--accent); border:1px solid rgba(244,201,93,.35);
+    padding:5px 12px; border-radius:999px; margin-bottom:20px; }
+  .eyebrow::before{ content:"\25CF"; font-size:8px; }
+  h1{ font-size:clamp(26px,3.8vw,38px); font-weight:900; margin:0 0 14px;
+      letter-spacing:-.01em; text-wrap:balance; }
+  h1 .sub{ display:block; font-size:.42em; font-weight:500; color:var(--chalk-dim);
+           margin-top:10px; letter-spacing:0; }
+  .lede{ max-width:62ch; color:var(--chalk-dim); font-size:15px; margin:0 0 26px; }
+  .summary{ background:var(--bg-alt); border:1px solid var(--line); border-radius:14px;
+    padding:20px 22px; display:flex; flex-direction:column; gap:10px; }
+  .stats{ display:flex; gap:26px; flex-wrap:wrap; align-items:baseline; }
+  .stat{ display:flex; flex-direction:column; gap:2px; }
+  .stat b{ font-family:var(--mono); font-size:25px; font-weight:700; line-height:1.2; }
+  .stat span{ font-size:11.5px; color:var(--chalk-dim); letter-spacing:.04em; }
+  .asof{ margin:0; font-size:11.5px; color:#7d8890; }
+
+  /* 出願を左右する情報なので、注意書きは畳まず本文と同じ高さで出す。 */
+  .warn{ margin:22px 0 0; border:1px solid rgba(244,201,93,.3);
+    background:linear-gradient(180deg,rgba(244,201,93,.06),rgba(244,201,93,.02));
+    border-radius:14px; padding:18px 20px; display:flex; gap:14px; align-items:flex-start; }
+  .warn .ic{ color:var(--accent); flex-shrink:0; margin-top:3px; }
+  .warn h2{ font-size:15px; margin:0 0 6px; font-weight:700; }
+  .warn p{ margin:0; font-size:13.5px; color:var(--chalk-dim); max-width:66ch; }
+  .warn strong{ color:var(--chalk); font-weight:700; }
+
+  .legend{ display:flex; gap:20px; flex-wrap:wrap; margin:24px 0 0;
+    font-size:12px; color:var(--chalk-dim); }
+  .lg{ display:inline-flex; align-items:center; gap:6px; }
+
+  /* 3枡。塗りつぶし＝選択可、点線枠＝不可。色でしか区別できない作りにしない
+     ため、枡の中に科目名の1文字を必ず入れている。 */
+  .bxs{ display:inline-flex; gap:4px; }
+  .bx{ width:26px; height:26px; border-radius:6px; display:inline-flex;
+       align-items:center; justify-content:center; font-size:12px; font-weight:700;
+       flex-shrink:0; }
+  .bx.y{ background:var(--c); color:#10151b; border:1px solid var(--c); }
+  .bx.n{ background:transparent; color:#5f6a74; border:1.5px dashed #3a444f; }
+  .buturi{ --c:var(--buturi); } .kagaku{ --c:var(--kagaku); } .seibutu{ --c:var(--seibutu); }
+  .nostate{ font-size:11px; color:#7d8890; border:1px solid var(--line);
+    border-radius:5px; padding:2px 8px; white-space:nowrap; }
+  .rvmark{ width:26px; height:26px; border-radius:6px; display:inline-block;
+    border-left:3px solid var(--accent); background:rgba(244,201,93,.08); }
+
+  .uni{ padding-top:30px; margin-top:34px; border-top:1px solid var(--line); }
+  .uh{ display:flex; align-items:baseline; justify-content:space-between;
+       gap:16px; flex-wrap:wrap; margin-bottom:8px; }
+  .uh h2{ font-size:22px; margin:0; font-weight:700; display:flex;
+          align-items:baseline; gap:12px; }
+  .uh .cnt{ font-size:12.5px; color:var(--chalk-dim); font-weight:500; }
+  .conf{ font-size:11.5px; color:#7d8890; border:1px solid var(--line);
+    border-radius:5px; padding:1px 8px; }
+  .unote{ margin:0 0 14px; font-size:13px; color:var(--chalk-dim); max-width:70ch; }
+  .src{ margin:12px 0 0; font-size:11.5px; color:#7d8890; }
+  .src a{ color:var(--chalk-dim); border-bottom:1px solid var(--line); }
+  .src a:hover{ color:var(--chalk); }
+
+  /* 幅の広い表は、ページ本体ではなく表の中だけを横スクロールさせる。 */
+  .tw{ overflow-x:auto; border:1px solid var(--line); border-radius:12px;
+       background:var(--card); }
+  table{ width:100%; border-collapse:collapse; font-size:13px; min-width:760px; }
+  th, td{ text-align:left; padding:10px 14px; border-bottom:1px solid var(--line);
+          vertical-align:middle; }
+  thead th{ color:var(--chalk-dim); font-weight:500; font-size:11.5px;
+    letter-spacing:.04em; background:var(--bg-alt); position:sticky; top:0; z-index:1; }
+  tbody tr:last-child td{ border-bottom:none; }
+  .c1{ color:#7d8890; font-size:12px; white-space:nowrap; }
+  .c2{ font-weight:500; white-space:nowrap; }
+  .cw{ width:1%; white-space:nowrap; }
+  .cn{ color:#7d8890; font-size:11.5px; line-height:1.6; min-width:220px; }
+  .r{ text-align:right; font-variant-numeric:tabular-nums; }
+
+  /* 方式で可否が変わる行。行の左に黄色の帯を立てて、どの科目が動くかを出す。 */
+  tr.rv td{ background:rgba(244,201,93,.055); }
+  tr.rv td.c1{ box-shadow:inset 3px 0 0 var(--accent); }
+  .rv-tag{ margin-left:9px; font-size:10.5px; color:var(--accent);
+    border:1px solid rgba(244,201,93,.4); border-radius:4px; padding:0 6px;
+    white-space:nowrap; }
+
+  .sum{ padding-top:30px; margin-top:34px; border-top:1px solid var(--line); }
+  .sum h2{ font-size:22px; margin:0 0 10px; font-weight:700; }
+  .sum h3{ font-size:16px; margin:28px 0 10px; font-weight:700; }
+  .cav{ margin:0; padding-left:1.2em; color:var(--chalk-dim); font-size:13.5px;
+        max-width:72ch; }
+  .cav li{ margin-bottom:10px; }
+  .cav strong{ color:var(--chalk); }
+
+  footer{ margin-top:44px; padding:34px 0 60px; text-align:center;
+          border-top:1px solid var(--line); }
+  footer p{ color:#7d8890; font-size:12px; max-width:66ch; margin:0 auto; }
+
+  @media (prefers-reduced-motion:reduce){ *{ transition:none !important; } html{ scroll-behavior:auto; } }
+  @media (max-width:560px){ .stats{ gap:18px; } .legend{ gap:12px; } }
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="wrap">
+  <nav class="crumb mono"><a href="../../">高校物理 解説チャンネル</a> / 進学情報 / MARCH理系 理科科目</nav>
+
+  <header class="top">
+    <span class="eyebrow mono">SHINGAKU</span>
+    <h1>MARCH理系 方式別・理科科目 一覧
+      <span class="sub">明治・青山学院・立教・中央・法政の理系49学科を、入試方式ごとに物理・化学・生物の可否で並べたものです</span>
+    </h1>
+    <p class="lede">同じ学科でも、入試方式が変わると選べる理科が変わります。とくに生物は方式による差が大きいので、学科だけでなく「学科×方式」で見てください。</p>
+
+    <div class="summary">
+      <div class="stats">
+        <div class="stat"><b>49</b><span>学科</span></div>
+        <div class="stat"><b>5</b><span>大学</span></div>
+        <div class="stat"><b>3</b><span>入試方式</span></div>
+      </div>
+      <p class="asof mono">2027年度入試／調査 2026年9月1日</p>
+    </div>
+
+    <aside class="warn">
+      <span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8.2" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="10" cy="14" r="1" fill="currentColor"/></svg></span>
+      <div>
+        <h2>出願前に必ず公式の要項で確認してください</h2>
+        <p>2027年度の入試要項は多くの大学で11月上旬公開予定です。本ページの49学科のうち<strong>32学科（明治15・立教4・法政13）は公式の2027年度資料で未確認</strong>で、直近判明分にもとづいています。進学先を左右する情報なので、必ず各大学公式の最新『入学試験要項』で最終確認してください。</p>
+      </div>
+    </aside>
+
+    <div class="legend">
+      <span class="lg"><span class="bx buturi y">物</span><span class="bx kagaku y">化</span><span class="bx seibutu y">生</span>選択できる</span>
+      <span class="lg"><span class="bx buturi n">物</span><span class="bx kagaku n">化</span><span class="bx seibutu n">生</span>選択できない</span>
+      <span class="lg"><span class="nostate mono">理科なし</span>その方式で理科を課さない</span>
+      <span class="lg"><span class="nostate mono">方式なし</span>その学科が実施しない</span>
+      <span class="lg"><span class="rvmark" aria-hidden="true"></span>方式で可否が変わる学科</span>
+    </div>
+  </header>
+
+  <main id="marchTable">
+  <section class="uni" id="meiji">
+    <div class="uh">
+      <h2>明治大学<span class="cnt mono">15学科</span></h2>
+      <span class="conf mono">確度 中〜高</span>
+    </div>
+    <p class="unote">学部別は2027年度入試ガイドで理科指定が2026年度と同一であることを確認済み。2027年度一般選抜要項は11月上旬公開予定。</p>
+    <div class="tw"><table>
+      <thead><tr><th class="c1">学部</th><th class="c2">学科</th><th class="cw">学部別入学試験</th><th class="cw">全学部統一入学試験</th><th class="cw">共テ利用前期</th><th class="cn">備考</th></tr></thead>
+      <tbody>
+        <tr class="row rv">
+          <td class="c1">理工学部</td><td class="c2">電気電子生命<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">②4科目方式で物化生から1</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">理工学部</td><td class="c2">機械工<span class="rv-tag mono" title="学部別のほうが選べる">↺ 化・生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku n" role="img" aria-label="化 選択不可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">②は物理指定</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">理工学部</td><td class="c2">機械情報工<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">③は3教科方式</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">理工学部</td><td class="c2">建築<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">③は4教科方式</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">理工学部</td><td class="c2">応用化学<span class="rv-tag mono" title="学部別のほうが選べる">↺ 物・生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi n" role="img" aria-label="物 選択不可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">②は化学指定</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">理工学部</td><td class="c2">情報科学<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn"></td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">理工学部</td><td class="c2">数学<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn"></td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">理工学部</td><td class="c2">物理<span class="rv-tag mono" title="学部別のほうが選べる">↺ 化・生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku n" role="img" aria-label="化 選択不可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">②は物理指定</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">農学部</td><td class="c2">農<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 物</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi n" role="img" aria-label="物 選択不可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">③前期は理科2科目</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">農学部</td><td class="c2">農芸化学<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 物</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi n" role="img" aria-label="物 選択不可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">③前期は理科2科目</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">農学部</td><td class="c2">生命科学<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 物</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi n" role="img" aria-label="物 選択不可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">③前期は理科2科目</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">農学部</td><td class="c2">食料環境政策<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 物</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi n" role="img" aria-label="物 選択不可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">①は国語必須＋7科目中1科目選択／③前期は理科1科目</td>
+        </tr>
+        <tr class="row">
+          <td class="c1">総合数理学部</td><td class="c2">現象数理統計</td>
+          <td class="cw"><span class="nostate mono">理科なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">①は数学200＋外国語120の2教科</td>
+        </tr>
+        <tr class="row">
+          <td class="c1">総合数理学部</td><td class="c2">先端メディアサイエンス</td>
+          <td class="cw"><span class="nostate mono">理科なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">②3科目方式は実施なし</td>
+        </tr>
+        <tr class="row">
+          <td class="c1">総合数理学部</td><td class="c2">ネットワークデザイン</td>
+          <td class="cw"><span class="nostate mono">理科なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">②3科目方式は実施なし</td>
+        </tr>
+      </tbody>
+    </table></div>
+    <p class="unote">理工の学部別は「物理」「化学」から各3題・計6題出題→任意の3題を選択解答（1科目相当）。農学部の学部別は「国語・数学・化学・生物」4科目中2科目選択の枠内（物理は選択肢になし）。</p>
+    <p class="src">出典：<a href="https://www.meiji.ac.jp/koho/guidebook/univ/guide2027_11admission.pdf" target="_blank" rel="noopener">明治大学 2027年度入試ガイド（公式PDF）</a>／<a href="https://www.meiji.ac.jp/exam/information/guidelines/2026-meiji_guidelines.pdf" target="_blank" rel="noopener">明治大学 2026年度一般選抜要項（公式PDF）</a></p>
+  </section>
+
+  <section class="uni" id="aoyama">
+    <div class="uh">
+      <h2>青山学院大学<span class="cnt mono">7学科</span></h2>
+      <span class="conf mono">確度 高</span>
+    </div>
+    <p class="unote">2027年度入学者選抜概要（公式PDF）の学科別科目表を直接確認。個別学部日程B方式の理科指定はA方式と同一（配点のみ異なる）。</p>
+    <div class="tw"><table>
+      <thead><tr><th class="c1">学部</th><th class="c2">学科</th><th class="cw">個別学部日程A方式</th><th class="cw">全学部日程</th><th class="cw">共テ利用</th><th class="cn">備考</th></tr></thead>
+      <tbody>
+        <tr class="row">
+          <td class="c1">理工学部</td><td class="c2">数理サイエンス</td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td>
+          <td class="cn">全方式1科目。③は『物理』『化学』から1</td>
+        </tr>
+        <tr class="row">
+          <td class="c1">理工学部</td><td class="c2">物理科学</td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku n" role="img" aria-label="化 選択不可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku n" role="img" aria-label="化 選択不可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku n" role="img" aria-label="化 選択不可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td>
+          <td class="cn">全方式で物理指定</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">理工学部</td><td class="c2">化学・生命科学<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 物・生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi n" role="img" aria-label="物 選択不可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">③のみ『物理』『化学』『生物』から1</td>
+        </tr>
+        <tr class="row">
+          <td class="c1">理工学部</td><td class="c2">電気電子工</td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td>
+          <td class="cn">③は『物理』『化学』『情報Ⅰ』から1</td>
+        </tr>
+        <tr class="row">
+          <td class="c1">理工学部</td><td class="c2">機械創造工</td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td>
+          <td class="cn">③は『物理』『化学』から1</td>
+        </tr>
+        <tr class="row">
+          <td class="c1">理工学部</td><td class="c2">経営システム工</td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td>
+          <td class="cn">③は『物理』『化学』から1</td>
+        </tr>
+        <tr class="row">
+          <td class="c1">理工学部</td><td class="c2">情報テクノロジー</td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td>
+          <td class="cn">③は『物理』『化学』『情報Ⅰ』から1</td>
+        </tr>
+      </tbody>
+    </table></div>
+    <p class="src">出典：<a href="https://www.aoyama.ac.jp/wp-content/uploads/2026/05/ad_exam2027_p150_p167_20260507_d3U5s.pdf" target="_blank" rel="noopener">青山学院大学 2027年度入学者選抜概要（公式PDF・p.162-165）</a></p>
+  </section>
+
+  <section class="uni" id="rikkyo">
+    <div class="uh">
+      <h2>立教大学<span class="cnt mono">4学科</span></h2>
+      <span class="conf mono">確度 中</span>
+    </div>
+    <p class="unote">一般入試は全学部共通日程・共通問題で実施され、「全学部日程／個別学部日程」の区別が制度として存在しないため②は方式なし。2027年度入試要項は11月上旬公開予定。</p>
+    <div class="tw"><table>
+      <thead><tr><th class="c1">学部</th><th class="c2">学科</th><th class="cw">一般入試</th><th class="cw">全学部統一</th><th class="cw">共テ利用</th><th class="cn">備考</th></tr></thead>
+      <tbody>
+        <tr class="row">
+          <td class="c1">理学部</td><td class="c2">数学</td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="nostate mono">方式なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">①1科目100点／③4科目型は物化生から1、6科目型は2</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">理学部</td><td class="c2">物理<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 化・生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku n" role="img" aria-label="化 選択不可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="nostate mono">方式なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">①物理必須150点／③6科目型は物理必須＋化・生・地から1</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">理学部</td><td class="c2">化学<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 物・生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi n" role="img" aria-label="物 選択不可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="nostate mono">方式なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">①化学必須150点／③6科目型は化学必須＋物・生・地から1</td>
+        </tr>
+        <tr class="row">
+          <td class="c1">理学部</td><td class="c2">生命理学</td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="nostate mono">方式なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">①1科目150点／③6科目型は2科目</td>
+        </tr>
+      </tbody>
+    </table></div>
+    <p class="unote">①の英語は共通テスト英語または英語資格・検定試験のスコアを利用（大学独自の英語試験はなし）。</p>
+    <p class="src">出典：<a href="https://manabi.benesse.ne.jp/daigaku/school/3322/nyushi/ri/" target="_blank" rel="noopener">マナビジョン 立教大学 理学部（2027年度）</a></p>
+  </section>
+
+  <section class="uni" id="chuo">
+    <div class="uh">
+      <h2>中央大学<span class="cnt mono">10学科</span></h2>
+      <span class="conf mono">確度 高</span>
+    </div>
+    <p class="unote">全学部統一に相当する「5学部共通選抜」は理工系3学部が対象外（要項の方式一覧で「―」）。共テ利用【単独方式】は前期選考のみ。</p>
+    <div class="tw"><table>
+      <thead><tr><th class="c1">学部</th><th class="c2">学科</th><th class="cw">学部別選抜 一般方式</th><th class="cw">全学部統一</th><th class="cw">共テ単独前期</th><th class="cn">備考</th></tr></thead>
+      <tbody>
+        <tr class="row">
+          <td class="c1">基幹理工</td><td class="c2">数学</td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="nostate mono">方式なし</span></td><td class="cw"><span class="nostate mono">方式なし</span></td>
+          <td class="cn">①物化生から1科目（各3題・計9題→任意3題選択）／③は募集なし</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">基幹理工</td><td class="c2">物理<span class="rv-tag mono" title="学部別のほうが選べる">↺ 化</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="nostate mono">方式なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku n" role="img" aria-label="化 選択不可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td>
+          <td class="cn">①物化から1（6題→3題選択）／③理科『物理』200点</td>
+        </tr>
+        <tr class="row">
+          <td class="c1">基幹理工</td><td class="c2">応用化学</td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="nostate mono">方式なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">③物化生地から2科目</td>
+        </tr>
+        <tr class="row">
+          <td class="c1">基幹理工</td><td class="c2">生命科学</td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="nostate mono">方式なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">③物化生地から2科目</td>
+        </tr>
+        <tr class="row">
+          <td class="c1">社会理工</td><td class="c2">都市環境</td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="nostate mono">方式なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">③物化生地から1科目</td>
+        </tr>
+        <tr class="row">
+          <td class="c1">社会理工</td><td class="c2">ビジネスデータサイエンス</td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="nostate mono">方式なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">③物化生地から1科目</td>
+        </tr>
+        <tr class="row">
+          <td class="c1">社会理工</td><td class="c2">人間総合理工</td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="nostate mono">方式なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">③物化生地から1科目</td>
+        </tr>
+        <tr class="row">
+          <td class="c1">先進理工</td><td class="c2">精密機械工</td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="nostate mono">方式なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">③『物理』必須＋化・生・地から1（計2科目）</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">先進理工</td><td class="c2">電気電子情報通信工<span class="rv-tag mono" title="学部別のほうが選べる">↺ 生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="nostate mono">方式なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td>
+          <td class="cn">③『物理』『化学』から1（200点）</td>
+        </tr>
+        <tr class="row">
+          <td class="c1">先進理工</td><td class="c2">情報工</td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="nostate mono">方式なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">③物化生地から2科目</td>
+        </tr>
+      </tbody>
+    </table></div>
+    <p class="unote">英語外部試験利用方式の理科は①一般方式と同一問題・同一指定。共通テスト併用方式は独自問題を伴うため③に含めていない（別掲）。</p>
+    <p class="src">出典：<a href="https://www.chuo-u.ac.jp/common_d/connect/admission/2027/overview/ippan_guidelines.pdf" target="_blank" rel="noopener">中央大学 2027年度 入学者選抜要項（公式PDF・p.130-131）</a></p>
+  </section>
+
+  <section class="uni" id="hosei">
+    <div class="uh">
+      <h2>法政大学<span class="cnt mono">13学科</span></h2>
+      <span class="conf mono">確度 中</span>
+    </div>
+    <p class="unote">T日程は全学科で理科を課さない（数学＋英語の2教科）。③はB方式・C方式のいずれかで選択できれば○。2027年度入試要項は11月上旬公開予定。</p>
+    <div class="tw"><table>
+      <thead><tr><th class="c1">学部</th><th class="c2">学科</th><th class="cw">A方式入試</th><th class="cw">T日程（統一日程）</th><th class="cw">共テ利用 B・C方式</th><th class="cn">備考</th></tr></thead>
+      <tbody>
+        <tr class="row rv">
+          <td class="c1">理工</td><td class="c2">機械工<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="nostate mono">理科なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">①1科目150点／③B方式は物化のみ、C方式で物化生地から1</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">理工</td><td class="c2">電気電子工<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="nostate mono">理科なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">同上</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">理工</td><td class="c2">応用情報工<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="nostate mono">理科なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">同上</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">理工</td><td class="c2">経営システム工<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="nostate mono">理科なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">同上</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">理工</td><td class="c2">創生科学<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="nostate mono">理科なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">同上</td>
+        </tr>
+        <tr class="row">
+          <td class="c1">生命科学</td><td class="c2">生命機能</td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="nostate mono">理科なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">①1科目150点／③B方式は物化生から1</td>
+        </tr>
+        <tr class="row">
+          <td class="c1">生命科学</td><td class="c2">環境応用化学</td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="nostate mono">理科なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">①数Ⅲ・数C必須</td>
+        </tr>
+        <tr class="row">
+          <td class="c1">生命科学</td><td class="c2">応用植物科学</td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td><td class="cw"><span class="nostate mono">理科なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn"></td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">デザイン工</td><td class="c2">建築<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="nostate mono">理科なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">③B方式・C方式とも物化生地から1</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">デザイン工</td><td class="c2">都市環境デザイン工<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="nostate mono">理科なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">同上</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">デザイン工</td><td class="c2">システムデザイン<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="nostate mono">理科なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">①高得点2教科で合否判定</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">情報科学</td><td class="c2">コンピュータ科学<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 化・生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku n" role="img" aria-label="化 選択不可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="nostate mono">理科なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">①③B方式とも物理必須／C方式のみ物化生地から1</td>
+        </tr>
+        <tr class="row rv">
+          <td class="c1">情報科学</td><td class="c2">ディジタルメディア<span class="rv-tag mono" title="方式で選択肢が広がる">↗ 化・生</span></td>
+          <td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku n" role="img" aria-label="化 選択不可">化</span><span class="bx seibutu n" role="img" aria-label="生 選択不可">生</span></span></td><td class="cw"><span class="nostate mono">理科なし</span></td><td class="cw"><span class="bxs"><span class="bx buturi y" role="img" aria-label="物 選択可">物</span><span class="bx kagaku y" role="img" aria-label="化 選択可">化</span><span class="bx seibutu y" role="img" aria-label="生 選択可">生</span></span></td>
+          <td class="cn">同上</td>
+        </tr>
+      </tbody>
+    </table></div>
+    <p class="unote">英語外部試験利用方式は数学のみ（理科なし）。</p>
+    <p class="src">出典：<a href="https://nyushi.hosei.ac.jp/nyushi/guide/" target="_blank" rel="noopener">法政大学 入試情報サイト</a></p>
+  </section>
+
+  <section class="sum" id="shukei">
+    <h2>集計</h2>
+    <p class="unote">「理科を課す全ての方式で選べる」を主な指標にしています。単純な「3方式すべて」は、理科を課さない方式（明治総合数理の学部別・法政T日程）や実施しない方式（立教・中央の全学部統一）に引きずられて実態を表さないためです。</p>
+    <div class="tw"><table>
+      <thead><tr><th>科目</th><th class="r">いずれかの方式で選べる</th><th class="r">理科を課す全ての方式で選べる</th></tr></thead>
+      <tbody>
+        <tr><td><span class="bx buturi y">物</span>物理</td><td class="r mono">49 / 49（100.0%）</td><td class="r mono">42 / 49（85.7%）</td></tr>
+        <tr><td><span class="bx kagaku y">化</span>化学</td><td class="r mono">48 / 49（98.0%）</td><td class="r mono">42 / 49（85.7%）</td></tr>
+        <tr><td><span class="bx seibutu y">生</span>生物</td><td class="r mono">42 / 49（85.7%）</td><td class="r mono">20 / 49（40.8%）</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>方式ごとの傾向</h3>
+    <div class="tw"><table>
+      <thead><tr><th>方式</th><th class="r">母数</th><th class="r">物理</th><th class="r">化学</th><th class="r">生物</th></tr></thead>
+      <tbody>
+        <tr><td>① 学部別（個別学部日程）</td><td class="r mono">46</td><td class="r mono">87.0%</td><td class="r mono">91.3%</td><td class="r mono">39.1%</td></tr>
+        <tr><td>② 全学部統一</td><td class="r mono">22</td><td class="r mono">95.5%</td><td class="r mono">86.4%</td><td class="r mono">54.5%</td></tr>
+        <tr><td>③ 共通テスト利用</td><td class="r mono">48</td><td class="r mono">100.0%</td><td class="r mono">95.8%</td><td class="r mono">83.3%</td></tr>
+      </tbody>
+    </table></div>
+    <p class="unote">母数は「その方式で理科を課す学科数」です。生物は学部別 39.1% に対して共通テスト利用 83.3% と、方式を変えるだけで選択肢が大きく変わります。</p>
+  </section>
+
+  <section class="sum" id="chui">
+    <h2>読むときの注意</h2>
+    <ul class="cav">
+      <li>入試科目は年度により変更されうる。<strong>出願前には必ず各大学公式の最新『入学試験要項』で最終確認してください。</strong></li>
+      <li>公式の2027年度資料で未確認なのは32学科（明治15・立教4・法政13）。いずれも2027年度入試要項が11月上旬公開予定です。</li>
+      <li>立教の共テ6科目型は「専門1科目・専門2科目よりいずれか選択」の運用（物理学科・化学科で2科目めに生物を充てられるか）が要項での最終確認待ちです。本ページはこれを根拠に生物○としています。</li>
+      <li>共通テストの「第1解答科目」ルールにより、科目選択の順序で不利になる指定があります（中央 基幹理工 物理、社会理工3学科、先進理工 電気電子情報通信工など）。○×だけでは表せません。</li>
+      <li>明治理工・明治全学部統一・中央理工系のように「複数科目から各3題出題し、任意の3題を選択解答」する形式では、試験当日に科目をまたいで問題を選べます。選択題数を超えると理科全体が無効になる規定にも注意してください。</li>
+    </ul>
+  </section>
+
+  </main>
+
+  <footer>
+    <p>入試情報は各大学の公式発表が最終的な根拠です。本ページは調査時点の内容をまとめたもので、正確性を保証するものではありません。出願前に必ず公式の入学試験要項をご確認ください。</p>
+  </footer>
+</div>
+</body>
+</html>

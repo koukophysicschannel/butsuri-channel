@@ -379,6 +379,12 @@
   footer .handle{ font-family:"JetBrains Mono", monospace; color: var(--chalk-dim); font-size: 13px; display:inline-flex; align-items:center; gap:7px; transition: color .15s ease; }
   footer .handle:hover{ color: var(--chalk); }
   footer .handle svg{ flex-shrink:0; }
+  /* 進学情報への導線。セクションのカードとは別物なので、フッタの
+     注意書きより下に、いちばん静かな見え方で置く。 */
+  footer .quiet-link{ margin-top: 20px; font-size: 12px; }
+  footer .quiet-link a{ color:#68737d; border-bottom:1px solid #2a333d;
+    font-family:"Zen Kaku Gothic New",sans-serif; transition: color .15s ease; }
+  footer .quiet-link a:hover{ color: var(--chalk-dim); border-color: var(--chalk-dim); }
 
   @media (max-width: 560px){
     header.hero{ padding: 64px 0 40px; }
@@ -711,6 +717,7 @@
       </svg>
     </div>
     <p>本ページは個人が運営する高校物理の解説チャンネルのリンク集です。「リードα」は数研出版の教材名であり、当チャンネルは同社の公式チャンネルではありません。</p>
+    <p class="quiet-link"><a href="shingaku/march-rikei-2027/">MARCH理系 方式別・理科科目 一覧（2027年度入試）</a></p>
   </footer>
 
 </div>
