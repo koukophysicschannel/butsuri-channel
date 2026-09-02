@@ -35,6 +35,10 @@
 4. ページ内リンク href="#foo" の飛び先 id="foo" が存在するか
 5. ショート節     id="shortsGrid" があるファイルだけの追加検査
 6. 警告のみ       getElementById('x') の x が無い(防御的に書かれている場合もあるため)
+7. 共有部品       「上へ戻る」のCSSとしきい値が全ページで同一か  ← ファイルをまたぐ検査
+
+7 は 1〜6 と違い、**1枚だけ見ても気づけない**種類のずれを受け持つ。トップは手書き、
+他は生成物で出どころが別なので、片方だけ直すと静かに食い違う(2026-09-02 導入)。
 """
 import argparse
 import fnmatch
@@ -291,6 +295,65 @@ def check_shorts_section(src, masked):
     return problems
 
 
+# ── 共有部品の同期 ──────────────────────────────────────────────────
+# 「上へ戻る」はトップ(index.html、手書き)と生成ページ6枚に同じものが入っている。
+# 生成側の出どころは GAS/slidekit/webparts.py だが、**トップは生成物ではないので
+# 自動では追随しない**。片方だけ直すと「トップだけ挙動が違う」というわかりにくい
+# 不整合になるので、ここでずれを捕まえる(2026-09-02 導入)。
+#
+# リポジトリ内のHTML同士だけを突き合わせる。webparts.py は Dropbox 側にあり、
+# この検査は標準ライブラリだけで動く前提なので参照しない。
+TOTOP_CSS_RE = re.compile(r'(?:@media[^{]*\{\s*)?\.to-top[^{]*\{[^{}]*\}(?:\s*\})?')
+TOTOP_THRESHOLD_RE = re.compile(r"window\.scrollY\s*>\s*(\d+)")
+STYLE_RE = re.compile(r"(<style\b[^>]*>)(.*?)(</style>)", re.S)
+
+
+def totop_fingerprint(src):
+    """「上へ戻る」のCSSルールと出現しきい値を、空白を潰して取り出す。
+
+    戻り値 (ルールのリスト, しきい値)。ボタンが無いページは (None, None)。
+    """
+    if 'id="toTop"' not in src:
+        return None, None
+    css = "".join(m.group(2) for m in STYLE_RE.finditer(src))
+    rules = [re.sub(r"\s+", " ", r).strip() for r in TOTOP_CSS_RE.findall(css)]
+    th = TOTOP_THRESHOLD_RE.search(src)
+    return rules, (th.group(1) if th else None)
+
+
+def check_totop_sync(seen):
+    """seen = {rel: (rules, threshold)}。index.html を基準に全部そろっているか見る。
+
+    比較対象が1枚しか無いとき(ファイルを指定して実行したとき)は何もしない。
+    """
+    have = {rel: v for rel, v in seen.items() if v[0] is not None}
+    if len(have) < 2:
+        return []
+    ref_rel = "index.html" if "index.html" in have else sorted(have)[0]
+    ref_rules, ref_th = have[ref_rel]
+    problems = []
+    if not ref_rules:
+        return [f'{ref_rel}: id="toTop" があるのに .to-top のCSSが見つからない']
+    for rel, (rules, th) in sorted(have.items()):
+        if rel == ref_rel:
+            continue
+        if rules != ref_rules:
+            only_ref = [r for r in ref_rules if r not in rules]
+            only_this = [r for r in rules if r not in ref_rules]
+            detail = "; ".join(
+                [f"{ref_rel}にだけ有る: {r[:60]}" for r in only_ref[:2]] +
+                [f"{rel}にだけ有る: {r[:60]}" for r in only_this[:2]]) or "並びが違う"
+            problems.append(
+                f"{rel}: 「上へ戻る」のCSSが {ref_rel} と違う({detail})。"
+                "生成ページ側は GAS/slidekit/webparts.py が出どころ。"
+                "トップは手書きなので、どちらかを直したらもう一方も直すこと")
+        if th != ref_th:
+            problems.append(
+                f"{rel}: 「上へ戻る」の出現しきい値が {th}px、"
+                f"{ref_rel} は {ref_th}px。そろえること")
+    return problems
+
+
 def check_file(path, rel=None):
     src = path.read_text(encoding="utf-8")
     masked = mask_noise(src)
@@ -370,11 +433,14 @@ def main():
         sys.exit("検査対象のHTMLがありません")
 
     failed = 0
+    seen = {}
     for path in files:
         try:
             rel = str(path.relative_to(REPO))
         except ValueError:
             rel = str(path)
+        src = path.read_text(encoding="utf-8")
+        seen[rel] = totop_fingerprint(src)
         problems, warnings = check_file(path, rel=rel)
         if problems:
             failed += 1
@@ -386,11 +452,21 @@ def main():
         for w in warnings:
             print(f"    ! {w}")
 
+    # ファイルをまたぐ検査。1枚ずつ見ていても気づけない種類のずれを受け持つ。
+    cross = check_totop_sync(seen)
+    if cross:
+        failed += 1
+        print("NG 共有部品「上へ戻る」")
+        for p in cross:
+            print(f"    ✗ {p}")
+
     if failed:
         print(f"\n{failed}件のファイルに問題があります。pushを中止してください。")
         sys.exit(1)
     if not args.quiet:
-        print(f"\n{len(files)}件すべて問題なし。")
+        n_tt = sum(1 for v in seen.values() if v[0] is not None)
+        print(f"\n{len(files)}件すべて問題なし。"
+              f"（「上へ戻る」は{n_tt}枚で同一）")
 
 
 if __name__ == "__main__":
