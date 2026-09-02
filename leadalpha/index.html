@@ -139,8 +139,29 @@
   .pn{ font-size:12px; font-weight:700; color:var(--c); flex-shrink:0; min-width:34px;
     text-align:center; background:color-mix(in srgb,var(--c) 14%,transparent);
     border-radius:6px; padding:3px 5px; }
-  .pt{ font-size:12.5px; line-height:1.45; min-width:0; }
+  .pt{ font-size:12.5px; line-height:1.45; min-width:0; flex:1; }
   .stretch::after{ content:""; position:absolute; inset:0; }
+
+  /* 動画が見られることを、重問(/juyomon/)の公開済みカードと同じ形で示す。
+     記号 U+25B6(▶)・分野色・行の右端という位置を、build_site_index.py の
+     .qrow[data-state="live"] .st::before と揃えてある。片方だけ直さないこと。
+     (コメント内では記号を U+ 表記で書くこと。CSSと同じ「バックスラッシュ+25B6」
+      の形で書くと、Pythonがその先頭2桁を8進エスケープとして食べてしまい、
+      生成物のCSSに制御文字が1つ混ざる。2026-09-03に一度これをやった。)
+
+     ただし重問が併せて出す「解説」の文字は、こちらでは出さない。リードαの
+     カードは重問より狭く(デスクトップ3列で340px、iPhoneで342px)、文字まで
+     足すと650問中294枚=45%が2行に折り返す。記号だけなら100枚=15%に収まる。
+     (2026-09-03、Chromeで全650問を1200/834/390pxの3幅で実測して決めた)
+
+     .p は display:flex なので、::after はそのまま行末のフレックス要素になる。
+     span を足していないので、この印でHTMLは1バイトも増えない。
+
+     準備中の59問(第28・29章)には出さない。破線の枠・灰色の文字・
+     pointer-events:none ですでに区別できており、印の有無はその3つ目になる。 */
+  .p[data-state=live]::after{ content:"\25B6"; font-family:var(--mono);
+    font-size:11px; color:var(--c); flex-shrink:0; }
+
   .p[data-state=live]{ cursor:pointer; }
   .p[data-state=live]:hover{ border-color:var(--c); background:color-mix(in srgb,var(--c) 7%,transparent); }
   .p[data-state=prep]{ background:transparent; border-style:dashed; border-color:#212a33; }

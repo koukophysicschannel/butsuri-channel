@@ -31,6 +31,7 @@
 ──────────────────────────────────────────────
 1. タグの入れ子   コメント/<style>/<script> の中身をマスクしてから対応を見る
 2. 目印(LANDMARKS) 必ず在るはずの id と、要素の最低個数     ← 節の消失を捕まえる
+                   と、要素にならない約束ごと(css)          ← 擬似要素の消失を捕まえる
 3. id の重複
 4. ページ内リンク href="#foo" の飛び先 id="foo" が存在するか
 5. ショート節     id="shortsGrid" があるファイルだけの追加検査
@@ -68,6 +69,7 @@ LANDMARKS = {
             "section-head": 6,     # 節の見出し
             "jm-index": 1,         # 重問インデックスへの導線(build_site_index.pyが管理)
             "km-index": 1,         # 過去問インデックスへの導線(build_kakomon.pyが管理)
+            "la-index": 1,         # リードαインデックスへの導線(build_site_leadalpha.pyが管理)
             "quiet-link": 1,       # フッタの進学情報への導線
         },
     },
@@ -83,6 +85,8 @@ LANDMARKS = {
             "fs": 6,       # 分野セクション
             "none": 6,     # 各分野の「該当なし」表示
         },
+        # 公開済みの行に出る再生マーク。リードα側と対になっている(下の css を見よ)。
+        "css": {"再生マーク": '.qrow[data-state="live"] .st::before{ content:"\\25B6 "; }'},
     },
     "juyomon/2025/index.html": {
         "ids": ["y2025"],
@@ -100,6 +104,9 @@ LANDMARKS = {
             "jc": 29,      # 章ジャンプ
             "none": 29,    # 章ごとの「該当なし」表示
         },
+        # 公開済み591問に出る再生マーク。::after なので class も id も増えず、
+        # 上の min_counts では消えても気づけない。ここだけが受け皿になる。
+        "css": {"再生マーク": '.p[data-state=live]::after{ content:"\\25B6";'},
     },
     # 過去問。GAS/slidekit/build_kakomon.py が生成する。
     # 大学一覧は「区分グループの数」を下限にする。準備中の大学は公開に
@@ -354,6 +361,31 @@ def check_totop_sync(seen):
     return problems
 
 
+# ── CSSの目印 ───────────────────────────────────────────────────────
+# LANDMARKS の "css" は、**HTMLの要素として現れない**約束ごとを見張る。
+#
+# きっかけは再生マーク(U+25B6)。リードαでは .p[data-state=live]::after で出して
+# いるので、class も id も1つも増えない。つまり min_counts では、CSSが1行消えて
+# 591問ぶんの印が全部消えても**枚数は650枚のまま**で、何も起きていないように見える。
+# 重問側は .st::before で、こちらも同じく数えられない。
+#
+# 2つを対で書いてあるのは、片方だけ消えると「重問には印が有るのにリードαには
+# 無い」という、1枚ずつ見ていては気づけない食い違いになるため(検査7と同じ性質)。
+def check_css_landmarks(rel, src):
+    spec = landmark_spec(rel)
+    if not spec or "css" not in spec:
+        return []
+    css = " ".join(re.sub(r"\s+", " ", m.group(2)) for m in STYLE_RE.finditer(src))
+    problems = []
+    for label, needle in spec["css"].items():
+        if needle not in css:
+            problems.append(
+                f"{label}のCSSが無い（{needle} を探した）。生成スクリプトの実行を"
+                "疑うこと。意図して外したなら tools/check_html.py の LANDMARKS も"
+                "更新する（対になっているページも一緒に見直すこと）")
+    return problems
+
+
 def check_file(path, rel=None):
     src = path.read_text(encoding="utf-8")
     masked = mask_noise(src)
@@ -363,6 +395,7 @@ def check_file(path, rel=None):
 
     problems = check_nesting(masked)
     problems += check_landmarks(rel, masked, ids)
+    problems += check_css_landmarks(rel, src)
     p, warnings = check_ids_and_anchors(src, masked, ids)
     problems += p
     problems += check_shorts_section(src, masked)
