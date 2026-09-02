@@ -37,8 +37,9 @@
 5. ショート節     id="shortsGrid" があるファイルだけの追加検査
 6. 警告のみ       getElementById('x') の x が無い(防御的に書かれている場合もあるため)
 7. 共有部品       「上へ戻る」のCSSとしきい値が全ページで同一か  ← ファイルをまたぐ検査
+8. Service Worker sw.js が先読みするファイルが実在するか        ← ファイルをまたぐ検査
 
-7 は 1〜6 と違い、**1枚だけ見ても気づけない**種類のずれを受け持つ。トップは手書き、
+7・8 は 1〜6 と違い、**1枚だけ見ても気づけない**種類のずれを受け持つ。トップは手書き、
 他は生成物で出どころが別なので、片方だけ直すと静かに食い違う(2026-09-02 導入)。
 """
 import argparse
@@ -386,6 +387,40 @@ def check_css_landmarks(rel, src):
     return problems
 
 
+# ── Service Worker の先読み一覧 ──────────────────────────────────────
+# sw.js は install 時に SHELL のURLを取りに行く。ここに書いたファイルを改名・削除
+# しても、SWは1件ずつ失敗を握りつぶす作りなので**何も言わずに欠けたまま動く**。
+# オフラインのときだけ「アイコンが出ない」「トップが開けない」形で表面化するので、
+# 手元では気づけない。実在するかどうかはリポジトリを見れば分かるので、ここで見る。
+SW_SHELL_RE = re.compile(r"const\s+SHELL\s*=\s*\[(.*?)\]", re.S)
+SW_URL_RE = re.compile(r"['\"]\./([^'\"]*)['\"]")
+
+
+def check_sw_shell():
+    """sw.js が先読みするファイルが実在するか。sw.js が無ければ何もしない。"""
+    sw = REPO / "sw.js"
+    if not sw.exists():
+        return []
+    src = sw.read_text(encoding="utf-8")
+    m = SW_SHELL_RE.search(src)
+    if not m:
+        return ["sw.js: const SHELL = [...] が見つからない。"
+                "名前を変えたなら check_html.py の SW_SHELL_RE も直すこと"]
+    problems = []
+    for rel in SW_URL_RE.findall(m.group(1)):
+        if rel == "":          # './' はトップページ自身
+            rel = "index.html"
+        if not (REPO / rel).exists():
+            problems.append(
+                f"sw.js: 先読みする {rel} がリポジトリに無い。"
+                "ファイルを改名したなら sw.js の SHELL も直すこと")
+    # 登録側も見る。sw.js があるのに誰も register していなければ、ただの死んだファイル。
+    if "navigator.serviceWorker.register" not in (REPO / "index.html").read_text(encoding="utf-8"):
+        problems.append("index.html: sw.js があるのに register() していない。"
+                        "意図して外したなら sw.js も消すこと")
+    return problems
+
+
 def check_file(path, rel=None):
     src = path.read_text(encoding="utf-8")
     masked = mask_noise(src)
@@ -491,6 +526,13 @@ def main():
         failed += 1
         print("NG 共有部品「上へ戻る」")
         for p in cross:
+            print(f"    ✗ {p}")
+
+    sw = check_sw_shell()
+    if sw:
+        failed += 1
+        print("NG Service Worker (sw.js)")
+        for p in sw:
             print(f"    ✗ {p}")
 
     if failed:

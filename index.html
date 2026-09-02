@@ -889,5 +889,21 @@
     });
   })();
 </script>
+<script>
+  // Service Worker の登録。
+  //
+  //  ・登録するのは**このトップページだけ**にしてある。スコープは sw.js の置き場所で
+  //    決まる（＝サイト全体）ので、生徒が一度トップを開けば下層ページまで効く。
+  //    生成ページ6枚は Dropbox 側の webparts.py が出どころで、こちらで足しても
+  //    次の生成で消えるため、あえて入れていない。
+  //  ・失敗しても握りつぶす。Service Worker はあくまで上乗せで、
+  //    無くても今までどおりのサイトとして動く（これが壊れて目次が開けない、が最悪）。
+  //  ・load を待つのは、初回表示のための通信とSWの取得を競わせないため。
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('sw.js').catch(function(){});
+    });
+  }
+</script>
 </body>
 </html>
