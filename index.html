@@ -154,6 +154,59 @@
   .btn-ghost{ background: transparent; color: var(--chalk); }
   .btn-ghost:hover{ border-color: var(--chalk-dim); }
 
+  /* ホーム画面追加の案内。ヒーローのCTAは「YouTubeへ移動」1つという原則を崩さないよう、
+     閉じた状態は1行のトリガーだけにして、手順は開いた人にだけ見せる
+     （一度きりの操作であり、PCでは無用な情報なので常時表示にはしない）。 */
+  .addhome{
+    max-width: 560px; margin: 20px auto 0;
+    border: 1px solid var(--line); border-radius: 10px;
+    background: var(--bg-alt);
+    overflow: hidden;
+    text-align: left;
+  }
+  .addhome > summary{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    padding: 9px 16px; cursor:pointer; list-style:none;
+    font-size:12.5px; color: var(--chalk-dim);
+    transition: color .15s ease, background .15s ease;
+  }
+  .addhome > summary::-webkit-details-marker{ display:none; }
+  .addhome > summary:hover{ color: var(--chalk); background:#1b232c; }
+  .addhome > summary:focus-visible{ outline:2px solid var(--accent); outline-offset:-2px; }
+  .addhome > summary .ico{ font-size:14px; line-height:1; }
+  /* 状態は矢印の向きだけで示す。開いても見出しの文言は動かさない。 */
+  .addhome > summary .caret{
+    font-family:"JetBrains Mono", monospace; font-size:10px; color:#6d7880;
+    transition: transform .2s ease;
+  }
+  .addhome[open] > summary .caret{ transform: rotate(90deg); }
+  .addhome[open] > summary{ border-bottom: 1px solid var(--line); }
+  .addhome .body{ padding: 14px 18px 16px; display:grid; gap:10px; }
+  .addhome .row{
+    display:grid; grid-template-columns:auto 1fr; align-items:baseline; gap:10px;
+    margin:0; font-size:13px; color: var(--chalk-dim);
+  }
+  .addhome .os{
+    font-family:"JetBrains Mono", monospace; font-size:11px; letter-spacing:.06em;
+    color: var(--accent); border:1px solid rgba(244,201,93,.3);
+    border-radius:5px; padding:2px 7px; white-space:nowrap;
+  }
+  .addhome .key{ color: var(--chalk); font-weight:700; border-bottom:1px solid #3a4550; }
+  .addhome .arrow{
+    font-family:"JetBrains Mono", monospace; font-size:11px; color:#6d7880; padding:0 5px;
+  }
+  .addhome .foot{
+    margin:1px 0 0; font-size:11.5px; color:#68737d;
+    border-top:1px dashed #262f38; padding-top:9px;
+  }
+  @media (max-width:560px){
+    .addhome .row{ grid-template-columns:1fr; gap:3px; }
+    .addhome .os{ justify-self:start; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .addhome > summary .caret{ transition:none; }
+  }
+
   /* 上部は「ヒーロー(誰か・何か) → ①教材から探す → ②分野から探す → ③PHYSICA → 棚」の
      5段。役割が混ざって見えないよう、次のように分けている。
        ・ヒーローのCTAは「YouTubeへ移動」1つだけ（サイト内の導線は①②が持つ）
@@ -437,6 +490,25 @@
     <div class="cta-row">
       <a class="btn btn-primary" href="https://www.youtube.com/channel/UCZy3VipvKr3AJc_-okxbDPw" target="_blank" rel="noopener">YouTubeチャンネルへ移動</a>
     </div>
+
+    <details class="addhome">
+      <summary>
+        <span class="ico" aria-hidden="true">📱</span>
+        <span>スマホのホーム画面にアイコンを追加する</span>
+        <span class="caret" aria-hidden="true">▶</span>
+      </summary>
+      <div class="body">
+        <p class="row">
+          <span class="os">iPhone</span>
+          <span>Safari で下の<span class="key">共有ボタン</span><span class="arrow">→</span><span class="key">「ホーム画面に追加」</span></span>
+        </p>
+        <p class="row">
+          <span class="os">Android</span>
+          <span>Chrome で右上の<span class="key">メニュー（︙）</span><span class="arrow">→</span><span class="key">「ホーム画面に追加」</span>または<span class="key">「アプリをインストール」</span></span>
+        </p>
+        <p class="foot">追加すると、ブラウザを開かずアイコンから直接このページを開けます。</p>
+      </div>
+    </details>
   </header>
 
   <div class="findbar">
