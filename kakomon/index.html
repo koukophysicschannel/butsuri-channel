@@ -157,6 +157,23 @@
 
   @media (max-width:560px){
     .ugrid{ grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); } }
+
+  /* 右下固定の「上へ戻る」。一定量スクロールしたら .show が付いて現れる。
+     GAS/slidekit/webparts.py が出どころ。トップの index.html と同一。 */
+  .to-top{
+    position: fixed; right: 22px; bottom: 22px; z-index: 20;
+    width: 46px; height: 46px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--card); border: 1px solid var(--line); color: var(--chalk-dim);
+    opacity: 0; visibility: hidden; transform: translateY(8px);
+    transition: opacity .2s ease, transform .2s ease, visibility .2s ease,
+                border-color .15s ease, color .15s ease;
+    cursor: pointer;
+  }
+  .to-top.show{ opacity:1; visibility:visible; transform:none; }
+  .to-top:hover{ color: var(--chalk); border-color: var(--chalk-dim); }
+  @media (prefers-reduced-motion: reduce){ .to-top{ transition: opacity .2s ease; } }
+  @media (max-width:560px){ .to-top{ right:14px; bottom:14px; width:42px; height:42px; } }
 </style>
 </head>
 <body>
@@ -230,5 +247,30 @@
     <p>解説動画は YouTube「高校物理 解説チャンネル」で公開しています。問題文・図は掲載していません。手元の問題を見ながらお使いください。</p>
   </footer>
 </div>
+<button class="to-top" id="toTop" aria-label="ページの先頭へ戻る">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+<script>
+  // 上へ戻る。600px以上スクロールしたら出す。
+  (function(){
+    var btn = document.getElementById('toTop');
+    if(!btn) return;
+    var ticking = false;
+    function update(){
+      btn.classList.toggle('show', window.scrollY > 600);
+      ticking = false;
+    }
+    window.addEventListener('scroll', function(){
+      if(!ticking){ ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    btn.addEventListener('click', function(){
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+    update();
+  })();
+</script>
 </body>
 </html>
