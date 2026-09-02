@@ -84,6 +84,19 @@ LANDMARKS = {
         "ids": ["y2025"],
         "min_counts": {"y-table": 1},
     },
+    # リードα。002 リード/999 抽出/scripts/build_site_leadalpha.py が生成する。
+    # 第28・29章は未撮影だが一覧には載せるので、下限は現状の650問・29章のまま。
+    "leadalpha/index.html": {
+        "ids": ["panel", "jump", "q", "hits",
+                "ch1", "ch13", "ch20", "ch27", "ch28", "ch29"],
+        "min_counts": {
+            "p": 650,      # 1問1枚のカード
+            "ch": 29,      # 章セクション
+            "kg": 29,      # 種別のまとまり(章あたり1〜4)
+            "jc": 29,      # 章ジャンプ
+            "none": 29,    # 章ごとの「該当なし」表示
+        },
+    },
     # 過去問。GAS/slidekit/build_kakomon.py が生成する。
     # 大学一覧は「区分グループの数」を下限にする。準備中の大学は公開に
     # 切り替わると prep が減るので、減る側の数は下限に使わない。
