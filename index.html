@@ -438,6 +438,8 @@
   /* 進学情報への導線。セクションのカードとは別物なので、フッタの
      注意書きより下に、いちばん静かな見え方で置く。 */
   footer .quiet-link{ margin-top: 20px; font-size: 12px; }
+  /* 進学情報が2行になったので、2行目は前の行にくっつける。 */
+  footer .quiet-link + .quiet-link{ margin-top: 6px; }
   footer .quiet-link a{ color:#68737d; border-bottom:1px solid #2a333d;
     font-family:"Zen Kaku Gothic New",sans-serif; transition: color .15s ease; }
   footer .quiet-link a:hover{ color: var(--chalk-dim); border-color: var(--chalk-dim); }
@@ -814,6 +816,7 @@
     </div>
     <p>本ページは個人が運営する高校物理の解説チャンネルのリンク集です。「リードα物理基礎・物理」は数研出版の教材名であり、当チャンネルは同社の公式チャンネルではありません。</p>
     <p class="quiet-link">方式別・理科科目 一覧（2027年度入試）：<a href="shingaku/march-rikei-2027/">MARCH理系</a>／<a href="shingaku/waseikeijo-rikei-2027/">早慶上理</a></p>
+    <p class="quiet-link">方式別 入試倍率 一覧（2026年度入試の実績）：<a href="shingaku/march-rikei-baisu-2026/">MARCH理系</a>／<a href="shingaku/waseikeijo-rikei-baisu-2026/">早慶上理</a></p>
   </footer>
 
 </div>
