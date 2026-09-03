@@ -71,6 +71,7 @@ LANDMARKS = {
             "jm-index": 1,         # 重問インデックスへの導線(build_site_index.pyが管理)
             "km-index": 1,         # 過去問インデックスへの導線(build_kakomon.pyが管理)
             "la-index": 1,         # リードαインデックスへの導線(build_site_leadalpha.pyが管理)
+            "la-2024": 1,          # リードα改訂版への導線(同上。同じマーカーの中)
             "jg-index": 1,         # 授業動画インデックスへの導線(build_site_jugyo.pyが管理)
             "quiet-link": 1,       # フッタの進学情報への導線
         },
