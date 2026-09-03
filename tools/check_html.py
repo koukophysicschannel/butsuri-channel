@@ -71,6 +71,7 @@ LANDMARKS = {
             "jm-index": 1,         # 重問インデックスへの導線(build_site_index.pyが管理)
             "km-index": 1,         # 過去問インデックスへの導線(build_kakomon.pyが管理)
             "la-index": 1,         # リードαインデックスへの導線(build_site_leadalpha.pyが管理)
+            "jg-index": 1,         # 授業動画インデックスへの導線(build_site_jugyo.pyが管理)
             "quiet-link": 1,       # フッタの進学情報への導線
         },
     },
@@ -108,6 +109,21 @@ LANDMARKS = {
         # 公開済み591問に出る再生マーク。::after なので class も id も増えず、
         # 上の min_counts では消えても気づけない。ここだけが受け皿になる。
         "css": {"再生マーク": '.p[data-state=live]::after{ content:"\\25B6";'},
+    },
+    # 授業動画。002 リード/999 抽出/scripts/build_site_jugyo.py が生成する。
+    # 中学理科17本はトップの再生リスト5枚に揃えて載せていないので、下限は
+    # 5分野176本のまま。撮り足せば増える側なので、増える分には通る。
+    "jugyo/index.html": {
+        "ids": ["panel", "q", "hits",
+                "fs-mech", "fs-therm", "fs-wave", "fs-electro", "fs-atom"],
+        "min_counts": {
+            "p": 176,      # 1本1枚のカード
+            "fs": 5,       # 分野セクション
+            "none": 5,     # 分野ごとの「該当なし」表示
+        },
+        # このページには再生マークが無い(176本すべて公開済みで、印が
+        # 公開済み／準備中を分ける役に立たない)。リードαや重問の css 検査を
+        # ここに写さないこと。理由は build_site_jugyo.py の CSS 内に書いてある。
     },
     # 過去問。GAS/slidekit/build_kakomon.py が生成する。
     # 大学一覧は「区分グループの数」を下限にする。準備中の大学は公開に

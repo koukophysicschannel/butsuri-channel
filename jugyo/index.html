@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ▼ アイコン一式。パスは各ページからの相対（配信先が変わっても書き換え不要） -->
+<link rel="icon" href="../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="apple-mobile-web-app-title" content="高校物理解説チャンネル">
+<meta name="theme-color" content="#10151b">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QCLT8H81TT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QCLT8H81TT');
+</script>
+
+<title>授業動画 全176本 インデックス｜高校物理 解説チャンネル</title>
+<meta name="description" content="高校物理の授業動画176本のインデックス。力学・熱力学・波動・電磁気・原子の5分野を、1本ずつ動画に飛べる形で並べています。番号・語句・考査範囲で絞り込めます。">
+<link rel="canonical" href="https://koukophysicschannel.github.io/butsuri-channel/jugyo/">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="高校物理 解説チャンネル">
+<meta property="og:title" content="授業動画 全176本 インデックス｜高校物理 解説チャンネル">
+<meta property="og:description" content="高校物理の授業動画176本のインデックス。力学・熱力学・波動・電磁気・原子の5分野を、1本ずつ動画に飛べる形で並べています。番号・語句・考査範囲で絞り込めます。">
+<meta property="og:url" content="https://koukophysicschannel.github.io/butsuri-channel/jugyo/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://koukophysicschannel.github.io/butsuri-channel/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://koukophysicschannel.github.io/butsuri-channel/og-image.png">
+<meta name="twitter:title" content="授業動画 全176本 インデックス｜高校物理 解説チャンネル">
+<meta name="twitter:description" content="高校物理の授業動画176本のインデックス。力学・熱力学・波動・電磁気・原子の5分野を、1本ずつ動画に飛べる形で並べています。番号・語句・考査範囲で絞り込めます。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#10151b; --bg-alt:#171e26; --card:#1a222b; --line:#2a333d;
+    --chalk:#edf2f0; --chalk-dim:#93a1a8; --accent:#f4c95d;
+    --mech:#7fd1a4; --therm:#ef8b6b; --wave:#6fb8e0; --electro:#c497e0; --atom:#5fd3c4;
+    --sans:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic Medium",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:var(--bg); color:var(--chalk); font-family:var(--sans);
+        line-height:1.7; -webkit-font-smoothing:antialiased; }
+  .mono{ font-family:var(--mono); font-variant-numeric:tabular-nums; }
+  a{ color:inherit; text-decoration:none; }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
+  .grid-bg{ position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+    background-size:42px 42px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,black 40%,transparent 85%); }
+  .wrap{ position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 24px; }
+
+  .crumb{ padding:26px 0 0; font-family:var(--mono); font-size:12.5px; color:var(--chalk-dim); }
+  header.top{ padding:22px 0 26px; }
+  .eyebrow{ display:inline-flex; align-items:center; gap:8px; font-family:var(--mono);
+    font-size:12.5px; letter-spacing:.12em; color:var(--accent);
+    border:1px solid rgba(244,201,93,.35); padding:5px 12px; border-radius:999px; margin-bottom:18px; }
+  .eyebrow::before{ content:"\25CF"; font-size:8px; }
+  h1{ font-size:clamp(28px,4.2vw,42px); font-weight:900; margin:0 0 12px; letter-spacing:-.01em; }
+  h1 .sub{ display:block; font-size:.4em; font-weight:500; color:var(--chalk-dim); margin-top:10px; }
+  .lede{ max-width:62ch; color:var(--chalk-dim); font-size:15px; margin:0 0 22px; }
+
+  .summary{ background:var(--bg-alt); border:1px solid var(--line); border-radius:14px;
+    padding:18px 20px; display:flex; flex-direction:column; gap:13px; }
+  .stats{ display:flex; gap:26px; flex-wrap:wrap; align-items:baseline; }
+  .stat{ display:flex; flex-direction:column; gap:2px; }
+  .stat b{ font-family:var(--mono); font-size:25px; font-weight:700; line-height:1.2; }
+  .stat span{ font-size:11.5px; color:var(--chalk-dim); }
+  /* 帯は分野ごとの本数比。リードαは公開済み／準備中の2色だが、こちらは
+     176本すべて公開済みなので、分けるなら分野しかない。授業カバーで使って
+     いる分野色を、面積を取らない形でページに一度だけ効かせる場所でもある。 */
+  .bar{ display:flex; height:8px; border-radius:999px; overflow:hidden; background:var(--line); gap:1.5px; }
+
+  /* ── 操作パネル。176本あるので絞り込みを常時出す ── */
+  .panel{ position:sticky; top:0; z-index:6; background:linear-gradient(to bottom,var(--bg) 82%,transparent);
+    padding:16px 0 18px; }
+  .prow{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .prow + .prow{ margin-top:9px; }
+  .chip{ font-family:var(--mono); font-size:12.5px; padding:6px 13px; border-radius:999px;
+    border:1px solid var(--line); background:var(--bg-alt); color:var(--chalk-dim);
+    cursor:pointer; display:flex; align-items:center; gap:7px; transition:all .15s ease; }
+  .chip .dot{ width:7px; height:7px; border-radius:50%; background:currentColor; }
+  .chip[data-cat=mech]{ color:var(--mech); } .chip[data-cat=therm]{ color:var(--therm); }
+  .chip[data-cat=wave]{ color:var(--wave); } .chip[data-cat=electro]{ color:var(--electro); }
+  .chip[data-cat=atom]{ color:var(--atom); }
+  .chip.active{ background:var(--card); border-color:currentColor; box-shadow:0 0 0 1px currentColor inset; }
+  .chip:hover{ border-color:var(--chalk-dim); }
+  .sep{ width:1px; height:20px; background:var(--line); margin:0 3px; }
+  .lbl{ font-family:var(--mono); font-size:11px; color:#6d7883; letter-spacing:.06em; }
+
+  #q{ font-family:var(--mono); font-size:13px; padding:7px 13px; border-radius:999px;
+    border:1px solid var(--line); background:var(--bg-alt); color:var(--chalk); width:330px;
+    max-width:100%; }
+  #q::placeholder{ color:#6d7883; }
+  #hits{ font-family:var(--mono); font-size:11.5px; color:var(--accent); }
+
+  /* ── 分野 ── */
+  .fs{ padding:30px 0 6px; border-top:1px solid var(--line); scroll-margin-top:130px; }
+  .fs.hidden{ display:none; }
+  .fh{ display:flex; align-items:center; gap:16px; margin-bottom:14px; }
+  .fn{ font-size:34px; font-weight:700; color:var(--c); line-height:1;
+    background:color-mix(in srgb,var(--c) 13%,transparent); border-radius:12px;
+    padding:10px 14px; flex-shrink:0; }
+  .ft h2{ font-size:19px; margin:0; font-weight:700; }
+  .ff{ font-size:11.5px; color:var(--chalk-dim); }
+
+  .pgrid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(268px,1fr)); gap:6px; }
+  .p{ position:relative; display:flex; align-items:center; gap:10px;
+    background:var(--card); border:1px solid var(--line); border-radius:9px;
+    padding:8px 11px; cursor:pointer; transition:border-color .12s ease, background .12s ease; }
+  .p:hover{ border-color:var(--c); background:color-mix(in srgb,var(--c) 7%,transparent); }
+  .p.hidden{ display:none; }
+  /* 番号は 1-1 から 1-46.5・1-実験1 まで幅が open なので、リードα(34px)より
+     広く取る。数字だけの前提で組むと「1-実験1」で箱がつぶれる。 */
+  .pn{ font-size:12px; font-weight:700; color:var(--c); flex-shrink:0; min-width:52px;
+    text-align:center; background:color-mix(in srgb,var(--c) 14%,transparent);
+    border-radius:6px; padding:3px 5px; }
+  .pt{ font-size:12.5px; line-height:1.45; min-width:0; flex:1; }
+  .stretch::after{ content:""; position:absolute; inset:0; }
+
+  /* 再生マーク(U+25B6)は出さない。176本すべて公開済みで全カードに付いてしまい、
+     リードα(/leadalpha/)と重問(/juyomon/)で印が担っている「公開済みと準備中を
+     見分ける」という役目が、このページでは成り立たないため。
+     将来このページに準備中の行が混ざるなら、そのとき両方に合わせて入れること。 */
+
+  .none{ display:none; border:1.5px dashed var(--line); border-radius:12px; padding:20px;
+    text-align:center; color:var(--chalk-dim); font-size:13px; margin:14px 0 0; }
+  .none.show{ display:block; }
+
+  footer{ padding:36px 0 60px; text-align:center; }
+  footer p{ color:#7d8890; font-size:12px; max-width:60ch; margin:0 auto; }
+  @media (prefers-reduced-motion:reduce){ *{ transition:none !important; } html{ scroll-behavior:auto; } }
+  @media (max-width:560px){ .panel{ position:static; } .pgrid{ grid-template-columns:1fr; } }
+  /* 右下固定の「上へ戻る」。一定量スクロールしたら .show が付いて現れる。
+     GAS/slidekit/webparts.py が出どころ。トップの index.html と同一。 */
+  .to-top{
+    position: fixed; right: 22px; bottom: 22px; z-index: 20;
+    width: 46px; height: 46px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--card); border: 1px solid var(--line); color: var(--chalk-dim);
+    opacity: 0; visibility: hidden; transform: translateY(8px);
+    transition: opacity .2s ease, transform .2s ease, visibility .2s ease,
+                border-color .15s ease, color .15s ease;
+    cursor: pointer;
+  }
+  .to-top.show{ opacity:1; visibility:visible; transform:none; }
+  .to-top:hover{ color: var(--chalk); border-color: var(--chalk-dim); }
+  @media (prefers-reduced-motion: reduce){ .to-top{ transition: opacity .2s ease; } }
+  @media (max-width:560px){ .to-top{ right:14px; bottom:14px; width:42px; height:42px; } }
+
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="wrap">
+  <nav class="crumb mono"><a href="../">高校物理 解説チャンネル</a> / 授業動画</nav>
+
+  <header class="top">
+    <span class="eyebrow mono">LECTURES</span>
+    <h1>授業動画 全176本
+      <span class="sub">5分野を、1本ずつ動画へ</span>
+    </h1>
+    <p class="lede">高校物理の授業をそのまま収録した動画です。分野で絞り込むか、番号・語句で探してください。「1年1学期中間」のように考査範囲でも絞り込めます。</p>
+    <div class="summary">
+      <div class="stats">
+        <div class="stat"><b>176</b><span>収録本数</span></div>
+        <div class="stat"><b>5</b><span>分野</span></div>
+      </div>
+      <div class="bar"><span style="flex:51; background:var(--mech)"></span><span style="flex:25; background:var(--therm)"></span><span style="flex:35; background:var(--wave)"></span><span style="flex:48; background:var(--electro)"></span><span style="flex:17; background:var(--atom)"></span></div>
+    </div>
+  </header>
+
+  <nav class="panel" id="panel" aria-label="絞り込み">
+    <div class="prow">
+      <span class="lbl">分野</span>
+      <div class="chip active" data-cat="all" role="button" tabindex="0">すべて</div>
+      <div class="chip" data-cat="mech" role="button" tabindex="0"><span class="dot"></span>力学</div>
+      <div class="chip" data-cat="therm" role="button" tabindex="0"><span class="dot"></span>熱力学</div>
+      <div class="chip" data-cat="wave" role="button" tabindex="0"><span class="dot"></span>波動</div>
+      <div class="chip" data-cat="electro" role="button" tabindex="0"><span class="dot"></span>電磁気</div>
+      <div class="chip" data-cat="atom" role="button" tabindex="0"><span class="dot"></span>原子</div>
+    </div>
+    <div class="prow">
+      <input id="q" type="search" placeholder="番号・語句・考査範囲で絞り込む（例 1-12／ドップラー／1年1学期中間）" aria-label="絞り込み">
+      <span id="hits"></span>
+    </div>
+  </nav>
+
+  <main>
+<section class="fs" id="fs-mech" data-cat="mech" style="--c:var(--mech)">
+  <div class="fh">
+    <span class="fn mono">01</span>
+    <div class="ft"><h2>力学</h2><span class="ff mono">51本</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-k="1-1 速度と速さ 力学 1年1学期中間考査範囲"><span class="pn mono">1-1</span><a class="stretch pt" href="https://www.youtube.com/watch?v=LHHhqWlm1oE" target="_blank" rel="noopener">速度と速さ</a></article>
+      <article class="p" data-k="1-2 「等速直線運動」と「グラフの見方」 力学 1年1学期中間考査範囲"><span class="pn mono">1-2</span><a class="stretch pt" href="https://www.youtube.com/watch?v=H4f9HEp7eng" target="_blank" rel="noopener">「等速直線運動」と「グラフの見方」</a></article>
+      <article class="p" data-k="1-3 加速度 力学 1年1学期中間考査範囲"><span class="pn mono">1-3</span><a class="stretch pt" href="https://www.youtube.com/watch?v=VDwWbWUG93Y" target="_blank" rel="noopener">加速度</a></article>
+      <article class="p" data-k="1-4 等加速度直線運動 力学 1年1学期中間考査範囲"><span class="pn mono">1-4</span><a class="stretch pt" href="https://www.youtube.com/watch?v=GIfnsq1yTus" target="_blank" rel="noopener">等加速度直線運動</a></article>
+      <article class="p" data-k="1-実験1 手を引くときの加速度を求めよう 力学 1年1学期中間考査範囲"><span class="pn mono">1-実験1</span><a class="stretch pt" href="https://www.youtube.com/watch?v=RuApMpMShV8" target="_blank" rel="noopener">手を引くときの加速度を求めよう</a></article>
+      <article class="p" data-k="1-5 速度の合成 力学 1年1学期中間考査範囲"><span class="pn mono">1-5</span><a class="stretch pt" href="https://www.youtube.com/watch?v=l87hN8y0p-o" target="_blank" rel="noopener">速度の合成</a></article>
+      <article class="p" data-k="1-6 三角比 力学 1年1学期中間考査範囲"><span class="pn mono">1-6</span><a class="stretch pt" href="https://www.youtube.com/watch?v=iD76J5pTtWU" target="_blank" rel="noopener">三角比</a></article>
+      <article class="p" data-k="1-7 速度の分解 力学 1年1学期中間考査範囲"><span class="pn mono">1-7</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Rtc7Re2XjPg" target="_blank" rel="noopener">速度の分解</a></article>
+      <article class="p" data-k="1-8 速度の成分 力学 1年1学期中間考査範囲"><span class="pn mono">1-8</span><a class="stretch pt" href="https://www.youtube.com/watch?v=4fSigz5dufA" target="_blank" rel="noopener">速度の成分</a></article>
+      <article class="p" data-k="1-9 相対速度 力学 1年1学期中間考査範囲"><span class="pn mono">1-9</span><a class="stretch pt" href="https://www.youtube.com/watch?v=6lvbvLWC614" target="_blank" rel="noopener">相対速度</a></article>
+      <article class="p" data-k="1-10 重力加速度 力学 1年1学期中間考査範囲"><span class="pn mono">1-10</span><a class="stretch pt" href="https://www.youtube.com/watch?v=AhaSSwPf3zo" target="_blank" rel="noopener">重力加速度</a></article>
+      <article class="p" data-k="1-11 自由落下 力学 1年1学期中間考査範囲"><span class="pn mono">1-11</span><a class="stretch pt" href="https://www.youtube.com/watch?v=TMxcIEJqjU4" target="_blank" rel="noopener">自由落下</a></article>
+      <article class="p" data-k="1-12 鉛直投げ下ろし 力学 1年1学期中間考査範囲"><span class="pn mono">1-12</span><a class="stretch pt" href="https://www.youtube.com/watch?v=jpDmXklNSSs" target="_blank" rel="noopener">鉛直投げ下ろし</a></article>
+      <article class="p" data-k="1-13 鉛直投げ上げ 力学 1年1学期中間考査範囲"><span class="pn mono">1-13</span><a class="stretch pt" href="https://www.youtube.com/watch?v=R0Qi7dv3L3g" target="_blank" rel="noopener">鉛直投げ上げ</a></article>
+      <article class="p" data-k="1-14 水平投射 力学 1年1学期中間考査範囲"><span class="pn mono">1-14</span><a class="stretch pt" href="https://www.youtube.com/watch?v=C_7AsX605ZM" target="_blank" rel="noopener">水平投射</a></article>
+      <article class="p" data-k="1-15 斜方投射 力学 1年1学期中間考査範囲"><span class="pn mono">1-15</span><a class="stretch pt" href="https://www.youtube.com/watch?v=UmSpojVfKhE" target="_blank" rel="noopener">斜方投射</a></article>
+      <article class="p" data-k="1-16 力とは 力学 1年1学期期末考査範囲"><span class="pn mono">1-16</span><a class="stretch pt" href="https://www.youtube.com/watch?v=FDWUBCUn-oQ" target="_blank" rel="noopener">力とは</a></article>
+      <article class="p" data-k="1-17 力の種類 力学 1年1学期期末考査範囲"><span class="pn mono">1-17</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Hk9TvJwedE4" target="_blank" rel="noopener">力の種類</a></article>
+      <article class="p" data-k="1-18 力の合成・分解・成分 力学 1年1学期期末考査範囲"><span class="pn mono">1-18</span><a class="stretch pt" href="https://www.youtube.com/watch?v=pVZV5-ofg3E" target="_blank" rel="noopener">力の合成・分解・成分</a></article>
+      <article class="p" data-k="1-19 「力のつりあい」と「作用・反作用の法則」 力学 1年1学期期末考査範囲"><span class="pn mono">1-19</span><a class="stretch pt" href="https://www.youtube.com/watch?v=b5BV-aLDyIg" target="_blank" rel="noopener">「力のつりあい」と「作用・反作用の法則」</a></article>
+      <article class="p" data-k="1-20 慣性の法則 力学 1年1学期期末考査範囲"><span class="pn mono">1-20</span><a class="stretch pt" href="https://www.youtube.com/watch?v=IMynKi5voCo" target="_blank" rel="noopener">慣性の法則</a></article>
+      <article class="p" data-k="1-21 運動方程式 力学 1年1学期期末考査範囲"><span class="pn mono">1-21</span><a class="stretch pt" href="https://www.youtube.com/watch?v=DcV83sfssGo" target="_blank" rel="noopener">運動方程式</a></article>
+      <article class="p" data-k="1-22 圧力（水圧）と浮力 力学 1年1学期期末考査範囲"><span class="pn mono">1-22</span><a class="stretch pt" href="https://www.youtube.com/watch?v=u-gHpJWM0Cg" target="_blank" rel="noopener">圧力（水圧）と浮力</a></article>
+      <article class="p" data-k="1-23 終端速度 力学 1年1学期期末考査範囲"><span class="pn mono">1-23</span><a class="stretch pt" href="https://www.youtube.com/watch?v=fsRU4XMrQws" target="_blank" rel="noopener">終端速度</a></article>
+      <article class="p" data-k="1-24 仕事 力学 1年2学期中間考査範囲"><span class="pn mono">1-24</span><a class="stretch pt" href="https://www.youtube.com/watch?v=tDrLXxYMI9w" target="_blank" rel="noopener">仕事</a></article>
+      <article class="p" data-k="1-25 仕事の原理 力学 1年2学期中間考査範囲"><span class="pn mono">1-25</span><a class="stretch pt" href="https://www.youtube.com/watch?v=oASC_GTLS3E" target="_blank" rel="noopener">仕事の原理</a></article>
+      <article class="p" data-k="1-26 仕事率 力学 1年2学期中間考査範囲"><span class="pn mono">1-26</span><a class="stretch pt" href="https://www.youtube.com/watch?v=wW9jzXFAZhY" target="_blank" rel="noopener">仕事率</a></article>
+      <article class="p" data-k="1-27 エネルギー 力学 1年2学期中間考査範囲"><span class="pn mono">1-27</span><a class="stretch pt" href="https://www.youtube.com/watch?v=yUM8a4mWyQM" target="_blank" rel="noopener">エネルギー</a></article>
+      <article class="p" data-k="1-28 力学的エネルギー 力学 1年2学期中間考査範囲"><span class="pn mono">1-28</span><a class="stretch pt" href="https://www.youtube.com/watch?v=1-hB89Fljlc" target="_blank" rel="noopener">力学的エネルギー</a></article>
+      <article class="p" data-k="1-29 力学的エネルギー保存則 力学 1年2学期中間考査範囲"><span class="pn mono">1-29</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Tat-pSg_lWo" target="_blank" rel="noopener">力学的エネルギー保存則</a></article>
+      <article class="p" data-k="1-30 力のモーメント 力学 2年2学期中間考査範囲"><span class="pn mono">1-30</span><a class="stretch pt" href="https://www.youtube.com/watch?v=5T8GK8BmQ-8" target="_blank" rel="noopener">力のモーメント</a></article>
+      <article class="p" data-k="1-31 剛体にはたらく力の合力 力学 2年2学期中間考査範囲"><span class="pn mono">1-31</span><a class="stretch pt" href="https://www.youtube.com/watch?v=8AyWSIDFZUQ" target="_blank" rel="noopener">剛体にはたらく力の合力</a></article>
+      <article class="p" data-k="1-32 重心 力学 2年2学期中間考査範囲"><span class="pn mono">1-32</span><a class="stretch pt" href="https://www.youtube.com/watch?v=vEcImtX8GGg" target="_blank" rel="noopener">重心</a></article>
+      <article class="p" data-k="1-33 運動量と力積の関係 力学 2年2学期中間考査範囲"><span class="pn mono">1-33</span><a class="stretch pt" href="https://www.youtube.com/watch?v=xfSfxHJrY8I" target="_blank" rel="noopener">運動量と力積の関係</a></article>
+      <article class="p" data-k="1-34 運動量保存則 力学 2年2学期中間考査範囲"><span class="pn mono">1-34</span><a class="stretch pt" href="https://www.youtube.com/watch?v=1jlbK3Vcl_M" target="_blank" rel="noopener">運動量保存則</a></article>
+      <article class="p" data-k="1-35 はね返り係数（反発係数） 力学 2年2学期中間考査範囲"><span class="pn mono">1-35</span><a class="stretch pt" href="https://www.youtube.com/watch?v=SeFlXHXdyu8" target="_blank" rel="noopener">はね返り係数（反発係数）</a></article>
+      <article class="p" data-k="1-36 床や壁との衝突 力学 2年2学期中間考査範囲"><span class="pn mono">1-36</span><a class="stretch pt" href="https://www.youtube.com/watch?v=evgfqNl8mqI" target="_blank" rel="noopener">床や壁との衝突</a></article>
+      <article class="p" data-k="1-37 慣性力 力学 2年2学期期末考査範囲"><span class="pn mono">1-37</span><a class="stretch pt" href="https://www.youtube.com/watch?v=5rJlJnPt6IE" target="_blank" rel="noopener">慣性力</a></article>
+      <article class="p" data-k="1-38 円運動のパラメータ（基本要素） 力学 2年2学期期末考査範囲"><span class="pn mono">1-38</span><a class="stretch pt" href="https://www.youtube.com/watch?v=JH8IQoGmOWY" target="_blank" rel="noopener">円運動のパラメータ（基本要素）</a></article>
+      <article class="p" data-k="1-39 遠心力 力学 2年2学期期末考査範囲"><span class="pn mono">1-39</span><a class="stretch pt" href="https://www.youtube.com/watch?v=yc9PHf9ALOU" target="_blank" rel="noopener">遠心力</a></article>
+      <article class="p" data-k="1-40 単振動とは 力学 2年2学期期末考査範囲"><span class="pn mono">1-40</span><a class="stretch pt" href="https://www.youtube.com/watch?v=8JBJVXmOFsk" target="_blank" rel="noopener">単振動とは</a></article>
+      <article class="p" data-k="1-42 単振動の変位x、速度v、加速度a 力学 2年2学期期末考査範囲"><span class="pn mono">1-42</span><a class="stretch pt" href="https://www.youtube.com/watch?v=nTE9QeJ6p5I" target="_blank" rel="noopener">単振動の変位x、速度v、加速度a</a></article>
+      <article class="p" data-k="1-43 復元力 力学 2年2学期期末考査範囲"><span class="pn mono">1-43</span><a class="stretch pt" href="https://www.youtube.com/watch?v=o4lpTnZzcHc" target="_blank" rel="noopener">復元力</a></article>
+      <article class="p" data-k="1-44 単振動の典型問題①横ばね 力学 2年2学期期末考査範囲"><span class="pn mono">1-44</span><a class="stretch pt" href="https://www.youtube.com/watch?v=dSnZVkdKkG8" target="_blank" rel="noopener">単振動の典型問題①横ばね</a></article>
+      <article class="p" data-k="1-45 単振動の典型問題②縦ばね 力学 2年2学期期末考査範囲"><span class="pn mono">1-45</span><a class="stretch pt" href="https://www.youtube.com/watch?v=-JoulUZoEmE" target="_blank" rel="noopener">単振動の典型問題②縦ばね</a></article>
+      <article class="p" data-k="1-46 単振動の典型問題③単振り子 力学 2年2学期期末考査範囲"><span class="pn mono">1-46</span><a class="stretch pt" href="https://www.youtube.com/watch?v=K7lad3yzFVc" target="_blank" rel="noopener">単振動の典型問題③単振り子</a></article>
+      <article class="p" data-k="1-46.5 単振動の問題演習 力学 "><span class="pn mono">1-46.5</span><a class="stretch pt" href="https://www.youtube.com/watch?v=QXZaDwWnmUk" target="_blank" rel="noopener">単振動の問題演習</a></article>
+      <article class="p" data-k="1-47 ケプラーの法則 力学 2年2学期期末考査範囲"><span class="pn mono">1-47</span><a class="stretch pt" href="https://www.youtube.com/watch?v=8GVgtgoE_ck" target="_blank" rel="noopener">ケプラーの法則</a></article>
+      <article class="p" data-k="1-48 万有引力 力学 2年2学期期末考査範囲"><span class="pn mono">1-48</span><a class="stretch pt" href="https://www.youtube.com/watch?v=cs9TYjXcxio" target="_blank" rel="noopener">万有引力</a></article>
+      <article class="p" data-k="1-49 重力 力学 2年2学期期末考査範囲"><span class="pn mono">1-49</span><a class="stretch pt" href="https://www.youtube.com/watch?v=gj6qRllmxJ0" target="_blank" rel="noopener">重力</a></article>
+      <article class="p" data-k="1-50 万有引力による位置エネルギー 力学 2年2学期期末考査範囲"><span class="pn mono">1-50</span><a class="stretch pt" href="https://www.youtube.com/watch?v=zH0saktsZmM" target="_blank" rel="noopener">万有引力による位置エネルギー</a></article>
+  </div>
+  <p class="none">絞り込みに合う動画がありません。</p>
+</section>
+<section class="fs" id="fs-therm" data-cat="therm" style="--c:var(--therm)">
+  <div class="fh">
+    <span class="fn mono">02</span>
+    <div class="ft"><h2>熱力学</h2><span class="ff mono">25本</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-k="2-1 比熱・熱容量・熱量 熱力学 1年2学期期末考査範囲"><span class="pn mono">2-1</span><a class="stretch pt" href="https://www.youtube.com/watch?v=j5dhdmin3PI" target="_blank" rel="noopener">比熱・熱容量・熱量</a></article>
+      <article class="p" data-k="2-2 熱量保存則 熱力学 1年2学期期末考査範囲"><span class="pn mono">2-2</span><a class="stretch pt" href="https://www.youtube.com/watch?v=24tUcGVkfJY" target="_blank" rel="noopener">熱量保存則</a></article>
+      <article class="p" data-k="2-3 内部エネルギー 熱力学 1年2学期期末考査範囲"><span class="pn mono">2-3</span><a class="stretch pt" href="https://www.youtube.com/watch?v=0qze5evMXtQ" target="_blank" rel="noopener">内部エネルギー</a></article>
+      <article class="p" data-k="2-4 熱力学第一法則 熱力学 1年2学期期末考査範囲"><span class="pn mono">2-4</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ywpk54vlXb8" target="_blank" rel="noopener">熱力学第一法則</a></article>
+      <article class="p" data-k="2-5 熱機関・熱効率 熱力学 1年2学期期末考査範囲"><span class="pn mono">2-5</span><a class="stretch pt" href="https://www.youtube.com/watch?v=TSE986aTtv8" target="_blank" rel="noopener">熱機関・熱効率</a></article>
+      <article class="p" data-k="2-6 熱膨張 熱力学 1年2学期期末考査範囲"><span class="pn mono">2-6</span><a class="stretch pt" href="https://www.youtube.com/watch?v=mh_N6XlPAj0" target="_blank" rel="noopener">熱膨張</a></article>
+      <article class="p" data-k="2-7 不可逆変化 熱力学 1年2学期期末考査範囲"><span class="pn mono">2-7</span><a class="stretch pt" href="https://www.youtube.com/watch?v=6UKalduvk9U" target="_blank" rel="noopener">不可逆変化</a></article>
+      <article class="p" data-k="2-6 熱膨張 熱力学 1年2学期期末考査範囲"><span class="pn mono">2-6</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ouQaaFZ6egc" target="_blank" rel="noopener">熱膨張</a></article>
+      <article class="p" data-k="2-7 不可逆変化 熱力学 1年2学期期末考査範囲"><span class="pn mono">2-7</span><a class="stretch pt" href="https://www.youtube.com/watch?v=vejvv-sAR8M" target="_blank" rel="noopener">不可逆変化</a></article>
+      <article class="p" data-k="2-8 熱とエネルギー 熱力学 1年2学期期末考査範囲"><span class="pn mono">2-8</span><a class="stretch pt" href="https://www.youtube.com/watch?v=kMePjSBqH0A" target="_blank" rel="noopener">熱とエネルギー</a></article>
+      <article class="p" data-k="2-9 ボイル・シャルルの法則 熱力学 1年2学期期末考査範囲"><span class="pn mono">2-9</span><a class="stretch pt" href="https://www.youtube.com/watch?v=WueZ4B2hjZg" target="_blank" rel="noopener">ボイル・シャルルの法則</a></article>
+      <article class="p" data-k="2-10 理想気体の状態方程式 熱力学 1年2学期期末考査範囲"><span class="pn mono">2-10</span><a class="stretch pt" href="https://www.youtube.com/watch?v=SHy4yhfNq_k" target="_blank" rel="noopener">理想気体の状態方程式</a></article>
+      <article class="p" data-k="2-11 1年の復習　熱量保存則 熱力学 2年3学期学年末考査範囲"><span class="pn mono">2-11</span><a class="stretch pt" href="https://www.youtube.com/watch?v=35SQc2dXvNU" target="_blank" rel="noopener">1年の復習　熱量保存則</a></article>
+      <article class="p" data-k="2-12 1年の復習　理想気体の状態方程式 熱力学 2年3学期学年末考査範囲"><span class="pn mono">2-12</span><a class="stretch pt" href="https://www.youtube.com/watch?v=96BKo1caWuY" target="_blank" rel="noopener">1年の復習　理想気体の状態方程式</a></article>
+      <article class="p" data-k="2-13 気体の分子運動論 熱力学 2年3学期学年末考査範囲"><span class="pn mono">2-13</span><a class="stretch pt" href="https://www.youtube.com/watch?v=srxFoJv4r28" target="_blank" rel="noopener">気体の分子運動論</a></article>
+      <article class="p" data-k="2-14 気体の内部エネルギー 熱力学 2年3学期学年末考査範囲"><span class="pn mono">2-14</span><a class="stretch pt" href="https://www.youtube.com/watch?v=apePGAnAyZc" target="_blank" rel="noopener">気体の内部エネルギー</a></article>
+      <article class="p" data-k="2-15 熱力学第一法則 熱力学 2年3学期学年末考査範囲"><span class="pn mono">2-15</span><a class="stretch pt" href="https://www.youtube.com/watch?v=uBNVATlXSj0" target="_blank" rel="noopener">熱力学第一法則</a></article>
+      <article class="p" data-k="2-16 気体の状態変化 熱力学 2年3学期学年末考査範囲"><span class="pn mono">2-16</span><a class="stretch pt" href="https://www.youtube.com/watch?v=4yP-ZeZFNqc" target="_blank" rel="noopener">気体の状態変化</a></article>
+      <article class="p" data-k="2-17 熱効率 熱力学 2年3学期学年末考査範囲"><span class="pn mono">2-17</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ZjXXpx0XjsQ" target="_blank" rel="noopener">熱効率</a></article>
+      <article class="p" data-k="2-18 モル比熱 熱力学 2年3学期学年末考査範囲"><span class="pn mono">2-18</span><a class="stretch pt" href="https://www.youtube.com/watch?v=XWZUGNG1wn0" target="_blank" rel="noopener">モル比熱</a></article>
+      <article class="p" data-k="2-19 内部エネルギーと自由度 熱力学 2年3学期学年末考査範囲"><span class="pn mono">2-19</span><a class="stretch pt" href="https://www.youtube.com/watch?v=UijUUNEmKOI" target="_blank" rel="noopener">内部エネルギーと自由度</a></article>
+      <article class="p" data-k="2-20 よく出る！ 熱力学 2年3学期学年末考査範囲"><span class="pn mono">2-20</span><a class="stretch pt" href="https://www.youtube.com/watch?v=5x09O6-cxP4" target="_blank" rel="noopener">よく出る！</a></article>
+      <article class="p" data-k="2-21 単原子分子理想気体の定圧変化 熱力学 2年3学期学年末考査範囲"><span class="pn mono">2-21</span><a class="stretch pt" href="https://www.youtube.com/watch?v=7k0o0_0PXnU" target="_blank" rel="noopener">単原子分子理想気体の定圧変化</a></article>
+      <article class="p" data-k="2-22 熱気球 熱力学 2年3学期学年末考査範囲"><span class="pn mono">2-22</span><a class="stretch pt" href="https://www.youtube.com/watch?v=6VjD40CpRoc" target="_blank" rel="noopener">熱気球</a></article>
+      <article class="p" data-k="2-23 ポアソンの式の導出 熱力学 2年3学期学年末考査範囲"><span class="pn mono">2-23</span><a class="stretch pt" href="https://www.youtube.com/watch?v=LCLtfupRvJM" target="_blank" rel="noopener">ポアソンの式の導出</a></article>
+  </div>
+  <p class="none">絞り込みに合う動画がありません。</p>
+</section>
+<section class="fs" id="fs-wave" data-cat="wave" style="--c:var(--wave)">
+  <div class="fh">
+    <span class="fn mono">03</span>
+    <div class="ft"><h2>波動</h2><span class="ff mono">35本</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-k="3-1 波動とは 波動 1年3学期学年末考査範囲"><span class="pn mono">3-1</span><a class="stretch pt" href="https://www.youtube.com/watch?v=fcq6tCb-sGM" target="_blank" rel="noopener">波動とは</a></article>
+      <article class="p" data-k="3-2 波の基本要素（パラメータ） 波動 1年3学期学年末考査範囲"><span class="pn mono">3-2</span><a class="stretch pt" href="https://www.youtube.com/watch?v=t_bxLknOiHQ" target="_blank" rel="noopener">波の基本要素（パラメータ）</a></article>
+      <article class="p" data-k="3-3 波の種類 波動 1年3学期学年末考査範囲"><span class="pn mono">3-3</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ypYVtjxywkE" target="_blank" rel="noopener">波の種類</a></article>
+      <article class="p" data-k="3-4 y-x図、y-t図 波動 1年3学期学年末考査範囲"><span class="pn mono">3-4</span><a class="stretch pt" href="https://www.youtube.com/watch?v=0ViLvrkNZoU" target="_blank" rel="noopener">y-x図、y-t図</a></article>
+      <article class="p" data-k="3-5 縦波の横波表示 波動 1年3学期学年末考査範囲"><span class="pn mono">3-5</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ysg1O5XcxZc" target="_blank" rel="noopener">縦波の横波表示</a></article>
+      <article class="p" data-k="3-6 重ね合わせの原理 波動 1年3学期学年末考査範囲"><span class="pn mono">3-6</span><a class="stretch pt" href="https://www.youtube.com/watch?v=3GVg_IQmgNs" target="_blank" rel="noopener">重ね合わせの原理</a></article>
+      <article class="p" data-k="3-7 自由端反射・固定端反射 波動 1年3学期学年末考査範囲"><span class="pn mono">3-7</span><a class="stretch pt" href="https://www.youtube.com/watch?v=5VYZV5__P6Q" target="_blank" rel="noopener">自由端反射・固定端反射</a></article>
+      <article class="p" data-k="3-8 干渉 波動 1年3学期学年末考査範囲"><span class="pn mono">3-8</span><a class="stretch pt" href="https://www.youtube.com/watch?v=SDjt-8FRQm8" target="_blank" rel="noopener">干渉</a></article>
+      <article class="p" data-k="3-9 ホイヘンスの原理 波動 1年3学期学年末考査範囲"><span class="pn mono">3-9</span><a class="stretch pt" href="https://www.youtube.com/watch?v=DBx4qb4S06U" target="_blank" rel="noopener">ホイヘンスの原理</a></article>
+      <article class="p" data-k="3-10 反射 波動 1年3学期学年末考査範囲"><span class="pn mono">3-10</span><a class="stretch pt" href="https://www.youtube.com/watch?v=pgOl9SgxAkA" target="_blank" rel="noopener">反射</a></article>
+      <article class="p" data-k="3-11 屈折 波動 1年3学期学年末考査範囲"><span class="pn mono">3-11</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Fg07U57Vs_0" target="_blank" rel="noopener">屈折</a></article>
+      <article class="p" data-k="3-12 回折 波動 1年3学期学年末考査範囲"><span class="pn mono">3-12</span><a class="stretch pt" href="https://www.youtube.com/watch?v=FFLZEZR60Ws" target="_blank" rel="noopener">回折</a></article>
+      <article class="p" data-k="3-13 音の基本性質 波動 1年3学期学年末考査範囲"><span class="pn mono">3-13</span><a class="stretch pt" href="https://www.youtube.com/watch?v=JSluBf9sK60" target="_blank" rel="noopener">音の基本性質</a></article>
+      <article class="p" data-k="3-14 うなり 波動 1年3学期学年末考査範囲"><span class="pn mono">3-14</span><a class="stretch pt" href="https://www.youtube.com/watch?v=H9y8zFACpxY" target="_blank" rel="noopener">うなり</a></article>
+      <article class="p" data-k="3-15 弦の振動 波動 1年3学期学年末考査範囲"><span class="pn mono">3-15</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ZuU9PIzvvFk" target="_blank" rel="noopener">弦の振動</a></article>
+      <article class="p" data-k="3-16 気柱の共鳴 波動 1年3学期学年末考査範囲"><span class="pn mono">3-16</span><a class="stretch pt" href="https://www.youtube.com/watch?v=bMLxUycXa0g" target="_blank" rel="noopener">気柱の共鳴</a></article>
+      <article class="p" data-k="3-17 ドップラー効果 波動 2年1学期中間考査範囲"><span class="pn mono">3-17</span><a class="stretch pt" href="https://www.youtube.com/watch?v=4OxN6QsDhXM" target="_blank" rel="noopener">ドップラー効果</a></article>
+      <article class="p" data-k="3-18 弧度法 波動 2年1学期中間考査範囲"><span class="pn mono">3-18</span><a class="stretch pt" href="https://www.youtube.com/watch?v=6bGmSEnHd7U" target="_blank" rel="noopener">弧度法</a></article>
+      <article class="p" data-k="3-19 三角関数 波動 2年1学期中間考査範囲"><span class="pn mono">3-19</span><a class="stretch pt" href="https://www.youtube.com/watch?v=r3TZNmH7fZM" target="_blank" rel="noopener">三角関数</a></article>
+      <article class="p" data-k="3-20 正弦波の式 波動 2年1学期中間考査範囲"><span class="pn mono">3-20</span><a class="stretch pt" href="https://www.youtube.com/watch?v=fl9l4Y8u5QY" target="_blank" rel="noopener">正弦波の式</a></article>
+      <article class="p" data-k="3-21 光の基本性質 波動 2年1学期期末考査範囲"><span class="pn mono">3-21</span><a class="stretch pt" href="https://www.youtube.com/watch?v=EWJ6YJ1InIM" target="_blank" rel="noopener">光の基本性質</a></article>
+      <article class="p" data-k="3-22 光の速さ 波動 2年1学期期末考査範囲"><span class="pn mono">3-22</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ltFKLZHdjS4" target="_blank" rel="noopener">光の速さ</a></article>
+      <article class="p" data-k="3-23 屈折率、光の反射・屈折 波動 2年1学期期末考査範囲"><span class="pn mono">3-23</span><a class="stretch pt" href="https://www.youtube.com/watch?v=6YyamfzxcJk" target="_blank" rel="noopener">屈折率、光の反射・屈折</a></article>
+      <article class="p" data-k="3-24 光路長（光学的距離） 波動 2年1学期期末考査範囲"><span class="pn mono">3-24</span><a class="stretch pt" href="https://www.youtube.com/watch?v=2pWZC8ISZ6s" target="_blank" rel="noopener">光路長（光学的距離）</a></article>
+      <article class="p" data-k="3-25 全反射 波動 2年1学期期末考査範囲"><span class="pn mono">3-25</span><a class="stretch pt" href="https://www.youtube.com/watch?v=tlktZ1FrVQs" target="_blank" rel="noopener">全反射</a></article>
+      <article class="p" data-k="3-26 光の分散・散乱・偏光 波動 2年1学期期末考査範囲"><span class="pn mono">3-26</span><a class="stretch pt" href="https://www.youtube.com/watch?v=AUziAiDKHwU" target="_blank" rel="noopener">光の分散・散乱・偏光</a></article>
+      <article class="p" data-k="3-27 レンズ 波動 2年1学期期末考査範囲"><span class="pn mono">3-27</span><a class="stretch pt" href="https://www.youtube.com/watch?v=siSZdoEBE08" target="_blank" rel="noopener">レンズ</a></article>
+      <article class="p" data-k="3-28 凸面鏡・凹面鏡 波動 2年1学期期末考査範囲"><span class="pn mono">3-28</span><a class="stretch pt" href="https://www.youtube.com/watch?v=39H093_5NHY" target="_blank" rel="noopener">凸面鏡・凹面鏡</a></article>
+      <article class="p" data-k="3-29 光の干渉 波動 2年1学期期末考査範囲"><span class="pn mono">3-29</span><a class="stretch pt" href="https://www.youtube.com/watch?v=TZqyCnL5Gb8" target="_blank" rel="noopener">光の干渉</a></article>
+      <article class="p" data-k="3-30 光の干渉①ヤングの実験 波動 2年1学期期末考査範囲"><span class="pn mono">3-30</span><a class="stretch pt" href="https://www.youtube.com/watch?v=WJ8nLq3ZkTc" target="_blank" rel="noopener">光の干渉①ヤングの実験</a></article>
+      <article class="p" data-k="3-31 光の干渉②回折格子 波動 2年1学期期末考査範囲"><span class="pn mono">3-31</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ntwfz9-uxEI" target="_blank" rel="noopener">光の干渉②回折格子</a></article>
+      <article class="p" data-k="3-32 光の干渉③薄膜による光の干渉 波動 2年1学期期末考査範囲"><span class="pn mono">3-32</span><a class="stretch pt" href="https://www.youtube.com/watch?v=yTIonW8nloY" target="_blank" rel="noopener">光の干渉③薄膜による光の干渉</a></article>
+      <article class="p" data-k="3-33 光の干渉④くさび形空気層 波動 2年1学期期末考査範囲"><span class="pn mono">3-33</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Zq6Xm1nGzGU" target="_blank" rel="noopener">光の干渉④くさび形空気層</a></article>
+      <article class="p" data-k="3-34 光の干渉⑤ニュートンリング 波動 2年1学期期末考査範囲"><span class="pn mono">3-34</span><a class="stretch pt" href="https://www.youtube.com/watch?v=RhfrA5LDqlw" target="_blank" rel="noopener">光の干渉⑤ニュートンリング</a></article>
+      <article class="p" data-k="3-35 光の干渉⑥マイケルソン・モーリーの実験 波動 2年1学期期末考査範囲"><span class="pn mono">3-35</span><a class="stretch pt" href="https://www.youtube.com/watch?v=hZ7Nkl55OfI" target="_blank" rel="noopener">光の干渉⑥マイケルソン・モーリーの実験</a></article>
+  </div>
+  <p class="none">絞り込みに合う動画がありません。</p>
+</section>
+<section class="fs" id="fs-electro" data-cat="electro" style="--c:var(--electro)">
+  <div class="fh">
+    <span class="fn mono">04</span>
+    <div class="ft"><h2>電磁気</h2><span class="ff mono">48本</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-k="4-1 原子の構造 電磁気 3年1学期中間考査範囲(物理演習)"><span class="pn mono">4-1</span><a class="stretch pt" href="https://www.youtube.com/watch?v=cKGFeTBbX04" target="_blank" rel="noopener">原子の構造</a></article>
+      <article class="p" data-k="4-2 静電誘導 電磁気 3年1学期中間考査範囲(物理演習)"><span class="pn mono">4-2</span><a class="stretch pt" href="https://www.youtube.com/watch?v=BUo0vawXzdI" target="_blank" rel="noopener">静電誘導</a></article>
+      <article class="p" data-k="4-3 誘電分極 電磁気 3年1学期中間考査範囲(物理演習)"><span class="pn mono">4-3</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Ego2icunWgQ" target="_blank" rel="noopener">誘電分極</a></article>
+      <article class="p" data-k="4-4 クーロンの法則 電磁気 3年1学期中間考査範囲(物理演習)"><span class="pn mono">4-4</span><a class="stretch pt" href="https://www.youtube.com/watch?v=rIQV9rZG6tc" target="_blank" rel="noopener">クーロンの法則</a></article>
+      <article class="p" data-k="4-5 電場（電界） 電磁気 3年1学期中間考査範囲(物理演習)"><span class="pn mono">4-5</span><a class="stretch pt" href="https://www.youtube.com/watch?v=jGlIh4TP4gs" target="_blank" rel="noopener">電場（電界）</a></article>
+      <article class="p" data-k="4-6 電気力線 電磁気 3年1学期中間考査範囲(物理演習)"><span class="pn mono">4-6</span><a class="stretch pt" href="https://www.youtube.com/watch?v=5JGU58eyaxo" target="_blank" rel="noopener">電気力線</a></article>
+      <article class="p" data-k="4-7 ガウスの法則 電磁気 3年1学期中間考査範囲(物理演習)"><span class="pn mono">4-7</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ghNMsr-PqKc" target="_blank" rel="noopener">ガウスの法則</a></article>
+      <article class="p" data-k="4-8 電位と静電気力による位置エネルギー 電磁気 3年1学期中間考査範囲(物理演習)"><span class="pn mono">4-8</span><a class="stretch pt" href="https://www.youtube.com/watch?v=oEaQJ6bLIEg" target="_blank" rel="noopener">電位と静電気力による位置エネルギー</a></article>
+      <article class="p" data-k="4-10 静電気力がする仕事 電磁気 3年1学期中間考査範囲(物理演習)"><span class="pn mono">4-10</span><a class="stretch pt" href="https://www.youtube.com/watch?v=AM4a-Y-SxkA" target="_blank" rel="noopener">静電気力がする仕事</a></article>
+      <article class="p" data-k="4-11 力学的エネルギー保存則 電磁気 3年1学期中間考査範囲(物理演習)"><span class="pn mono">4-11</span><a class="stretch pt" href="https://www.youtube.com/watch?v=MIiROBuZxB0" target="_blank" rel="noopener">力学的エネルギー保存則</a></article>
+      <article class="p" data-k="4-12 一様電場 電磁気 3年1学期中間考査範囲(物理演習)"><span class="pn mono">4-12</span><a class="stretch pt" href="https://www.youtube.com/watch?v=rBNmfolUohk" target="_blank" rel="noopener">一様電場</a></article>
+      <article class="p" data-k="4-13 電場中の導体と誘電体 電磁気 3年1学期中間考査範囲(物理演習)"><span class="pn mono">4-13</span><a class="stretch pt" href="https://www.youtube.com/watch?v=2aFywX4INp8" target="_blank" rel="noopener">電場中の導体と誘電体</a></article>
+      <article class="p" data-k="4-14 コンデンサー 電磁気 3年1学期中間考査範囲(物理演習)"><span class="pn mono">4-14</span><a class="stretch pt" href="https://www.youtube.com/watch?v=dGc6KAtHuQo" target="_blank" rel="noopener">コンデンサー</a></article>
+      <article class="p" data-k="4-15 電気容量（静電容量） 電磁気 3年1学期中間考査範囲(物理演習)"><span class="pn mono">4-15</span><a class="stretch pt" href="https://www.youtube.com/watch?v=NnJwi2BVQLY" target="_blank" rel="noopener">電気容量（静電容量）</a></article>
+      <article class="p" data-k="4-16 誘電体の差し込み 電磁気 3年1学期中間考査範囲(物理演習)"><span class="pn mono">4-16</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ngKFN80nzJg" target="_blank" rel="noopener">誘電体の差し込み</a></article>
+      <article class="p" data-k="4-17 コンデンサーの合成容量 電磁気 3年1学期中間考査範囲(物理演習)"><span class="pn mono">4-17</span><a class="stretch pt" href="https://www.youtube.com/watch?v=POP-aweUmcg" target="_blank" rel="noopener">コンデンサーの合成容量</a></article>
+      <article class="p" data-k="4-18 コンデンサーへの挿入 電磁気 3年1学期中間考査範囲(物理演習)"><span class="pn mono">4-18</span><a class="stretch pt" href="https://www.youtube.com/watch?v=OgMu-LJ97_c" target="_blank" rel="noopener">コンデンサーへの挿入</a></article>
+      <article class="p" data-k="4-19 コンデンサーに蓄えられたエネルギー 電磁気 3年1学期中間考査範囲(物理演習)"><span class="pn mono">4-19</span><a class="stretch pt" href="https://www.youtube.com/watch?v=e8ud1cUxrEg" target="_blank" rel="noopener">コンデンサーに蓄えられたエネルギー</a></article>
+      <article class="p" data-k="4-21 極板間引力 電磁気 3年1学期中間考査範囲(物理演習)"><span class="pn mono">4-21</span><a class="stretch pt" href="https://www.youtube.com/watch?v=DtlP1AEpeYo" target="_blank" rel="noopener">極板間引力</a></article>
+      <article class="p" data-k="4-22 コンデンサーの公式まとめ 電磁気 3年1学期中間考査範囲(物理演習)"><span class="pn mono">4-22</span><a class="stretch pt" href="https://www.youtube.com/watch?v=KAzRCy52pIE" target="_blank" rel="noopener">コンデンサーの公式まとめ</a></article>
+      <article class="p" data-k="4-23 電流 電磁気 "><span class="pn mono">4-23</span><a class="stretch pt" href="https://www.youtube.com/watch?v=LbGpu0snxaI" target="_blank" rel="noopener">電流</a></article>
+      <article class="p" data-k="4-25 抵抗 電磁気 "><span class="pn mono">4-25</span><a class="stretch pt" href="https://www.youtube.com/watch?v=y9li8AosEi4" target="_blank" rel="noopener">抵抗</a></article>
+      <article class="p" data-k="4-26 合成抵抗 電磁気 "><span class="pn mono">4-26</span><a class="stretch pt" href="https://www.youtube.com/watch?v=rfIDFlpA48s" target="_blank" rel="noopener">合成抵抗</a></article>
+      <article class="p" data-k="4-28 電子モデル 電磁気 "><span class="pn mono">4-28</span><a class="stretch pt" href="https://www.youtube.com/watch?v=OR6DlF0dP80" target="_blank" rel="noopener">電子モデル</a></article>
+      <article class="p" data-k="4-29 キルヒホッフの法則 電磁気 "><span class="pn mono">4-29</span><a class="stretch pt" href="https://www.youtube.com/watch?v=zFSMkOE-NNc" target="_blank" rel="noopener">キルヒホッフの法則</a></article>
+      <article class="p" data-k="4-30 コンデンサーを含む直流回路 電磁気 "><span class="pn mono">4-30</span><a class="stretch pt" href="https://www.youtube.com/watch?v=3suF0XcKXCU" target="_blank" rel="noopener">コンデンサーを含む直流回路</a></article>
+      <article class="p" data-k="4-31 電流計と電圧計 電磁気 "><span class="pn mono">4-31</span><a class="stretch pt" href="https://www.youtube.com/watch?v=iZhYR0gP1JQ" target="_blank" rel="noopener">電流計と電圧計</a></article>
+      <article class="p" data-k="4-32 ホイートストンブリッジ 電磁気 "><span class="pn mono">4-32</span><a class="stretch pt" href="https://www.youtube.com/watch?v=xqYkReDgV-M" target="_blank" rel="noopener">ホイートストンブリッジ</a></article>
+      <article class="p" data-k="4-33 非線形抵抗 電磁気 "><span class="pn mono">4-33</span><a class="stretch pt" href="https://www.youtube.com/watch?v=TAlG_iA7Ybo" target="_blank" rel="noopener">非線形抵抗</a></article>
+      <article class="p" data-k="4-34 ダイオード 電磁気 "><span class="pn mono">4-34</span><a class="stretch pt" href="https://www.youtube.com/watch?v=imvKPu6wYlY" target="_blank" rel="noopener">ダイオード</a></article>
+      <article class="p" data-k="4-35 半導体 電磁気 "><span class="pn mono">4-35</span><a class="stretch pt" href="https://www.youtube.com/watch?v=M9Q7AJ7Cxuk" target="_blank" rel="noopener">半導体</a></article>
+      <article class="p" data-k="4-36 電気と磁気の対応関係 電磁気 "><span class="pn mono">4-36</span><a class="stretch pt" href="https://www.youtube.com/watch?v=3bP3rLIWe4Y" target="_blank" rel="noopener">電気と磁気の対応関係</a></article>
+      <article class="p" data-k="4-37 電流のつくる磁場 電磁気 "><span class="pn mono">4-37</span><a class="stretch pt" href="https://www.youtube.com/watch?v=5d1ruGIqyeU" target="_blank" rel="noopener">電流のつくる磁場</a></article>
+      <article class="p" data-k="4-38 外積 電磁気 "><span class="pn mono">4-38</span><a class="stretch pt" href="https://www.youtube.com/watch?v=a51MHWo0BrM" target="_blank" rel="noopener">外積</a></article>
+      <article class="p" data-k="4-39 磁束・磁束密度 電磁気 "><span class="pn mono">4-39</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ZSrLJ8iYsk8" target="_blank" rel="noopener">磁束・磁束密度</a></article>
+      <article class="p" data-k="4-40 ローレンツ力 電磁気 "><span class="pn mono">4-40</span><a class="stretch pt" href="https://www.youtube.com/watch?v=_BSNf6X1qGo" target="_blank" rel="noopener">ローレンツ力</a></article>
+      <article class="p" data-k="4-41 直線電流が受ける力 電磁気 "><span class="pn mono">4-41</span><a class="stretch pt" href="https://www.youtube.com/watch?v=t3GeZWDSzlo" target="_blank" rel="noopener">直線電流が受ける力</a></article>
+      <article class="p" data-k="4-42 平行電流が及ぼし合う力 電磁気 "><span class="pn mono">4-42</span><a class="stretch pt" href="https://www.youtube.com/watch?v=AEEYV5UitHI" target="_blank" rel="noopener">平行電流が及ぼし合う力</a></article>
+      <article class="p" data-k="4-43 ホール効果 電磁気 "><span class="pn mono">4-43</span><a class="stretch pt" href="https://www.youtube.com/watch?v=OQThRB_-4MM" target="_blank" rel="noopener">ホール効果</a></article>
+      <article class="p" data-k="4-44 電磁誘導 電磁気 "><span class="pn mono">4-44</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ouhbhosn7u0" target="_blank" rel="noopener">電磁誘導</a></article>
+      <article class="p" data-k="4-45 磁場を横切る導体棒 電磁気 "><span class="pn mono">4-45</span><a class="stretch pt" href="https://www.youtube.com/watch?v=DxQ7TaHr3so" target="_blank" rel="noopener">磁場を横切る導体棒</a></article>
+      <article class="p" data-k="4-46 渦電流 電磁気 "><span class="pn mono">4-46</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ow3ADM-rPoQ" target="_blank" rel="noopener">渦電流</a></article>
+      <article class="p" data-k="4-47 自己誘導 電磁気 "><span class="pn mono">4-47</span><a class="stretch pt" href="https://www.youtube.com/watch?v=1LXUqx-vQkE" target="_blank" rel="noopener">自己誘導</a></article>
+      <article class="p" data-k="4-48 相互誘導 電磁気 "><span class="pn mono">4-48</span><a class="stretch pt" href="https://www.youtube.com/watch?v=NpFyJ19bJx8" target="_blank" rel="noopener">相互誘導</a></article>
+      <article class="p" data-k="4-49 コイルに蓄えられるエネルギー 電磁気 "><span class="pn mono">4-49</span><a class="stretch pt" href="https://www.youtube.com/watch?v=KTo5VkKPar4" target="_blank" rel="noopener">コイルに蓄えられるエネルギー</a></article>
+      <article class="p" data-k="4-50 交流の発生 電磁気 "><span class="pn mono">4-50</span><a class="stretch pt" href="https://www.youtube.com/watch?v=uLHlf5cYTcw" target="_blank" rel="noopener">交流の発生</a></article>
+      <article class="p" data-k="4-51 交流の接続①（RLCそれぞれの素子） 電磁気 "><span class="pn mono">4-51</span><a class="stretch pt" href="https://www.youtube.com/watch?v=irldD0YoXGo" target="_blank" rel="noopener">交流の接続①（RLCそれぞれの素子）</a></article>
+      <article class="p" data-k="4-52 交流の接続②（RLC直列・RLC並列） 電磁気 "><span class="pn mono">4-52</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ar14aDMKcmg" target="_blank" rel="noopener">交流の接続②（RLC直列・RLC並列）</a></article>
+  </div>
+  <p class="none">絞り込みに合う動画がありません。</p>
+</section>
+<section class="fs" id="fs-atom" data-cat="atom" style="--c:var(--atom)">
+  <div class="fh">
+    <span class="fn mono">05</span>
+    <div class="ft"><h2>原子</h2><span class="ff mono">17本</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-k="5-0 始める前に 原子 "><span class="pn mono">5-0</span><a class="stretch pt" href="https://www.youtube.com/watch?v=gRtFPT0eN6E" target="_blank" rel="noopener">始める前に</a></article>
+      <article class="p" data-k="5-1 電子の発見 原子 "><span class="pn mono">5-1</span><a class="stretch pt" href="https://www.youtube.com/watch?v=UpAOBey6fEE" target="_blank" rel="noopener">電子の発見</a></article>
+      <article class="p" data-k="5-2 ミリカンの実験 原子 "><span class="pn mono">5-2</span><a class="stretch pt" href="https://www.youtube.com/watch?v=CDK6P0mCjx8" target="_blank" rel="noopener">ミリカンの実験</a></article>
+      <article class="p" data-k="5-3 光電効果 原子 "><span class="pn mono">5-3</span><a class="stretch pt" href="https://www.youtube.com/watch?v=nYi080k7n5A" target="_blank" rel="noopener">光電効果</a></article>
+      <article class="p" data-k="5-4 光電効果の実験 原子 "><span class="pn mono">5-4</span><a class="stretch pt" href="https://www.youtube.com/watch?v=xTlf0XtHb5w" target="_blank" rel="noopener">光電効果の実験</a></article>
+      <article class="p" data-k="5-5 X線 原子 "><span class="pn mono">5-5</span><a class="stretch pt" href="https://www.youtube.com/watch?v=meWllSMIj4E" target="_blank" rel="noopener">X線</a></article>
+      <article class="p" data-k="5-6 ブラッグの条件 原子 "><span class="pn mono">5-6</span><a class="stretch pt" href="https://www.youtube.com/watch?v=4VweFEoojck" target="_blank" rel="noopener">ブラッグの条件</a></article>
+      <article class="p" data-k="5-7 粒子の波動性 原子 "><span class="pn mono">5-7</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Y_wavTJ8WuY" target="_blank" rel="noopener">粒子の波動性</a></article>
+      <article class="p" data-k="5-8 コンプトン効果 原子 "><span class="pn mono">5-8</span><a class="stretch pt" href="https://www.youtube.com/watch?v=IWQz9WfV4X0" target="_blank" rel="noopener">コンプトン効果</a></article>
+      <article class="p" data-k="5-9 不確定性原理 原子 "><span class="pn mono">5-9</span><a class="stretch pt" href="https://www.youtube.com/watch?v=lb1_E8rpO7o" target="_blank" rel="noopener">不確定性原理</a></article>
+      <article class="p" data-k="5-10 原子モデル 原子 "><span class="pn mono">5-10</span><a class="stretch pt" href="https://www.youtube.com/watch?v=T1fSBkNMQ-c" target="_blank" rel="noopener">原子モデル</a></article>
+      <article class="p" data-k="5-11 ボーアモデル 原子 "><span class="pn mono">5-11</span><a class="stretch pt" href="https://www.youtube.com/watch?v=GkoA5lVGSuw" target="_blank" rel="noopener">ボーアモデル</a></article>
+      <article class="p" data-k="5-12 放射線 原子 "><span class="pn mono">5-12</span><a class="stretch pt" href="https://www.youtube.com/watch?v=RTVNSFkZQrI" target="_blank" rel="noopener">放射線</a></article>
+      <article class="p" data-k="5-13 半減期 原子 "><span class="pn mono">5-13</span><a class="stretch pt" href="https://www.youtube.com/watch?v=k26MVWZDzsQ" target="_blank" rel="noopener">半減期</a></article>
+      <article class="p" data-k="5-14 質量とエネルギーの等価性 原子 "><span class="pn mono">5-14</span><a class="stretch pt" href="https://www.youtube.com/watch?v=vbBACGE9PE0" target="_blank" rel="noopener">質量とエネルギーの等価性</a></article>
+      <article class="p" data-k="5-15 核エネルギー 原子 "><span class="pn mono">5-15</span><a class="stretch pt" href="https://www.youtube.com/watch?v=slbBiw8nQug" target="_blank" rel="noopener">核エネルギー</a></article>
+      <article class="p" data-k="5-16 核分裂・核融合 原子 "><span class="pn mono">5-16</span><a class="stretch pt" href="https://www.youtube.com/watch?v=anlmYAFFwkE" target="_blank" rel="noopener">核分裂・核融合</a></article>
+  </div>
+  <p class="none">絞り込みに合う動画がありません。</p>
+</section>
+
+  </main>
+
+  <footer>
+    <p>授業動画は高校物理の授業を収録したものです。教科書・問題集の内容そのものを配信するものではありません。</p>
+  </footer>
+</div>
+
+<script>
+  var cat="all", q="";
+  var hits=document.getElementById("hits");
+
+  function apply(){
+    var shown=0;
+    document.querySelectorAll(".fs").forEach(function(sec){
+      var catOK=(cat==="all"||sec.dataset.cat===cat), inSec=0;
+      sec.querySelectorAll(".p").forEach(function(p){
+        var ok=catOK&&(!q||p.dataset.k.toLowerCase().indexOf(q)>=0);
+        p.classList.toggle("hidden",!ok);
+        if(ok) inSec++;
+      });
+      // 節ごと消すのは分野チップで外れたときだけ。検索で0件になった節は
+      // 見出しを残して「ここには無い」と分かるようにする。
+      sec.classList.toggle("hidden",!catOK);
+      sec.querySelector(".none").classList.toggle("show",catOK&&inSec===0);
+      shown+=inSec;
+    });
+    hits.textContent = (q||cat!=="all") ? shown+"本" : "";
+  }
+
+  function wire(sel,set){
+    var els=document.querySelectorAll(sel);
+    els.forEach(function(c){
+      var hit=function(){ els.forEach(function(x){x.classList.remove("active");});
+        c.classList.add("active"); set(c); apply(); };
+      c.addEventListener("click",hit);
+      c.addEventListener("keydown",function(e){
+        if(e.key==="Enter"||e.key===" "){ e.preventDefault(); hit(); }});
+    });
+  }
+  wire(".chip[data-cat]",function(c){ cat=c.dataset.cat; });
+  document.getElementById("q").addEventListener("input",function(e){
+    q=e.target.value.trim().toLowerCase(); apply(); });
+  apply();
+</script>
+<button class="to-top" id="toTop" aria-label="ページの先頭へ戻る">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+<script>
+  // 上へ戻る。600px以上スクロールしたら出す。
+  (function(){
+    var btn = document.getElementById('toTop');
+    if(!btn) return;
+    var ticking = false;
+    function update(){
+      btn.classList.toggle('show', window.scrollY > 600);
+      ticking = false;
+    }
+    window.addEventListener('scroll', function(){
+      if(!ticking){ ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    btn.addEventListener('click', function(){
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+    update();
+  })();
+</script>
+
+</body>
+</html>
