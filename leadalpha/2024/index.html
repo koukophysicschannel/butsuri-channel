@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ▼ アイコン一式。パスは各ページからの相対（配信先が変わっても書き換え不要） -->
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="apple-mobile-web-app-title" content="高校物理解説チャンネル">
+<meta name="theme-color" content="#10151b">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QCLT8H81TT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QCLT8H81TT');
+</script>
+
+<title>『改訂版 リードα物理基礎・物理』 全567問 解説インデックス｜2024年 改訂版</title>
+<meta name="description" content="『改訂版 リードα物理基礎・物理』（2024年11月1日発行）全567問の索引。改訂版の問題番号のまま解説動画に飛べます。動画は2022年11月1日発行の新課程版で撮っているため、番号が変わった問題には新課程版の番号を添えてあります。">
+<link rel="canonical" href="https://koukophysicschannel.github.io/butsuri-channel/leadalpha/2024/">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="高校物理 解説チャンネル">
+<meta property="og:title" content="『改訂版 リードα物理基礎・物理』 全567問 解説インデックス｜2024年 改訂版">
+<meta property="og:description" content="『改訂版 リードα物理基礎・物理』（2024年11月1日発行）全567問の索引。改訂版の問題番号のまま解説動画に飛べます。動画は2022年11月1日発行の新課程版で撮っているため、番号が変わった問題には新課程版の番号を添えてあります。">
+<meta property="og:url" content="https://koukophysicschannel.github.io/butsuri-channel/leadalpha/2024/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://koukophysicschannel.github.io/butsuri-channel/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://koukophysicschannel.github.io/butsuri-channel/og-image.png">
+<meta name="twitter:title" content="『改訂版 リードα物理基礎・物理』 全567問 解説インデックス｜2024年 改訂版">
+<meta name="twitter:description" content="『改訂版 リードα物理基礎・物理』（2024年11月1日発行）全567問の索引。改訂版の問題番号のまま解説動画に飛べます。動画は2022年11月1日発行の新課程版で撮っているため、番号が変わった問題には新課程版の番号を添えてあります。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#10151b; --bg-alt:#171e26; --card:#1a222b; --line:#2a333d;
+    --chalk:#edf2f0; --chalk-dim:#93a1a8; --accent:#f4c95d;
+    --mech:#7fd1a4; --therm:#ef8b6b; --wave:#6fb8e0; --electro:#c497e0; --atom:#5fd3c4;
+    /* 分野に属さない特集①〜③用の中立色。分野色のどれとも読み違えないよう、
+       彩度を持たない灰にしてある（力学の緑と紛らわしいという指摘、2026-09-03）。 */
+    --none:#8d99a3;
+    --sans:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic Medium",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:var(--bg); color:var(--chalk); font-family:var(--sans);
+        line-height:1.7; -webkit-font-smoothing:antialiased; }
+  .mono{ font-family:var(--mono); font-variant-numeric:tabular-nums; }
+  a{ color:inherit; text-decoration:none; }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
+  .grid-bg{ position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+    background-size:42px 42px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,black 40%,transparent 85%); }
+  .wrap{ position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 24px; }
+
+  .crumb{ padding:26px 0 0; font-family:var(--mono); font-size:12.5px; color:var(--chalk-dim); }
+  header.top{ padding:22px 0 26px; }
+  .eyebrow{ display:inline-flex; align-items:center; gap:8px; font-family:var(--mono);
+    font-size:12.5px; letter-spacing:.12em; color:var(--accent);
+    border:1px solid rgba(244,201,93,.35); padding:5px 12px; border-radius:999px; }
+  .eyebrow::before{ content:"\25CF"; font-size:8px; }
+  /* 対応している版。アイブロウの隣に置き、書名とは競合させない。 */
+  .edition{ display:inline-flex; align-items:center; gap:8px; font-family:var(--mono);
+    font-size:12px; color:var(--chalk-dim); border:1px solid var(--line);
+    background:var(--bg-alt); border-radius:999px; padding:5px 12px; }
+  .edition b{ color:var(--chalk); font-weight:700; }
+  .brow{ display:flex; gap:9px; flex-wrap:wrap; align-items:center; margin-bottom:18px; }
+  h1{ font-size:clamp(28px,4.2vw,42px); font-weight:900; margin:0 0 12px; letter-spacing:-.01em;
+      text-wrap:balance; }
+  h1 .sub{ display:block; font-size:.4em; font-weight:500; color:var(--chalk-dim); margin-top:10px; }
+  .lede{ max-width:62ch; color:var(--chalk-dim); font-size:15px; margin:0 0 22px; }
+
+  .summary{ background:var(--bg-alt); border:1px solid var(--line); border-radius:14px;
+    padding:18px 20px; display:flex; flex-direction:column; gap:13px; }
+  .stats{ display:flex; gap:26px; flex-wrap:wrap; align-items:baseline; }
+  .stat{ display:flex; flex-direction:column; gap:2px; }
+  .stat b{ font-family:var(--mono); font-size:25px; font-weight:700; line-height:1.2; }
+  .stat span{ font-size:11.5px; color:var(--chalk-dim); }
+  .stat.s-all b{ color:var(--chalk); } .stat.s-live b{ color:var(--mech); }
+  .stat.s-prep b{ color:var(--chalk-dim); }
+  .bar{ display:flex; height:8px; border-radius:999px; overflow:hidden; background:var(--line); gap:1.5px; }
+  .b-live{ background:var(--mech); } .b-prep{ background:#232c36; }
+
+  /* 版の案内。重問(/juyomon/2026/)の .yearnote と同じ部品。片方だけ直さないこと。 */
+  .yearnote{
+    margin:22px 0 0; border:1px solid rgba(244,201,93,.3);
+    background:linear-gradient(180deg,rgba(244,201,93,.06),rgba(244,201,93,.02));
+    border-radius:14px; padding:18px 20px;
+    display:flex; gap:14px; align-items:flex-start;
+  }
+  .yearnote .ic{ color:var(--accent); flex-shrink:0; margin-top:3px; }
+  .yearnote h2{ font-size:15px; margin:0 0 6px; font-weight:700; }
+  .yearnote p{ margin:0; font-size:13.5px; color:var(--chalk-dim); max-width:66ch; }
+  .yearnote p + p{ margin-top:8px; }
+  .yearnote strong{ color:var(--chalk); font-weight:700; }
+  .yearnote a.more{ color:var(--accent); border-bottom:1px solid rgba(244,201,93,.4); }
+  /* 番号の添え方は、文章で説明するよりカードの実物を見せたほうが早い。 */
+  .yearnote .ex{ display:inline-flex; align-items:center; gap:8px; font-family:var(--mono);
+    font-size:11.5px; color:var(--chalk-dim); border:1px solid var(--line);
+    background:var(--card); border-radius:6px; padding:3px 9px; }
+  .yearnote .ex b{ color:var(--chalk); }
+  .yearnote .ex .s{ color:#6d7883; }
+
+  /* 版の見分け方。大半の人には不要なので既定では畳んでおく。 */
+  .which{ margin:14px 0 0; }
+  .which summary{ font-family:var(--mono); font-size:12.5px; color:var(--accent);
+    cursor:pointer; list-style:none; display:inline-flex; align-items:center; gap:6px; }
+  .which summary::-webkit-details-marker{ display:none; }
+  .which summary::before{ content:"\FF0B"; font-size:11px; }
+  .which[open] summary::before{ content:"\FF0D"; }
+  .which .wbody{ margin-top:10px; border-left:2px solid var(--line); padding:2px 0 2px 14px; }
+  .which p{ margin:0 0 8px; font-size:13px; color:var(--chalk-dim); max-width:64ch; }
+  .which dl{ margin:0; display:grid; grid-template-columns:auto 1fr; gap:6px 14px;
+    font-size:13px; color:var(--chalk-dim); align-items:baseline; }
+  .which dt{ font-family:var(--mono); font-size:11.5px; color:var(--accent); white-space:nowrap; }
+  .which dd{ margin:0; }
+  .which strong{ color:var(--chalk); }
+
+  .panel{ position:sticky; top:0; z-index:6; background:linear-gradient(to bottom,var(--bg) 82%,transparent);
+    padding:16px 0 18px; }
+  .prow{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .prow + .prow{ margin-top:9px; }
+  .chip{ font-family:var(--mono); font-size:12.5px; padding:6px 13px; border-radius:999px;
+    border:1px solid var(--line); background:var(--bg-alt); color:var(--chalk-dim);
+    cursor:pointer; display:flex; align-items:center; gap:7px; transition:all .15s ease; }
+  .chip .dot{ width:7px; height:7px; border-radius:50%; background:currentColor; }
+  .chip[data-cat=mech]{ color:var(--mech); } .chip[data-cat=therm]{ color:var(--therm); }
+  .chip[data-cat=wave]{ color:var(--wave); } .chip[data-cat=electro]{ color:var(--electro); }
+  .chip[data-cat=atom]{ color:var(--atom); }
+  .chip.active{ background:var(--card); border-color:currentColor; box-shadow:0 0 0 1px currentColor inset; }
+  .chip:hover{ border-color:var(--chalk-dim); }
+  .sep{ width:1px; height:20px; background:var(--line); margin:0 3px; }
+  .lbl{ font-family:var(--mono); font-size:11px; color:#6d7883; letter-spacing:.06em; }
+
+  #q{ font-family:var(--mono); font-size:13px; padding:7px 13px; border-radius:999px;
+    border:1px solid var(--line); background:var(--bg-alt); color:var(--chalk); width:300px;
+    max-width:100%; }
+  #q::placeholder{ color:#6d7883; }
+  #hits{ font-family:var(--mono); font-size:11.5px; color:var(--accent); }
+
+  .jump{ display:flex; gap:4px; flex-wrap:wrap; margin-top:9px; }
+  .jc{ font-family:var(--mono); font-size:11.5px; min-width:26px; text-align:center;
+    padding:3px 5px; border-radius:6px; border:1px solid var(--line);
+    color:var(--c); background:color-mix(in srgb,var(--c) 9%,transparent); }
+  .jc:hover{ background:color-mix(in srgb,var(--c) 24%,transparent); }
+  .jc.hidden{ display:none; }
+
+  .ch{ padding:30px 0 6px; border-top:1px solid var(--line); scroll-margin-top:150px; }
+  .ch.hidden{ display:none; }
+  .chh{ display:flex; align-items:center; gap:16px; margin-bottom:14px; }
+  .chn{ font-size:30px; font-weight:700; color:var(--c); line-height:1;
+    background:color-mix(in srgb,var(--c) 13%,transparent); border-radius:12px;
+    padding:10px 14px; flex-shrink:0; }
+  .cht h2{ font-size:19px; margin:0; font-weight:700; }
+  .chf{ font-size:11.5px; color:var(--chalk-dim); }
+
+  .pgrid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:6px; }
+  .p{ position:relative; display:flex; align-items:center; gap:10px;
+    background:var(--card); border:1px solid var(--line); border-radius:9px;
+    padding:8px 11px; transition:border-color .12s ease, background .12s ease; }
+  .p.hidden{ display:none; }
+  .pn{ font-size:12px; font-weight:700; color:var(--c); flex-shrink:0; min-width:38px;
+    text-align:center; background:color-mix(in srgb,var(--c) 14%,transparent);
+    border-radius:6px; padding:3px 5px; }
+  .pt{ font-size:12.5px; line-height:1.45; min-width:0; flex:1; }
+  .stretch::after{ content:""; position:absolute; inset:0; }
+  /* 新課程版の番号。動画のタイトルに出てくるのはこちらなので、番号が
+     変わった問題にだけ添える。同じ番号の問題に出すとただの雑音になる。 */
+  .src{ font-size:10.5px; color:#6d7883; flex-shrink:0; }
+  .pw{ font-size:10.5px; color:#6d7883; flex-shrink:0; letter-spacing:.04em; }
+
+  /* 再生マークは /leadalpha/ と /juyomon/ に揃えてある。記号 U+25B6・分野色・
+     行の右端という3点を崩さないこと。(コメント内では U+ 表記で書く。CSSと同じ
+     形で書くとPythonが8進エスケープとして食う) */
+  .p[data-state=live]::after{ content:"\25B6"; font-family:var(--mono);
+    font-size:11px; color:var(--c); flex-shrink:0; }
+  .p[data-state=live]{ cursor:pointer; }
+  .p[data-state=live]:hover{ border-color:var(--c); background:color-mix(in srgb,var(--c) 7%,transparent); }
+  .p[data-state=prep]{ background:transparent; border-style:dashed; border-color:#212a33; }
+  .p[data-state=prep] .pt{ color:#8e99a2; }
+  .p[data-state=prep] .pn{ color:#6d7883; background:#1c242c; }
+
+  .none{ display:none; border:1.5px dashed var(--line); border-radius:12px; padding:20px;
+    text-align:center; color:var(--chalk-dim); font-size:13px; margin:14px 0 0; }
+  .none.show{ display:block; }
+
+  footer{ padding:36px 0 60px; text-align:center; }
+  footer p{ color:#7d8890; font-size:12px; max-width:60ch; margin:0 auto; }
+  @media (prefers-reduced-motion:reduce){ *{ transition:none !important; } html{ scroll-behavior:auto; } }
+  @media (max-width:560px){ .panel{ position:static; } .pgrid{ grid-template-columns:1fr; } }
+  /* 右下固定の「上へ戻る」。一定量スクロールしたら .show が付いて現れる。
+     GAS/slidekit/webparts.py が出どころ。トップの index.html と同一。 */
+  .to-top{
+    position: fixed; right: 22px; bottom: 22px; z-index: 20;
+    width: 46px; height: 46px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--card); border: 1px solid var(--line); color: var(--chalk-dim);
+    opacity: 0; visibility: hidden; transform: translateY(8px);
+    transition: opacity .2s ease, transform .2s ease, visibility .2s ease,
+                border-color .15s ease, color .15s ease;
+    cursor: pointer;
+  }
+  .to-top.show{ opacity:1; visibility:visible; transform:none; }
+  .to-top:hover{ color: var(--chalk); border-color: var(--chalk-dim); }
+  @media (prefers-reduced-motion: reduce){ .to-top{ transition: opacity .2s ease; } }
+  @media (max-width:560px){ .to-top{ right:14px; bottom:14px; width:42px; height:42px; } }
+
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="wrap">
+  <nav class="crumb mono"><a href="../../">高校物理 解説チャンネル</a> / <a href="../">リードα</a> / 2024年 改訂版</nav>
+
+  <header class="top">
+    <div class="brow">
+      <span class="eyebrow mono">LEAD ALPHA 2024</span>
+      <span class="edition mono">対応する版 <b>2024年11月1日発行 改訂版</b></span>
+    </div>
+    <h1>『改訂版 リードα物理基礎・物理』 全567問
+      <span class="sub">改訂版の問題番号で、1問ずつ解説動画へ</span>
+    </h1>
+    <p class="lede">改訂版の問題番号のまま、解説動画へ飛べます。番号や語句で絞り込めます。対応が取れていない問題と、動画がまだ無い問題は準備中と表示し、押せません。</p>
+    <div class="summary">
+      <div class="stats">
+        <div class="stat s-all"><b>567</b><span>改訂版の収録問題</span></div>
+        <div class="stat s-live"><b>444</b><span>動画にリンク</span></div>
+        <div class="stat s-prep"><b>123</b><span>準備中</span></div>
+        <div class="stat"><b>33</b><span>章・特集</span></div>
+      </div>
+      <div class="bar"><span style="flex:444" class="b-live"></span><span style="flex:123" class="b-prep"></span></div>
+    </div>
+
+    <aside class="yearnote">
+      <span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8.2" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="10" cy="14" r="1" fill="currentColor"/></svg></span>
+      <div>
+        <h2>解説動画は2022年 新課程版のものです</h2>
+        <p>このページは<strong>2024年11月1日発行の改訂版</strong>の番号で並べていますが、解説動画は<strong>2022年11月1日発行の新課程版</strong>を撮影したものです。改訂版で番号が変わった問題には、カードの右端に新課程版の番号を添えてあります。</p>
+        <p><span class="ex"><b>175</b> 斜面上での円運動 <span class="s">&larr;174</span></span> この「&larr;174」が、動画のタイトルに出てくる番号です。</p>
+        <p>新課程版の番号のまま引きたい方は、<a class="more" href="../">新課程版の一覧</a>をお使いください。</p>
+      </div>
+    </aside>
+
+    <details class="which">
+      <summary>お使いの版が分からない方へ</summary>
+      <div class="wbody">
+        <p>お手元の本を開いて、どちらか一方でも当てはまれば判別できます。</p>
+        <dl>
+          <dt>問題見出し</dt>
+          <dd>問題名の右に小さな<strong>■</strong>が付いていれば<strong>新課程版</strong>、付いていなければ<strong>改訂版</strong>です。改訂版では全問から外されました。</dd>
+          <dt>最後の問題番号</dt>
+          <dd>巻末の特集の最終問が<strong>問565</strong>なら新課程版、<strong>問567</strong>なら改訂版です。</dd>
+          <dt>表紙</dt>
+          <dd>書名の頭に「<strong>改訂版</strong>」と付いていれば改訂版です。</dd>
+        </dl>
+      </div>
+    </details>
+  </header>
+
+  <nav class="panel" id="panel" aria-label="絞り込み">
+    <div class="prow">
+      <span class="lbl">分野</span>
+      <div class="chip active" data-cat="all" role="button" tabindex="0">すべて</div>
+      <div class="chip" data-cat="mech" role="button" tabindex="0"><span class="dot"></span>力学</div>
+      <div class="chip" data-cat="therm" role="button" tabindex="0"><span class="dot"></span>熱力学</div>
+      <div class="chip" data-cat="wave" role="button" tabindex="0"><span class="dot"></span>波動</div>
+      <div class="chip" data-cat="electro" role="button" tabindex="0"><span class="dot"></span>電磁気</div>
+      <div class="chip" data-cat="atom" role="button" tabindex="0"><span class="dot"></span>原子</div>
+    </div>
+    <div class="prow">
+      <span class="lbl">状態</span>
+      <div class="chip schip active" data-st="all" role="button" tabindex="0">すべて</div>
+      <div class="chip schip" data-st="live" role="button" tabindex="0">動画あり</div>
+      <div class="chip schip" data-st="prep" role="button" tabindex="0">準備中</div>
+      <span class="sep"></span>
+      <input id="q" type="search" placeholder="番号・語句・章名で絞り込む（例 175／単振動）" aria-label="絞り込み">
+      <span id="hits"></span>
+    </div>
+    <div class="jump" id="jump"><a class="jc" href="#ch1" data-cat="mech" style="--c:var(--mech)">01</a><a class="jc" href="#ch2" data-cat="mech" style="--c:var(--mech)">02</a><a class="jc" href="#ch3" data-cat="mech" style="--c:var(--mech)">03</a><a class="jc" href="#ch4" data-cat="mech" style="--c:var(--mech)">04</a><a class="jc" href="#ch5" data-cat="mech" style="--c:var(--mech)">05</a><a class="jc" href="#ch6" data-cat="mech" style="--c:var(--mech)">06</a><a class="jc" href="#ch7" data-cat="mech" style="--c:var(--mech)">07</a><a class="jc" href="#ch8" data-cat="mech" style="--c:var(--mech)">08</a><a class="jc" href="#ch9" data-cat="mech" style="--c:var(--mech)">09</a><a class="jc" href="#ch10" data-cat="mech" style="--c:var(--mech)">10</a><a class="jc" href="#ch11" data-cat="therm" style="--c:var(--therm)">11</a><a class="jc" href="#ch12" data-cat="therm" style="--c:var(--therm)">12</a><a class="jc" href="#ch13" data-cat="therm" style="--c:var(--therm)">13</a><a class="jc" href="#ch14" data-cat="wave" style="--c:var(--wave)">14</a><a class="jc" href="#ch15" data-cat="wave" style="--c:var(--wave)">15</a><a class="jc" href="#ch16" data-cat="wave" style="--c:var(--wave)">16</a><a class="jc" href="#ch17" data-cat="wave" style="--c:var(--wave)">17</a><a class="jc" href="#ch18" data-cat="wave" style="--c:var(--wave)">18</a><a class="jc" href="#ch19" data-cat="wave" style="--c:var(--wave)">19</a><a class="jc" href="#ch20" data-cat="wave" style="--c:var(--wave)">20</a><a class="jc" href="#ch21" data-cat="electro" style="--c:var(--electro)">21</a><a class="jc" href="#ch22" data-cat="electro" style="--c:var(--electro)">22</a><a class="jc" href="#ch23" data-cat="electro" style="--c:var(--electro)">23</a><a class="jc" href="#ch24" data-cat="electro" style="--c:var(--electro)">24</a><a class="jc" href="#ch25" data-cat="electro" style="--c:var(--electro)">25</a><a class="jc" href="#ch26" data-cat="electro" style="--c:var(--electro)">26</a><a class="jc" href="#ch27" data-cat="electro" style="--c:var(--electro)">27</a><a class="jc" href="#ch28" data-cat="atom" style="--c:var(--atom)">28</a><a class="jc" href="#ch29" data-cat="atom" style="--c:var(--atom)">29</a><a class="jc" href="#ch30" data-cat="atom" style="--c:var(--atom)">30</a><a class="jc" href="#ch特集①" data-cat="none" style="--c:var(--none)">特集①</a><a class="jc" href="#ch特集②" data-cat="none" style="--c:var(--none)">特集②</a><a class="jc" href="#ch特集③" data-cat="none" style="--c:var(--none)">特集③</a></div>
+  </nav>
+
+  <main>
+<section class="ch" id="ch1" data-cat="mech" style="--c:var(--mech)">
+  <div class="chh">
+    <span class="chn mono">01</span>
+    <div class="cht"><h2>運動の表し方</h2><span class="chf mono">力学 ・ 18 / 21 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="1 1 移動時間と距離から平均の速さを求める 力学 第1章 基本問題"><span class="pn mono">1</span><a class="stretch pt" href="https://www.youtube.com/watch?v=OHzTyyNSZS8" target="_blank" rel="noopener">移動時間と距離から平均の速さを求める</a></article>
+      <article class="p" data-state="live" data-k="2 2 x-tグラフから速さと移動距離を読み取る 力学 第1章 基本問題"><span class="pn mono">2</span><a class="stretch pt" href="https://www.youtube.com/watch?v=DQ6k8c3G5_4" target="_blank" rel="noopener">x-tグラフから速さと移動距離を読み取る</a></article>
+      <article class="p" data-state="live" data-k="3 3 平均の速さと瞬間の速さをグラフで求める 力学 第1章 基本問題"><span class="pn mono">3</span><a class="stretch pt" href="https://www.youtube.com/watch?v=K29vwUWKi9I" target="_blank" rel="noopener">平均の速さと瞬間の速さをグラフで求める</a></article>
+      <article class="p" data-state="live" data-k="4 4 川を渡る船の上りと下りの速さを求める 力学 第1章 基本問題"><span class="pn mono">4</span><a class="stretch pt" href="https://www.youtube.com/watch?v=YHU7WCQCoTQ" target="_blank" rel="noopener">川を渡る船の上りと下りの速さを求める</a></article>
+      <article class="p" data-state="live" data-k="5 5 流れに直角に進む船の速度を合成する 力学 第1章 基本問題"><span class="pn mono">5</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ORSjSkJpn0E" target="_blank" rel="noopener">流れに直角に進む船の速度を合成する</a></article>
+      <article class="p" data-state="live" data-k="6 6 船の速度をx成分とy成分に分解する 力学 第1章 基本問題"><span class="pn mono">6</span><a class="stretch pt" href="https://www.youtube.com/watch?v=tQT9KcRiVT4" target="_blank" rel="noopener">船の速度をx成分とy成分に分解する</a></article>
+      <article class="p" data-state="live" data-k="7 7 列車と自動車の相対速度を求める 力学 第1章 基本問題"><span class="pn mono">7</span><a class="stretch pt" href="https://www.youtube.com/watch?v=tTdOks2CW8Y" target="_blank" rel="noopener">列車と自動車の相対速度を求める</a></article>
+      <article class="p" data-state="live" data-k="8 8 南北と東西に進む物体の相対速度を求める 力学 第1章 基本問題"><span class="pn mono">8</span><a class="stretch pt" href="https://www.youtube.com/watch?v=jHg910FecWw" target="_blank" rel="noopener">南北と東西に進む物体の相対速度を求める</a></article>
+      <article class="p" data-state="live" data-k="9 9 電車から見た雨の相対速度を求める 力学 第1章 基本問題"><span class="pn mono">9</span><a class="stretch pt" href="https://www.youtube.com/watch?v=YvezaN5IKok" target="_blank" rel="noopener">電車から見た雨の相対速度を求める</a></article>
+      <article class="p" data-state="live" data-k="10 10 記録テープの打点から平均の速さを求める 力学 第1章 基本問題"><span class="pn mono">10</span><a class="stretch pt" href="https://www.youtube.com/watch?v=SzYDPKRqm0Y" target="_blank" rel="noopener">記録テープの打点から平均の速さを求める</a></article>
+      <article class="p" data-state="live" data-k="11 11 表のデータからv-tグラフと加速度を求める 力学 第1章 基本問題"><span class="pn mono">11</span><a class="stretch pt" href="https://www.youtube.com/watch?v=vPwnDhanI2I" target="_blank" rel="noopener">表のデータからv-tグラフと加速度を求める</a></article>
+      <article class="p" data-state="live" data-k="12 12 平均の加速度の向きと大きさを求める 力学 第1章 基本問題"><span class="pn mono">12</span><a class="stretch pt" href="https://www.youtube.com/watch?v=T2f1xX6EGD0" target="_blank" rel="noopener">平均の加速度の向きと大きさを求める</a></article>
+      <article class="p" data-state="live" data-k="13 13 加速度と移動距離を求めブレーキ後の距離も計算 力学 第1章 基本問題"><span class="pn mono">13</span><a class="stretch pt" href="https://www.youtube.com/watch?v=US5Do4cfIVk" target="_blank" rel="noopener">加速度と移動距離を求めブレーキ後の距離も計算</a></article>
+      <article class="p" data-state="live" data-k="14 14 向きが反転する等加速度運動を解く 力学 第1章 基本問題"><span class="pn mono">14</span><a class="stretch pt" href="https://www.youtube.com/watch?v=pP6JaWWAXhw" target="_blank" rel="noopener">向きが反転する等加速度運動を解く</a></article>
+      <article class="p" data-state="live" data-k="15 15 v-tグラフから加速度と最遠点を求める 力学 第1章 基本問題"><span class="pn mono">15</span><a class="stretch pt" href="https://www.youtube.com/watch?v=7s6HAtuJYsQ" target="_blank" rel="noopener">v-tグラフから加速度と最遠点を求める</a></article>
+      <article class="p" data-state="live" data-k="16 17 a-tグラフから速度と上昇した高さを求める 力学 第1章 基本問題"><span class="pn mono">16</span><a class="stretch pt" href="https://www.youtube.com/watch?v=PIZZuht50aM" target="_blank" rel="noopener">a-tグラフから速度と上昇した高さを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;17</span></article>
+      <article class="p" data-state="prep" data-k="17 18 川を斜めに渡る船の速度をベクトルで分解する 力学 第1章 応用問題" title="一致率0.9未満のため未確定"><span class="pn mono">17</span><span class="pt">川を斜めに渡る船の速度をベクトルで分解する</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="18 20 列車の長さを考えた等加速度運動を文字式で表す 力学 第1章 応用問題" title="一致率0.9未満のため未確定"><span class="pn mono">18</span><span class="pt">列車の長さを考えた等加速度運動を文字式で表す</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="19   力学 第1章 " title="2024年版で新規に入った問題"><span class="pn mono">19</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="live" data-k="20 19 グラフの空所補充で2物体の相対運動を解く 力学 第1章 応用問題"><span class="pn mono">20</span><a class="stretch pt" href="https://www.youtube.com/watch?v=DbPgS0QcC8g" target="_blank" rel="noopener">グラフの空所補充で2物体の相対運動を解く</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;19</span></article>
+      <article class="p" data-state="live" data-k="21 21 追突を避ける2台の車の等加速度運動を解く 力学 第1章 応用問題"><span class="pn mono">21</span><a class="stretch pt" href="https://www.youtube.com/watch?v=jSTjY2gCbYU" target="_blank" rel="noopener">追突を避ける2台の車の等加速度運動を解く</a></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch2" data-cat="mech" style="--c:var(--mech)">
+  <div class="chh">
+    <span class="chn mono">02</span>
+    <div class="cht"><h2>落体の運動</h2><span class="chf mono">力学 ・ 22 / 23 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="22 22 自由落下で着地するまでの高さを求める 力学 第2章 基本問題"><span class="pn mono">22</span><a class="stretch pt" href="https://www.youtube.com/watch?v=DoXb1xL7Cn0" target="_blank" rel="noopener">自由落下で着地するまでの高さを求める</a></article>
+      <article class="p" data-state="live" data-k="23 23 自由落下する小石の速さを求める 力学 第2章 基本問題"><span class="pn mono">23</span><a class="stretch pt" href="https://www.youtube.com/watch?v=6_J-7gBb7Q0" target="_blank" rel="noopener">自由落下する小石の速さを求める</a></article>
+      <article class="p" data-state="live" data-k="24 24 自由落下運動の4種のグラフを選び分ける 力学 第2章 基本問題"><span class="pn mono">24</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Sw2aBxvzkHI" target="_blank" rel="noopener">自由落下運動の4種のグラフを選び分ける</a></article>
+      <article class="p" data-state="live" data-k="25 25 鉛直投げ下ろしで地面到達までの時間を求める 力学 第2章 基本問題"><span class="pn mono">25</span><a class="stretch pt" href="https://www.youtube.com/watch?v=HQ2I7Raq_tg" target="_blank" rel="noopener">鉛直投げ下ろしで地面到達までの時間を求める</a></article>
+      <article class="p" data-state="live" data-k="26 26 降下中の気球から落とした小球の速さを求める 力学 第2章 基本問題"><span class="pn mono">26</span><a class="stretch pt" href="https://www.youtube.com/watch?v=QdIhCJ8tIts" target="_blank" rel="noopener">降下中の気球から落とした小球の速さを求める</a></article>
+      <article class="p" data-state="live" data-k="27 27 鉛直投げ上げで最高点の高さと落下時間を求める 力学 第2章 基本問題"><span class="pn mono">27</span><a class="stretch pt" href="https://www.youtube.com/watch?v=R-PlGTVaXKY" target="_blank" rel="noopener">鉛直投げ上げで最高点の高さと落下時間を求める</a></article>
+      <article class="p" data-state="live" data-k="28 28 上昇中の気球から落とした小球の落下時間を求める 力学 第2章 基本問題"><span class="pn mono">28</span><a class="stretch pt" href="https://www.youtube.com/watch?v=8HhxAZspNhs" target="_blank" rel="noopener">上昇中の気球から落とした小球の落下時間を求める</a></article>
+      <article class="p" data-state="live" data-k="29 29 鉛直投げ上げのv-tグラフから最高点の時刻を読み取る 力学 第2章 基本問題"><span class="pn mono">29</span><a class="stretch pt" href="https://www.youtube.com/watch?v=tXwztd5AZIw" target="_blank" rel="noopener">鉛直投げ上げのv-tグラフから最高点の時刻を読み取る</a></article>
+      <article class="p" data-state="live" data-k="30 30 AとBが同時着地する条件から高さを求める 力学 第2章 基本問題"><span class="pn mono">30</span><a class="stretch pt" href="https://www.youtube.com/watch?v=lVv-09McPGc" target="_blank" rel="noopener">AとBが同時着地する条件から高さを求める</a></article>
+      <article class="p" data-state="live" data-k="31 31 水平投射で着地するまでの高さと距離を求める 力学 第2章 基本問題"><span class="pn mono">31</span><a class="stretch pt" href="https://www.youtube.com/watch?v=5QsTkh2ATOE" target="_blank" rel="noopener">水平投射で着地するまでの高さと距離を求める</a></article>
+      <article class="p" data-state="live" data-k="32 32 崖から水平投射した小石の落下時間を求める 力学 第2章 基本問題"><span class="pn mono">32</span><a class="stretch pt" href="https://www.youtube.com/watch?v=dYMR-OBlYCY" target="_blank" rel="noopener">崖から水平投射した小石の落下時間を求める</a></article>
+      <article class="p" data-state="live" data-k="33 33 水平投射で2倍先に届く初速度の倍率を求める 力学 第2章 基本問題"><span class="pn mono">33</span><a class="stretch pt" href="https://www.youtube.com/watch?v=r2-hCX9fph8" target="_blank" rel="noopener">水平投射で2倍先に届く初速度の倍率を求める</a></article>
+      <article class="p" data-state="live" data-k="34 34 斜方投射で最高点の高さと到達距離を求める 力学 第2章 基本問題"><span class="pn mono">34</span><a class="stretch pt" href="https://www.youtube.com/watch?v=sPs1_M6kN3o" target="_blank" rel="noopener">斜方投射で最高点の高さと到達距離を求める</a></article>
+      <article class="p" data-state="live" data-k="35 35 斜方投射の高さと到達距離を文字式で求める 力学 第2章 基本問題"><span class="pn mono">35</span><a class="stretch pt" href="https://www.youtube.com/watch?v=zpmkdtoUC2Y" target="_blank" rel="noopener">斜方投射の高さと到達距離を文字式で求める</a></article>
+      <article class="p" data-state="live" data-k="36 36 塔上からの斜方投射で最高点の高さを求める 力学 第2章 基本問題"><span class="pn mono">36</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ixywAxf76HI" target="_blank" rel="noopener">塔上からの斜方投射で最高点の高さを求める</a></article>
+      <article class="p" data-state="live" data-k="37 37 走る台車から発射した小球の落下位置を考える 力学 第2章 基本問題"><span class="pn mono">37</span><a class="stretch pt" href="https://www.youtube.com/watch?v=8uYqP2QdDGw" target="_blank" rel="noopener">走る台車から発射した小球の落下位置を考える</a></article>
+      <article class="p" data-state="live" data-k="38 38 投げ上げたAと落下するBが空中衝突する条件を求める 力学 第2章 応用問題"><span class="pn mono">38</span><a class="stretch pt" href="https://www.youtube.com/watch?v=o0JEiYMVCpU" target="_blank" rel="noopener">投げ上げたAと落下するBが空中衝突する条件を求める</a></article>
+      <article class="p" data-state="live" data-k="39 39 飛行機からの投下物資が45°で着地する初速を求める 力学 第2章 応用問題"><span class="pn mono">39</span><a class="stretch pt" href="https://www.youtube.com/watch?v=SOupbYXG7BI" target="_blank" rel="noopener">飛行機からの投下物資が45°で着地する初速を求める</a></article>
+      <article class="p" data-state="live" data-k="40 40 水平投射した小球が45°斜面に落ちる点を求める 力学 第2章 応用問題"><span class="pn mono">40</span><a class="stretch pt" href="https://www.youtube.com/watch?v=9iw1kxdNdSI" target="_blank" rel="noopener">水平投射した小球が45°斜面に落ちる点を求める</a></article>
+      <article class="p" data-state="live" data-k="41 41 斜め下方に投げた小球が水面に達する時間を求める 力学 第2章 応用問題"><span class="pn mono">41</span><a class="stretch pt" href="https://www.youtube.com/watch?v=kyFfPkWTnZU" target="_blank" rel="noopener">斜め下方に投げた小球が水面に達する時間を求める</a></article>
+      <article class="p" data-state="live" data-k="42 42 壁に向けた斜方投射が衝突するまでの条件を求める 力学 第2章 応用問題"><span class="pn mono">42</span><a class="stretch pt" href="https://www.youtube.com/watch?v=wN_kkSSOR5I" target="_blank" rel="noopener">壁に向けた斜方投射が衝突するまでの条件を求める</a></article>
+      <article class="p" data-state="prep" data-k="43 43 自由落下する的に弾丸が命中する条件を求める 力学 第2章 応用問題" title="同じ位置だが内容が別問題"><span class="pn mono">43</span><span class="pt">自由落下する的に弾丸が命中する条件を求める</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="live" data-k="44 44 斜方投射が斜面に垂直衝突する条件を求める 力学 第2章 応用問題"><span class="pn mono">44</span><a class="stretch pt" href="https://www.youtube.com/watch?v=FGwYOdLS384" target="_blank" rel="noopener">斜方投射が斜面に垂直衝突する条件を求める</a></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch3" data-cat="mech" style="--c:var(--mech)">
+  <div class="chh">
+    <span class="chn mono">03</span>
+    <div class="cht"><h2>力のつりあい</h2><span class="chf mono">力学 ・ 18 / 20 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="45 45 方眼と角度で与えられた6力の成分を求める 力学 第3章 基本問題"><span class="pn mono">45</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ZkXfPAWhRuk" target="_blank" rel="noopener">方眼と角度で与えられた6力の成分を求める</a></article>
+      <article class="p" data-state="live" data-k="46 46 原点にはたらく5つの力の合力を求める 力学 第3章 基本問題"><span class="pn mono">46</span><a class="stretch pt" href="https://www.youtube.com/watch?v=IPdBz3ZQ-1U" target="_blank" rel="noopener">原点にはたらく5つの力の合力を求める</a></article>
+      <article class="p" data-state="live" data-k="47 47 7通りの状況で物体にはたらく力を図示する 力学 第3章 基本問題"><span class="pn mono">47</span><a class="stretch pt" href="https://www.youtube.com/watch?v=NhEm_zp2yHA" target="_blank" rel="noopener">7通りの状況で物体にはたらく力を図示する</a></article>
+      <article class="p" data-state="live" data-k="48 48 水平床上の物体が受ける垂直抗力を求める 力学 第3章 基本問題"><span class="pn mono">48</span><a class="stretch pt" href="https://www.youtube.com/watch?v=rIjeqzJ5el8" target="_blank" rel="noopener">水平床上の物体が受ける垂直抗力を求める</a></article>
+      <article class="p" data-state="live" data-k="49 49 ばねの伸びからばね定数と全長を求める 力学 第3章 基本問題"><span class="pn mono">49</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Ad7za7lM8M8" target="_blank" rel="noopener">ばねの伸びからばね定数と全長を求める</a></article>
+      <article class="p" data-state="live" data-k="50 50 おもりを引き上げるばねが台から離れる伸びを求める 力学 第3章 基本問題"><span class="pn mono">50</span><a class="stretch pt" href="https://www.youtube.com/watch?v=LtDKUPbiM84" target="_blank" rel="noopener">おもりを引き上げるばねが台から離れる伸びを求める</a></article>
+      <article class="p" data-state="prep" data-k="51   力学 第3章 " title="2024年版で新規に入った問題"><span class="pn mono">51</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="live" data-k="52 51 天井と水平の糸で支えた小球の張力を求める 力学 第3章 基本問題"><span class="pn mono">52</span><a class="stretch pt" href="https://www.youtube.com/watch?v=4DIEvd3Yd5I" target="_blank" rel="noopener">天井と水平の糸で支えた小球の張力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;51</span></article>
+      <article class="p" data-state="live" data-k="53 52 45°と30°のひもで支える荷物の張力を求める 力学 第3章 基本問題"><span class="pn mono">53</span><a class="stretch pt" href="https://www.youtube.com/watch?v=fjQD7xBaWmE" target="_blank" rel="noopener">45°と30°のひもで支える荷物の張力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;52</span></article>
+      <article class="p" data-state="live" data-k="54 53 45°斜面上の物体を引く糸の張力を求める 力学 第3章 基本問題"><span class="pn mono">54</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Hm9E_9draZQ" target="_blank" rel="noopener">45°斜面上の物体を引く糸の張力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;53</span></article>
+      <article class="p" data-state="live" data-k="55 54 30°斜面上で力の向きを変えたときの大きさを求める 力学 第3章 基本問題"><span class="pn mono">55</span><a class="stretch pt" href="https://www.youtube.com/watch?v=OWI7Bkdtaq0" target="_blank" rel="noopener">30°斜面上で力の向きを変えたときの大きさを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;54</span></article>
+      <article class="p" data-state="live" data-k="56 55 定滑車で3物体をつるす糸の張力を求める 力学 第3章 基本問題"><span class="pn mono">56</span><a class="stretch pt" href="https://www.youtube.com/watch?v=C3E48C59Kjc" target="_blank" rel="noopener">定滑車で3物体をつるす糸の張力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;55</span></article>
+      <article class="p" data-state="prep" data-k="57 56 動滑車でAとBが静止する糸の張力を求める 力学 第3章 基本問題" title="一致率0.9未満のため未確定"><span class="pn mono">57</span><span class="pt">動滑車でAとBが静止する糸の張力を求める</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="live" data-k="58 58 机上の荷物にはたらく作用反作用の力を挙げる 力学 第3章 基本問題"><span class="pn mono">58</span><a class="stretch pt" href="https://www.youtube.com/watch?v=IDnZGDiQTSw" target="_blank" rel="noopener">机上の荷物にはたらく作用反作用の力を挙げる</a></article>
+      <article class="p" data-state="live" data-k="59 59 同じばねの伸びを作用反作用の観点で比較する 力学 第3章 基本問題"><span class="pn mono">59</span><a class="stretch pt" href="https://www.youtube.com/watch?v=B8_KEqklNp8" target="_blank" rel="noopener">同じばねの伸びを作用反作用の観点で比較する</a></article>
+      <article class="p" data-state="live" data-k="60 60 ばね2本の並列・直列接続の伸びを求める 力学 第3章 基本問題"><span class="pn mono">60</span><a class="stretch pt" href="https://www.youtube.com/watch?v=6lJJBWBn410" target="_blank" rel="noopener">ばね2本の並列・直列接続の伸びを求める</a></article>
+      <article class="p" data-state="live" data-k="61 61 45°と30°の糸でつるす2小球の張力比を求める 力学 第3章 応用問題"><span class="pn mono">61</span><a class="stretch pt" href="https://www.youtube.com/watch?v=w88arjGBD6w" target="_blank" rel="noopener">45°と30°の糸でつるす2小球の張力比を求める</a></article>
+      <article class="p" data-state="live" data-k="62 62 板の上でひもを引く人の張力と抗力を求める 力学 第3章 応用問題"><span class="pn mono">62</span><a class="stretch pt" href="https://www.youtube.com/watch?v=6SoartgheT8" target="_blank" rel="noopener">板の上でひもを引く人の張力と抗力を求める</a></article>
+      <article class="p" data-state="live" data-k="63 63 2斜面をばねと糸でつないだ伸びを求める 力学 第3章 応用問題"><span class="pn mono">63</span><a class="stretch pt" href="https://www.youtube.com/watch?v=8jCky5OZrpE" target="_blank" rel="noopener">2斜面をばねと糸でつないだ伸びを求める</a></article>
+      <article class="p" data-state="live" data-k="64 64 複数のばねでつり下げた小球の全長を求める 力学 第3章 応用問題"><span class="pn mono">64</span><a class="stretch pt" href="https://www.youtube.com/watch?v=5n2Hran77zo" target="_blank" rel="noopener">複数のばねでつり下げた小球の全長を求める</a></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch4" data-cat="mech" style="--c:var(--mech)">
+  <div class="chh">
+    <span class="chn mono">04</span>
+    <div class="cht"><h2>運動の法則</h2><span class="chf mono">力学 ・ 27 / 29 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="65 65 速さの変化から物体にはたらく力を求める 力学 第4章 基本問題"><span class="pn mono">65</span><a class="stretch pt" href="https://www.youtube.com/watch?v=8SmdbIT2HSc" target="_blank" rel="noopener">速さの変化から物体にはたらく力を求める</a></article>
+      <article class="p" data-state="live" data-k="66 66 地球上と月面上での物体の重さを求める 力学 第4章 基本問題"><span class="pn mono">66</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Sg8TF1RLXjg" target="_blank" rel="noopener">地球上と月面上での物体の重さを求める</a></article>
+      <article class="p" data-state="live" data-k="67 67 逆向きの2力を受ける物体の加速度を求める 力学 第4章 基本問題"><span class="pn mono">67</span><a class="stretch pt" href="https://www.youtube.com/watch?v=cB_2j8ykKoU" target="_blank" rel="noopener">逆向きの2力を受ける物体の加速度を求める</a></article>
+      <article class="p" data-state="live" data-k="68 68 鉛直に引く力から物体の加速度を求める 力学 第4章 基本問題"><span class="pn mono">68</span><a class="stretch pt" href="https://www.youtube.com/watch?v=k4U_pRhW7XI" target="_blank" rel="noopener">鉛直に引く力から物体の加速度を求める</a></article>
+      <article class="p" data-state="live" data-k="69 69 板上の物体を加速度aで動かす力を求める 力学 第4章 基本問題"><span class="pn mono">69</span><a class="stretch pt" href="https://www.youtube.com/watch?v=HTePJbLE4q4" target="_blank" rel="noopener">板上の物体を加速度aで動かす力を求める</a></article>
+      <article class="p" data-state="live" data-k="70 70 エレベーター内で人が床に及ぼす力を求める 力学 第4章 基本問題"><span class="pn mono">70</span><a class="stretch pt" href="https://www.youtube.com/watch?v=fJHVWUsN9bE" target="_blank" rel="noopener">エレベーター内で人が床に及ぼす力を求める</a></article>
+      <article class="p" data-state="live" data-k="71 71 2台車のv-tグラフの傾きから質量比を求める 力学 第4章 基本問題"><span class="pn mono">71</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ZxsoIuWO3oI" target="_blank" rel="noopener">2台車のv-tグラフの傾きから質量比を求める</a></article>
+      <article class="p" data-state="live" data-k="72 72 45°斜面をすべり下りる物体の加速度を求める 力学 第4章 基本問題"><span class="pn mono">72</span><a class="stretch pt" href="https://www.youtube.com/watch?v=9v5rpHZwCFc" target="_blank" rel="noopener">45°斜面をすべり下りる物体の加速度を求める</a></article>
+      <article class="p" data-state="live" data-k="73 73 30°斜面上の物体の加速度と糸の張力を求める 力学 第4章 基本問題"><span class="pn mono">73</span><a class="stretch pt" href="https://www.youtube.com/watch?v=_Lusp72z0Mk" target="_blank" rel="noopener">30°斜面上の物体の加速度と糸の張力を求める</a></article>
+      <article class="p" data-state="live" data-k="74 74 糸でつないだ2物体を引く加速度と張力を求める 力学 第4章 基本問題"><span class="pn mono">74</span><a class="stretch pt" href="https://www.youtube.com/watch?v=d__Z4f1kiTQ" target="_blank" rel="noopener">糸でつないだ2物体を引く加速度と張力を求める</a></article>
+      <article class="p" data-state="live" data-k="75 75 2物体を引き上げ糸が切れない力の範囲を求める 力学 第4章 基本問題"><span class="pn mono">75</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Q3_u6uHDpbw" target="_blank" rel="noopener">2物体を引き上げ糸が切れない力の範囲を求める</a></article>
+      <article class="p" data-state="live" data-k="76 76 氷上で押し合う子どもと大人の加速度を求める 力学 第4章 基本問題"><span class="pn mono">76</span><a class="stretch pt" href="https://www.youtube.com/watch?v=a9y_4mYUopc" target="_blank" rel="noopener">氷上で押し合う子どもと大人の加速度を求める</a></article>
+      <article class="p" data-state="live" data-k="77 77 滑車でおもりが降下する加速度と張力を求める 力学 第4章 基本問題"><span class="pn mono">77</span><a class="stretch pt" href="https://www.youtube.com/watch?v=7-3SecHyYl0" target="_blank" rel="noopener">滑車でおもりが降下する加速度と張力を求める</a></article>
+      <article class="p" data-state="live" data-k="78 78 物体がすべり出す条件から摩擦係数を求める 力学 第4章 基本問題"><span class="pn mono">78</span><a class="stretch pt" href="https://www.youtube.com/watch?v=hVatzunhwB0" target="_blank" rel="noopener">物体がすべり出す条件から摩擦係数を求める</a></article>
+      <article class="p" data-state="live" data-k="79 79 30°斜面上の物体が動き出す直前の力を求める 力学 第4章 基本問題"><span class="pn mono">79</span><a class="stretch pt" href="https://www.youtube.com/watch?v=nsFZP09KHFw" target="_blank" rel="noopener">30°斜面上の物体が動き出す直前の力を求める</a></article>
+      <article class="p" data-state="live" data-k="80 80 糸を離した後の物体の加速度の変化を求める 力学 第4章 基本問題"><span class="pn mono">80</span><a class="stretch pt" href="https://www.youtube.com/watch?v=H6dv9TrWfwY" target="_blank" rel="noopener">糸を離した後の物体の加速度の変化を求める</a></article>
+      <article class="p" data-state="live" data-k="81 81 あらい斜面をすべり下りる加速度を文字式で求める 力学 第4章 基本問題"><span class="pn mono">81</span><a class="stretch pt" href="https://www.youtube.com/watch?v=e6R_lZMPO80" target="_blank" rel="noopener">あらい斜面をすべり下りる加速度を文字式で求める</a></article>
+      <article class="p" data-state="live" data-k="82 82 斜面上を一定速度で引く糸の張力を求める 力学 第4章 基本問題"><span class="pn mono">82</span><a class="stretch pt" href="https://www.youtube.com/watch?v=z83JYXIxLto" target="_blank" rel="noopener">斜面上を一定速度で引く糸の張力を求める</a></article>
+      <article class="p" data-state="live" data-k="83 83 水中の円柱が受ける上下の圧力差を求める 力学 第4章 基本問題"><span class="pn mono">83</span><a class="stretch pt" href="https://www.youtube.com/watch?v=RCqeaZt6s58" target="_blank" rel="noopener">水中の円柱が受ける上下の圧力差を求める</a></article>
+      <article class="p" data-state="live" data-k="84 84 U字管の水と油の液面差から密度を求める 力学 第4章 基本問題"><span class="pn mono">84</span><a class="stretch pt" href="https://www.youtube.com/watch?v=bdrge5flSpc" target="_blank" rel="noopener">U字管の水と油の液面差から密度を求める</a></article>
+      <article class="p" data-state="live" data-k="85 85 水に浮く物体の密度と沈める力を求める 力学 第4章 基本問題"><span class="pn mono">85</span><a class="stretch pt" href="https://www.youtube.com/watch?v=1XHasqDbffQ" target="_blank" rel="noopener">水に浮く物体の密度と沈める力を求める</a></article>
+      <article class="p" data-state="live" data-k="86 86 液体に沈めた物体の浮力とばねの伸びを求める 力学 第4章 基本問題"><span class="pn mono">86</span><a class="stretch pt" href="https://www.youtube.com/watch?v=6jToFTS0c4Y" target="_blank" rel="noopener">液体に沈めた物体の浮力とばねの伸びを求める</a></article>
+      <article class="p" data-state="live" data-k="87 87 空気抵抗を受けて落下する終端速度を求める 力学 第4章 基本問題"><span class="pn mono">87</span><a class="stretch pt" href="https://www.youtube.com/watch?v=sKf68ffWQLU" target="_blank" rel="noopener">空気抵抗を受けて落下する終端速度を求める</a></article>
+      <article class="p" data-state="live" data-k="88 88 重ねた2物体がすべり出す力の条件を求める 力学 第4章 応用問題"><span class="pn mono">88</span><a class="stretch pt" href="https://www.youtube.com/watch?v=UfIHG-b0578" target="_blank" rel="noopener">重ねた2物体がすべり出す力の条件を求める</a></article>
+      <article class="p" data-state="live" data-k="89 89 小物体と板がそれぞれ動くすべり距離を求める 力学 第4章 応用問題"><span class="pn mono">89</span><a class="stretch pt" href="https://www.youtube.com/watch?v=QpcctjEy2VY" target="_blank" rel="noopener">小物体と板がそれぞれ動くすべり距離を求める</a></article>
+      <article class="p" data-state="live" data-k="90 90 斜面上の物体とおもりの加速度を文字式で求める 力学 第4章 応用問題"><span class="pn mono">90</span><a class="stretch pt" href="https://www.youtube.com/watch?v=l2KQ86HvreA" target="_blank" rel="noopener">斜面上の物体とおもりの加速度を文字式で求める</a></article>
+      <article class="p" data-state="live" data-k="91 91 動滑車でつるした2物体の加速度を文字式で求める 力学 第4章 応用問題"><span class="pn mono">91</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ZNqNnjoROeA" target="_blank" rel="noopener">動滑車でつるした2物体の加速度を文字式で求める</a></article>
+      <article class="p" data-state="prep" data-k="92 92 ばねで押し出される2物体が離れる位置を求める 力学 第4章 応用問題" title="同じ位置だが内容が別問題"><span class="pn mono">92</span><span class="pt">ばねで押し出される2物体が離れる位置を求める</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="93 93 液体に沈めたおもりの浮力とはかりの値を求める 力学 第4章 応用問題" title="一致率0.9未満のため未確定"><span class="pn mono">93</span><span class="pt">液体に沈めたおもりの浮力とはかりの値を求める</span><span class="pw mono">準備中</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch5" data-cat="mech" style="--c:var(--mech)">
+  <div class="chh">
+    <span class="chn mono">05</span>
+    <div class="cht"><h2>剛体にはたらく力のつりあい</h2><span class="chf mono">力学 ・ 12 / 13 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="94 94 棒の両端をばねでつり合わせる質量を求める 力学 第5章 基本問題"><span class="pn mono">94</span><a class="stretch pt" href="https://www.youtube.com/watch?v=dsxA39JkBc4" target="_blank" rel="noopener">棒の両端をばねでつり合わせる質量を求める</a></article>
+      <article class="p" data-state="live" data-k="95 95 棒に3通りの向きの力を加え張力を求める 力学 第5章 基本問題"><span class="pn mono">95</span><a class="stretch pt" href="https://www.youtube.com/watch?v=yVXtIeijLqg" target="_blank" rel="noopener">棒に3通りの向きの力を加え張力を求める</a></article>
+      <article class="p" data-state="live" data-k="96 96 棒を壁と糸で支える張力と抗力を求める 力学 第5章 基本問題"><span class="pn mono">96</span><a class="stretch pt" href="https://www.youtube.com/watch?v=-axhFkLZWRU" target="_blank" rel="noopener">棒を壁と糸で支える張力と抗力を求める</a></article>
+      <article class="p" data-state="live" data-k="97 97 斜めに立てかけた棒の垂直抗力と摩擦力を求める 力学 第5章 基本問題"><span class="pn mono">97</span><a class="stretch pt" href="https://www.youtube.com/watch?v=_mz29CbUTQY" target="_blank" rel="noopener">斜めに立てかけた棒の垂直抗力と摩擦力を求める</a></article>
+      <article class="p" data-state="live" data-k="98 98 剛体にはたらく複数の力の合力を作図で求める 力学 第5章 基本問題"><span class="pn mono">98</span><a class="stretch pt" href="https://www.youtube.com/watch?v=zKRO1OPKj5E" target="_blank" rel="noopener">剛体にはたらく複数の力の合力を作図で求める</a></article>
+      <article class="p" data-state="live" data-k="99 100 L字形に曲げた針金の重心座標を求める 力学 第5章 基本問題"><span class="pn mono">99</span><a class="stretch pt" href="https://www.youtube.com/watch?v=mtPOjSqrm8I" target="_blank" rel="noopener">L字形に曲げた針金の重心座標を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;100</span></article>
+      <article class="p" data-state="prep" data-k="100 99 棒の両端に異なる質量がある系の重心を求める 力学 第5章 基本問題" title="同じ位置だが内容が別問題"><span class="pn mono">100</span><span class="pt">棒の両端に異なる質量がある系の重心を求める</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="live" data-k="101 101 正方形を切り抜いた板の重心位置を求める 力学 第5章 基本問題"><span class="pn mono">101</span><a class="stretch pt" href="https://www.youtube.com/watch?v=fQrqfVHkIqk" target="_blank" rel="noopener">正方形を切り抜いた板の重心位置を求める</a></article>
+      <article class="p" data-state="live" data-k="102 102 棒を持ち上げる力の違いから重心を求める 力学 第5章 基本問題"><span class="pn mono">102</span><a class="stretch pt" href="https://www.youtube.com/watch?v=VR8GRQb2-zM" target="_blank" rel="noopener">棒を持ち上げる力の違いから重心を求める</a></article>
+      <article class="p" data-state="live" data-k="103 103 直方体が傾かずすべる力と高さの条件を求める 力学 第5章 基本問題"><span class="pn mono">103</span><a class="stretch pt" href="https://www.youtube.com/watch?v=mj_zpBiiHJ8" target="_blank" rel="noopener">直方体が傾かずすべる力と高さの条件を求める</a></article>
+      <article class="p" data-state="live" data-k="104 104 支柱で支えた板がひっくり返る位置を求める 力学 第5章 応用問題"><span class="pn mono">104</span><a class="stretch pt" href="https://www.youtube.com/watch?v=M0CJex_WJVY" target="_blank" rel="noopener">支柱で支えた板がひっくり返る位置を求める</a></article>
+      <article class="p" data-state="live" data-k="105 105 はしごを登る人がすべり出す位置を求める 力学 第5章 応用問題"><span class="pn mono">105</span><a class="stretch pt" href="https://www.youtube.com/watch?v=MxPU5miD_sE" target="_blank" rel="noopener">はしごを登る人がすべり出す位置を求める</a></article>
+      <article class="p" data-state="live" data-k="106 106 斜面上の直方体が傾く条件をtanθで求める 力学 第5章 応用問題"><span class="pn mono">106</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ybjMtIWyMUo" target="_blank" rel="noopener">斜面上の直方体が傾く条件をtanθで求める</a></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch6" data-cat="mech" style="--c:var(--mech)">
+  <div class="chh">
+    <span class="chn mono">06</span>
+    <div class="cht"><h2>仕事と力学的エネルギー</h2><span class="chf mono">力学 ・ 21 / 24 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="107 107 斜め上向きの力・重力・垂直抗力の仕事を求める 力学 第6章 基本問題"><span class="pn mono">107</span><a class="stretch pt" href="https://www.youtube.com/watch?v=FdCGwXNEcM0" target="_blank" rel="noopener">斜め上向きの力・重力・垂直抗力の仕事を求める</a></article>
+      <article class="p" data-state="live" data-k="108 108 斜面と鉛直で物体を引き上げる仕事を比較する 力学 第6章 基本問題"><span class="pn mono">108</span><a class="stretch pt" href="https://www.youtube.com/watch?v=YxFFGQ-Dw5g" target="_blank" rel="noopener">斜面と鉛直で物体を引き上げる仕事を比較する</a></article>
+      <article class="p" data-state="live" data-k="109 109 リフトが荷物を持ち上げる仕事率を求める 力学 第6章 基本問題"><span class="pn mono">109</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Kn8jDoofjno" target="_blank" rel="noopener">リフトが荷物を持ち上げる仕事率を求める</a></article>
+      <article class="p" data-state="live" data-k="110 110 空所補充で車の抵抗力と仕事率を求める 力学 第6章 基本問題"><span class="pn mono">110</span><a class="stretch pt" href="https://www.youtube.com/watch?v=F0KwlDTXuNo" target="_blank" rel="noopener">空所補充で車の抵抗力と仕事率を求める</a></article>
+      <article class="p" data-state="live" data-k="111 111 基準を変えて位置エネルギーの差を求める 力学 第6章 基本問題"><span class="pn mono">111</span><a class="stretch pt" href="https://www.youtube.com/watch?v=cantdRXFvlU" target="_blank" rel="noopener">基準を変えて位置エネルギーの差を求める</a></article>
+      <article class="p" data-state="live" data-k="112 112 なめらかな曲面で面と重力がする仕事を求める 力学 第6章 基本問題"><span class="pn mono">112</span><a class="stretch pt" href="https://www.youtube.com/watch?v=p3XUS79WHGw" target="_blank" rel="noopener">なめらかな曲面で面と重力がする仕事を求める</a></article>
+      <article class="p" data-state="prep" data-k="113 113 ばねを引き伸ばす手がした仕事を文字式で表す 力学 第6章 基本問題" title="同じ位置だが内容が別問題"><span class="pn mono">113</span><span class="pt">ばねを引き伸ばす手がした仕事を文字式で表す</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="live" data-k="114 114 等速運動に仕事を加えた後の速さを求める 力学 第6章 基本問題"><span class="pn mono">114</span><a class="stretch pt" href="https://www.youtube.com/watch?v=jEqVBpTBBXg" target="_blank" rel="noopener">等速運動に仕事を加えた後の速さを求める</a></article>
+      <article class="p" data-state="live" data-k="115 115 F-xグラフから区間ごとの仕事と速さを求める 力学 第6章 基本問題"><span class="pn mono">115</span><a class="stretch pt" href="https://www.youtube.com/watch?v=oEs5sFMn_zk" target="_blank" rel="noopener">F-xグラフから区間ごとの仕事と速さを求める</a></article>
+      <article class="p" data-state="live" data-k="116 116 自由落下する物体のエネルギー変化グラフを選ぶ 力学 第6章 基本問題"><span class="pn mono">116</span><a class="stretch pt" href="https://www.youtube.com/watch?v=5_UdqSlYPfM" target="_blank" rel="noopener">自由落下する物体のエネルギー変化グラフを選ぶ</a></article>
+      <article class="p" data-state="live" data-k="117 117 曲面をのぼる小球の最高点の高さを求める 力学 第6章 基本問題"><span class="pn mono">117</span><a class="stretch pt" href="https://www.youtube.com/watch?v=VuHtOHdoidg" target="_blank" rel="noopener">曲面をのぼる小球の最高点の高さを求める</a></article>
+      <article class="p" data-state="live" data-k="118 118 曲面をすべる小球の速さと最高点を求める 力学 第6章 基本問題"><span class="pn mono">118</span><a class="stretch pt" href="https://www.youtube.com/watch?v=7bSCzhj_ZVI" target="_blank" rel="noopener">曲面をすべる小球の速さと最高点を求める</a></article>
+      <article class="p" data-state="live" data-k="119 119 振り子が最下点を通る速さをg,lで表す 力学 第6章 基本問題"><span class="pn mono">119</span><a class="stretch pt" href="https://www.youtube.com/watch?v=E1tI3NMQNsA" target="_blank" rel="noopener">振り子が最下点を通る速さをg,lで表す</a></article>
+      <article class="p" data-state="prep" data-k="120 120 振り子から水平投射する小球の飛距離を求める 力学 第6章 基本問題" title="一致率0.9未満のため未確定"><span class="pn mono">120</span><span class="pt">振り子から水平投射する小球の飛距離を求める</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="live" data-k="121 121 ばねを放した物体が縮んだときの速さを求める 力学 第6章 基本問題"><span class="pn mono">121</span><a class="stretch pt" href="https://www.youtube.com/watch?v=GW7CWUfE9ZY" target="_blank" rel="noopener">ばねを放した物体が縮んだときの速さを求める</a></article>
+      <article class="p" data-state="live" data-k="122 122 あらい面で動摩擦力がした仕事を求める 力学 第6章 基本問題"><span class="pn mono">122</span><a class="stretch pt" href="https://www.youtube.com/watch?v=sRuR6G-NN3g" target="_blank" rel="noopener">あらい面で動摩擦力がした仕事を求める</a></article>
+      <article class="p" data-state="live" data-k="123 123 床と斜面の経路でばねの最大縮みを求める 力学 第6章 基本問題"><span class="pn mono">123</span><a class="stretch pt" href="https://www.youtube.com/watch?v=24dscK__Cjc" target="_blank" rel="noopener">床と斜面の経路でばねの最大縮みを求める</a></article>
+      <article class="p" data-state="live" data-k="124 124 台を急に外す場合とゆっくり外す場合を比べる 力学 第6章 基本問題"><span class="pn mono">124</span><a class="stretch pt" href="https://www.youtube.com/watch?v=GEuhlrkpevM" target="_blank" rel="noopener">台を急に外す場合とゆっくり外す場合を比べる</a></article>
+      <article class="p" data-state="prep" data-k="125 125 変化する斜め方向の力がした仕事を求める 力学 第6章 応用問題" title="同じ位置だが内容が別問題"><span class="pn mono">125</span><span class="pt">変化する斜め方向の力がした仕事を求める</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="live" data-k="126 126 円弧と斜面を往復する小物体の速さを求める 力学 第6章 応用問題"><span class="pn mono">126</span><a class="stretch pt" href="https://www.youtube.com/watch?v=gy8IduPEUZA" target="_blank" rel="noopener">円弧と斜面を往復する小物体の速さを求める</a></article>
+      <article class="p" data-state="live" data-k="127 127 動滑車で物体を引き下げる距離と仕事を求める 力学 第6章 応用問題"><span class="pn mono">127</span><a class="stretch pt" href="https://www.youtube.com/watch?v=0VCiDHmqGOM" target="_blank" rel="noopener">動滑車で物体を引き下げる距離と仕事を求める</a></article>
+      <article class="p" data-state="live" data-k="128 128 ばねでつながれた2小球が離れる速さを求める 力学 第6章 応用問題"><span class="pn mono">128</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Mb18Sb3b19o" target="_blank" rel="noopener">ばねでつながれた2小球が離れる速さを求める</a></article>
+      <article class="p" data-state="live" data-k="129 129 あらい斜面でばねが再び伸びる条件を求める 力学 第6章 応用問題"><span class="pn mono">129</span><a class="stretch pt" href="https://www.youtube.com/watch?v=pWDvwjYYeA8" target="_blank" rel="noopener">あらい斜面でばねが再び伸びる条件を求める</a></article>
+      <article class="p" data-state="live" data-k="130 130 板と小球が離れる位置と最高到達点を求める 力学 第6章 応用問題"><span class="pn mono">130</span><a class="stretch pt" href="https://www.youtube.com/watch?v=9OEvMJLDANw" target="_blank" rel="noopener">板と小球が離れる位置と最高到達点を求める</a></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch7" data-cat="mech" style="--c:var(--mech)">
+  <div class="chh">
+    <span class="chn mono">07</span>
+    <div class="cht"><h2>運動量の保存</h2><span class="chf mono">力学 ・ 20 / 20 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="131 131 一定の力を加え続けたときの力積を求める 力学 第7章 基本問題"><span class="pn mono">131</span><a class="stretch pt" href="https://www.youtube.com/watch?v=TGt_gC1YfXs" target="_blank" rel="noopener">一定の力を加え続けたときの力積を求める</a></article>
+      <article class="p" data-state="live" data-k="132 132 F-tグラフから力積と平均の力を求める 力学 第7章 基本問題"><span class="pn mono">132</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Ef2gjIVTkdc" target="_blank" rel="noopener">F-tグラフから力積と平均の力を求める</a></article>
+      <article class="p" data-state="live" data-k="133 133 バットで打ち返す力積と平均の力を求める 力学 第7章 基本問題"><span class="pn mono">133</span><a class="stretch pt" href="https://www.youtube.com/watch?v=7EMhcu0U2eA" target="_blank" rel="noopener">バットで打ち返す力積と平均の力を求める</a></article>
+      <article class="p" data-state="live" data-k="134 134 弾丸が木片にめりこみ上がる高さを求める 力学 第7章 基本問題"><span class="pn mono">134</span><a class="stretch pt" href="https://www.youtube.com/watch?v=o9jwBFxSOeU" target="_blank" rel="noopener">弾丸が木片にめりこみ上がる高さを求める</a></article>
+      <article class="p" data-state="live" data-k="135 135 板上の物体が板と等速になる時間を求める 力学 第7章 基本問題"><span class="pn mono">135</span><a class="stretch pt" href="https://www.youtube.com/watch?v=BjDaRtcYg5Q" target="_blank" rel="noopener">板上の物体が板と等速になる時間を求める</a></article>
+      <article class="p" data-state="live" data-k="136 136 台車を押し出す人と台車の速さを求める 力学 第7章 基本問題"><span class="pn mono">136</span><a class="stretch pt" href="https://www.youtube.com/watch?v=GA2mTA4tuqU" target="_blank" rel="noopener">台車を押し出す人と台車の速さを求める</a></article>
+      <article class="p" data-state="live" data-k="137 137 分裂するロケット頭部の速度を求める 力学 第7章 基本問題"><span class="pn mono">137</span><a class="stretch pt" href="https://www.youtube.com/watch?v=YvQUMqUMIIE" target="_blank" rel="noopener">分裂するロケット頭部の速度を求める</a></article>
+      <article class="p" data-state="live" data-k="138 138 板の上を歩く人と重心の位置関係を求める 力学 第7章 基本問題"><span class="pn mono">138</span><a class="stretch pt" href="https://www.youtube.com/watch?v=po64iE0GKYI" target="_blank" rel="noopener">板の上を歩く人と重心の位置関係を求める</a></article>
+      <article class="p" data-state="live" data-k="139 139 平面上で衝突する2小球の速度を求める 力学 第7章 基本問題"><span class="pn mono">139</span><a class="stretch pt" href="https://www.youtube.com/watch?v=K_Gxaa8fZqM" target="_blank" rel="noopener">平面上で衝突する2小球の速度を求める</a></article>
+      <article class="p" data-state="live" data-k="140 140 落下球がはね上がる高さから反発係数を求める 力学 第7章 基本問題"><span class="pn mono">140</span><a class="stretch pt" href="https://www.youtube.com/watch?v=cAwK8YgurDo" target="_blank" rel="noopener">落下球がはね上がる高さから反発係数を求める</a></article>
+      <article class="p" data-state="live" data-k="141 141 一直線上で衝突する2質点の質量を求める 力学 第7章 基本問題"><span class="pn mono">141</span><a class="stretch pt" href="https://www.youtube.com/watch?v=r-L_bs2AQGU" target="_blank" rel="noopener">一直線上で衝突する2質点の質量を求める</a></article>
+      <article class="p" data-state="live" data-k="142 142 小球がはねかえる反発係数の条件を求める 力学 第7章 基本問題"><span class="pn mono">142</span><a class="stretch pt" href="https://www.youtube.com/watch?v=rqX6aDURAOA" target="_blank" rel="noopener">小球がはねかえる反発係数の条件を求める</a></article>
+      <article class="p" data-state="live" data-k="143 143 弾性衝突と非弾性衝突のエネルギーを比較する 力学 第7章 基本問題"><span class="pn mono">143</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ZT90wj3VzpY" target="_blank" rel="noopener">弾性衝突と非弾性衝突のエネルギーを比較する</a></article>
+      <article class="p" data-state="live" data-k="144 144 斜めに床へ衝突する小球の反発係数を求める 力学 第7章 基本問題"><span class="pn mono">144</span><a class="stretch pt" href="https://www.youtube.com/watch?v=eYqQCssfs50" target="_blank" rel="noopener">斜めに床へ衝突する小球の反発係数を求める</a></article>
+      <article class="p" data-state="live" data-k="145 145 壁に斜めに衝突する小球の到達時間を求める 力学 第7章 基本問題"><span class="pn mono">145</span><a class="stretch pt" href="https://www.youtube.com/watch?v=XgSxdKYaNMU" target="_blank" rel="noopener">壁に斜めに衝突する小球の到達時間を求める</a></article>
+      <article class="p" data-state="live" data-k="146 146 弾性衝突後にばねでつながる物体の縮みを求める 力学 第7章 応用問題"><span class="pn mono">146</span><a class="stretch pt" href="https://www.youtube.com/watch?v=cMUw7zpWD2c" target="_blank" rel="noopener">弾性衝突後にばねでつながる物体の縮みを求める</a></article>
+      <article class="p" data-state="live" data-k="147 147 弾丸が木材にくいこむ時間とエネルギーを求める 力学 第7章 応用問題"><span class="pn mono">147</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ctlKB8sI8iE" target="_blank" rel="noopener">弾丸が木材にくいこむ時間とエネルギーを求める</a></article>
+      <article class="p" data-state="live" data-k="148 148 斜面で弾性衝突する小球の速さと角度を求める 力学 第7章 応用問題"><span class="pn mono">148</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ef01MuyX8_0" target="_blank" rel="noopener">斜面で弾性衝突する小球の速さと角度を求める</a></article>
+      <article class="p" data-state="live" data-k="149 149 斜面台上を運動する物体の速度を求める 力学 第7章 応用問題"><span class="pn mono">149</span><a class="stretch pt" href="https://www.youtube.com/watch?v=8cptAfrw28o" target="_blank" rel="noopener">斜面台上を運動する物体の速度を求める</a></article>
+      <article class="p" data-state="live" data-k="150 150 くり返し衝突する小球のはね上がる高さを求める 力学 第7章 応用問題"><span class="pn mono">150</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ulilSYeZZR4" target="_blank" rel="noopener">くり返し衝突する小球のはね上がる高さを求める</a></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch8" data-cat="mech" style="--c:var(--mech)">
+  <div class="chh">
+    <span class="chn mono">08</span>
+    <div class="cht"><h2>等速円運動・慣性力</h2><span class="chf mono">力学 ・ 22 / 26 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="151 151 角速度で回る物体の速さと周期を文字式で表す 力学 第8章 基本問題"><span class="pn mono">151</span><a class="stretch pt" href="https://www.youtube.com/watch?v=7qQz7H5pW8Q" target="_blank" rel="noopener">角速度で回る物体の速さと周期を文字式で表す</a></article>
+      <article class="p" data-state="live" data-k="152 152 一定周期で回転する物体の向心力を求める 力学 第8章 基本問題"><span class="pn mono">152</span><a class="stretch pt" href="https://www.youtube.com/watch?v=v81MYhpjlYs" target="_blank" rel="noopener">一定周期で回転する物体の向心力を求める</a></article>
+      <article class="p" data-state="live" data-k="153 153 5つの場面で向心力の正体を答える 力学 第8章 基本問題"><span class="pn mono">153</span><a class="stretch pt" href="https://www.youtube.com/watch?v=hBBKhrC0vjc" target="_blank" rel="noopener">5つの場面で向心力の正体を答える</a></article>
+      <article class="p" data-state="live" data-k="154 154 半径方向の運動方程式から角速度を求める 力学 第8章 基本問題"><span class="pn mono">154</span><a class="stretch pt" href="https://www.youtube.com/watch?v=0_y5NsaSuTA" target="_blank" rel="noopener">半径方向の運動方程式から角速度を求める</a></article>
+      <article class="p" data-state="live" data-k="155 155 ばねにつけた小球が回る向心力とばね定数を求める 力学 第8章 基本問題"><span class="pn mono">155</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Rl-B5KmZ4sU" target="_blank" rel="noopener">ばねにつけた小球が回る向心力とばね定数を求める</a></article>
+      <article class="p" data-state="live" data-k="156 156 円錐内面をすべる物体の速さと周期を表す 力学 第8章 基本問題"><span class="pn mono">156</span><a class="stretch pt" href="https://www.youtube.com/watch?v=fCoxY4-YlKs" target="_blank" rel="noopener">円錐内面をすべる物体の速さと周期を表す</a></article>
+      <article class="p" data-state="live" data-k="157 157 ターンテーブルで物体が飛び出す角速度を求める 力学 第8章 基本問題"><span class="pn mono">157</span><a class="stretch pt" href="https://www.youtube.com/watch?v=_7bsRfE46mE" target="_blank" rel="noopener">ターンテーブルで物体が飛び出す角速度を求める</a></article>
+      <article class="p" data-state="live" data-k="158 158 エレベーター内のばかりが示す値を求める 力学 第8章 基本問題"><span class="pn mono">158</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ka_3KlA8UPM" target="_blank" rel="noopener">エレベーター内のばかりが示す値を求める</a></article>
+      <article class="p" data-state="live" data-k="159 159 加速するリフト内の小球の糸の張力を求める 力学 第8章 基本問題"><span class="pn mono">159</span><a class="stretch pt" href="https://www.youtube.com/watch?v=5hvCbO7YuYY" target="_blank" rel="noopener">加速するリフト内の小球の糸の張力を求める</a></article>
+      <article class="p" data-state="live" data-k="160 160 電車内外の視点でおもりにはたらく力を図示する 力学 第8章 基本問題"><span class="pn mono">160</span><a class="stretch pt" href="https://www.youtube.com/watch?v=IEEySxq5Cd0" target="_blank" rel="noopener">電車内外の視点でおもりにはたらく力を図示する</a></article>
+      <article class="p" data-state="live" data-k="161 161 斜面上で静止する小物体の加速度を求める 力学 第8章 基本問題"><span class="pn mono">161</span><a class="stretch pt" href="https://www.youtube.com/watch?v=OgbFuwrrVbg" target="_blank" rel="noopener">斜面上で静止する小物体の加速度を求める</a></article>
+      <article class="p" data-state="live" data-k="162 162 カーブを走る運転手が受ける遠心力を求める 力学 第8章 基本問題"><span class="pn mono">162</span><a class="stretch pt" href="https://www.youtube.com/watch?v=WwOFLrMig5s" target="_blank" rel="noopener">カーブを走る運転手が受ける遠心力を求める</a></article>
+      <article class="p" data-state="prep" data-k="163 163 水平面を回る円錐振り子の張力を求める 力学 第8章 基本問題" title="一致率0.9未満のため未確定"><span class="pn mono">163</span><span class="pt">水平面を回る円錐振り子の張力を求める</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="164   力学 第8章 " title="2024年版で新規に入った問題"><span class="pn mono">164</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="live" data-k="165 164 円錐側面をすべる物体の向心力を求める 力学 第8章 基本問題"><span class="pn mono">165</span><a class="stretch pt" href="https://www.youtube.com/watch?v=6SiC0E-SPv0" target="_blank" rel="noopener">円錐側面をすべる物体の向心力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;164</span></article>
+      <article class="p" data-state="live" data-k="166 165 水平に引かれた振り子の糸の張力を求める 力学 第8章 基本問題"><span class="pn mono">166</span><a class="stretch pt" href="https://www.youtube.com/watch?v=0orcFAECZGQ" target="_blank" rel="noopener">水平に引かれた振り子の糸の張力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;165</span></article>
+      <article class="p" data-state="live" data-k="167 166 円筒面を通る小球の速さと垂直抗力を求める 力学 第8章 基本問題"><span class="pn mono">167</span><a class="stretch pt" href="https://www.youtube.com/watch?v=0kYsVvkQm-I" target="_blank" rel="noopener">円筒面を通る小球の速さと垂直抗力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;166</span></article>
+      <article class="p" data-state="live" data-k="168 167 最高点を通る最小速さを糸と棒で比較する 力学 第8章 基本問題"><span class="pn mono">168</span><a class="stretch pt" href="https://www.youtube.com/watch?v=z-j-qlvA5oE" target="_blank" rel="noopener">最高点を通る最小速さを糸と棒で比較する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;167</span></article>
+      <article class="p" data-state="live" data-k="169 168 円筒面を離れる小球の速さと力を求める 力学 第8章 基本問題"><span class="pn mono">169</span><a class="stretch pt" href="https://www.youtube.com/watch?v=tjbUknYNeqc" target="_blank" rel="noopener">円筒面を離れる小球の速さと力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;168</span></article>
+      <article class="p" data-state="live" data-k="170 169 円錐振り子の糸が切れた後の落下距離を求める 力学 第8章 応用問題"><span class="pn mono">170</span><a class="stretch pt" href="https://www.youtube.com/watch?v=0D7ACov0sss" target="_blank" rel="noopener">円錐振り子の糸が切れた後の落下距離を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;169</span></article>
+      <article class="p" data-state="live" data-k="171 171 釘で半径が変わる振り子の張力の変化を求める 力学 第8章 応用問題"><span class="pn mono">171</span><a class="stretch pt" href="https://www.youtube.com/watch?v=CsRcO_B1pbc" target="_blank" rel="noopener">釘で半径が変わる振り子の張力の変化を求める</a></article>
+      <article class="p" data-state="live" data-k="172 172 円板上の物体が留まる角速度の条件を求める 力学 第8章 応用問題"><span class="pn mono">172</span><a class="stretch pt" href="https://www.youtube.com/watch?v=lw4fN6MzXss" target="_blank" rel="noopener">円板上の物体が留まる角速度の条件を求める</a></article>
+      <article class="p" data-state="prep" data-k="173 173 円筒内面を上がる小球が離れる高さを求める 力学 第8章 応用問題" title="一致率0.9未満のため未確定"><span class="pn mono">173</span><span class="pt">円筒内面を上がる小球が離れる高さを求める</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="174   力学 第8章 " title="2024年版で新規に入った問題"><span class="pn mono">174</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="live" data-k="175 174 加速する電車内の円錐振り子の周期を求める 力学 第8章 応用問題"><span class="pn mono">175</span><a class="stretch pt" href="https://www.youtube.com/watch?v=AAwnxhu0a98" target="_blank" rel="noopener">加速する電車内の円錐振り子の周期を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;174</span></article>
+      <article class="p" data-state="live" data-k="176 175 加速する台上の小物体が受ける垂直抗力を求める 力学 第8章 応用問題"><span class="pn mono">176</span><a class="stretch pt" href="https://www.youtube.com/watch?v=4iLwbZctPMY" target="_blank" rel="noopener">加速する台上の小物体が受ける垂直抗力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;175</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch9" data-cat="mech" style="--c:var(--mech)">
+  <div class="chh">
+    <span class="chn mono">09</span>
+    <div class="cht"><h2>単振動</h2><span class="chf mono">力学 ・ 20 / 20 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="177 176 円運動の正射影である単振動を空所補充で表す 力学 第9章 基本問題"><span class="pn mono">177</span><a class="stretch pt" href="https://www.youtube.com/watch?v=6NyMcD9xiVI" target="_blank" rel="noopener">円運動の正射影である単振動を空所補充で表す</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;176</span></article>
+      <article class="p" data-state="live" data-k="178 177 変位の式から速度と加速度の最大値を求める 力学 第9章 基本問題"><span class="pn mono">178</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Ud7YKu3HIBI" target="_blank" rel="noopener">変位の式から速度と加速度の最大値を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;177</span></article>
+      <article class="p" data-state="live" data-k="179 178 変位と加速度の関係から角振動数を求める 力学 第9章 基本問題"><span class="pn mono">179</span><a class="stretch pt" href="https://www.youtube.com/watch?v=lKj5Bxdq8yk" target="_blank" rel="noopener">変位と加速度の関係から角振動数を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;178</span></article>
+      <article class="p" data-state="live" data-k="180 179 往復する小球の変位のグラフと式を求める 力学 第9章 基本問題"><span class="pn mono">180</span><a class="stretch pt" href="https://www.youtube.com/watch?v=T8UzBUpvX0k" target="_blank" rel="noopener">往復する小球の変位のグラフと式を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;179</span></article>
+      <article class="p" data-state="live" data-k="181 180 ばねを伸ばして放した小球の振幅と周期を求める 力学 第9章 基本問題"><span class="pn mono">181</span><a class="stretch pt" href="https://www.youtube.com/watch?v=n9vRuwc_rFk" target="_blank" rel="noopener">ばねを伸ばして放した小球の振幅と周期を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;180</span></article>
+      <article class="p" data-state="live" data-k="182 181 2本のばねにつながれた物体の周期を求める 力学 第9章 基本問題"><span class="pn mono">182</span><a class="stretch pt" href="https://www.youtube.com/watch?v=k07y6GqhER4" target="_blank" rel="noopener">2本のばねにつながれた物体の周期を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;181</span></article>
+      <article class="p" data-state="live" data-k="183 182 鉛直ばね振り子の運動方程式と通過時間を求める 力学 第9章 基本問題"><span class="pn mono">183</span><a class="stretch pt" href="https://www.youtube.com/watch?v=A7ZqNScKzGI" target="_blank" rel="noopener">鉛直ばね振り子の運動方程式と通過時間を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;182</span></article>
+      <article class="p" data-state="live" data-k="184 183 斜面上のばねが最大に伸びる時間を求める 力学 第9章 基本問題"><span class="pn mono">184</span><a class="stretch pt" href="https://www.youtube.com/watch?v=MxD-X6S6ktQ" target="_blank" rel="noopener">斜面上のばねが最大に伸びる時間を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;183</span></article>
+      <article class="p" data-state="live" data-k="185 184 おもりをつるす3通りの方法で振幅を求める 力学 第9章 基本問題"><span class="pn mono">185</span><a class="stretch pt" href="https://www.youtube.com/watch?v=IGE9qd55XPU" target="_blank" rel="noopener">おもりをつるす3通りの方法で振幅を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;184</span></article>
+      <article class="p" data-state="live" data-k="186 185 ばねの直列・並列接続で周期を求める 力学 第9章 基本問題"><span class="pn mono">186</span><a class="stretch pt" href="https://www.youtube.com/watch?v=4kc_ofAbgDw" target="_blank" rel="noopener">ばねの直列・並列接続で周期を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;185</span></article>
+      <article class="p" data-state="live" data-k="187 186 振り子の復元力と周期をg,l,αで表す 力学 第9章 基本問題"><span class="pn mono">187</span><a class="stretch pt" href="https://www.youtube.com/watch?v=YD_a7mPdWrk" target="_blank" rel="noopener">振り子の復元力と周期をg,l,αで表す</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;186</span></article>
+      <article class="p" data-state="live" data-k="188 187 条件を変えたときの周期の倍率を求める 力学 第9章 基本問題"><span class="pn mono">188</span><a class="stretch pt" href="https://www.youtube.com/watch?v=DgTGA-qqVCs" target="_blank" rel="noopener">条件を変えたときの周期の倍率を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;187</span></article>
+      <article class="p" data-state="live" data-k="189 188 加速する列車内で振り子の傾き角を求める 力学 第9章 応用問題"><span class="pn mono">189</span><a class="stretch pt" href="https://www.youtube.com/watch?v=fXYowPjbIso" target="_blank" rel="noopener">加速する列車内で振り子の傾き角を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;188</span></article>
+      <article class="p" data-state="live" data-k="190 189 液体に浮かぶ円柱の単振動の周期を求める 力学 第9章 応用問題"><span class="pn mono">190</span><a class="stretch pt" href="https://www.youtube.com/watch?v=vkOnn-_o410" target="_blank" rel="noopener">液体に浮かぶ円柱の単振動の周期を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;189</span></article>
+      <article class="p" data-state="live" data-k="191 190 ゴムひもでつるした小球の運動を空所補充で表す 力学 第9章 応用問題"><span class="pn mono">191</span><a class="stretch pt" href="https://www.youtube.com/watch?v=gDG4ZZFzbqE" target="_blank" rel="noopener">ゴムひもでつるした小球の運動を空所補充で表す</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;190</span></article>
+      <article class="p" data-state="live" data-k="192 191 糸でつながれた2つのおもりの周期を求める 力学 第9章 応用問題"><span class="pn mono">192</span><a class="stretch pt" href="https://www.youtube.com/watch?v=BNAiWzIymSc" target="_blank" rel="noopener">糸でつながれた2つのおもりの周期を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;191</span></article>
+      <article class="p" data-state="live" data-k="193 192 ばねでつながれた2物体の重心の速さを求める 力学 第9章 応用問題"><span class="pn mono">193</span><a class="stretch pt" href="https://www.youtube.com/watch?v=OxVc9iLED6s" target="_blank" rel="noopener">ばねでつながれた2物体の重心の速さを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;192</span></article>
+      <article class="p" data-state="live" data-k="194 193 板とおもりが離れる位置と速さを求める 力学 第9章 応用問題"><span class="pn mono">194</span><a class="stretch pt" href="https://www.youtube.com/watch?v=tNNTp3dtD2Y" target="_blank" rel="noopener">板とおもりが離れる位置と速さを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;193</span></article>
+      <article class="p" data-state="live" data-k="195 194 重ねた2物体が一体で動く摩擦係数を求める 力学 第9章 応用問題"><span class="pn mono">195</span><a class="stretch pt" href="https://www.youtube.com/watch?v=eRIUtan8HM4" target="_blank" rel="noopener">重ねた2物体が一体で動く摩擦係数を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;194</span></article>
+      <article class="p" data-state="live" data-k="196 195 摩擦面でのばね振り子の減衰振動を求める 力学 第9章 応用問題"><span class="pn mono">196</span><a class="stretch pt" href="https://www.youtube.com/watch?v=n56ZVFbhdQI" target="_blank" rel="noopener">摩擦面でのばね振り子の減衰振動を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;195</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch10" data-cat="mech" style="--c:var(--mech)">
+  <div class="chh">
+    <span class="chn mono">10</span>
+    <div class="cht"><h2>万有引力</h2><span class="chf mono">力学 ・ 15 / 15 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="197 196 ケプラーの法則で面積速度と周期を解く 力学 第10章 基本問題"><span class="pn mono">197</span><a class="stretch pt" href="https://www.youtube.com/watch?v=qTG_PuEhuuM" target="_blank" rel="noopener">ケプラーの法則で面積速度と周期を解く</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;196</span></article>
+      <article class="p" data-state="live" data-k="198 197 万有引力定数から地球の質量を求める 力学 第10章 基本問題"><span class="pn mono">198</span><a class="stretch pt" href="https://www.youtube.com/watch?v=U9hs6aWuVYg" target="_blank" rel="noopener">万有引力定数から地球の質量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;197</span></article>
+      <article class="p" data-state="live" data-k="199 198 地球と月の質量比から月面重力を求める 力学 第10章 基本問題"><span class="pn mono">199</span><a class="stretch pt" href="https://www.youtube.com/watch?v=v-s6JmxR0k4" target="_blank" rel="noopener">地球と月の質量比から月面重力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;198</span></article>
+      <article class="p" data-state="live" data-k="200 199 高度による重力加速度の変化をグラフ化する 力学 第10章 基本問題"><span class="pn mono">200</span><a class="stretch pt" href="https://www.youtube.com/watch?v=rZLH-OaRKC4" target="_blank" rel="noopener">高度による重力加速度の変化をグラフ化する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;199</span></article>
+      <article class="p" data-state="live" data-k="201 200 自転を考慮し北極と赤道の重力を比べる 力学 第10章 基本問題"><span class="pn mono">201</span><a class="stretch pt" href="https://www.youtube.com/watch?v=3oDjgLtmgzw" target="_blank" rel="noopener">自転を考慮し北極と赤道の重力を比べる</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;200</span></article>
+      <article class="p" data-state="live" data-k="202 201 運動方程式から月のケプラー第三法則を導く 力学 第10章 基本問題"><span class="pn mono">202</span><a class="stretch pt" href="https://www.youtube.com/watch?v=fvkxvpviiZM" target="_blank" rel="noopener">運動方程式から月のケプラー第三法則を導く</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;201</span></article>
+      <article class="p" data-state="live" data-k="203 202 静止衛星になる高さの条件を求める 力学 第10章 基本問題"><span class="pn mono">203</span><a class="stretch pt" href="https://www.youtube.com/watch?v=7yKuRgo6ZQA" target="_blank" rel="noopener">静止衛星になる高さの条件を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;202</span></article>
+      <article class="p" data-state="live" data-k="204 203 円軌道上の人工衛星の速さとエネルギーを文字式で表す 力学 第10章 基本問題"><span class="pn mono">204</span><a class="stretch pt" href="https://www.youtube.com/watch?v=WyNFQ3sNN08" target="_blank" rel="noopener">円軌道上の人工衛星の速さとエネルギーを文字式で表す</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;203</span></article>
+      <article class="p" data-state="live" data-k="205 204 地表すれすれを回る人工衛星の速さと脱出エネルギーを求める 力学 第10章 基本問題"><span class="pn mono">205</span><a class="stretch pt" href="https://www.youtube.com/watch?v=brTH0bTt8B8" target="_blank" rel="noopener">地表すれすれを回る人工衛星の速さと脱出エネルギーを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;204</span></article>
+      <article class="p" data-state="live" data-k="206 205 円軌道からだ円軌道に移る人工衛星の速さと周期を求める 力学 第10章 基本問題"><span class="pn mono">206</span><a class="stretch pt" href="https://www.youtube.com/watch?v=sHLzrWc3T5Y" target="_blank" rel="noopener">円軌道からだ円軌道に移る人工衛星の速さと周期を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;205</span></article>
+      <article class="p" data-state="live" data-k="207 206 緯度θでの重力加速度と南北差を求める 力学 第10章 応用問題"><span class="pn mono">207</span><a class="stretch pt" href="https://www.youtube.com/watch?v=KH_0kgM3ebQ" target="_blank" rel="noopener">緯度θでの重力加速度と南北差を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;206</span></article>
+      <article class="p" data-state="live" data-k="208 207 衛星を打ち上げるのに必要なエネルギーを求める 力学 第10章 応用問題"><span class="pn mono">208</span><a class="stretch pt" href="https://www.youtube.com/watch?v=X36ebp6Y6Ls" target="_blank" rel="noopener">衛星を打ち上げるのに必要なエネルギーを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;207</span></article>
+      <article class="p" data-state="live" data-k="209 208 水平投射のだ円軌道と宇宙速度を比較する 力学 第10章 応用問題"><span class="pn mono">209</span><a class="stretch pt" href="https://www.youtube.com/watch?v=0VtdQApod_c" target="_blank" rel="noopener">水平投射のだ円軌道と宇宙速度を比較する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;208</span></article>
+      <article class="p" data-state="live" data-k="210 209 円運動する惑星のケプラー第三法則を導く 力学 第10章 応用問題"><span class="pn mono">210</span><a class="stretch pt" href="https://www.youtube.com/watch?v=C26EEaaHmb4" target="_blank" rel="noopener">円運動する惑星のケプラー第三法則を導く</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;209</span></article>
+      <article class="p" data-state="live" data-k="211 210 地球貫通トンネルでの単振動の周期を求める 力学 第10章 応用問題"><span class="pn mono">211</span><a class="stretch pt" href="https://www.youtube.com/watch?v=-uvibpJ5rSY" target="_blank" rel="noopener">地球貫通トンネルでの単振動の周期を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;210</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch11" data-cat="therm" style="--c:var(--therm)">
+  <div class="chh">
+    <span class="chn mono">11</span>
+    <div class="cht"><h2>熱とエネルギー</h2><span class="chf mono">熱力学 ・ 21 / 21 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="212 211 熱容量の物体に熱を与えた温度上昇を求める 熱力学 第11章 基本問題"><span class="pn mono">212</span><a class="stretch pt" href="https://www.youtube.com/watch?v=XZYQhc_Y9vc" target="_blank" rel="noopener">熱容量の物体に熱を与えた温度上昇を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;211</span></article>
+      <article class="p" data-state="live" data-k="213 212 熱量と温度上昇から金属の比熱を求める 熱力学 第11章 基本問題"><span class="pn mono">213</span><a class="stretch pt" href="https://www.youtube.com/watch?v=aVDllmnzJeo" target="_blank" rel="noopener">熱量と温度上昇から金属の比熱を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;212</span></article>
+      <article class="p" data-state="live" data-k="214 213 湯と水を混ぜた熱平衡温度を求める 熱力学 第11章 基本問題"><span class="pn mono">214</span><a class="stretch pt" href="https://www.youtube.com/watch?v=gYu3SUDDUYk" target="_blank" rel="noopener">湯と水を混ぜた熱平衡温度を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;213</span></article>
+      <article class="p" data-state="live" data-k="215 214 湯を加えた容器の熱容量を熱量保存から求める 熱力学 第11章 基本問題"><span class="pn mono">215</span><a class="stretch pt" href="https://www.youtube.com/watch?v=HAZSYjQRgWo" target="_blank" rel="noopener">湯を加えた容器の熱容量を熱量保存から求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;214</span></article>
+      <article class="p" data-state="live" data-k="216 215 鉄製容器と水を混ぜた熱平衡温度を求める 熱力学 第11章 基本問題"><span class="pn mono">216</span><a class="stretch pt" href="https://www.youtube.com/watch?v=EBgf6A6SoAk" target="_blank" rel="noopener">鉄製容器と水を混ぜた熱平衡温度を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;215</span></article>
+      <article class="p" data-state="live" data-k="217 216 熱量計に入れた金属球の比熱を求める 熱力学 第11章 基本問題"><span class="pn mono">217</span><a class="stretch pt" href="https://www.youtube.com/watch?v=yT6VeB3mkAY" target="_blank" rel="noopener">熱量計に入れた金属球の比熱を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;216</span></article>
+      <article class="p" data-state="live" data-k="218 217 水が水蒸気になる熱量を蒸発熱から求める 熱力学 第11章 基本問題"><span class="pn mono">218</span><a class="stretch pt" href="https://www.youtube.com/watch?v=v5hzjti8Zjo" target="_blank" rel="noopener">水が水蒸気になる熱量を蒸発熱から求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;217</span></article>
+      <article class="p" data-state="live" data-k="219 218 氷が水になる熱量から融解熱を求める 熱力学 第11章 基本問題"><span class="pn mono">219</span><a class="stretch pt" href="https://www.youtube.com/watch?v=zxW1wiNz1xs" target="_blank" rel="noopener">氷が水になる熱量から融解熱を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;218</span></article>
+      <article class="p" data-state="live" data-k="220 219 氷から水蒸気への加熱グラフから熱量を求める 熱力学 第11章 基本問題"><span class="pn mono">220</span><a class="stretch pt" href="https://www.youtube.com/watch?v=W3Y5m8VEVgY" target="_blank" rel="noopener">氷から水蒸気への加熱グラフから熱量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;219</span></article>
+      <article class="p" data-state="live" data-k="221 220 湯と氷を混ぜ水の比熱と氷の質量を求める 熱力学 第11章 基本問題"><span class="pn mono">221</span><a class="stretch pt" href="https://www.youtube.com/watch?v=tDS8yfII0Bg" target="_blank" rel="noopener">湯と氷を混ぜ水の比熱と氷の質量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;220</span></article>
+      <article class="p" data-state="live" data-k="222 221 レールの伸びから鉄の線膨張率を求める 熱力学 第11章 基本問題"><span class="pn mono">222</span><a class="stretch pt" href="https://www.youtube.com/watch?v=eiCq3ulsQtA" target="_blank" rel="noopener">レールの伸びから鉄の線膨張率を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;221</span></article>
+      <article class="p" data-state="live" data-k="223 222 壁に衝突した弾丸の発生熱量を求める 熱力学 第11章 基本問題"><span class="pn mono">223</span><a class="stretch pt" href="https://www.youtube.com/watch?v=JQmume878Gs" target="_blank" rel="noopener">壁に衝突した弾丸の発生熱量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;222</span></article>
+      <article class="p" data-state="live" data-k="224 223 鉛粒を繰り返し落下させた仕事と熱量を比べる 熱力学 第11章 基本問題"><span class="pn mono">224</span><a class="stretch pt" href="https://www.youtube.com/watch?v=H70mz7rjdZo" target="_blank" rel="noopener">鉛粒を繰り返し落下させた仕事と熱量を比べる</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;223</span></article>
+      <article class="p" data-state="live" data-k="225 224 4つの状態変化での内部エネルギーを解く 熱力学 第11章 基本問題"><span class="pn mono">225</span><a class="stretch pt" href="https://www.youtube.com/watch?v=WNAXHqEbDH4" target="_blank" rel="noopener">4つの状態変化での内部エネルギーを解く</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;224</span></article>
+      <article class="p" data-state="live" data-k="226 225 熱効率から熱機関の仕事と放出熱量を求める 熱力学 第11章 基本問題"><span class="pn mono">226</span><a class="stretch pt" href="https://www.youtube.com/watch?v=_A49coWB6pw" target="_blank" rel="noopener">熱効率から熱機関の仕事と放出熱量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;225</span></article>
+      <article class="p" data-state="live" data-k="227 226 熱効率からディーゼル機関の重油量を求める 熱力学 第11章 基本問題"><span class="pn mono">227</span><a class="stretch pt" href="https://www.youtube.com/watch?v=WnJHoxWyAjU" target="_blank" rel="noopener">熱効率からディーゼル機関の重油量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;226</span></article>
+      <article class="p" data-state="live" data-k="228 227 線膨張率の違う定規とレールの長さを求める 熱力学 第11章 応用問題"><span class="pn mono">228</span><a class="stretch pt" href="https://www.youtube.com/watch?v=x803UmYtfn0" target="_blank" rel="noopener">線膨張率の違う定規とレールの長さを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;227</span></article>
+      <article class="p" data-state="live" data-k="229 228 ヒーターとステンレス球の実験で比熱を求める 熱力学 第11章 応用問題"><span class="pn mono">229</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ir8GwItdhN0" target="_blank" rel="noopener">ヒーターとステンレス球の実験で比熱を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;228</span></article>
+      <article class="p" data-state="live" data-k="230 229 氷から水への変化グラフから熱量を求める 熱力学 第11章 応用問題"><span class="pn mono">230</span><a class="stretch pt" href="https://www.youtube.com/watch?v=LwzW2QuNnC0" target="_blank" rel="noopener">氷から水への変化グラフから熱量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;229</span></article>
+      <article class="p" data-state="live" data-k="231 230 滝の落水エネルギーから発電出力を求める 熱力学 第11章 応用問題"><span class="pn mono">231</span><a class="stretch pt" href="https://www.youtube.com/watch?v=T3qYVUKhc0Y" target="_blank" rel="noopener">滝の落水エネルギーから発電出力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;230</span></article>
+      <article class="p" data-state="live" data-k="232 231 熱機関の熱効率が1未満であることを証明する 熱力学 第11章 応用問題"><span class="pn mono">232</span><a class="stretch pt" href="https://www.youtube.com/watch?v=JaCm-fJrjOY" target="_blank" rel="noopener">熱機関の熱効率が1未満であることを証明する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;231</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch12" data-cat="therm" style="--c:var(--therm)">
+  <div class="chh">
+    <span class="chn mono">12</span>
+    <div class="cht"><h2>気体の法則</h2><span class="chf mono">熱力学 ・ 12 / 13 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="233 232 注射器のピストンを押した気体の圧力を求める 熱力学 第12章 基本問題"><span class="pn mono">233</span><a class="stretch pt" href="https://www.youtube.com/watch?v=8WFCyoHIV9U" target="_blank" rel="noopener">注射器のピストンを押した気体の圧力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;232</span></article>
+      <article class="p" data-state="live" data-k="234 233 ボイルの法則で圧力変化後の体積を求める 熱力学 第12章 基本問題"><span class="pn mono">234</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ssy_41uh_Xc" target="_blank" rel="noopener">ボイルの法則で圧力変化後の体積を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;233</span></article>
+      <article class="p" data-state="live" data-k="235 234 湖に沈めたコップ内の空気の体積変化を求める 熱力学 第12章 基本問題"><span class="pn mono">235</span><a class="stretch pt" href="https://www.youtube.com/watch?v=yf4yRX1QXFc" target="_blank" rel="noopener">湖に沈めたコップ内の空気の体積変化を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;234</span></article>
+      <article class="p" data-state="live" data-k="236 235 シャルルの法則で温度変化後の体積を求める 熱力学 第12章 基本問題"><span class="pn mono">236</span><a class="stretch pt" href="https://www.youtube.com/watch?v=vpGRZTCKlos" target="_blank" rel="noopener">シャルルの法則で温度変化後の体積を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;235</span></article>
+      <article class="p" data-state="live" data-k="237 236 フラスコ加熱で水銀滴の移動から体積変化を求める 熱力学 第12章 基本問題"><span class="pn mono">237</span><a class="stretch pt" href="https://www.youtube.com/watch?v=HxEuZDNaqU8" target="_blank" rel="noopener">フラスコ加熱で水銀滴の移動から体積変化を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;236</span></article>
+      <article class="p" data-state="live" data-k="238 237 ボイル・シャルルの法則で変化後の体積を求める 熱力学 第12章 基本問題"><span class="pn mono">238</span><a class="stretch pt" href="https://www.youtube.com/watch?v=E_sS_STQSoI" target="_blank" rel="noopener">ボイル・シャルルの法則で変化後の体積を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;237</span></article>
+      <article class="p" data-state="live" data-k="239 238 おもりをのせたピストン内気体の高さを求める 熱力学 第12章 基本問題"><span class="pn mono">239</span><a class="stretch pt" href="https://www.youtube.com/watch?v=r24XRPkTBDo" target="_blank" rel="noopener">おもりをのせたピストン内気体の高さを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;238</span></article>
+      <article class="p" data-state="prep" data-k="240 239 瓶を湯に入れ逃げた空気の割合を求める 熱力学 第12章 基本問題" title="一致率0.9未満のため未確定"><span class="pn mono">240</span><span class="pt">瓶を湯に入れ逃げた空気の割合を求める</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="live" data-k="241 240 連結容器間で移動した気体の物質量を求める 熱力学 第12章 基本問題"><span class="pn mono">241</span><a class="stretch pt" href="https://www.youtube.com/watch?v=fweocPaeIv4" target="_blank" rel="noopener">連結容器間で移動した気体の物質量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;240</span></article>
+      <article class="p" data-state="live" data-k="242 241 シリンダーを倒したピストン位置と温度を求める 熱力学 第12章 応用問題"><span class="pn mono">242</span><a class="stretch pt" href="https://www.youtube.com/watch?v=UO-tjs2ZrSs" target="_blank" rel="noopener">シリンダーを倒したピストン位置と温度を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;241</span></article>
+      <article class="p" data-state="live" data-k="243 242 連結ピストンの気体を冷却した移動距離を求める 熱力学 第12章 応用問題"><span class="pn mono">243</span><a class="stretch pt" href="https://www.youtube.com/watch?v=76ZxnhY15-o" target="_blank" rel="noopener">連結ピストンの気体を冷却した移動距離を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;242</span></article>
+      <article class="p" data-state="live" data-k="244 243 仕切られた容器内気体の圧力のつりあいを解く 熱力学 第12章 応用問題"><span class="pn mono">244</span><a class="stretch pt" href="https://www.youtube.com/watch?v=VCDZNTWdPQY" target="_blank" rel="noopener">仕切られた容器内気体の圧力のつりあいを解く</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;243</span></article>
+      <article class="p" data-state="live" data-k="245 244 熱気球内の空気温度を浮力のつりあいから求める 熱力学 第12章 応用問題"><span class="pn mono">245</span><a class="stretch pt" href="https://www.youtube.com/watch?v=dEmyur62aeI" target="_blank" rel="noopener">熱気球内の空気温度を浮力のつりあいから求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;244</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch13" data-cat="therm" style="--c:var(--therm)">
+  <div class="chh">
+    <span class="chn mono">13</span>
+    <div class="cht"><h2>気体分子の運動・気体の状態変化</h2><span class="chf mono">熱力学 ・ 21 / 21 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="246 245 気体分子1個の平均運動エネルギーを求める 熱力学 第13章 基本問題"><span class="pn mono">246</span><a class="stretch pt" href="https://www.youtube.com/watch?v=z17dFfEc2eg" target="_blank" rel="noopener">気体分子1個の平均運動エネルギーを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;245</span></article>
+      <article class="p" data-state="live" data-k="247 246 同温の水素と酸素分子の速さの比を求める 熱力学 第13章 基本問題"><span class="pn mono">247</span><a class="stretch pt" href="https://www.youtube.com/watch?v=aCkroJuDI4A" target="_blank" rel="noopener">同温の水素と酸素分子の速さの比を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;246</span></article>
+      <article class="p" data-state="live" data-k="248 247 立方体容器内の分子運動から圧力の式を導く 熱力学 第13章 基本問題"><span class="pn mono">248</span><a class="stretch pt" href="https://www.youtube.com/watch?v=C_MTFTHSUkY" target="_blank" rel="noopener">立方体容器内の分子運動から圧力の式を導く</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;247</span></article>
+      <article class="p" data-state="live" data-k="249 248 窒素分子の質量と二乗平均速度を求める 熱力学 第13章 基本問題"><span class="pn mono">249</span><a class="stretch pt" href="https://www.youtube.com/watch?v=-DZGW-z5VA8" target="_blank" rel="noopener">窒素分子の質量と二乗平均速度を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;248</span></article>
+      <article class="p" data-state="live" data-k="250 249 単原子分子気体の内部エネルギーの倍率を求める 熱力学 第13章 基本問題"><span class="pn mono">250</span><a class="stretch pt" href="https://www.youtube.com/watch?v=JFJfk4FuEMA" target="_blank" rel="noopener">単原子分子気体の内部エネルギーの倍率を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;249</span></article>
+      <article class="p" data-state="live" data-k="251 250 断熱容器を連結した気体混合後の圧力を求める 熱力学 第13章 基本問題"><span class="pn mono">251</span><a class="stretch pt" href="https://www.youtube.com/watch?v=tv3DEdBEZJg" target="_blank" rel="noopener">断熱容器を連結した気体混合後の圧力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;250</span></article>
+      <article class="p" data-state="live" data-k="252 251 定積・定圧変化での熱量と仕事の正負を判定する 熱力学 第13章 基本問題"><span class="pn mono">252</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Oo8cbGSrGi8" target="_blank" rel="noopener">定積・定圧変化での熱量と仕事の正負を判定する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;251</span></article>
+      <article class="p" data-state="live" data-k="253 252 定積・定圧変化の内部エネルギーと熱量を求める 熱力学 第13章 基本問題"><span class="pn mono">253</span><a class="stretch pt" href="https://www.youtube.com/watch?v=k4GrX6uzs38" target="_blank" rel="noopener">定積・定圧変化の内部エネルギーと熱量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;252</span></article>
+      <article class="p" data-state="live" data-k="254 253 上ぶたピストンの気体を加熱した熱量を求める 熱力学 第13章 基本問題"><span class="pn mono">254</span><a class="stretch pt" href="https://www.youtube.com/watch?v=hLN-xufFrfQ" target="_blank" rel="noopener">上ぶたピストンの気体を加熱した熱量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;253</span></article>
+      <article class="p" data-state="live" data-k="255 254 ポアソンの法則で膨張後の温度と仕事を求める 熱力学 第13章 基本問題"><span class="pn mono">255</span><a class="stretch pt" href="https://www.youtube.com/watch?v=IEFyiE39t4M" target="_blank" rel="noopener">ポアソンの法則で膨張後の温度と仕事を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;254</span></article>
+      <article class="p" data-state="live" data-k="256 255 4通りの状態変化の内部エネルギーと仕事を求める 熱力学 第13章 基本問題"><span class="pn mono">256</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ZSZiQR8umro" target="_blank" rel="noopener">4通りの状態変化の内部エネルギーと仕事を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;255</span></article>
+      <article class="p" data-state="live" data-k="257 256 p-V図とV-T図から3過程の吸収熱量を比べる 熱力学 第13章 基本問題"><span class="pn mono">257</span><a class="stretch pt" href="https://www.youtube.com/watch?v=nfGSu3r_5NE" target="_blank" rel="noopener">p-V図とV-T図から3過程の吸収熱量を比べる</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;256</span></article>
+      <article class="p" data-state="live" data-k="258 257 サイクル過程での正味の仕事を正負判定で求める 熱力学 第13章 基本問題"><span class="pn mono">258</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Qm0t8EvucQA" target="_blank" rel="noopener">サイクル過程での正味の仕事を正負判定で求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;257</span></article>
+      <article class="p" data-state="live" data-k="259 258 p-Vグラフの1サイクルで仕事と熱効率を求める 熱力学 第13章 基本問題"><span class="pn mono">259</span><a class="stretch pt" href="https://www.youtube.com/watch?v=2lqONLCJrHY" target="_blank" rel="noopener">p-Vグラフの1サイクルで仕事と熱効率を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;258</span></article>
+      <article class="p" data-state="live" data-k="260 259 球形容器内の分子運動から圧力の式を導く 熱力学 第13章 応用問題"><span class="pn mono">260</span><a class="stretch pt" href="https://www.youtube.com/watch?v=K_g-Wgj1pYI" target="_blank" rel="noopener">球形容器内の分子運動から圧力の式を導く</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;259</span></article>
+      <article class="p" data-state="live" data-k="261 260 断熱膨張と等温膨張の仕事と熱量を求める 熱力学 第13章 応用問題"><span class="pn mono">261</span><a class="stretch pt" href="https://www.youtube.com/watch?v=zwoWRMbmEZw" target="_blank" rel="noopener">断熱膨張と等温膨張の仕事と熱量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;260</span></article>
+      <article class="p" data-state="live" data-k="262 261 直線的なサイクルでの気体の最高温度を求める 熱力学 第13章 応用問題"><span class="pn mono">262</span><a class="stretch pt" href="https://www.youtube.com/watch?v=PdEvlMNlkSQ" target="_blank" rel="noopener">直線的なサイクルでの気体の最高温度を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;261</span></article>
+      <article class="p" data-state="live" data-k="263 262 p-V図から状態変化のV-Tグラフを求める 熱力学 第13章 応用問題"><span class="pn mono">263</span><a class="stretch pt" href="https://www.youtube.com/watch?v=qWWXrp5LaS8" target="_blank" rel="noopener">p-V図から状態変化のV-Tグラフを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;262</span></article>
+      <article class="p" data-state="live" data-k="264 263 V-T図のサイクルでの仕事と熱効率を求める 熱力学 第13章 応用問題"><span class="pn mono">264</span><a class="stretch pt" href="https://www.youtube.com/watch?v=4i_Pe_0MOGs" target="_blank" rel="noopener">V-T図のサイクルでの仕事と熱効率を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;263</span></article>
+      <article class="p" data-state="live" data-k="265 264 ばね付きピストンの気体を加熱した仕事を求める 熱力学 第13章 応用問題"><span class="pn mono">265</span><a class="stretch pt" href="https://www.youtube.com/watch?v=iyqhAR5OyCo" target="_blank" rel="noopener">ばね付きピストンの気体を加熱した仕事を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;264</span></article>
+      <article class="p" data-state="live" data-k="266 265 断熱材で仕切られた2室間の気体の移動距離を求める 熱力学 第13章 応用問題"><span class="pn mono">266</span><a class="stretch pt" href="https://www.youtube.com/watch?v=wZFdYw9HALY" target="_blank" rel="noopener">断熱材で仕切られた2室間の気体の移動距離を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;265</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch14" data-cat="wave" style="--c:var(--wave)">
+  <div class="chh">
+    <span class="chn mono">14</span>
+    <div class="cht"><h2>波の性質</h2><span class="chf mono">波動 ・ 14 / 15 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="267 266 波形の時間変化から波長と速さを求める 波動 第14章 基本問題"><span class="pn mono">267</span><a class="stretch pt" href="https://www.youtube.com/watch?v=tufQbNpAUQA" target="_blank" rel="noopener">波形の時間変化から波長と速さを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;266</span></article>
+      <article class="p" data-state="live" data-k="268 267 波形図で速度最大の点と動く向きを判別する 波動 第14章 基本問題"><span class="pn mono">268</span><a class="stretch pt" href="https://www.youtube.com/watch?v=5L-g-9jrnpw" target="_blank" rel="noopener">波形図で速度最大の点と動く向きを判別する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;267</span></article>
+      <article class="p" data-state="live" data-k="269 268 正弦波が同じ波形に戻る時刻を求める 波動 第14章 基本問題"><span class="pn mono">269</span><a class="stretch pt" href="https://www.youtube.com/watch?v=VYgFyljtx8U" target="_blank" rel="noopener">正弦波が同じ波形に戻る時刻を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;268</span></article>
+      <article class="p" data-state="live" data-k="270 269 原点の振動をy-t図に表し比較する 波動 第14章 基本問題"><span class="pn mono">270</span><a class="stretch pt" href="https://www.youtube.com/watch?v=_6heIzIfqMs" target="_blank" rel="noopener">原点の振動をy-t図に表し比較する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;269</span></article>
+      <article class="p" data-state="live" data-k="271 270 y-t図から波長を求めy-x図を作図する 波動 第14章 基本問題"><span class="pn mono">271</span><a class="stretch pt" href="https://www.youtube.com/watch?v=XuOoeEXOBys" target="_blank" rel="noopener">y-t図から波長を求めy-x図を作図する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;270</span></article>
+      <article class="p" data-state="live" data-k="272 271 縦波を90°回転させ横波表示に変換する 波動 第14章 基本問題"><span class="pn mono">272</span><a class="stretch pt" href="https://www.youtube.com/watch?v=udUevmI1j0g" target="_blank" rel="noopener">縦波を90°回転させ横波表示に変換する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;271</span></article>
+      <article class="p" data-state="live" data-k="273 272 縦波の横波表示で密・疎と速度の点を求める 波動 第14章 基本問題"><span class="pn mono">273</span><a class="stretch pt" href="https://www.youtube.com/watch?v=A6bglS3sT-Y" target="_blank" rel="noopener">縦波の横波表示で密・疎と速度の点を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;272</span></article>
+      <article class="p" data-state="live" data-k="274 273 2つの進行波の合成波形から節を求める 波動 第14章 基本問題"><span class="pn mono">274</span><a class="stretch pt" href="https://www.youtube.com/watch?v=sNnupDjj0sc" target="_blank" rel="noopener">2つの進行波の合成波形から節を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;273</span></article>
+      <article class="p" data-state="live" data-k="275 274 定在波の腹の振動数と節の間隔を求める 波動 第14章 基本問題"><span class="pn mono">275</span><a class="stretch pt" href="https://www.youtube.com/watch?v=gFSLvanfTTg" target="_blank" rel="noopener">定在波の腹の振動数と節の間隔を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;274</span></article>
+      <article class="p" data-state="live" data-k="276 275 三角波の自由端・固定端反射を作図する 波動 第14章 基本問題"><span class="pn mono">276</span><a class="stretch pt" href="https://www.youtube.com/watch?v=pihaiqO5jrg" target="_blank" rel="noopener">三角波の自由端・固定端反射を作図する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;275</span></article>
+      <article class="p" data-state="live" data-k="277 276 正弦波の自由端・固定端反射を作図する 波動 第14章 基本問題"><span class="pn mono">277</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Nxk_TrbYSEY" target="_blank" rel="noopener">正弦波の自由端・固定端反射を作図する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;276</span></article>
+      <article class="p" data-state="live" data-k="278 277 固定端反射で生じる定在波の節を求める 波動 第14章 基本問題"><span class="pn mono">278</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Qr4jTe2Jnw8" target="_blank" rel="noopener">固定端反射で生じる定在波の節を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;277</span></article>
+      <article class="p" data-state="live" data-k="279 278 船と波の相対運動から波の速さを導出する 波動 第14章 応用問題"><span class="pn mono">279</span><a class="stretch pt" href="https://www.youtube.com/watch?v=e_BeOhlu0Bw" target="_blank" rel="noopener">船と波の相対運動から波の速さを導出する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;278</span></article>
+      <article class="p" data-state="live" data-k="280 279 縦波の波形から密になる位置と時刻を求める 波動 第14章 応用問題"><span class="pn mono">280</span><a class="stretch pt" href="https://www.youtube.com/watch?v=l63PsZdIDEY" target="_blank" rel="noopener">縦波の波形から密になる位置と時刻を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;279</span></article>
+      <article class="p" data-state="prep" data-k="281 280 自由端・固定端反射で節の個数を求める 波動 第14章 応用問題" title="一致率0.9未満のため未確定"><span class="pn mono">281</span><span class="pt">自由端・固定端反射で節の個数を求める</span><span class="pw mono">準備中</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch15" data-cat="wave" style="--c:var(--wave)">
+  <div class="chh">
+    <span class="chn mono">15</span>
+    <div class="cht"><h2>正弦波の式</h2><span class="chf mono">波動 ・ 6 / 6 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="282 281 正弦波の式から振幅・周期・波長を求める 波動 第15章 基本問題"><span class="pn mono">282</span><a class="stretch pt" href="https://www.youtube.com/watch?v=v9LpTRPd1vE" target="_blank" rel="noopener">正弦波の式から振幅・周期・波長を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;281</span></article>
+      <article class="p" data-state="live" data-k="283 282 cos表記の正弦波から変位式をつくる 波動 第15章 基本問題"><span class="pn mono">283</span><a class="stretch pt" href="https://www.youtube.com/watch?v=-EQcw59ypBc" target="_blank" rel="noopener">cos表記の正弦波から変位式をつくる</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;282</span></article>
+      <article class="p" data-state="live" data-k="284 283 波形図と速さから正弦波の式をつくる 波動 第15章 基本問題"><span class="pn mono">284</span><a class="stretch pt" href="https://www.youtube.com/watch?v=bxeNrJfYDGM" target="_blank" rel="noopener">波形図と速さから正弦波の式をつくる</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;283</span></article>
+      <article class="p" data-state="live" data-k="285 284 y-t図からy-x図を作図し変位式をつくる 波動 第15章 基本問題"><span class="pn mono">285</span><a class="stretch pt" href="https://www.youtube.com/watch?v=cf2oiS_NQDU" target="_blank" rel="noopener">y-t図からy-x図を作図し変位式をつくる</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;284</span></article>
+      <article class="p" data-state="live" data-k="286 285 初期条件から波形と振動式を求め比較する 波動 第15章 基本問題"><span class="pn mono">286</span><a class="stretch pt" href="https://www.youtube.com/watch?v=dr4vYX02ZpQ" target="_blank" rel="noopener">初期条件から波形と振動式を求め比較する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;285</span></article>
+      <article class="p" data-state="live" data-k="287 286 反射波の合成で定在波の節を文字式で導く 波動 第15章 応用問題"><span class="pn mono">287</span><a class="stretch pt" href="https://www.youtube.com/watch?v=zOTToJ9KL3A" target="_blank" rel="noopener">反射波の合成で定在波の節を文字式で導く</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;286</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch16" data-cat="wave" style="--c:var(--wave)">
+  <div class="chh">
+    <span class="chn mono">16</span>
+    <div class="cht"><h2>平面上を伝わる波</h2><span class="chf mono">波動 ・ 6 / 7 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="288 287 距離差から干渉点の強弱を判定する 波動 第16章 基本問題"><span class="pn mono">288</span><a class="stretch pt" href="https://www.youtube.com/watch?v=xHSe5jTDlEk" target="_blank" rel="noopener">距離差から干渉点の強弱を判定する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;287</span></article>
+      <article class="p" data-state="prep" data-k="289 288 水面波干渉で定在波の腹の位置を求める 波動 第16章 基本問題" title="一致率0.9未満のため未確定"><span class="pn mono">289</span><span class="pt">水面波干渉で定在波の腹の位置を求める</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="live" data-k="290 289 屈折率から媒質中の波の速さを求める 波動 第16章 基本問題"><span class="pn mono">290</span><a class="stretch pt" href="https://www.youtube.com/watch?v=NQ78GE-8r5E" target="_blank" rel="noopener">屈折率から媒質中の波の速さを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;289</span></article>
+      <article class="p" data-state="live" data-k="291 290 境界面に届く波の数から屈折の法則を導く 波動 第16章 基本問題"><span class="pn mono">291</span><a class="stretch pt" href="https://www.youtube.com/watch?v=rUq-yqfjooU" target="_blank" rel="noopener">境界面に届く波の数から屈折の法則を導く</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;290</span></article>
+      <article class="p" data-state="live" data-k="292 291 位相差のある2波源の干渉腹線を求める 波動 第16章 応用問題"><span class="pn mono">292</span><a class="stretch pt" href="https://www.youtube.com/watch?v=-GH1Bv36qFY" target="_blank" rel="noopener">位相差のある2波源の干渉腹線を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;291</span></article>
+      <article class="p" data-state="live" data-k="293 292 到達時間の差から干渉状態と節の数を求める 波動 第16章 応用問題"><span class="pn mono">293</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Pq2i3LOblAc" target="_blank" rel="noopener">到達時間の差から干渉状態と節の数を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;292</span></article>
+      <article class="p" data-state="live" data-k="294 293 平面波の屈折角と節線の間隔を導出する 波動 第16章 応用問題"><span class="pn mono">294</span><a class="stretch pt" href="https://www.youtube.com/watch?v=MNbysXM_aHA" target="_blank" rel="noopener">平面波の屈折角と節線の間隔を導出する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;293</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch17" data-cat="wave" style="--c:var(--wave)">
+  <div class="chh">
+    <span class="chn mono">17</span>
+    <div class="cht"><h2>音の伝わり方と発音体の振動</h2><span class="chf mono">波動 ・ 21 / 22 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="295 294 気温と音速の関係式から音の速さを求める 波動 第17章 基本問題"><span class="pn mono">295</span><a class="stretch pt" href="https://www.youtube.com/watch?v=IOscjtnRANg" target="_blank" rel="noopener">気温と音速の関係式から音の速さを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;294</span></article>
+      <article class="p" data-state="live" data-k="296 295 音源の移動と風で音の到達時間を求める 波動 第17章 基本問題"><span class="pn mono">296</span><a class="stretch pt" href="https://www.youtube.com/watch?v=7tZoaJCg-BM" target="_blank" rel="noopener">音源の移動と風で音の到達時間を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;295</span></article>
+      <article class="p" data-state="live" data-k="297 296 汽笛の反響時間から氷山までの距離を求める 波動 第17章 基本問題"><span class="pn mono">297</span><a class="stretch pt" href="https://www.youtube.com/watch?v=VWGf30jL1Ng" target="_blank" rel="noopener">汽笛の反響時間から氷山までの距離を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;296</span></article>
+      <article class="p" data-state="live" data-k="298 297 音波が水面で屈折する角度とsin値を求める 波動 第17章 基本問題"><span class="pn mono">298</span><a class="stretch pt" href="https://www.youtube.com/watch?v=GsFXLx-no2I" target="_blank" rel="noopener">音波が水面で屈折する角度とsin値を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;297</span></article>
+      <article class="p" data-state="live" data-k="299 298 2スピーカーの音の経路差で強弱を判定する 波動 第17章 基本問題"><span class="pn mono">299</span><a class="stretch pt" href="https://www.youtube.com/watch?v=No56_Yu983c" target="_blank" rel="noopener">2スピーカーの音の経路差で強弱を判定する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;298</span></article>
+      <article class="p" data-state="live" data-k="300 299 波形図からうなりの周期と回数を求める 波動 第17章 基本問題"><span class="pn mono">300</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Juyp1qwq4h0" target="_blank" rel="noopener">波形図からうなりの周期と回数を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;299</span></article>
+      <article class="p" data-state="live" data-k="301 300 うなりの回数から未知のおんさの振動数を求める 波動 第17章 基本問題"><span class="pn mono">301</span><a class="stretch pt" href="https://www.youtube.com/watch?v=GWeaKslj8zY" target="_blank" rel="noopener">うなりの回数から未知のおんさの振動数を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;300</span></article>
+      <article class="p" data-state="live" data-k="302 301 弦の基本振動・2倍振動・3倍振動を作図する 波動 第17章 基本問題"><span class="pn mono">302</span><a class="stretch pt" href="https://www.youtube.com/watch?v=6NB9UcZaIUY" target="_blank" rel="noopener">弦の基本振動・2倍振動・3倍振動を作図する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;301</span></article>
+      <article class="p" data-state="live" data-k="303 302 弦の定在波の腹の数から波長と速さを求める 波動 第17章 基本問題"><span class="pn mono">303</span><a class="stretch pt" href="https://www.youtube.com/watch?v=UXSDrSNQ83I" target="_blank" rel="noopener">弦の定在波の腹の数から波長と速さを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;302</span></article>
+      <article class="p" data-state="live" data-k="304 303 おもりの質量と線密度から波の速さを求める 波動 第17章 基本問題"><span class="pn mono">304</span><a class="stretch pt" href="https://www.youtube.com/watch?v=8sns-odOLcs" target="_blank" rel="noopener">おもりの質量と線密度から波の速さを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;303</span></article>
+      <article class="p" data-state="live" data-k="305 304 おんさと弦の共振で腹の数の変化を求める 波動 第17章 基本問題"><span class="pn mono">305</span><a class="stretch pt" href="https://www.youtube.com/watch?v=e1bBJ4DsGLU" target="_blank" rel="noopener">おんさと弦の共振で腹の数の変化を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;304</span></article>
+      <article class="p" data-state="live" data-k="306 305 閉管の定在波の節の位置から波長を求める 波動 第17章 基本問題"><span class="pn mono">306</span><a class="stretch pt" href="https://www.youtube.com/watch?v=iLbxozCJ_YE" target="_blank" rel="noopener">閉管の定在波の節の位置から波長を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;305</span></article>
+      <article class="p" data-state="live" data-k="307 306 開管の共鳴で定在波の節の間隔から波長を求める 波動 第17章 基本問題"><span class="pn mono">307</span><a class="stretch pt" href="https://www.youtube.com/watch?v=2NXYMx3I5lM" target="_blank" rel="noopener">開管の共鳴で定在波の節の間隔から波長を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;306</span></article>
+      <article class="p" data-state="live" data-k="308 307 閉管の3倍振動で開口端外側の腹の位置を表す 波動 第17章 基本問題"><span class="pn mono">308</span><a class="stretch pt" href="https://www.youtube.com/watch?v=1fOkGJruCnU" target="_blank" rel="noopener">閉管の3倍振動で開口端外側の腹の位置を表す</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;307</span></article>
+      <article class="p" data-state="live" data-k="309 308 気柱共鳴実験から波長と音速を求める 波動 第17章 基本問題"><span class="pn mono">309</span><a class="stretch pt" href="https://www.youtube.com/watch?v=f96dCoW5WuU" target="_blank" rel="noopener">気柱共鳴実験から波長と音速を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;308</span></article>
+      <article class="p" data-state="live" data-k="310 309 密度変化グラフから開管の反射位置を求める 波動 第17章 基本問題"><span class="pn mono">310</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Pdvkl5y04d8" target="_blank" rel="noopener">密度変化グラフから開管の反射位置を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;309</span></article>
+      <article class="p" data-state="live" data-k="311 310 2音源の位相関係から極小点の位置を求める 波動 第17章 応用問題"><span class="pn mono">311</span><a class="stretch pt" href="https://www.youtube.com/watch?v=HBM-QzowotI" target="_blank" rel="noopener">2音源の位相関係から極小点の位置を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;310</span></article>
+      <article class="p" data-state="live" data-k="312 311 クインケ管の経路差から振動数と音速を求める 波動 第17章 応用問題"><span class="pn mono">312</span><a class="stretch pt" href="https://www.youtube.com/watch?v=BWNbd2JWIYw" target="_blank" rel="noopener">クインケ管の経路差から振動数と音速を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;311</span></article>
+      <article class="p" data-state="live" data-k="313 312 弦とおんさのうなりが消える弦長を求める 波動 第17章 応用問題"><span class="pn mono">313</span><a class="stretch pt" href="https://www.youtube.com/watch?v=4veNj1lprM4" target="_blank" rel="noopener">弦とおんさのうなりが消える弦長を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;312</span></article>
+      <article class="p" data-state="live" data-k="314 313 弦の張力と線密度から波の速さを導き出す 波動 第17章 応用問題"><span class="pn mono">314</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ALi_esqUaZ8" target="_blank" rel="noopener">弦の張力と線密度から波の速さを導き出す</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;313</span></article>
+      <article class="p" data-state="live" data-k="315 314 気柱共鳴実験の空所補充で音速を求める 波動 第17章 応用問題"><span class="pn mono">315</span><a class="stretch pt" href="https://www.youtube.com/watch?v=vrYPRldWjzs" target="_blank" rel="noopener">気柱共鳴実験の空所補充で音速を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;314</span></article>
+      <article class="p" data-state="prep" data-k="316 315 ピストン位置の比から波長の式を導く 波動 第17章 応用問題" title="一致率0.9未満のため未確定"><span class="pn mono">316</span><span class="pt">ピストン位置の比から波長の式を導く</span><span class="pw mono">準備中</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch18" data-cat="wave" style="--c:var(--wave)">
+  <div class="chh">
+    <span class="chn mono">18</span>
+    <div class="cht"><h2>ドップラー効果</h2><span class="chf mono">波動 ・ 10 / 10 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="317 316 音源が動く場合と観測者が動く場合を比較する 波動 第18章 基本問題"><span class="pn mono">317</span><a class="stretch pt" href="https://www.youtube.com/watch?v=otfr1HQRj4o" target="_blank" rel="noopener">音源が動く場合と観測者が動く場合を比較する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;316</span></article>
+      <article class="p" data-state="live" data-k="318 317 水面波の伝わる速さと観測点の振動数を求める 波動 第18章 基本問題"><span class="pn mono">318</span><a class="stretch pt" href="https://www.youtube.com/watch?v=YykzU-XPXDg" target="_blank" rel="noopener">水面波の伝わる速さと観測点の振動数を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;317</span></article>
+      <article class="p" data-state="live" data-k="319 318 電車接近時と離脱時の振動数から速さを求める 波動 第18章 基本問題"><span class="pn mono">319</span><a class="stretch pt" href="https://www.youtube.com/watch?v=jGh0ukCcBCc" target="_blank" rel="noopener">電車接近時と離脱時の振動数から速さを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;318</span></article>
+      <article class="p" data-state="live" data-k="320 319 すれ違う2電車の前後の観測振動数を求める 波動 第18章 基本問題"><span class="pn mono">320</span><a class="stretch pt" href="https://www.youtube.com/watch?v=gJmJLotln4E" target="_blank" rel="noopener">すれ違う2電車の前後の観測振動数を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;319</span></article>
+      <article class="p" data-state="live" data-k="321 320 遠ざかる反射板からの反射音とうなりを求める 波動 第18章 基本問題"><span class="pn mono">321</span><a class="stretch pt" href="https://www.youtube.com/watch?v=xfd6fYG0b5Y" target="_blank" rel="noopener">遠ざかる反射板からの反射音とうなりを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;320</span></article>
+      <article class="p" data-state="live" data-k="322 321 風が吹く中で音源が遠ざかる場合の振動数を求める 波動 第18章 基本問題"><span class="pn mono">322</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Y52R2m3PJMc" target="_blank" rel="noopener">風が吹く中で音源が遠ざかる場合の振動数を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;321</span></article>
+      <article class="p" data-state="live" data-k="323 322 上空を飛ぶ飛行機の音の振動数の最小値を求める 波動 第18章 基本問題"><span class="pn mono">323</span><a class="stretch pt" href="https://www.youtube.com/watch?v=F2AKWNk7QfM" target="_blank" rel="noopener">上空を飛ぶ飛行機の音の振動数の最小値を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;322</span></article>
+      <article class="p" data-state="live" data-k="324 323 円運動する音源の振動数の最大値と最小値を求める 波動 第18章 基本問題"><span class="pn mono">324</span><a class="stretch pt" href="https://www.youtube.com/watch?v=nAhHPAoVo6A" target="_blank" rel="noopener">円運動する音源の振動数の最大値と最小値を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;323</span></article>
+      <article class="p" data-state="live" data-k="325 324 観測者や反射板が動く場合のうなりの周期を求める 波動 第18章 応用問題"><span class="pn mono">325</span><a class="stretch pt" href="https://www.youtube.com/watch?v=pxyrTyeQfxk" target="_blank" rel="noopener">観測者や反射板が動く場合のうなりの周期を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;324</span></article>
+      <article class="p" data-state="live" data-k="326 325 電車通過時の斜め方向の振動数変化を求める 波動 第18章 応用問題"><span class="pn mono">326</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ARIq9bkapg8" target="_blank" rel="noopener">電車通過時の斜め方向の振動数変化を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;325</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch19" data-cat="wave" style="--c:var(--wave)">
+  <div class="chh">
+    <span class="chn mono">19</span>
+    <div class="cht"><h2>光の性質・レンズ</h2><span class="chf mono">波動 ・ 20 / 20 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="327 326 太陽から地球に届く光の所要時間を求める 波動 第19章 基本問題"><span class="pn mono">327</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ootUNyvAEAw" target="_blank" rel="noopener">太陽から地球に届く光の所要時間を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;326</span></article>
+      <article class="p" data-state="live" data-k="328 327 フィゾーの歯車法による光速測定の式を導出する 波動 第19章 基本問題"><span class="pn mono">328</span><a class="stretch pt" href="https://www.youtube.com/watch?v=awBIU2Qknuk" target="_blank" rel="noopener">フィゾーの歯車法による光速測定の式を導出する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;327</span></article>
+      <article class="p" data-state="live" data-k="329 328 真空中とガラス中での光波の波長の関係を求める 波動 第19章 基本問題"><span class="pn mono">329</span><a class="stretch pt" href="https://www.youtube.com/watch?v=WetwKrGtvV8" target="_blank" rel="noopener">真空中とガラス中での光波の波長の関係を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;328</span></article>
+      <article class="p" data-state="live" data-k="330 329 平面鏡を回転させた際の反射光のずれを求める 波動 第19章 基本問題"><span class="pn mono">330</span><a class="stretch pt" href="https://www.youtube.com/watch?v=1UukgTzNNiE" target="_blank" rel="noopener">平面鏡を回転させた際の反射光のずれを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;329</span></article>
+      <article class="p" data-state="live" data-k="331 330 媒質から空気への屈折角と全反射の臨界角を求める 波動 第19章 基本問題"><span class="pn mono">331</span><a class="stretch pt" href="https://www.youtube.com/watch?v=cWIPUz2PsLk" target="_blank" rel="noopener">媒質から空気への屈折角と全反射の臨界角を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;330</span></article>
+      <article class="p" data-state="live" data-k="332 331 プリズム内での光の屈折・全反射経路と角度を求める 波動 第19章 基本問題"><span class="pn mono">332</span><a class="stretch pt" href="https://www.youtube.com/watch?v=NvRawl_LulE" target="_blank" rel="noopener">プリズム内での光の屈折・全反射経路と角度を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;331</span></article>
+      <article class="p" data-state="live" data-k="333 332 3層の境界面での屈折角と全反射条件を導出する 波動 第19章 基本問題"><span class="pn mono">333</span><a class="stretch pt" href="https://www.youtube.com/watch?v=RBC5RZyTOB4" target="_blank" rel="noopener">3層の境界面での屈折角と全反射条件を導出する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;332</span></article>
+      <article class="p" data-state="live" data-k="334 333 水滴内の光の分散で虹の外側の色を図示する 波動 第19章 基本問題"><span class="pn mono">334</span><a class="stretch pt" href="https://www.youtube.com/watch?v=u3KyNJRC2GA" target="_blank" rel="noopener">水滴内の光の分散で虹の外側の色を図示する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;333</span></article>
+      <article class="p" data-state="live" data-k="335 334 凸レンズ・凹レンズがつくる像を作図で求める 波動 第19章 基本問題"><span class="pn mono">335</span><a class="stretch pt" href="https://www.youtube.com/watch?v=5lNerIwPNrQ" target="_blank" rel="noopener">凸レンズ・凹レンズがつくる像を作図で求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;334</span></article>
+      <article class="p" data-state="live" data-k="336 335 凸レンズ通過前後の光の波面の形状を選ぶ 波動 第19章 基本問題"><span class="pn mono">336</span><a class="stretch pt" href="https://www.youtube.com/watch?v=-mpFt5kR3oA" target="_blank" rel="noopener">凸レンズ通過前後の光の波面の形状を選ぶ</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;335</span></article>
+      <article class="p" data-state="live" data-k="337 336 空所補充で凸レンズ・凹レンズの像と倍率を求める 波動 第19章 基本問題"><span class="pn mono">337</span><a class="stretch pt" href="https://www.youtube.com/watch?v=DTRlCsPlRqw" target="_blank" rel="noopener">空所補充で凸レンズ・凹レンズの像と倍率を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;336</span></article>
+      <article class="p" data-state="live" data-k="338 337 スクリーンに鮮明な像を結ぶレンズの2位置を求める 波動 第19章 基本問題"><span class="pn mono">338</span><a class="stretch pt" href="https://www.youtube.com/watch?v=CzCO_fUQ0qM" target="_blank" rel="noopener">スクリーンに鮮明な像を結ぶレンズの2位置を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;337</span></article>
+      <article class="p" data-state="live" data-k="339 338 凹面鏡・凸面鏡がつくる像を作図で求める 波動 第19章 基本問題"><span class="pn mono">339</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ZLPJ-P93UcU" target="_blank" rel="noopener">凹面鏡・凸面鏡がつくる像を作図で求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;338</span></article>
+      <article class="p" data-state="live" data-k="340 339 凹面鏡と凸面鏡それぞれの像の位置と種類を求める 波動 第19章 基本問題"><span class="pn mono">340</span><a class="stretch pt" href="https://www.youtube.com/watch?v=YilyEPOk8lI" target="_blank" rel="noopener">凹面鏡と凸面鏡それぞれの像の位置と種類を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;339</span></article>
+      <article class="p" data-state="live" data-k="341 340 円柱状ガラス棒内での屈折角と全反射の入射角を求める 波動 第19章 応用問題"><span class="pn mono">341</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ueTdITUtMLY" target="_blank" rel="noopener">円柱状ガラス棒内での屈折角と全反射の入射角を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;340</span></article>
+      <article class="p" data-state="live" data-k="342 341 プリズムの最小偏角から屈折率を求める 波動 第19章 応用問題"><span class="pn mono">342</span><a class="stretch pt" href="https://www.youtube.com/watch?v=AB4AFPw8frE" target="_blank" rel="noopener">プリズムの最小偏角から屈折率を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;341</span></article>
+      <article class="p" data-state="live" data-k="343 342 カメラレンズの物体距離と受光面距離の関係を求める 波動 第19章 応用問題"><span class="pn mono">343</span><a class="stretch pt" href="https://www.youtube.com/watch?v=xzkwHTbJ4iE" target="_blank" rel="noopener">カメラレンズの物体距離と受光面距離の関係を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;342</span></article>
+      <article class="p" data-state="live" data-k="344 343 容器内光源の見かけの深さから液体の屈折率を求める 波動 第19章 応用問題"><span class="pn mono">344</span><a class="stretch pt" href="https://www.youtube.com/watch?v=uAu_5FMVNJ4" target="_blank" rel="noopener">容器内光源の見かけの深さから液体の屈折率を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;343</span></article>
+      <article class="p" data-state="live" data-k="345 344 凸レンズと凹レンズを組み合わせた系の像を求める 波動 第19章 応用問題"><span class="pn mono">345</span><a class="stretch pt" href="https://www.youtube.com/watch?v=_TjhpHFM0ng" target="_blank" rel="noopener">凸レンズと凹レンズを組み合わせた系の像を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;344</span></article>
+      <article class="p" data-state="live" data-k="346 345 凸レンズと凹面鏡が組み合う系で実像を特定する 波動 第19章 応用問題"><span class="pn mono">346</span><a class="stretch pt" href="https://www.youtube.com/watch?v=pgV_2vlwzHE" target="_blank" rel="noopener">凸レンズと凹面鏡が組み合う系で実像を特定する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;345</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch20" data-cat="wave" style="--c:var(--wave)">
+  <div class="chh">
+    <span class="chn mono">20</span>
+    <div class="cht"><h2>光の干渉と回折</h2><span class="chf mono">波動 ・ 9 / 9 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="347 346 空所補充でヤングの実験の2色が重なる間隔を求める 波動 第20章 基本問題"><span class="pn mono">347</span><a class="stretch pt" href="https://www.youtube.com/watch?v=6xrthyuPQVE" target="_blank" rel="noopener">空所補充でヤングの実験の2色が重なる間隔を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;346</span></article>
+      <article class="p" data-state="live" data-k="348 347 回折格子の干渉縞から波長とスペクトルを考察する 波動 第20章 基本問題"><span class="pn mono">348</span><a class="stretch pt" href="https://www.youtube.com/watch?v=cpNt7GISEFA" target="_blank" rel="noopener">回折格子の干渉縞から波長とスペクトルを考察する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;347</span></article>
+      <article class="p" data-state="live" data-k="349 348 油膜表面・裏面反射光が強めあう条件を求める 波動 第20章 基本問題"><span class="pn mono">349</span><a class="stretch pt" href="https://www.youtube.com/watch?v=UHpkcsa3TaE" target="_blank" rel="noopener">油膜表面・裏面反射光が強めあう条件を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;348</span></article>
+      <article class="p" data-state="live" data-k="350 349 油膜の反射光が強め合う・弱め合う波長を求める 波動 第20章 基本問題"><span class="pn mono">350</span><a class="stretch pt" href="https://www.youtube.com/watch?v=NswgHDE-hTw" target="_blank" rel="noopener">油膜の反射光が強め合う・弱め合う波長を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;349</span></article>
+      <article class="p" data-state="live" data-k="351 350 くさび形空気層の干渉縞からアルミ箔の厚さを求める 波動 第20章 基本問題"><span class="pn mono">351</span><a class="stretch pt" href="https://www.youtube.com/watch?v=hDlMKjVF6iA" target="_blank" rel="noopener">くさび形空気層の干渉縞からアルミ箔の厚さを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;350</span></article>
+      <article class="p" data-state="live" data-k="352 351 ニュートンリングの暗環半径を条件を変えて比較する 波動 第20章 基本問題"><span class="pn mono">352</span><a class="stretch pt" href="https://www.youtube.com/watch?v=lnjXjXUsz6s" target="_blank" rel="noopener">ニュートンリングの暗環半径を条件を変えて比較する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;351</span></article>
+      <article class="p" data-state="live" data-k="353 352 スリットを薄膜で覆うと干渉縞はどうずれるか求める 波動 第20章 応用問題"><span class="pn mono">353</span><a class="stretch pt" href="https://www.youtube.com/watch?v=QZ2x-5fqNok" target="_blank" rel="noopener">スリットを薄膜で覆うと干渉縞はどうずれるか求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;352</span></article>
+      <article class="p" data-state="live" data-k="354 353 傾けて入射した回折格子の明線の方向を求める 波動 第20章 応用問題"><span class="pn mono">354</span><a class="stretch pt" href="https://www.youtube.com/watch?v=dG1cGhKlclg" target="_blank" rel="noopener">傾けて入射した回折格子の明線の方向を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;353</span></article>
+      <article class="p" data-state="live" data-k="355 354 マイケルソン干渉計で光強度の変化を調べる 波動 第20章 応用問題"><span class="pn mono">355</span><a class="stretch pt" href="https://www.youtube.com/watch?v=VTcG4K82BDs" target="_blank" rel="noopener">マイケルソン干渉計で光強度の変化を調べる</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;354</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch21" data-cat="electro" style="--c:var(--electro)">
+  <div class="chh">
+    <span class="chn mono">21</span>
+    <div class="cht"><h2>静電気力と電場・電位</h2><span class="chf mono">電磁気 ・ 16 / 21 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="356 355 摩擦帯電での電子移動の向きと力を判定する 電磁気 第21章 基本問題"><span class="pn mono">356</span><a class="stretch pt" href="https://www.youtube.com/watch?v=UzoUV-MKQiQ" target="_blank" rel="noopener">摩擦帯電での電子移動の向きと力を判定する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;355</span></article>
+      <article class="p" data-state="live" data-k="357 356 帯電した金属球を接触させ移動する電子を求める 電磁気 第21章 基本問題"><span class="pn mono">357</span><a class="stretch pt" href="https://www.youtube.com/watch?v=d_8Dqxt_Hec" target="_blank" rel="noopener">帯電した金属球を接触させ移動する電子を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;356</span></article>
+      <article class="p" data-state="live" data-k="358 357 電荷の異なる2球を接触させ静電気力の変化を求める 電磁気 第21章 基本問題"><span class="pn mono">358</span><a class="stretch pt" href="https://www.youtube.com/watch?v=2aV_2eBb1a8" target="_blank" rel="noopener">電荷の異なる2球を接触させ静電気力の変化を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;357</span></article>
+      <article class="p" data-state="live" data-k="359 358 帯電小球のつりあいから電気量を求める 電磁気 第21章 基本問題"><span class="pn mono">359</span><a class="stretch pt" href="https://www.youtube.com/watch?v=PX7YXX_anc0" target="_blank" rel="noopener">帯電小球のつりあいから電気量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;358</span></article>
+      <article class="p" data-state="live" data-k="360 359 静電誘導と誘電分極の帯電状態の違いを判別する 電磁気 第21章 基本問題"><span class="pn mono">360</span><a class="stretch pt" href="https://www.youtube.com/watch?v=hO7SfLniGKE" target="_blank" rel="noopener">静電誘導と誘電分極の帯電状態の違いを判別する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;359</span></article>
+      <article class="p" data-state="live" data-k="361 360 箔検電器に帯電棒を近づけ指で触れる実験を説明する 電磁気 第21章 基本問題"><span class="pn mono">361</span><a class="stretch pt" href="https://www.youtube.com/watch?v=7iBOY5pQUVE" target="_blank" rel="noopener">箔検電器に帯電棒を近づけ指で触れる実験を説明する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;360</span></article>
+      <article class="p" data-state="live" data-k="362 361 正負2点電荷がつくる電場が0になる位置を求める 電磁気 第21章 基本問題"><span class="pn mono">362</span><a class="stretch pt" href="https://www.youtube.com/watch?v=VhnipQiJQHA" target="_blank" rel="noopener">正負2点電荷がつくる電場が0になる位置を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;361</span></article>
+      <article class="p" data-state="live" data-k="363 362 正三角形の頂点の2電荷がつくる電場を図示する 電磁気 第21章 基本問題"><span class="pn mono">363</span><a class="stretch pt" href="https://www.youtube.com/watch?v=-rvFWOyj6fo" target="_blank" rel="noopener">正三角形の頂点の2電荷がつくる電場を図示する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;362</span></article>
+      <article class="p" data-state="live" data-k="364 363 ガウスの法則で平面電荷がつくる電場と電位を導く 電磁気 第21章 基本問題"><span class="pn mono">364</span><a class="stretch pt" href="https://www.youtube.com/watch?v=QrnsleLiyEw" target="_blank" rel="noopener">ガウスの法則で平面電荷がつくる電場と電位を導く</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;363</span></article>
+      <article class="p" data-state="live" data-k="365 364 平行板間の三角形の各頂点の電場と電位を求める 電磁気 第21章 基本問題"><span class="pn mono">365</span><a class="stretch pt" href="https://www.youtube.com/watch?v=XHNdXLh7CCU" target="_blank" rel="noopener">平行板間の三角形の各頂点の電場と電位を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;364</span></article>
+      <article class="p" data-state="live" data-k="366 365 等電位線図から電気力線を作図し電場を比較する 電磁気 第21章 基本問題"><span class="pn mono">366</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Qlcz-vOftLA" target="_blank" rel="noopener">等電位線図から電気力線を作図し電場を比較する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;365</span></article>
+      <article class="p" data-state="live" data-k="367 366 空所補充で等電位線図から電荷を運ぶ仕事を求める 電磁気 第21章 基本問題"><span class="pn mono">367</span><a class="stretch pt" href="https://www.youtube.com/watch?v=_ICml091EnI" target="_blank" rel="noopener">空所補充で等電位線図から電荷を運ぶ仕事を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;366</span></article>
+      <article class="p" data-state="live" data-k="368 367 2点電荷による電場の向きと電位・仕事を求める 電磁気 第21章 基本問題"><span class="pn mono">368</span><a class="stretch pt" href="https://www.youtube.com/watch?v=aYhgY2PYFfA" target="_blank" rel="noopener">2点電荷による電場の向きと電位・仕事を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;367</span></article>
+      <article class="p" data-state="live" data-k="369 368 2点電荷がつくる電場中で電荷を運ぶ仕事を求める 電磁気 第21章 基本問題"><span class="pn mono">369</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ZA_c5p-RDXU" target="_blank" rel="noopener">2点電荷がつくる電場中で電荷を運ぶ仕事を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;368</span></article>
+      <article class="p" data-state="prep" data-k="370 369 一様電場中で傾いた帯電小球の電気量を求める 電磁気 第21章 応用問題" title="同じ位置だが内容が別問題"><span class="pn mono">370</span><span class="pt">一様電場中で傾いた帯電小球の電気量を求める</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="371 370 平行板間の三角形頂点の電場・電位・仕事を求める 電磁気 第21章 応用問題" title="同じ位置だが内容が別問題"><span class="pn mono">371</span><span class="pt">平行板間の三角形頂点の電場・電位・仕事を求める</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="372   電磁気 第21章 " title="2024年版で新規に入った問題"><span class="pn mono">372</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="373 372 導体球と帯電球体の内外の電場の強さを求める 電磁気 第21章 応用問題" title="一致率0.9未満のため未確定"><span class="pn mono">373</span><span class="pt">導体球と帯電球体の内外の電場の強さを求める</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="374 371 点電荷を囲む導体球殻内外の電場の強さを求める 電磁気 第21章 応用問題" title="一致率0.9未満のため未確定"><span class="pn mono">374</span><span class="pt">点電荷を囲む導体球殻内外の電場の強さを求める</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="live" data-k="375 373 2点電荷の電場中で小球の最速位置と条件を求める 電磁気 第21章 応用問題"><span class="pn mono">375</span><a class="stretch pt" href="https://www.youtube.com/watch?v=tyVsLJOzbFA" target="_blank" rel="noopener">2点電荷の電場中で小球の最速位置と条件を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;373</span></article>
+      <article class="p" data-state="live" data-k="376 374 2点電荷の合成電場と電位0になる円を求める 電磁気 第21章 応用問題"><span class="pn mono">376</span><a class="stretch pt" href="https://www.youtube.com/watch?v=7TR9rrZYk5Q" target="_blank" rel="noopener">2点電荷の合成電場と電位0になる円を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;374</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch22" data-cat="electro" style="--c:var(--electro)">
+  <div class="chh">
+    <span class="chn mono">22</span>
+    <div class="cht"><h2>コンデンサー</h2><span class="chf mono">電磁気 ・ 20 / 20 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="377 375 極板面積と間隔からコンデンサーの電気容量を求める 電磁気 第22章 基本問題"><span class="pn mono">377</span><a class="stretch pt" href="https://www.youtube.com/watch?v=4m5QjHHLp-s" target="_blank" rel="noopener">極板面積と間隔からコンデンサーの電気容量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;375</span></article>
+      <article class="p" data-state="live" data-k="378 376 直列3つのコンデンサーの電圧配分から容量を求める 電磁気 第22章 基本問題"><span class="pn mono">378</span><a class="stretch pt" href="https://www.youtube.com/watch?v=6Y938iywSoI" target="_blank" rel="noopener">直列3つのコンデンサーの電圧配分から容量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;376</span></article>
+      <article class="p" data-state="live" data-k="379 377 極板間隔を3倍に広げたときの電流の向きを求める 電磁気 第22章 基本問題"><span class="pn mono">379</span><a class="stretch pt" href="https://www.youtube.com/watch?v=4htslx6scJQ" target="_blank" rel="noopener">極板間隔を3倍に広げたときの電流の向きを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;377</span></article>
+      <article class="p" data-state="live" data-k="380 378 絶縁体挿入前後の電気量と電位差の変化を求める 電磁気 第22章 基本問題"><span class="pn mono">380</span><a class="stretch pt" href="https://www.youtube.com/watch?v=2q1S-oFebZg" target="_blank" rel="noopener">絶縁体挿入前後の電気量と電位差の変化を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;378</span></article>
+      <article class="p" data-state="live" data-k="381 379 直列接続コンデンサーの合成容量と電気量を求める 電磁気 第22章 基本問題"><span class="pn mono">381</span><a class="stretch pt" href="https://www.youtube.com/watch?v=EWK4G7jFWkU" target="_blank" rel="noopener">直列接続コンデンサーの合成容量と電気量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;379</span></article>
+      <article class="p" data-state="live" data-k="382 380 直並列混合回路の合成容量と電気量を求める 電磁気 第22章 基本問題"><span class="pn mono">382</span><a class="stretch pt" href="https://www.youtube.com/watch?v=mcr_6G6yAxQ" target="_blank" rel="noopener">直並列混合回路の合成容量と電気量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;380</span></article>
+      <article class="p" data-state="live" data-k="383 381 並列と直列接続時のコンデンサーの耐電圧を求める 電磁気 第22章 基本問題"><span class="pn mono">383</span><a class="stretch pt" href="https://www.youtube.com/watch?v=zu-X2SC9mb8" target="_blank" rel="noopener">並列と直列接続時のコンデンサーの耐電圧を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;381</span></article>
+      <article class="p" data-state="live" data-k="384 382 金属板挿入時の静電エネルギーと電位分布の変化を求める 電磁気 第22章 基本問題"><span class="pn mono">384</span><a class="stretch pt" href="https://www.youtube.com/watch?v=uy1C1X8cjlI" target="_blank" rel="noopener">金属板挿入時の静電エネルギーと電位分布の変化を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;382</span></article>
+      <article class="p" data-state="live" data-k="385 383 誘電体を半分挿入したときの電気量を比較する 電磁気 第22章 基本問題"><span class="pn mono">385</span><a class="stretch pt" href="https://www.youtube.com/watch?v=STi22PT7-wE" target="_blank" rel="noopener">誘電体を半分挿入したときの電気量を比較する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;383</span></article>
+      <article class="p" data-state="live" data-k="386 384 充電したコンデンサーを別につないだときの電圧を求める 電磁気 第22章 基本問題"><span class="pn mono">386</span><a class="stretch pt" href="https://www.youtube.com/watch?v=FfGZ-jnmXJM" target="_blank" rel="noopener">充電したコンデンサーを別につないだときの電圧を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;384</span></article>
+      <article class="p" data-state="live" data-k="387 385 2つの電池を使った回路でコンデンサーの電気量を求める 電磁気 第22章 基本問題"><span class="pn mono">387</span><a class="stretch pt" href="https://www.youtube.com/watch?v=rrMdh6O6uG8" target="_blank" rel="noopener">2つの電池を使った回路でコンデンサーの電気量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;385</span></article>
+      <article class="p" data-state="live" data-k="388 386 スイッチ開閉と間隔変更で電場と静電エネルギーの倍率を求める 電磁気 第22章 基本問題"><span class="pn mono">388</span><a class="stretch pt" href="https://www.youtube.com/watch?v=mGzYKcLpzEw" target="_blank" rel="noopener">スイッチ開閉と間隔変更で電場と静電エネルギーの倍率を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;386</span></article>
+      <article class="p" data-state="live" data-k="389 387 極板間隔を広げるときの静電エネルギー変化と引力を求める 電磁気 第22章 基本問題"><span class="pn mono">389</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Rkon7h49hSs" target="_blank" rel="noopener">極板間隔を広げるときの静電エネルギー変化と引力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;387</span></article>
+      <article class="p" data-state="live" data-k="390 388 電気力線の本数から電場とコンデンサーの容量を求める 電磁気 第22章 応用問題"><span class="pn mono">390</span><a class="stretch pt" href="https://www.youtube.com/watch?v=FWdPM94Nszw" target="_blank" rel="noopener">電気力線の本数から電場とコンデンサーの容量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;388</span></article>
+      <article class="p" data-state="live" data-k="391 389 ブリッジ状回路のコンデンサーの電気量と合成容量を求める 電磁気 第22章 応用問題"><span class="pn mono">391</span><a class="stretch pt" href="https://www.youtube.com/watch?v=qbFyx0HJhhk" target="_blank" rel="noopener">ブリッジ状回路のコンデンサーの電気量と合成容量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;389</span></article>
+      <article class="p" data-state="live" data-k="392 390 スイッチ切替を3段階行う回路で電気量の変化を求める 電磁気 第22章 応用問題"><span class="pn mono">392</span><a class="stretch pt" href="https://www.youtube.com/watch?v=HcL8xSYz3BQ" target="_blank" rel="noopener">スイッチ切替を3段階行う回路で電気量の変化を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;390</span></article>
+      <article class="p" data-state="live" data-k="393 391 金属板を部分的に差し込んだコンデンサーの容量を求める 電磁気 第22章 応用問題"><span class="pn mono">393</span><a class="stretch pt" href="https://www.youtube.com/watch?v=8zGJ7cZukNA" target="_blank" rel="noopener">金属板を部分的に差し込んだコンデンサーの容量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;391</span></article>
+      <article class="p" data-state="live" data-k="394 392 誘電体挿入時の静電エネルギー変化と外力を求める 電磁気 第22章 応用問題"><span class="pn mono">394</span><a class="stretch pt" href="https://www.youtube.com/watch?v=8H7tYYN-Peg" target="_blank" rel="noopener">誘電体挿入時の静電エネルギー変化と外力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;392</span></article>
+      <article class="p" data-state="live" data-k="395 393 金属板挿入と直列・並列切替で電位と電場を求める 電磁気 第22章 応用問題"><span class="pn mono">395</span><a class="stretch pt" href="https://www.youtube.com/watch?v=seFLtQwKOiE" target="_blank" rel="noopener">金属板挿入と直列・並列切替で電位と電場を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;393</span></article>
+      <article class="p" data-state="live" data-k="396 394 誘電体を挿入したコンデンサーの電位分布グラフを求める 電磁気 第22章 応用問題"><span class="pn mono">396</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ipAemor68qs" target="_blank" rel="noopener">誘電体を挿入したコンデンサーの電位分布グラフを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;394</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch23" data-cat="electro" style="--c:var(--electro)">
+  <div class="chh">
+    <span class="chn mono">23</span>
+    <div class="cht"><h2>電流</h2><span class="chf mono">電磁気 ・ 13 / 13 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="397 395 自由電子の移動方向と流れる電気量を求める 電磁気 第23章 基本問題"><span class="pn mono">397</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ZdubVyTPNfY" target="_blank" rel="noopener">自由電子の移動方向と流れる電気量を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;395</span></article>
+      <article class="p" data-state="live" data-k="398 396 直列接続回路の各点電圧と合成抵抗を求める 電磁気 第23章 基本問題"><span class="pn mono">398</span><a class="stretch pt" href="https://www.youtube.com/watch?v=x7ln_Eh38-g" target="_blank" rel="noopener">直列接続回路の各点電圧と合成抵抗を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;396</span></article>
+      <article class="p" data-state="live" data-k="399 397 並列接続回路の分流電流と合成抵抗を求める 電磁気 第23章 基本問題"><span class="pn mono">399</span><a class="stretch pt" href="https://www.youtube.com/watch?v=cxhUw1rZpt8" target="_blank" rel="noopener">並列接続回路の分流電流と合成抵抗を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;397</span></article>
+      <article class="p" data-state="live" data-k="400 398 直並列混合抵抗回路を流れる電流を求める 電磁気 第23章 基本問題"><span class="pn mono">400</span><a class="stretch pt" href="https://www.youtube.com/watch?v=OAvYaXxcekI" target="_blank" rel="noopener">直並列混合抵抗回路を流れる電流を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;398</span></article>
+      <article class="p" data-state="live" data-k="401 399 ドライヤーの消費電力から電力量をJとkWhで求める 電磁気 第23章 基本問題"><span class="pn mono">401</span><a class="stretch pt" href="https://www.youtube.com/watch?v=9RD_GiheHA4" target="_blank" rel="noopener">ドライヤーの消費電力から電力量をJとkWhで求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;399</span></article>
+      <article class="p" data-state="live" data-k="402 400 電熱線に電圧を加えたときのジュール熱を求める 電磁気 第23章 基本問題"><span class="pn mono">402</span><a class="stretch pt" href="https://www.youtube.com/watch?v=J-hWXdkU0B0" target="_blank" rel="noopener">電熱線に電圧を加えたときのジュール熱を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;400</span></article>
+      <article class="p" data-state="live" data-k="403 401 ニクロム線で油の温度を上げる時間を求める 電磁気 第23章 基本問題"><span class="pn mono">403</span><a class="stretch pt" href="https://www.youtube.com/watch?v=f9qjiYxf9HQ" target="_blank" rel="noopener">ニクロム線で油の温度を上げる時間を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;401</span></article>
+      <article class="p" data-state="live" data-k="404 402 抵抗の接続法を変えたときの消費電力を求める 電磁気 第23章 基本問題"><span class="pn mono">404</span><a class="stretch pt" href="https://www.youtube.com/watch?v=iN8jO9zu-DE" target="_blank" rel="noopener">抵抗の接続法を変えたときの消費電力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;402</span></article>
+      <article class="p" data-state="live" data-k="405 403 自由電子の速さと電流の関係を式で求める 電磁気 第23章 応用問題"><span class="pn mono">405</span><a class="stretch pt" href="https://www.youtube.com/watch?v=i3j_vO43_dY" target="_blank" rel="noopener">自由電子の速さと電流の関係を式で求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;403</span></article>
+      <article class="p" data-state="live" data-k="406 404 電流-電圧グラフから2本の導線の抵抗率を比較する 電磁気 第23章 応用問題"><span class="pn mono">406</span><a class="stretch pt" href="https://www.youtube.com/watch?v=cvEc5Xvdw9o" target="_blank" rel="noopener">電流-電圧グラフから2本の導線の抵抗率を比較する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;404</span></article>
+      <article class="p" data-state="live" data-k="407 405 可変抵抗の変化に対する電流変化をグラフで選ぶ 電磁気 第23章 応用問題"><span class="pn mono">407</span><a class="stretch pt" href="https://www.youtube.com/watch?v=hKGHleb-KkY" target="_blank" rel="noopener">可変抵抗の変化に対する電流変化をグラフで選ぶ</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;405</span></article>
+      <article class="p" data-state="live" data-k="408 406 抵抗の接続法によるジュール熱の発生比を求める 電磁気 第23章 応用問題"><span class="pn mono">408</span><a class="stretch pt" href="https://www.youtube.com/watch?v=sJuQQtB3W0M" target="_blank" rel="noopener">抵抗の接続法によるジュール熱の発生比を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;406</span></article>
+      <article class="p" data-state="live" data-k="409 407 電力が最大となる抵抗値を証明する 電磁気 第23章 応用問題"><span class="pn mono">409</span><a class="stretch pt" href="https://www.youtube.com/watch?v=13BQcgy1Ms0" target="_blank" rel="noopener">電力が最大となる抵抗値を証明する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;407</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch24" data-cat="electro" style="--c:var(--electro)">
+  <div class="chh">
+    <span class="chn mono">24</span>
+    <div class="cht"><h2>直流回路</h2><span class="chf mono">電磁気 ・ 19 / 20 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="410 408 自由電子の運動モデルからオームの法則を導く 電磁気 第24章 基本問題"><span class="pn mono">410</span><a class="stretch pt" href="https://www.youtube.com/watch?v=IrRO1G6zj_M" target="_blank" rel="noopener">自由電子の運動モデルからオームの法則を導く</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;408</span></article>
+      <article class="p" data-state="live" data-k="411 409 電流計と電圧計どちらが誤差が小さいか判断する 電磁気 第24章 基本問題"><span class="pn mono">411</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ejoC2WoFNFY" target="_blank" rel="noopener">電流計と電圧計どちらが誤差が小さいか判断する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;409</span></article>
+      <article class="p" data-state="live" data-k="412 410 分流器と倍率器で測定範囲を広げる抵抗を求める 電磁気 第24章 基本問題"><span class="pn mono">412</span><a class="stretch pt" href="https://www.youtube.com/watch?v=mh9BdVql4fw" target="_blank" rel="noopener">分流器と倍率器で測定範囲を広げる抵抗を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;410</span></article>
+      <article class="p" data-state="prep" data-k="413 413 抵抗とコンデンサーを含む回路の電位と電気量を求める 電磁気 第24章 基本問題" title="同じ位置だが内容が別問題"><span class="pn mono">413</span><span class="pt">抵抗とコンデンサーを含む回路の電位と電気量を求める</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="live" data-k="414 411 スイッチ開閉時の電流と消費電力をキルヒホッフで求める 電磁気 第24章 基本問題"><span class="pn mono">414</span><a class="stretch pt" href="https://www.youtube.com/watch?v=d1Yq8bEHAro" target="_blank" rel="noopener">スイッチ開閉時の電流と消費電力をキルヒホッフで求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;411</span></article>
+      <article class="p" data-state="live" data-k="415 412 電池2個を直列・並列につないだ電流を求める 電磁気 第24章 基本問題"><span class="pn mono">415</span><a class="stretch pt" href="https://www.youtube.com/watch?v=_Ls_kskBvpA" target="_blank" rel="noopener">電池2個を直列・並列につないだ電流を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;412</span></article>
+      <article class="p" data-state="live" data-k="416 414 電流-電圧グラフから起電力と内部抵抗を求める 電磁気 第24章 基本問題"><span class="pn mono">416</span><a class="stretch pt" href="https://www.youtube.com/watch?v=0jm0zRwUM9o" target="_blank" rel="noopener">電流-電圧グラフから起電力と内部抵抗を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;414</span></article>
+      <article class="p" data-state="live" data-k="417 415 消費電力が最大となる可変抵抗値を求める 電磁気 第24章 基本問題"><span class="pn mono">417</span><a class="stretch pt" href="https://www.youtube.com/watch?v=CEAkFWOTaxc" target="_blank" rel="noopener">消費電力が最大となる可変抵抗値を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;415</span></article>
+      <article class="p" data-state="live" data-k="418 416 ホイートストンブリッジの未知抵抗と電流の向きを求める 電磁気 第24章 基本問題"><span class="pn mono">418</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Ns2IYhDsvJk" target="_blank" rel="noopener">ホイートストンブリッジの未知抵抗と電流の向きを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;416</span></article>
+      <article class="p" data-state="live" data-k="419 417 メートルブリッジで未知抵抗の値を求める 電磁気 第24章 基本問題"><span class="pn mono">419</span><a class="stretch pt" href="https://www.youtube.com/watch?v=fkAalMTy85M" target="_blank" rel="noopener">メートルブリッジで未知抵抗の値を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;417</span></article>
+      <article class="p" data-state="live" data-k="420 418 電位差計で乾電池の起電力を求める 電磁気 第24章 基本問題"><span class="pn mono">420</span><a class="stretch pt" href="https://www.youtube.com/watch?v=EoKhDZ7g3DE" target="_blank" rel="noopener">電位差計で乾電池の起電力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;418</span></article>
+      <article class="p" data-state="live" data-k="421 419 電球を含む回路で非直線抵抗の電流を求める 電磁気 第24章 基本問題"><span class="pn mono">421</span><a class="stretch pt" href="https://www.youtube.com/watch?v=pObq8gX6s2Y" target="_blank" rel="noopener">電球を含む回路で非直線抵抗の電流を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;419</span></article>
+      <article class="p" data-state="live" data-k="422 420 スイッチ開閉時のコンデンサー回路の過渡電流を求める 電磁気 第24章 基本問題"><span class="pn mono">422</span><a class="stretch pt" href="https://www.youtube.com/watch?v=zHni11BlU2E" target="_blank" rel="noopener">スイッチ開閉時のコンデンサー回路の過渡電流を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;420</span></article>
+      <article class="p" data-state="live" data-k="423 421 n型・p型半導体の構造とキャリアを確認する 電磁気 第24章 基本問題"><span class="pn mono">423</span><a class="stretch pt" href="https://www.youtube.com/watch?v=M4-B4p3ORBI" target="_blank" rel="noopener">n型・p型半導体の構造とキャリアを確認する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;421</span></article>
+      <article class="p" data-state="live" data-k="424 422 ダイオードのグラフから電流と消費電力を求める 電磁気 第24章 基本問題"><span class="pn mono">424</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Zhx1DhWvR6U" target="_blank" rel="noopener">ダイオードのグラフから電流と消費電力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;422</span></article>
+      <article class="p" data-state="live" data-k="425 423 スイッチ開閉時の抵抗値と電流の向きをキルヒホッフで求める 電磁気 第24章 応用問題"><span class="pn mono">425</span><a class="stretch pt" href="https://www.youtube.com/watch?v=DPwVBQcq_c4" target="_blank" rel="noopener">スイッチ開閉時の抵抗値と電流の向きをキルヒホッフで求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;423</span></article>
+      <article class="p" data-state="live" data-k="426 424 スイッチ開閉前後の消費電力と電流を比較する 電磁気 第24章 応用問題"><span class="pn mono">426</span><a class="stretch pt" href="https://www.youtube.com/watch?v=RNje1-1ETeI" target="_blank" rel="noopener">スイッチ開閉前後の消費電力と電流を比較する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;424</span></article>
+      <article class="p" data-state="live" data-k="427 425 スイッチとコンデンサー回路で移動電荷の向きを求める 電磁気 第24章 応用問題"><span class="pn mono">427</span><a class="stretch pt" href="https://www.youtube.com/watch?v=2YFcRdcLEjI" target="_blank" rel="noopener">スイッチとコンデンサー回路で移動電荷の向きを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;425</span></article>
+      <article class="p" data-state="live" data-k="428 426 内部抵抗を考慮した2通りの抵抗測定誤差を比較する 電磁気 第24章 応用問題"><span class="pn mono">428</span><a class="stretch pt" href="https://www.youtube.com/watch?v=f7dZRosgbC0" target="_blank" rel="noopener">内部抵抗を考慮した2通りの抵抗測定誤差を比較する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;426</span></article>
+      <article class="p" data-state="live" data-k="429 427 ダイオードに電流が流れる可変抵抗の条件を求める 電磁気 第24章 応用問題"><span class="pn mono">429</span><a class="stretch pt" href="https://www.youtube.com/watch?v=M_z4hR2aElA" target="_blank" rel="noopener">ダイオードに電流が流れる可変抵抗の条件を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;427</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch25" data-cat="electro" style="--c:var(--electro)">
+  <div class="chh">
+    <span class="chn mono">25</span>
+    <div class="cht"><h2>電流と磁場</h2><span class="chf mono">電磁気 ・ 15 / 16 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="430 428 磁針の真上に電流を流したときの振れる向きを判断する 電磁気 第25章 基本問題"><span class="pn mono">430</span><a class="stretch pt" href="https://www.youtube.com/watch?v=9cHRPWsE9VQ" target="_blank" rel="noopener">磁針の真上に電流を流したときの振れる向きを判断する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;428</span></article>
+      <article class="p" data-state="live" data-k="431 429 2本の平行導線がつくる中点の磁場の強さを求める 電磁気 第25章 基本問題"><span class="pn mono">431</span><a class="stretch pt" href="https://www.youtube.com/watch?v=B_e5ZXbSFu8" target="_blank" rel="noopener">2本の平行導線がつくる中点の磁場の強さを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;429</span></article>
+      <article class="p" data-state="live" data-k="432 430 円形電流と直線電流が接するときの合成磁場を求める 電磁気 第25章 基本問題"><span class="pn mono">432</span><a class="stretch pt" href="https://www.youtube.com/watch?v=GbOlrVHd4dE" target="_blank" rel="noopener">円形電流と直線電流が接するときの合成磁場を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;430</span></article>
+      <article class="p" data-state="live" data-k="433 431 ソレノイドで地磁気を打ち消す電流の大きさを求める 電磁気 第25章 基本問題"><span class="pn mono">433</span><a class="stretch pt" href="https://www.youtube.com/watch?v=T27ciONxoRE" target="_blank" rel="noopener">ソレノイドで地磁気を打ち消す電流の大きさを求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;431</span></article>
+      <article class="p" data-state="live" data-k="434 432 磁場と角度をなす導体棒が受ける力を求める 電磁気 第25章 基本問題"><span class="pn mono">434</span><a class="stretch pt" href="https://www.youtube.com/watch?v=hPQDXfFjnTk" target="_blank" rel="noopener">磁場と角度をなす導体棒が受ける力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;432</span></article>
+      <article class="p" data-state="live" data-k="435 433 モーターのコイルが受ける力と回転方向を求める 電磁気 第25章 基本問題"><span class="pn mono">435</span><a class="stretch pt" href="https://www.youtube.com/watch?v=sRSS4rklVqc" target="_blank" rel="noopener">モーターのコイルが受ける力と回転方向を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;433</span></article>
+      <article class="p" data-state="live" data-k="436 434 傾斜レール上のパイプが静止する磁束密度を求める 電磁気 第25章 基本問題"><span class="pn mono">436</span><a class="stretch pt" href="https://www.youtube.com/watch?v=FGf4qdHlv5s" target="_blank" rel="noopener">傾斜レール上のパイプが静止する磁束密度を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;434</span></article>
+      <article class="p" data-state="live" data-k="437 435 直交する2本の電流がつくる磁場と力を求める 電磁気 第25章 基本問題"><span class="pn mono">437</span><a class="stretch pt" href="https://www.youtube.com/watch?v=m9JMDCtA__4" target="_blank" rel="noopener">直交する2本の電流がつくる磁場と力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;435</span></article>
+      <article class="p" data-state="live" data-k="438 436 磁場内を円運動する電子の半径と周期を求める 電磁気 第25章 基本問題"><span class="pn mono">438</span><a class="stretch pt" href="https://www.youtube.com/watch?v=AzRgsMaAMhM" target="_blank" rel="noopener">磁場内を円運動する電子の半径と周期を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;436</span></article>
+      <article class="p" data-state="live" data-k="439 437 加速されたイオンが磁場内で描く半径の比を求める 電磁気 第25章 基本問題"><span class="pn mono">439</span><a class="stretch pt" href="https://www.youtube.com/watch?v=gjrx5FJVIy8" target="_blank" rel="noopener">加速されたイオンが磁場内で描く半径の比を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;437</span></article>
+      <article class="p" data-state="prep" data-k="440 438 正方形頂点の4本の電流がつくる中心の磁場を求める 電磁気 第25章 応用問題" title="同じ位置だが内容が別問題"><span class="pn mono">440</span><span class="pt">正方形頂点の4本の電流がつくる中心の磁場を求める</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="live" data-k="441 439 直線電流が正方形コイルに及ぼす力を合成する 電磁気 第25章 応用問題"><span class="pn mono">441</span><a class="stretch pt" href="https://www.youtube.com/watch?v=SRlMe3-spb4" target="_blank" rel="noopener">直線電流が正方形コイルに及ぼす力を合成する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;439</span></article>
+      <article class="p" data-state="live" data-k="442 440 サイクロトロンで加速される粒子の軌道半径を求める 電磁気 第25章 応用問題"><span class="pn mono">442</span><a class="stretch pt" href="https://www.youtube.com/watch?v=26xUDDeJRYo" target="_blank" rel="noopener">サイクロトロンで加速される粒子の軌道半径を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;440</span></article>
+      <article class="p" data-state="live" data-k="443 441 磁場境界を出入りする粒子の滞在時間を求める 電磁気 第25章 応用問題"><span class="pn mono">443</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Me41rr4UxcI" target="_blank" rel="noopener">磁場境界を出入りする粒子の滞在時間を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;441</span></article>
+      <article class="p" data-state="live" data-k="444 442 斜め入射した電子のらせん運動の周期を求める 電磁気 第25章 応用問題"><span class="pn mono">444</span><a class="stretch pt" href="https://www.youtube.com/watch?v=t_bEQnkcqLA" target="_blank" rel="noopener">斜め入射した電子のらせん運動の周期を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;442</span></article>
+      <article class="p" data-state="live" data-k="445 443 半導体を流れる電子のホール効果の電位差を求める 電磁気 第25章 応用問題"><span class="pn mono">445</span><a class="stretch pt" href="https://www.youtube.com/watch?v=U0EdO8fZWG8" target="_blank" rel="noopener">半導体を流れる電子のホール効果の電位差を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;443</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch26" data-cat="electro" style="--c:var(--electro)">
+  <div class="chh">
+    <span class="chn mono">26</span>
+    <div class="cht"><h2>電磁誘導</h2><span class="chf mono">電磁気 ・ 13 / 16 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="live" data-k="446 444 コイルの磁束変化から誘導起電力を求める 電磁気 第26章 基本問題"><span class="pn mono">446</span><a class="stretch pt" href="https://www.youtube.com/watch?v=40ZHw1lIvDQ" target="_blank" rel="noopener">コイルの磁束変化から誘導起電力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;444</span></article>
+      <article class="p" data-state="live" data-k="447 445 直線電流の変化で誘導電流の向きを判断する 電磁気 第26章 基本問題"><span class="pn mono">447</span><a class="stretch pt" href="https://www.youtube.com/watch?v=0LKR91dZMDg" target="_blank" rel="noopener">直線電流の変化で誘導電流の向きを判断する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;445</span></article>
+      <article class="p" data-state="live" data-k="448 446 磁場中を動く金属棒の誘導起電力を求める 電磁気 第26章 基本問題"><span class="pn mono">448</span><a class="stretch pt" href="https://www.youtube.com/watch?v=NHRGMNv3lSY" target="_blank" rel="noopener">磁場中を動く金属棒の誘導起電力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;446</span></article>
+      <article class="p" data-state="live" data-k="449 447 磁場を出入りするコイルの誘導電流と仕事率を求める 電磁気 第26章 基本問題"><span class="pn mono">449</span><a class="stretch pt" href="https://www.youtube.com/watch?v=6sbh1hWu9BY" target="_blank" rel="noopener">磁場を出入りするコイルの誘導電流と仕事率を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;447</span></article>
+      <article class="p" data-state="live" data-k="450 448 磁石レール上の金属棒の終端速度を求める 電磁気 第26章 基本問題"><span class="pn mono">450</span><a class="stretch pt" href="https://www.youtube.com/watch?v=GPiDBjmi-n0" target="_blank" rel="noopener">磁石レール上の金属棒の終端速度を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;448</span></article>
+      <article class="p" data-state="live" data-k="451 449 斜面を落下するおもりの終端速度を求める 電磁気 第26章 基本問題"><span class="pn mono">451</span><a class="stretch pt" href="https://www.youtube.com/watch?v=V4jvyWP7lcg" target="_blank" rel="noopener">斜面を落下するおもりの終端速度を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;449</span></article>
+      <article class="p" data-state="live" data-k="452 450 動く磁石が生じる渦電流の向きを判断する 電磁気 第26章 基本問題"><span class="pn mono">452</span><a class="stretch pt" href="https://www.youtube.com/watch?v=sBBx6TI-bf8" target="_blank" rel="noopener">動く磁石が生じる渦電流の向きを判断する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;450</span></article>
+      <article class="p" data-state="live" data-k="453 451 電流グラフからコイルの誘導起電力を描く 電磁気 第26章 基本問題"><span class="pn mono">453</span><a class="stretch pt" href="https://www.youtube.com/watch?v=Uhh5InY0jVM" target="_blank" rel="noopener">電流グラフからコイルの誘導起電力を描く</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;451</span></article>
+      <article class="p" data-state="live" data-k="454 452 RL直列回路のスイッチ操作後の電流を求める 電磁気 第26章 基本問題"><span class="pn mono">454</span><a class="stretch pt" href="https://www.youtube.com/watch?v=AKpqiesqp9U" target="_blank" rel="noopener">RL直列回路のスイッチ操作後の電流を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;452</span></article>
+      <article class="p" data-state="live" data-k="455 453 相互インダクタンスで生じる起電力を描く 電磁気 第26章 基本問題"><span class="pn mono">455</span><a class="stretch pt" href="https://www.youtube.com/watch?v=ZpAGqNFXnHA" target="_blank" rel="noopener">相互インダクタンスで生じる起電力を描く</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;453</span></article>
+      <article class="p" data-state="live" data-k="456 454 磁場を通過するコイルの誘導起電力を求める 電磁気 第26章 応用問題"><span class="pn mono">456</span><a class="stretch pt" href="https://www.youtube.com/watch?v=nofxzqsCwe4" target="_blank" rel="noopener">磁場を通過するコイルの誘導起電力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;454</span></article>
+      <article class="p" data-state="live" data-k="457 455 動き出す導体棒の終端速度を求める 電磁気 第26章 応用問題"><span class="pn mono">457</span><a class="stretch pt" href="https://www.youtube.com/watch?v=IZX2J5loAp8" target="_blank" rel="noopener">動き出す導体棒の終端速度を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;455</span></article>
+      <article class="p" data-state="live" data-k="458 456 斜面を滑る導体棒が一定速度になる条件を求める 電磁気 第26章 応用問題"><span class="pn mono">458</span><a class="stretch pt" href="https://www.youtube.com/watch?v=7U8E1L8guI0" target="_blank" rel="noopener">斜面を滑る導体棒が一定速度になる条件を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;456</span></article>
+      <article class="p" data-state="prep" data-k="459 457 LR回路のスイッチ開閉時の電流を求める 電磁気 第26章 応用問題" title="一致率0.9未満のため未確定"><span class="pn mono">459</span><span class="pt">LR回路のスイッチ開閉時の電流を求める</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="460 458 磁場中で回転するL字形導体棒の角速度を求める 電磁気 第26章 応用問題" title="同じ位置だが内容が別問題"><span class="pn mono">460</span><span class="pt">磁場中で回転するL字形導体棒の角速度を求める</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="461 459  電磁気 第26章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">461</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch27" data-cat="electro" style="--c:var(--electro)">
+  <div class="chh">
+    <span class="chn mono">27</span>
+    <div class="cht"><h2>交流と電気振動</h2><span class="chf mono">電磁気 ・ 13 / 15 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="prep" data-k="462 460  電磁気 第27章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">462</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="live" data-k="463 461 回転するコイルの空所補充で誘導起電力を求める 電磁気 第27章 基本問題"><span class="pn mono">463</span><a class="stretch pt" href="https://www.youtube.com/watch?v=BgYn_pZFk-k" target="_blank" rel="noopener">回転するコイルの空所補充で誘導起電力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;461</span></article>
+      <article class="p" data-state="live" data-k="464 462 ダイオード回路の整流前後の電位変化を求める 電磁気 第27章 基本問題"><span class="pn mono">464</span><a class="stretch pt" href="https://www.youtube.com/watch?v=0mLiaMJIiOw" target="_blank" rel="noopener">ダイオード回路の整流前後の電位変化を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;462</span></article>
+      <article class="p" data-state="live" data-k="465 463 変圧器の一次二次の電圧と電流を求める 電磁気 第27章 基本問題"><span class="pn mono">465</span><a class="stretch pt" href="https://www.youtube.com/watch?v=p5OmBgXDSCc" target="_blank" rel="noopener">変圧器の一次二次の電圧と電流を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;463</span></article>
+      <article class="p" data-state="live" data-k="466 464 周波数を2倍にしたときの電流変化を求める 電磁気 第27章 基本問題"><span class="pn mono">466</span><a class="stretch pt" href="https://www.youtube.com/watch?v=6IXMDioOJSQ" target="_blank" rel="noopener">周波数を2倍にしたときの電流変化を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;464</span></article>
+      <article class="p" data-state="live" data-k="467 465 抵抗・コイル・コンデンサーの消費電力を求める 電磁気 第27章 基本問題"><span class="pn mono">467</span><a class="stretch pt" href="https://www.youtube.com/watch?v=UjC9LYKRGUw" target="_blank" rel="noopener">抵抗・コイル・コンデンサーの消費電力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;465</span></article>
+      <article class="p" data-state="live" data-k="468 466 RL直列回路のインピーダンスと消費電力を求める 電磁気 第27章 基本問題"><span class="pn mono">468</span><a class="stretch pt" href="https://www.youtube.com/watch?v=aaF8upO7yeE" target="_blank" rel="noopener">RL直列回路のインピーダンスと消費電力を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;466</span></article>
+      <article class="p" data-state="live" data-k="469 467 RC直列回路の静電容量を実測電流から求める 電磁気 第27章 基本問題"><span class="pn mono">469</span><a class="stretch pt" href="https://www.youtube.com/watch?v=HLY66ihq_BE" target="_blank" rel="noopener">RC直列回路の静電容量を実測電流から求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;467</span></article>
+      <article class="p" data-state="live" data-k="470 468 RLC直列回路の電位と共振角周波数を空所補充で求める 電磁気 第27章 基本問題"><span class="pn mono">470</span><a class="stretch pt" href="https://www.youtube.com/watch?v=TQb5cje5qiM" target="_blank" rel="noopener">RLC直列回路の電位と共振角周波数を空所補充で求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;468</span></article>
+      <article class="p" data-state="live" data-k="471 469 LC回路の電圧グラフから電気容量と最大電流を求める 電磁気 第27章 基本問題"><span class="pn mono">471</span><a class="stretch pt" href="https://www.youtube.com/watch?v=74QRIn87RVo" target="_blank" rel="noopener">LC回路の電圧グラフから電気容量と最大電流を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;469</span></article>
+      <article class="p" data-state="prep" data-k="472 470  電磁気 第27章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">472</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="live" data-k="473 471 RLC直列回路の実効値電流と共振周波数を求める 電磁気 第27章 応用問題"><span class="pn mono">473</span><a class="stretch pt" href="https://www.youtube.com/watch?v=bN9t8eYCEMY" target="_blank" rel="noopener">RLC直列回路の実効値電流と共振周波数を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;471</span></article>
+      <article class="p" data-state="live" data-k="474 472 RLC並列回路で電流が最小になる周波数を求める 電磁気 第27章 応用問題"><span class="pn mono">474</span><a class="stretch pt" href="https://www.youtube.com/watch?v=GLb6N2bL98E" target="_blank" rel="noopener">RLC並列回路で電流が最小になる周波数を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;472</span></article>
+      <article class="p" data-state="live" data-k="475 473 LC回路のスイッチ切替後の振動電流を求める 電磁気 第27章 応用問題"><span class="pn mono">475</span><a class="stretch pt" href="https://www.youtube.com/watch?v=WcRQVI0oDyU" target="_blank" rel="noopener">LC回路のスイッチ切替後の振動電流を求める</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;473</span></article>
+      <article class="p" data-state="live" data-k="476 474 LC振動とばね振動の対応を空所補充で整理する 電磁気 第27章 応用問題"><span class="pn mono">476</span><a class="stretch pt" href="https://www.youtube.com/watch?v=wnbZcD38ybk" target="_blank" rel="noopener">LC振動とばね振動の対応を空所補充で整理する</a><span class="src mono" title="2022年 新課程版の問題番号">&larr;474</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch28" data-cat="atom" style="--c:var(--atom)">
+  <div class="chh">
+    <span class="chn mono">28</span>
+    <div class="cht"><h2>電子と光</h2><span class="chf mono">原子 ・ 0 / 24 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="prep" data-k="477 475 放電 原子 第28章 基本問題" title="動画が未撮影"><span class="pn mono">477</span><span class="pt">放電</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="478 476 陰極線と磁場 原子 第28章 基本問題" title="動画が未撮影"><span class="pn mono">478</span><span class="pt">陰極線と磁場</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="479 477 電場と磁場による電子の偏向 原子 第28章 基本問題" title="動画が未撮影"><span class="pn mono">479</span><span class="pt">電場と磁場による電子の偏向</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="480 478 磁場による電子の偏向 原子 第28章 基本問題" title="動画が未撮影"><span class="pn mono">480</span><span class="pt">磁場による電子の偏向</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="481 479 ミリカンの実験 原子 第28章 基本問題" title="動画が未撮影"><span class="pn mono">481</span><span class="pt">ミリカンの実験</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="482 480 ミリカンの実験 原子 第28章 基本問題" title="動画が未撮影"><span class="pn mono">482</span><span class="pt">ミリカンの実験</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="483 481 電気素量 原子 第28章 基本問題" title="動画が未撮影"><span class="pn mono">483</span><span class="pt">電気素量</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="484 482 光電効果 原子 第28章 基本問題" title="動画が未撮影"><span class="pn mono">484</span><span class="pt">光電効果</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="485 483 光電効果 原子 第28章 基本問題" title="動画が未撮影"><span class="pn mono">485</span><span class="pt">光電効果</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="486 484 光電効果のグラフ 原子 第28章 基本問題" title="動画が未撮影"><span class="pn mono">486</span><span class="pt">光電効果のグラフ</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="487 485 光電効果の阻止電圧 原子 第28章 基本問題" title="動画が未撮影"><span class="pn mono">487</span><span class="pt">光電効果の阻止電圧</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="488 486 電場による加速 原子 第28章 基本問題" title="動画が未撮影"><span class="pn mono">488</span><span class="pt">電場による加速</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="489 487 X線の発生 原子 第28章 基本問題" title="動画が未撮影"><span class="pn mono">489</span><span class="pt">X線の発生</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="490 488 X線回折 原子 第28章 基本問題" title="動画が未撮影"><span class="pn mono">490</span><span class="pt">X線回折</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="491 489 光の粒子性 原子 第28章 基本問題" title="動画が未撮影"><span class="pn mono">491</span><span class="pt">光の粒子性</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="492 490 コンプトン効果 原子 第28章 基本問題" title="動画が未撮影"><span class="pn mono">492</span><span class="pt">コンプトン効果</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="493 491 電子波 原子 第28章 基本問題" title="動画が未撮影"><span class="pn mono">493</span><span class="pt">電子波</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="494 492 電子波 原子 第28章 基本問題" title="動画が未撮影"><span class="pn mono">494</span><span class="pt">電子波</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="495 493 電子の比電荷 原子 第28章 応用問題" title="動画が未撮影"><span class="pn mono">495</span><span class="pt">電子の比電荷</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="496 494 電子の運動の重力の影響 原子 第28章 応用問題" title="動画が未撮影"><span class="pn mono">496</span><span class="pt">電子の運動の重力の影響</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="497 495 光の圧力 原子 第28章 応用問題" title="動画が未撮影"><span class="pn mono">497</span><span class="pt">光の圧力</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="498 496 光電効果 原子 第28章 応用問題" title="動画が未撮影"><span class="pn mono">498</span><span class="pt">光電効果</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="499 497 コンプトン効果 原子 第28章 応用問題" title="動画が未撮影"><span class="pn mono">499</span><span class="pt">コンプトン効果</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="500 498 Ｘ線と電子線の回折 原子 第28章 応用問題" title="動画が未撮影"><span class="pn mono">500</span><span class="pt">Ｘ線と電子線の回折</span><span class="pw mono">準備中</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch29" data-cat="atom" style="--c:var(--atom)">
+  <div class="chh">
+    <span class="chn mono">29</span>
+    <div class="cht"><h2>原子と原子核</h2><span class="chf mono">原子 ・ 0 / 22 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="prep" data-k="501 499 水素原子のエネルギー準位 原子 第29章 基本問題" title="動画が未撮影"><span class="pn mono">501</span><span class="pt">水素原子のエネルギー準位</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="502 500 原子番号Ｚの原子のモデル 原子 第29章 基本問題" title="動画が未撮影"><span class="pn mono">502</span><span class="pt">原子番号Ｚの原子のモデル</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="503 501 原子量 原子 第29章 基本問題" title="動画が未撮影"><span class="pn mono">503</span><span class="pt">原子量</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="504 502 質量分析器 原子 第29章 基本問題" title="動画が未撮影"><span class="pn mono">504</span><span class="pt">質量分析器</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="505 503 放射性崩壊と放射線 原子 第29章 基本問題" title="動画が未撮影"><span class="pn mono">505</span><span class="pt">放射性崩壊と放射線</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="506 504 放射性崩壊 原子 第29章 基本問題" title="動画が未撮影"><span class="pn mono">506</span><span class="pt">放射性崩壊</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="507 505 半減期 原子 第29章 基本問題" title="動画が未撮影"><span class="pn mono">507</span><span class="pt">半減期</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="508 506 １４Ｃと年代測定 原子 第29章 基本問題" title="動画が未撮影"><span class="pn mono">508</span><span class="pt">１４Ｃと年代測定</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="509 507 放射性崩壊と半減期 原子 第29章 基本問題" title="動画が未撮影"><span class="pn mono">509</span><span class="pt">放射性崩壊と半減期</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="510 508 結合エネルギー 原子 第29章 基本問題" title="動画が未撮影"><span class="pn mono">510</span><span class="pt">結合エネルギー</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="511 509 原子核反応とβ崩壊 原子 第29章 基本問題" title="動画が未撮影"><span class="pn mono">511</span><span class="pt">原子核反応とβ崩壊</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="512 510 原子核の崩壊とエネルギー保存則 原子 第29章 基本問題" title="動画が未撮影"><span class="pn mono">512</span><span class="pt">原子核の崩壊とエネルギー保存則</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="513 511 核分裂 原子 第29章 基本問題" title="動画が未撮影"><span class="pn mono">513</span><span class="pt">核分裂</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="514 512 核融合 原子 第29章 基本問題" title="動画が未撮影"><span class="pn mono">514</span><span class="pt">核融合</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="515 513 クォーク模型 原子 第29章 基本問題" title="動画が未撮影"><span class="pn mono">515</span><span class="pt">クォーク模型</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="516 514 水素原子のスペクトル 原子 第29章 応用問題" title="動画が未撮影"><span class="pn mono">516</span><span class="pt">水素原子のスペクトル</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="517 515 α崩壊 原子 第29章 応用問題" title="動画が未撮影"><span class="pn mono">517</span><span class="pt">α崩壊</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="518 516 年代測定 原子 第29章 応用問題" title="動画が未撮影"><span class="pn mono">518</span><span class="pt">年代測定</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="519 517 核反応における保存則 原子 第29章 応用問題" title="動画が未撮影"><span class="pn mono">519</span><span class="pt">核反応における保存則</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="520 518 中性子と核分裂 原子 第29章 応用問題" title="動画が未撮影"><span class="pn mono">520</span><span class="pt">中性子と核分裂</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="521 519 原子核反応 原子 第29章 応用問題" title="動画が未撮影"><span class="pn mono">521</span><span class="pt">原子核反応</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="522 520 β＋崩壊，電子対消滅 原子 第29章 応用問題" title="動画が未撮影"><span class="pn mono">522</span><span class="pt">β＋崩壊，電子対消滅</span><span class="pw mono">準備中</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch30" data-cat="atom" style="--c:var(--atom)">
+  <div class="chh">
+    <span class="chn mono">30</span>
+    <div class="cht"><h2>エネルギーの利用</h2><span class="chf mono">原子 ・ 0 / 10 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="prep" data-k="523 521  原子 第30章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">523</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="524 522  原子 第30章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">524</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="525 523  原子 第30章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">525</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="526 524  原子 第30章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">526</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="527 525  原子 第30章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">527</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="528 526  原子 第30章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">528</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="529 527  原子 第30章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">529</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="530 528  原子 第30章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">530</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="531 529  原子 第30章 " title="同じ位置だが内容が別問題"><span class="pn mono">531</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="532 530  原子 第30章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">532</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch特集①" data-cat="none" style="--c:var(--none)">
+  <div class="chh">
+    <span class="chn mono">特集①</span>
+    <div class="cht"><h2>大学入学共通テスト対策問題 物理基礎</h2><span class="chf mono">0 / 9 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="prep" data-k="533 531   第特集①章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">533</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="534 532   第特集①章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">534</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="535 534   第特集①章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">535</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="536 533   第特集①章 " title="同じ位置だが内容が別問題"><span class="pn mono">536</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="537 536   第特集①章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">537</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="538 537   第特集①章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">538</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="539 538   第特集①章 " title="同じ位置だが内容が別問題"><span class="pn mono">539</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="540 539   第特集①章 " title="同じ位置だが内容が別問題"><span class="pn mono">540</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="541    第特集①章 " title="2024年版で新規に入った問題"><span class="pn mono">541</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch特集②" data-cat="none" style="--c:var(--none)">
+  <div class="chh">
+    <span class="chn mono">特集②</span>
+    <div class="cht"><h2>大学入学共通テスト対策問題 物理</h2><span class="chf mono">0 / 8 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="prep" data-k="542 540   第特集②章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">542</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="543 541   第特集②章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">543</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="544 542   第特集②章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">544</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="545 543   第特集②章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">545</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="546 544   第特集②章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">546</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="547 545   第特集②章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">547</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="548 547   第特集②章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">548</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="549 546   第特集②章 " title="同じ位置だが内容が別問題"><span class="pn mono">549</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+<section class="ch" id="ch特集③" data-cat="none" style="--c:var(--none)">
+  <div class="chh">
+    <span class="chn mono">特集③</span>
+    <div class="cht"><h2>論述・考察問題</h2><span class="chf mono">0 / 18 動画あり</span></div>
+  </div>
+  <div class="pgrid">
+      <article class="p" data-state="prep" data-k="550 548   第特集③章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">550</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="551 549   第特集③章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">551</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="552 550   第特集③章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">552</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="553 551   第特集③章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">553</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="554 552   第特集③章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">554</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="555 553   第特集③章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">555</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="556 554   第特集③章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">556</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="557 555   第特集③章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">557</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="558 556   第特集③章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">558</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="559 558   第特集③章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">559</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="560 557   第特集③章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">560</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="561 559   第特集③章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">561</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="562 560   第特集③章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">562</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="563 561   第特集③章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">563</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="564 562   第特集③章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">564</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="565 564   第特集③章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">565</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="566 563   第特集③章 " title="第30章・特集は動画の台帳に無い"><span class="pn mono">566</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+      <article class="p" data-state="prep" data-k="567 565   第特集③章 " title="一致率0.9未満のため未確定"><span class="pn mono">567</span><span class="pt">（動画の台帳に見出しがありません）</span><span class="pw mono">準備中</span></article>
+  </div>
+  <p class="none">絞り込みに合う問題がありません。</p>
+</section>
+
+  </main>
+
+  <footer>
+    <p>「リードα物理基礎・物理」は数研出版の教材名です。当ページは個人が運営する解説チャンネルの索引であり、同社の公式ページではありません。</p>
+  </footer>
+</div>
+
+<script>
+  var cat="all", st="all", q="";
+  var hits=document.getElementById("hits");
+
+  function apply(){
+    var shown=0;
+    document.querySelectorAll(".ch").forEach(function(sec){
+      var catOK=(cat==="all"||sec.dataset.cat===cat), inSec=0;
+      sec.querySelectorAll(".p").forEach(function(p){
+        var ok=catOK&&(st==="all"||p.dataset.state===st)&&
+               (!q||p.dataset.k.toLowerCase().indexOf(q)>=0);
+        p.classList.toggle("hidden",!ok);
+        if(ok) inSec++;
+      });
+      sec.classList.toggle("hidden",inSec===0);
+      sec.querySelector(".none").classList.toggle("show",false);
+      shown+=inSec;
+    });
+    document.querySelectorAll(".jc").forEach(function(j){
+      var t=document.querySelector(j.getAttribute("href"));
+      j.classList.toggle("hidden", !t || t.classList.contains("hidden"));
+    });
+    hits.textContent = (q||cat!=="all"||st!=="all") ? shown+"問" : "";
+  }
+
+  function wire(sel,set){
+    var els=document.querySelectorAll(sel);
+    els.forEach(function(c){
+      var hit=function(){ els.forEach(function(x){x.classList.remove("active");});
+        c.classList.add("active"); set(c); apply(); };
+      c.addEventListener("click",hit);
+      c.addEventListener("keydown",function(e){
+        if(e.key==="Enter"||e.key===" "){ e.preventDefault(); hit(); }});
+    });
+  }
+  wire(".chip[data-cat]",function(c){ cat=c.dataset.cat; });
+  wire(".chip[data-st]",function(c){ st=c.dataset.st; });
+  document.getElementById("q").addEventListener("input",function(e){
+    q=e.target.value.trim().toLowerCase(); apply(); });
+  apply();
+</script>
+<button class="to-top" id="toTop" aria-label="ページの先頭へ戻る">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+<script>
+  // 上へ戻る。600px以上スクロールしたら出す。
+  (function(){
+    var btn = document.getElementById('toTop');
+    if(!btn) return;
+    var ticking = false;
+    function update(){
+      btn.classList.toggle('show', window.scrollY > 600);
+      ticking = false;
+    }
+    window.addEventListener('scroll', function(){
+      if(!ticking){ ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    btn.addEventListener('click', function(){
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+    update();
+  })();
+</script>
+
+</body>
+</html>

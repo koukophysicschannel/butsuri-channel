@@ -68,8 +68,44 @@
   header.top{ padding:22px 0 26px; }
   .eyebrow{ display:inline-flex; align-items:center; gap:8px; font-family:var(--mono);
     font-size:12.5px; letter-spacing:.12em; color:var(--accent);
-    border:1px solid rgba(244,201,93,.35); padding:5px 12px; border-radius:999px; margin-bottom:18px; }
+    border:1px solid rgba(244,201,93,.35); padding:5px 12px; border-radius:999px; }
   .eyebrow::before{ content:"\25CF"; font-size:8px; }
+  /* 対応している版。アイブロウの隣に置き、書名とは競合させない。
+     改訂版のページ(/leadalpha/2024/)にも同じ形で入れてある。 */
+  .edition{ display:inline-flex; align-items:center; gap:8px; font-family:var(--mono);
+    font-size:12px; color:var(--chalk-dim); border:1px solid var(--line);
+    background:var(--bg-alt); border-radius:999px; padding:5px 12px; }
+  .edition b{ color:var(--chalk); font-weight:700; }
+  .brow{ display:flex; gap:9px; flex-wrap:wrap; align-items:center; margin-bottom:18px; }
+
+  /* 版の案内。重問(/juyomon/2026/)の .yearnote と同じ部品。片方だけ直さないこと。 */
+  .yearnote{
+    margin:22px 0 0; border:1px solid rgba(244,201,93,.3);
+    background:linear-gradient(180deg,rgba(244,201,93,.06),rgba(244,201,93,.02));
+    border-radius:14px; padding:18px 20px;
+    display:flex; gap:14px; align-items:flex-start;
+  }
+  .yearnote .ic{ color:var(--accent); flex-shrink:0; margin-top:3px; }
+  .yearnote h2{ font-size:15px; margin:0 0 6px; font-weight:700; }
+  .yearnote p{ margin:0; font-size:13.5px; color:var(--chalk-dim); max-width:66ch; }
+  .yearnote strong{ color:var(--chalk); font-weight:700; }
+  .yearnote a.more{ color:var(--accent); border-bottom:1px solid rgba(244,201,93,.4); }
+
+  /* 版の見分け方。大半の人には不要なので既定では畳んでおく。
+     文面は /leadalpha/2024/ と同じにしてあるので、片方だけ直さないこと。 */
+  .which{ margin:14px 0 0; }
+  .which summary{ font-family:var(--mono); font-size:12.5px; color:var(--accent);
+    cursor:pointer; list-style:none; display:inline-flex; align-items:center; gap:6px; }
+  .which summary::-webkit-details-marker{ display:none; }
+  .which summary::before{ content:"\FF0B"; font-size:11px; }
+  .which[open] summary::before{ content:"\FF0D"; }
+  .which .wbody{ margin-top:10px; border-left:2px solid var(--line); padding:2px 0 2px 14px; }
+  .which p{ margin:0 0 8px; font-size:13px; color:var(--chalk-dim); max-width:64ch; }
+  .which dl{ margin:0; display:grid; grid-template-columns:auto 1fr; gap:6px 14px;
+    font-size:13px; color:var(--chalk-dim); align-items:baseline; }
+  .which dt{ font-family:var(--mono); font-size:11.5px; color:var(--accent); white-space:nowrap; }
+  .which dd{ margin:0; }
+  .which strong{ color:var(--chalk); }
   h1{ font-size:clamp(28px,4.2vw,42px); font-weight:900; margin:0 0 12px; letter-spacing:-.01em; }
   h1 .sub{ display:block; font-size:.4em; font-weight:500; color:var(--chalk-dim); margin-top:10px; }
   .lede{ max-width:62ch; color:var(--chalk-dim); font-size:15px; margin:0 0 22px; }
@@ -210,7 +246,10 @@
   <nav class="crumb mono"><a href="../">高校物理 解説チャンネル</a> / リードα物理基礎・物理</nav>
 
   <header class="top">
-    <span class="eyebrow mono">LEAD ALPHA</span>
+    <div class="brow">
+      <span class="eyebrow mono">LEAD ALPHA</span>
+      <span class="edition mono">対応する版 <b>2022年11月1日発行 新課程版</b></span>
+    </div>
     <h1>『リードα物理基礎・物理』 全650問
       <span class="sub">全29章を、1問ずつ解説動画へ</span>
     </h1>
@@ -223,6 +262,29 @@
       </div>
       <div class="bar"><span style="flex:591" class="b-live"></span><span style="flex:59" class="b-prep"></span></div>
     </div>
+
+    <aside class="yearnote">
+      <span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8.2" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="10" cy="14" r="1" fill="currentColor"/></svg></span>
+      <div>
+        <h2>2024年 改訂版をお使いの方へ</h2>
+        <p>このページの解説動画は<strong>2022年11月1日発行の新課程版</strong>の問題番号でつくっています。2024年11月1日発行の<strong>改訂版では問題番号がずれます</strong>（章の中で入れ替わっている箇所もあります）。改訂版の番号で引ける一覧を別に用意しました。<a class="more" href="2024/">改訂版の一覧を見る</a></p>
+      </div>
+    </aside>
+
+    <details class="which">
+      <summary>お使いの版が分からない方へ</summary>
+      <div class="wbody">
+        <p>お手元の本を開いて、どちらか一方でも当てはまれば判別できます。</p>
+        <dl>
+          <dt>問題見出し</dt>
+          <dd>問題名の右に小さな<strong>■</strong>が付いていれば<strong>新課程版</strong>、付いていなければ<strong>改訂版</strong>です。改訂版では全問から外されました。</dd>
+          <dt>最後の問題番号</dt>
+          <dd>巻末の特集の最終問が<strong>問565</strong>なら新課程版、<strong>問567</strong>なら改訂版です。</dd>
+          <dt>表紙</dt>
+          <dd>書名の頭に「<strong>改訂版</strong>」と付いていれば改訂版です。</dd>
+        </dl>
+      </div>
+    </details>
   </header>
 
   <nav class="panel" id="panel" aria-label="絞り込み">
