@@ -145,6 +145,22 @@
     border:1px solid rgba(244,201,93,.4); border-radius:4px; padding:0 6px;
     white-space:nowrap; }
 
+  /* 姉妹ページへの導線。要約カードの中に、いちばん静かな見え方で置く。 */
+  .sib{ margin:2px 0 0; font-size:12px; color:#7d8890; }
+  .sib a{ color:var(--chalk-dim); border-bottom:1px solid var(--line); }
+  .sib a:hover{ color:var(--chalk); border-color:var(--chalk-dim); }
+
+  /* 比較表。いま見ている側の列を薄く起こして、どちらの数字かを迷わせない。 */
+  table.cmp{ min-width:520px; }
+  table.cmp .und{ display:block; font-size:10.5px; color:#68737d; margin-top:1px; }
+  table.cmp th.me, table.cmp td.me{ background:rgba(244,201,93,.055); }
+  table.cmp th.me{ color:var(--accent); }
+  table.cmp tr.grp td{ background:var(--bg-alt); color:var(--chalk-dim);
+    font-size:11.5px; letter-spacing:.04em; padding:7px 14px; }
+  .dnote{ margin:10px 0 20px; font-size:11.5px; color:#7d8890; max-width:72ch; }
+  .xlink{ color:var(--chalk-dim); border-bottom:1px solid var(--line); }
+  .xlink:hover{ color:var(--chalk); border-color:var(--chalk-dim); }
+
   .sum{ padding-top:30px; margin-top:34px; border-top:1px solid var(--line); }
   .sum h2{ font-size:22px; margin:0 0 10px; font-weight:700; }
   .sum h3{ font-size:16px; margin:28px 0 10px; font-weight:700; }
@@ -197,6 +213,7 @@
         <div class="stat"><b>3</b><span>入試方式</span></div>
       </div>
       <p class="asof mono">2027年度入試／調査 2026年9月1日</p>
+      <p class="sib">姉妹ページ：<a href="../waseikeijo-rikei-2027/">早慶上理 方式別・理科科目 一覧</a></p>
     </div>
 
     <aside class="warn">
@@ -216,7 +233,7 @@
     </div>
   </header>
 
-  <main id="marchTable">
+  <main id="hyo">
   <section class="uni" id="meiji">
     <div class="uh">
       <h2>明治大学<span class="cnt mono">15学科</span></h2>
@@ -558,6 +575,39 @@
       </tbody>
     </table></div>
     <p class="unote">母数は「その方式で理科を課す学科数」です。生物は学部別 39.1% に対して共通テスト利用 83.3% と、方式を変えるだけで選択肢が大きく変わります。</p>
+  </section>
+
+  <section class="sum" id="hikaku">
+    <h2>早慶上理との比較</h2>
+    <p class="unote">同じ学科数どうしではないので、割合で見てください。いま見ているのは <strong>MARCH理系</strong> です。</p>
+    <div class="tw"><table class="cmp">
+      <thead><tr><th>指標</th><th class="r me">MARCH理系<span class="und mono">49学科</span></th><th class="r">早慶上理<span class="und mono">55募集単位</span></th></tr></thead>
+      <tbody>
+        <tr class="grp"><td colspan="3">いずれかの方式で選べる</td></tr>
+        <tr><td><span class="bx buturi y">物</span>物理</td><td class="r mono me">100.0%</td><td class="r mono">96.4%</td></tr>
+        <tr><td><span class="bx kagaku y">化</span>化学</td><td class="r mono me">98.0%</td><td class="r mono">100.0%</td></tr>
+        <tr><td><span class="bx seibutu y">生</span>生物</td><td class="r mono me">85.7%</td><td class="r mono">69.1%</td></tr>
+        <tr class="grp"><td colspan="3">理科を課す全ての方式で選べる</td></tr>
+        <tr><td><span class="bx buturi y">物</span>物理</td><td class="r mono me">85.7%</td><td class="r mono">83.6%</td></tr>
+        <tr><td><span class="bx kagaku y">化</span>化学</td><td class="r mono me">85.7%</td><td class="r mono">78.2%</td></tr>
+        <tr><td><span class="bx seibutu y">生</span>生物</td><td class="r mono me">40.8%</td><td class="r mono">29.1%</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>生物が選べる割合（方式ごと）</h3>
+    <div class="tw"><table class="cmp">
+      <thead><tr><th>方式</th><th class="r me">MARCH理系<span class="und mono">49学科</span></th><th class="r">早慶上理<span class="und mono">55募集単位</span></th></tr></thead>
+      <tbody>
+        <tr><td>① 学部別</td><td class="r mono me">39.1%<span class="und mono">46学科</span></td><td class="r mono">25.0%<span class="und mono">52募集単位</span></td></tr>
+        <tr><td>② 全学部統一</td><td class="r mono me">54.5%<span class="und mono">22学科</span></td><td class="r mono">100.0%<span class="und mono">3募集単位</span></td></tr>
+        <tr><td>③ 共通テスト利用</td><td class="r mono me">83.3%<span class="und mono">48学科</span></td><td class="r mono">100.0%<span class="und mono">33募集単位</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="dnote">※ 上の方式ごとの割合は、その方式で理科を課す学科・募集単位数を分母として算出しています（各数値の下に分母を添えています）。全学科・全募集単位数を分母とした数値は、各ページ本体の「集計」を参照してください。</p>
+    <p class="unote">生物を「理科を課す全ての方式で選べる」割合は、MARCH 40.8% に対して早慶上理 29.1%。<strong>早慶上理のほうが生物の門は狭い</strong>のですが、理由は科目指定の厳しさより<strong>方式の数</strong>にあります。MARCHは5大学すべてに共通テスト利用があり、学部別で×でも共テ利用なら○という逃げ道が使えました。早慶上理では早稲田の理工3学部と慶應の計22募集単位（40.0%）に共通テスト利用も全学部統一も存在せず、学部別1方式で可否が確定します。</p>
+    <p class="unote">逆に東京理科大は、B方式では30学科中5学科しか生物が使えないのに、A方式（共テ利用）では30学科すべてで使えます。方式を変えるだけで選択肢が6倍になり、MARCHの明治・法政と同じ構造をより極端にした形です。</p>
+    <p class="unote"><a class="xlink" href="../waseikeijo-rikei-2027/">早慶上理 方式別・理科科目 一覧 を見る</a></p>
+
   </section>
 
   <section class="sum" id="chui">
