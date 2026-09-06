@@ -61,7 +61,7 @@ REPO = Path(__file__).resolve().parent.parent
 # 個数は「最低これだけ」の意味。増える分には通る(節やカードの追加を邪魔しない)。
 LANDMARKS = {
     "index.html": {
-        "ids": ["lectures", "jumon", "leadalpha", "kakomon", "shorts", "texts",
+        "ids": ["updates", "lectures", "jumon", "leadalpha", "kakomon", "shorts", "texts",
                 "lectureGrid", "jumonGrid", "chapterGrid", "kakomonGrid", "shortsGrid",
                 "filters", "toTop", "lj"],
         "min_counts": {
@@ -74,6 +74,10 @@ LANDMARKS = {
             "la-2024": 1,          # リードα改訂版への導線(同上。同じマーカーの中)
             "jg-index": 1,         # 授業動画インデックスへの導線(build_site_jugyo.pyが管理)
             "quiet-link": 1,       # フッタの進学情報への導線
+            # 最近の更新の行(tools/build_updates.py が管理)。updates.csv は
+            # 行が減ることもあるが、7件出す節なので下限は7で置く。これを下回ったら
+            # CSVを削りすぎているか、節ごと消えている。
+            "upd-row": 7,
         },
     },
     # 重問インデックス。002 物理重要問題集/scripts/build_site_index.py が生成する。

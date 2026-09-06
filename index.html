@@ -207,13 +207,65 @@
     .addhome > summary .caret{ transition:none; }
   }
 
-  /* 上部は「ヒーロー(誰か・何か) → ①教材から探す → ②分野から探す → ③PHYSICA → 棚」の
-     5段。役割が混ざって見えないよう、次のように分けている。
+  /* ── 最近の更新 ─────────────────────────────────────────────
+     ヒーローと①教材の間に置く1段。①②③が「探す」入口なのに対してここは
+     「変わったところ」の掲示なので、.steplabel の3点セットには混ぜない
+     （混ぜると入口が4つあるように見える）。代わりに小さい見出しを節が持ち、
+     罫線は持たせない（下辺は .findbar の border-top が兼ねる。上辺に引くと、
+     行が0件で節が消えた日に線だけが残る）。
+
+     行はCSVの全行が焼かれていて、出す7件はJSが選ぶ（tools/build_updates.py）。
+     JSが動くまで hidden なので、選ばれる前の全行がちらつくことはない。 */
+  .updates{ padding: 18px 0 20px; }
+  .updates[hidden]{ display:none; }
+  .upd-h{
+    font-family:"JetBrains Mono", monospace; font-size:11px; font-weight:500;
+    letter-spacing:.1em; color:#6d7880; text-align:center;
+    margin: 0 0 12px;
+  }
+  .upd-row{
+    display:flex; align-items:baseline; gap:10px;
+    padding: 7px 10px; border-radius:8px;
+    color: var(--chalk); text-decoration:none;
+    font-size: 13px; line-height:1.5;
+  }
+  /* 出番が来ていない行はJSが付ける。CSSだけでも確実に消えるようにしておく。 */
+  .upd-row.hidden{ display:none; }
+  a.upd-row:hover{ background: var(--bg-alt); }
+  a.upd-row:hover .upd-go{ opacity:1; transform:none; }
+  .upd-date{ font-size:11.5px; color: var(--chalk-dim); flex-shrink:0; min-width:34px; }
+  /* 種別バッジ。色は --k（行ごとに生成器が入れる分野色）を借りる。 */
+  .upd-kind{
+    font-size:10.5px; letter-spacing:.04em; flex-shrink:0;
+    color: var(--k); border:1px solid color-mix(in srgb, var(--k) 40%, transparent);
+    background: color-mix(in srgb, var(--k) 10%, transparent);
+    border-radius:999px; padding: 2px 8px;
+  }
+  .upd-text{ min-width:0; flex:1; }
+  .upd-go{
+    font-size:12px; color: var(--k); flex-shrink:0;
+    opacity:0; transform: translateX(-3px);
+    transition: opacity .12s ease, transform .12s ease;
+  }
+  /* 幅が詰まったら日付と種別を1行目、本文を2行目に折り返す。
+     日付の桁（9/4 と 12/24）でずれないよう min-width で揃えてある。 */
+  @media (max-width:560px){
+    .upd-row{ flex-wrap:wrap; gap:6px 8px; padding:8px 8px; }
+    .upd-text{ flex-basis:100%; font-size:12.5px; }
+    .upd-go{ display:none; }
+  }
+  @media (prefers-reduced-motion: reduce){ .upd-go{ transition:none; } }
+
+  /* 上部は「ヒーロー(誰か・何か) → 最近の更新 → ①教材から探す → ②分野から探す
+     → ③PHYSICA → 棚」の6段。役割が混ざって見えないよう、次のように分けている。
        ・ヒーローのCTAは「YouTubeへ移動」1つだけ（サイト内の導線は①②が持つ）
-       ・①②③には同じ書式の小見出し(.steplabel)を付け、段の役割を先に読ませる
+       ・①②③には同じ書式の小見出し(.steplabel)を付け、段の役割を先に読ませる。
+         「最近の更新」は入口ではなく掲示なので、ここには混ぜず自前の .upd-h を使う
        ・段の間には既存の罫線(var(--line))を1本ずつ入れる
-         （ヒーロー/① は .findbar の border-top、①/② は .findbar の border-bottom、
+         （更新/① は .findbar の border-top、①/② は .findbar の border-bottom、
            ②/③ は .pcbar の border-top、③/棚 は section.section の border-top）
+         ヒーロー/更新 の間だけは線を引かない。更新節は行が0件なら丸ごと消えるので、
+         線を持たせると「線だけが残る」日が出る
        ・①②はニュートラル色のピルで対にし、③だけローズ色の枠にして別物だと示す
        ・PHYSICAの本体は最下部のカード。③は名前と一言だけの補助導線 */
 
@@ -512,6 +564,22 @@
       </div>
     </details>
   </header>
+
+  <!-- BUILD_UPDATES:START この節は tools/build_updates.py が管理します -->
+  <section class="updates" id="updates" aria-labelledby="updates-h" hidden>
+    <h2 class="upd-h" id="updates-h">最近の更新</h2>
+    <a class="upd-row" href="juyomon/2026/" data-date="2026-09-16" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-16">9/16</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問36と別解を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+    <a class="upd-row" href="shingaku/waseikeijo-rikei-baisu-2026/" data-date="2026-09-04" style="--k:var(--wave)"><time class="upd-date mono" datetime="2026-09-04">9/4</time><span class="upd-kind mono">ページ</span><span class="upd-text">進路情報に方式別の入試倍率ページを追加（早慶上理・MARCH）</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+    <a class="upd-row" href="shingaku/waseikeijo-rikei-2027/" data-date="2026-09-03" style="--k:var(--wave)"><time class="upd-date mono" datetime="2026-09-03">9/3</time><span class="upd-kind mono">ページ</span><span class="upd-text">早慶上理 理系 理科科目の一覧ページを公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+    <a class="upd-row" href="leadalpha/2024/" data-date="2026-09-03" style="--k:var(--wave)"><time class="upd-date mono" datetime="2026-09-03">9/3</time><span class="upd-kind mono">ページ</span><span class="upd-text">リードα 2024年改訂版に対応した索引を新設</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+    <a class="upd-row" href="jugyo/" data-date="2026-09-03" style="--k:var(--wave)"><time class="upd-date mono" datetime="2026-09-03">9/3</time><span class="upd-kind mono">ページ</span><span class="upd-text">授業動画 全176本のインデックスを新設</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+    <span class="upd-row" data-date="2026-09-03" style="--k:var(--mech)"><time class="upd-date mono" datetime="2026-09-03">9/3</time><span class="upd-kind mono">機能</span><span class="upd-text">スマホのホーム画面に追加して使えるようにした（PWA対応）</span></span>
+    <a class="upd-row" href="leadalpha/" data-date="2026-09-02" style="--k:var(--wave)"><time class="upd-date mono" datetime="2026-09-02">9/2</time><span class="upd-kind mono">ページ</span><span class="upd-text">リードα 全650問のインデックスを新設</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+    <a class="upd-row" href="leadalpha/" data-date="2026-09-02" style="--k:var(--mech)"><time class="upd-date mono" datetime="2026-09-02">9/2</time><span class="upd-kind mono">機能</span><span class="upd-text">リードαの索引を章題・分野でも絞り込めるようにした</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+    <a class="upd-row" href="shingaku/march-rikei-2027/" data-date="2026-09-01" style="--k:var(--wave)"><time class="upd-date mono" datetime="2026-09-01">9/1</time><span class="upd-kind mono">ページ</span><span class="upd-text">MARCH 理系 理科科目の一覧ページを公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+    <a class="upd-row" href="kakomon/" data-date="2026-08-30" style="--k:var(--wave)"><time class="upd-date mono" datetime="2026-08-30">8/30</time><span class="upd-kind mono">ページ</span><span class="upd-text">過去問に大学一覧と共通テストのセクションを追加</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+  </section>
+  <!-- BUILD_UPDATES:END -->
 
   <div class="findbar">
     <span class="steplabel">教材から探す</span>
@@ -826,6 +894,35 @@
     <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
+
+<script>
+  // 最近の更新。行はCSVの全行が焼かれているので、出す7件はここで選ぶ。
+  //   1. 日付が今日より先の行は出さない（重問は公開予約を先に台帳へ入れるため）
+  //   2. 残ったうち新しい7件だけ出す（件数で切る。更新が止まっても空にならない）
+  // 日が変わるだけで中身が入れ替わるので、ビルドを回し直す必要はない。
+  // 重問インデックスの settle() と同じ考え方。
+  (function(){
+    var sec = document.getElementById('updates');
+    if(!sec) return;
+    var SHOW = 7;                                   // build_updates.py の SHOW と揃える
+    var today = new Date();
+    // 日付だけで比べる。data-date は JST の暦日なので、時刻やUTC変換を挟むと
+    // 「公開当日の午前中は出ない」というずれ方をする。
+    var t = today.getFullYear() + '-' +
+            String(today.getMonth()+1).padStart(2,'0') + '-' +
+            String(today.getDate()).padStart(2,'0');
+
+    var shown = 0;
+    sec.querySelectorAll('.upd-row').forEach(function(row){
+      var d = row.dataset.date || '';
+      var ok = d <= t && shown < SHOW;               // 行は生成時点で新しい順
+      row.classList.toggle('hidden', !ok);
+      if(ok) shown++;
+    });
+    // 1件も無ければ節ごと出さない（見出しだけが残るのを防ぐ）
+    if(shown > 0) sec.hidden = false;
+  })();
+</script>
 
 <script>
   // 上へ戻る。600px以上スクロールしたら出す。
