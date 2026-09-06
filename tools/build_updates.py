@@ -3,6 +3,7 @@
 
     python3 tools/build_updates.py            # 生成して構造検査
     python3 tools/build_updates.py --dry-run  # 差分の要約だけ
+    python3 tools/build_updates.py --sync     # 重問の台帳を取り込んでから生成
 
 出力:
 
@@ -33,11 +34,33 @@ juyomon/2026/index.html の settle() と同じ考え方（`002 物理重要問�
 updates.csv に行を足したときだけ。
 
 ────────────────────────────────────────────────────────────
-出所（auto/manual）列
+出所（auto/manual）列と --sync
 ────────────────────────────────────────────────────────────
-将来 build_site_index.py 等から自動追記させるための予約列。いまは全行 manual。
-自動化するときは「出所が auto:xxx の行だけを消して入れ直す」ことで、
-手書きの行を巻き込まずに再生成できる。**列を消さないこと。**
+`manual` は手で書いた行。`auto:` で始まる行は台帳から機械的に作った行。
+
+`--sync` は **auto: で始まる行を全部捨てて作り直す**。manual の行は読みもしない
+ので巻き込まれない。逆に auto: 行を手で直しても次の --sync で消える。
+何度走らせても同じ結果になる（冪等）。
+
+取り込み元は重問の2つの台帳で、`--juyomon` でその場所を渡す。既定は Dropbox の
+`002 物理重要問題集`。**フォルダが無ければ同期は黙って飛ばす**（Dropbox の無い
+Mac でも updates.csv の描画だけは通す）。
+
+  auto:juyomon          juyomon-mapping.csv  の 公開予約(JST) が入っている行
+  auto:juyomon-variant  juyomon-variants.csv の 公開予約(JST) が入っている行
+
+公開予約が空の行は取らない。問1〜11は予約運用を始める前に公開されたもので
+台帳に公開日が無いため、ここには出てこない（2026-09-07、遡らないと決めた）。
+
+飛び先は `juyomon/2026/#qNN`。このアンカーは build_site_index.py が振っている。
+**あちらのアンカーを消すとリンクが死ぬ**ので、両方セットで直すこと。
+
+────────────────────────────────────────────────────────────
+HTMLに焼くのは新しい30行まで
+────────────────────────────────────────────────────────────
+出すのは7件だが、日が経つだけで表示が入れ替われるよう、余分に焼いておく。
+とはいえ163問ぶんを全部焼くとトップが倍近くに膨れるので上限を置く。
+未来日の行（多くて10件程度）＋過去の新しい行、で30あれば足りる。
 
 ────────────────────────────────────────────────────────────
 トップページの書き換えは範囲ガードつき
@@ -71,10 +94,91 @@ KIND = {
 }
 
 SHOW = 7   # ページ側が出す件数。CSSとJSの両方で使うのでここが正。
+BAKE = 30  # HTMLに焼く行数の上限（上の docstring 参照）
+
+# --sync の取り込み元。Dropbox が無いMacでは同期を飛ばす。
+JUYOMON_DIR = os.path.expanduser(
+    "~/Library/CloudStorage/Dropbox/002 物理重要問題集")
 
 
 class Abort(Exception):
     pass
+
+
+# ── 重問の台帳から auto: 行を作り直す ──────────────────────────
+def core_title(t):
+    """別解のYouTubeタイトルから芯だけ取り出す。
+
+    「【別解】保存則を使わず運動方程式で押しきる｜物理重要問題集 力学 問36【高校物理】」
+      → 「保存則を使わず運動方程式で押しきる」
+    定型の飾りが付かなくなっても壊れないよう、無ければ素通しにする。
+    """
+    t = t.strip()
+    if t.startswith("【別解】"):
+        t = t[len("【別解】"):]
+    return t.split("｜", 1)[0].strip()
+
+
+def juyomon_rows(base):
+    """公開予約(JST) が入っている行だけを auto: 行にして返す。
+
+    予約が空の行（問1〜11 と未予約127問）は取らない。
+    """
+    mapping = os.path.join(base, "juyomon-mapping.csv")
+    variants = os.path.join(base, "juyomon-variants.csv")
+    if not os.path.exists(mapping):
+        raise Abort(f"重問の台帳が見つかりません: {mapping}")
+
+    out = []
+    with open(mapping, encoding="utf-8-sig") as fp:
+        for r in csv.DictReader(fp):
+            d = (r.get("公開予約(JST)") or "").strip()
+            if not d:
+                continue
+            num, gist = r["num"].strip(), (r.get("趣旨") or "").strip()
+            out.append({
+                "日付": d[:10], "種別": "動画",
+                "本文": f'重要問題集 問{num}「{gist}」を公開',
+                "リンク": f"juyomon/2026/#q{num}", "出所": "auto:juyomon",
+            })
+
+    if os.path.exists(variants):
+        with open(variants, encoding="utf-8-sig") as fp:
+            for r in csv.DictReader(fp):
+                d = (r.get("公開予約(JST)") or "").strip()
+                if not d:
+                    continue
+                num = r["親num"].strip()
+                out.append({
+                    "日付": d[:10], "種別": "動画",
+                    "本文": f'重要問題集 問{num} 別解「{core_title(r.get("タイトル",""))}」を公開',
+                    "リンク": f"juyomon/2026/#q{num}", "出所": "auto:juyomon-variant",
+                })
+    return out
+
+
+def sync(base):
+    """auto: で始まる行を捨てて作り直す。manual の行は読みもしない。
+
+    戻り値は (消した数, 入れた数, 手つかずの manual 行数)。
+    """
+    with open(LEDGER, encoding="utf-8-sig") as fp:
+        old = list(csv.DictReader(fp))
+    kept = [r for r in old if not (r.get("出所") or "").startswith("auto:")]
+    fresh = juyomon_rows(base)
+
+    rows = kept + fresh
+    rows.sort(key=lambda r: r["日付"].strip(), reverse=True)
+
+    tmp = LEDGER + ".tmp"
+    with open(tmp, "w", encoding="utf-8", newline="") as fp:
+        # csv の既定は CRLF。手で書いた行と混ざると全行が差分に見えるので LF に揃える。
+        w = csv.DictWriter(fp, fieldnames=COLS, lineterminator="\n")
+        w.writeheader()
+        for r in rows:
+            w.writerow({c: r.get(c, "") for c in COLS})
+    os.replace(tmp, LEDGER)
+    return len(old) - len(kept), len(fresh), len(kept)
 
 
 def load():
@@ -104,9 +208,17 @@ def load():
             if link.startswith("/") or "://" in link:
                 raise Abort(f"{i}行目: リンクはリポジトリ内の相対パスで書きます: {link!r}")
             # 飛び先が実在するか。index.html を省いたディレクトリ指定も許す。
-            target = os.path.join(REPO, link)
-            if not (os.path.exists(target) or os.path.exists(os.path.join(target, "index.html"))):
+            path, _, frag = link.partition("#")
+            target = os.path.join(REPO, path)
+            page = target if os.path.isfile(target) else os.path.join(target, "index.html")
+            if not os.path.isfile(page):
                 raise Abort(f"{i}行目: リンク先が見つかりません: {link}")
+            # #qNN のような飛び先は、そのidが本当にあるかまで見る。
+            # build_site_index.py がアンカーを振るのをやめたら、ここで気づける。
+            if frag:
+                html_src = open(page, encoding="utf-8").read()
+                if f'id="{frag}"' not in html_src:
+                    raise Abort(f'{i}行目: リンク先に id="{frag}" がありません: {link}')
 
     # 新しい順。日付が同じならCSVの並び順を保つ（sortedは安定）。
     return sorted(rows, key=lambda r: r["日付"].strip(), reverse=True)
@@ -185,13 +297,32 @@ CSS_MARK = "/* ── 最近の更新"
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--sync", action="store_true",
+                    help="重問の台帳から auto: 行を作り直してから生成する")
+    ap.add_argument("--juyomon", default=JUYOMON_DIR,
+                    help="重問の台帳があるフォルダ（既定は Dropbox）")
     a = ap.parse_args()
+
+    if a.sync:
+        base = os.path.expanduser(a.juyomon)
+        if not os.path.isdir(base):
+            # Dropbox の無いMacでも描画だけは通す。同期しなかったことは必ず告げる。
+            print(f"同期を飛ばしました（{base} がありません）。"
+                  "updates.csv の中身をそのまま描画します。")
+        elif a.dry_run:
+            print("--dry-run のため同期していません（--sync は updates.csv を書き換えます）。")
+        else:
+            try:
+                gone, made, manual = sync(base)
+                print(f"■ 同期  auto行 {gone} → {made} に入れ替え／manual {manual}行は手つかず")
+            except Abort as e:
+                sys.exit(f"停止: {e}")
 
     try:
         rows = load()
         top_path = os.path.join(REPO, "index.html")
         src = open(top_path, encoding="utf-8").read()
-        out = patch_top(src, rows)
+        out = patch_top(src, rows[:BAKE])
     except Abort as e:
         sys.exit(f"停止: {e}")
 
@@ -199,7 +330,9 @@ def main():
     live = [r for r in rows if r["日付"].strip() <= today][:SHOW]
     ahead = [r for r in rows if r["日付"].strip() > today]
 
-    print(f"■ updates.csv {len(rows)}行 → HTMLに全行を焼き、ページ側が新しい{SHOW}件を出す")
+    baked = min(len(rows), BAKE)
+    print(f"■ updates.csv {len(rows)}行 → 新しい{baked}行をHTMLに焼き、"
+          f"ページ側が新しい{SHOW}件を出す")
     print(f"  いま出る{len(live)}件（{today} 時点）:")
     for r in live:
         print(f"    {r['日付']}  {r['種別']:<3}  {r['本文']}")
@@ -210,8 +343,10 @@ def main():
     drop = [r for r in rows if r["日付"].strip() <= today][SHOW:]
     if drop:
         print(f"  {SHOW}件からあふれた{len(drop)}件（CSVには残る）:")
-        for r in drop:
+        for r in drop[:5]:
             print(f"    {r['日付']}  {r['種別']:<3}  {r['本文']}")
+        if len(drop) > 5:
+            print(f"    … ほか{len(drop) - 5}件")
     print(f"  index.html  {len(src.encode('utf-8')):,} → {len(out.encode('utf-8')):,} bytes")
 
     if a.dry_run:
