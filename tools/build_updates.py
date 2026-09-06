@@ -48,11 +48,18 @@ Mac でも updates.csv の描画だけは通す）。
 
   auto:juyomon          juyomon-mapping.csv  の 公開予約(JST) が入っている行
   auto:juyomon-variant  juyomon-variants.csv の 公開予約(JST) が入っている行
+  auto:leadalpha        leadalpha-chapter-schedule.csv の 公開日 が入っている行
 
-公開予約が空の行は取らない。問1〜11は予約運用を始める前に公開されたもので
+公開予約が空の行は取らない。重問の問1〜11は予約運用を始める前に公開されたもので
 台帳に公開日が無いため、ここには出てこない（2026-09-07、遡らないと決めた）。
 
-飛び先は `juyomon/2026/#qNN`。このアンカーは build_site_index.py が振っている。
+リードαは章が単位で、1章ぶんの全動画が日曜にまとめて public になる。したがって
+1章＝1行。`履歴` 列が「載せる」の章だけを取る。第1〜16章は公開済みだが
+遡らない方針なので「—」にしてあり、記録としては台帳に残るが更新履歴には出ない
+（2026-09-07、清水さんの判断）。
+
+飛び先は `juyomon/2026/#qNN` と `leadalpha/#chN`。前者は build_site_index.py が
+振っている。後者は build_site_leadalpha.py が元から振っていた。
 **あちらのアンカーを消すとリンクが死ぬ**ので、両方セットで直すこと。
 
 ────────────────────────────────────────────────────────────
@@ -99,6 +106,8 @@ BAKE = 30  # HTMLに焼く行数の上限（上の docstring 参照）
 # --sync の取り込み元。Dropbox が無いMacでは同期を飛ばす。
 JUYOMON_DIR = os.path.expanduser(
     "~/Library/CloudStorage/Dropbox/002 物理重要問題集")
+LEADALPHA_DIR = os.path.expanduser(
+    "~/Library/CloudStorage/Dropbox/002 リード/999 抽出")
 
 
 class Abort(Exception):
@@ -157,7 +166,32 @@ def juyomon_rows(base):
     return out
 
 
-def sync(base):
+def leadalpha_rows(base):
+    """公開日が入っていて、履歴が「載せる」の章だけを1行ずつ返す。
+
+    リードαは章がまとまって公開されるので、1章＝1行。重問のように
+    1動画1行にすると、1つの日曜で25行が並んで更新履歴が埋まってしまう。
+    """
+    sched = os.path.join(base, "leadalpha-chapter-schedule.csv")
+    if not os.path.exists(sched):
+        raise Abort(f"リードαの章台帳が見つかりません: {sched}")
+
+    out = []
+    with open(sched, encoding="utf-8-sig") as fp:
+        for r in csv.DictReader(fp):
+            d = (r.get("公開日") or "").strip()
+            if not d or (r.get("履歴") or "").strip() != "載せる":
+                continue
+            ch, title, n = r["章"].strip(), r["章題"].strip(), r["問数"].strip()
+            out.append({
+                "日付": d[:10], "種別": "動画",
+                "本文": f"リードα 第{ch}章「{title}」全{n}問を公開",
+                "リンク": f"leadalpha/#ch{ch}", "出所": "auto:leadalpha",
+            })
+    return out
+
+
+def sync(base, la_base):
     """auto: で始まる行を捨てて作り直す。manual の行は読みもしない。
 
     戻り値は (消した数, 入れた数, 手つかずの manual 行数)。
@@ -166,6 +200,10 @@ def sync(base):
         old = list(csv.DictReader(fp))
     kept = [r for r in old if not (r.get("出所") or "").startswith("auto:")]
     fresh = juyomon_rows(base)
+    if os.path.isdir(la_base):
+        fresh += leadalpha_rows(la_base)
+    else:
+        print(f"リードαの同期は飛ばしました（{la_base} がありません）。")
 
     rows = kept + fresh
     rows.sort(key=lambda r: r["日付"].strip(), reverse=True)
@@ -301,6 +339,8 @@ def main():
                     help="重問の台帳から auto: 行を作り直してから生成する")
     ap.add_argument("--juyomon", default=JUYOMON_DIR,
                     help="重問の台帳があるフォルダ（既定は Dropbox）")
+    ap.add_argument("--leadalpha", default=LEADALPHA_DIR,
+                    help="リードαの章台帳があるフォルダ（既定は Dropbox）")
     a = ap.parse_args()
 
     if a.sync:
@@ -313,7 +353,7 @@ def main():
             print("--dry-run のため同期していません（--sync は updates.csv を書き換えます）。")
         else:
             try:
-                gone, made, manual = sync(base)
+                gone, made, manual = sync(base, os.path.expanduser(a.leadalpha))
                 print(f"■ 同期  auto行 {gone} → {made} に入れ替え／manual {manual}行は手つかず")
             except Abort as e:
                 sys.exit(f"停止: {e}")
