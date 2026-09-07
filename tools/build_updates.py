@@ -63,11 +63,18 @@ Mac でも updates.csv の描画だけは通す）。
 **あちらのアンカーを消すとリンクが死ぬ**ので、両方セットで直すこと。
 
 ────────────────────────────────────────────────────────────
-HTMLに焼くのは新しい30行まで
+HTMLに焼く行の選び方
 ────────────────────────────────────────────────────────────
 出すのは7件だが、日が経つだけで表示が入れ替われるよう、余分に焼いておく。
-とはいえ163問ぶんを全部焼くとトップが倍近くに膨れるので上限を置く。
-未来日の行（多くて10件程度）＋過去の新しい行、で30あれば足りる。
+とはいえ163問ぶんを全部焼くとトップが倍近くに膨れるので絞る。
+
+    未来日の行は全部 ＋ 過去の新しい PAST 行
+
+**「新しいN行」という単純な上限にしてはいけない。**最初はそうしていたが、
+2026-09-07 にリードαの11章ぶんを予約したところ未来日の行が20件に増え、
+上限30行のうち過去が10行しか残らなくなった（表示7件に対して余裕3行）。
+予約を先に入れるほど過去が押し出される作りだったため、予約を増やすと
+いつか表示が7件に届かなくなる。未来と過去を別々に数えれば起きない。
 
 ────────────────────────────────────────────────────────────
 トップページの書き換えは範囲ガードつき
@@ -101,7 +108,7 @@ KIND = {
 }
 
 SHOW = 7   # ページ側が出す件数。CSSとJSの両方で使うのでここが正。
-BAKE = 30  # HTMLに焼く行数の上限（上の docstring 参照）
+PAST = 15  # 焼く「過去の行」の数。未来日の行はこれとは別に全部焼く（上の docstring 参照）
 
 # --sync の取り込み元。Dropbox が無いMacでは同期を飛ばす。
 JUYOMON_DIR = os.path.expanduser(
@@ -329,6 +336,23 @@ def patch_top(src, rows):
     return out
 
 
+def to_bake(rows):
+    """焼く行を選ぶ。未来日は全部、過去は新しい PAST 行だけ。
+
+    rows は日付の降順。未来の行が何件あっても過去が PAST 行残るので、
+    表示件数(SHOW)に届かなくなることがない。
+    """
+    today = datetime.date.today().isoformat()
+    out, past = [], 0
+    for r in rows:
+        if r["日付"].strip() > today:
+            out.append(r)
+        elif past < PAST:
+            out.append(r)
+            past += 1
+    return out
+
+
 CSS_MARK = "/* ── 最近の更新"
 
 
@@ -362,7 +386,7 @@ def main():
         rows = load()
         top_path = os.path.join(REPO, "index.html")
         src = open(top_path, encoding="utf-8").read()
-        out = patch_top(src, rows[:BAKE])
+        out = patch_top(src, to_bake(rows))
     except Abort as e:
         sys.exit(f"停止: {e}")
 
@@ -370,8 +394,9 @@ def main():
     live = [r for r in rows if r["日付"].strip() <= today][:SHOW]
     ahead = [r for r in rows if r["日付"].strip() > today]
 
-    baked = min(len(rows), BAKE)
-    print(f"■ updates.csv {len(rows)}行 → 新しい{baked}行をHTMLに焼き、"
+    baked = to_bake(rows)
+    print(f"■ updates.csv {len(rows)}行 → {len(baked)}行をHTMLに焼き"
+          f"（未来{len(ahead)}＋過去{len(baked) - len(ahead)}）、"
           f"ページ側が新しい{SHOW}件を出す")
     print(f"  いま出る{len(live)}件（{today} 時点）:")
     for r in live:
