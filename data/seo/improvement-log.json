@@ -1,0 +1,16 @@
+[
+  {
+    "keyword": "リードα 解説",
+    "targetPath": "/leadalpha/",
+    "status": "observing",
+    "nextReviewDate": "2026-09-17",
+    "actions": [
+      {
+        "date": "2026-09-10",
+        "rankAtAction": null,
+        "needs": "学校配布版の『リードα物理基礎・物理』に解答・解説の冊子が付いていない、あるいは付いていても模範解答だけでは考え方が分からず行き詰まった高校生が、問題番号から探せる無料の詳しい解説（できれば動画）を探している。",
+        "done": "leadalpha/index.html を改善。(1) meta description / og:description / twitter:description を『模範解答だけでは分からない問題も無料・登録不要の動画で確認できる』という悩み訴求に更新。(2) リード文に、解答・解説冊子がない場合や模範解答で理解できない場合への言及を1文追加。(3) 競合サイト（sirataki.com, date-physics.jimdofree.com, makoto-physics-school.com）が扱っていた『冊子が付いていない』『模範解答だけでは分からない』『無料か・登録必要か』『改訂版の番号対応』という4つの実需クエリに答えるFAQセクションを新設し、同内容でFAQPage構造化データ(JSON-LD)も追加。文章量の水増しではなく、既存の.which（詳細開閉）コンポーネントを再利用して情報を足す形にした。tools/check_html.py で構造検査済み（OK）。"
+      }
+    ]
+  }
+]

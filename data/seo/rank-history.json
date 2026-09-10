@@ -1,0 +1,92 @@
+[
+  {
+    "date": "2026-09-10",
+    "keyword": "リードα 解説",
+    "targetPath": "/leadalpha/",
+    "method": "websearch_estimate",
+    "rank": null,
+    "impressions": null,
+    "clicks": null,
+    "notes": "GSC未接続のためWebSearchで概算確認。上位表示（目視で確認できた範囲）はkeio-waseda.jp, shotosha.com, sirataki.com, hienzemi.comなど。対象サイトはWebSearch結果の可視範囲には出てこなかった（正確な順位はGSC実測が必要）。"
+  },
+  {
+    "date": "2026-09-10",
+    "keyword": "リードα 解答 解説 冊子",
+    "targetPath": "/leadalpha/",
+    "method": "websearch_estimate",
+    "rank": null,
+    "impressions": null,
+    "clicks": null,
+    "notes": "「リードα物理基礎 わからない 解説 サイト」「リードα 解答 解説 無料」で検索。sirataki.com・date-physics.jimdofree.com・makoto-physics-school.comが上位。対象サイトは可視範囲になし。"
+  },
+  {
+    "date": "2026-09-10",
+    "keyword": "物理重要問題集 解説",
+    "targetPath": "/juyomon/2026/",
+    "method": "websearch_estimate",
+    "rank": null,
+    "impressions": null,
+    "clicks": null,
+    "notes": "WebSearchで概算確認。上位は塾・予備校の使い方紹介記事（tcial.jp, genronkai.comなど）で、動画解説そのものを提供するサイトは見当たらなかった。"
+  },
+  {
+    "date": "2026-09-10",
+    "keyword": "東京理科大 物理 過去問 解説",
+    "targetPath": "/kakomon/tokyo-rika/",
+    "method": "websearch_estimate",
+    "rank": null,
+    "impressions": null,
+    "clicks": null,
+    "notes": "河合塾Kei-Net・旺文社パスナビ・東進の過去問データベースが上位。対象サイトは可視範囲になし。"
+  },
+  {
+    "date": "2026-09-10",
+    "keyword": "高校物理 授業動画",
+    "targetPath": "/jugyo/",
+    "method": "websearch_estimate",
+    "rank": null,
+    "impressions": null,
+    "clicks": null,
+    "notes": "物理のしっぽ・Try IT等の強豪YouTubeチャンネルが上位。対象サイトは可視範囲になし。"
+  },
+  {
+    "date": "2026-09-10",
+    "keyword": "MARCH理系 方式別 理科科目",
+    "targetPath": "/shingaku/march-rikei-2027/",
+    "method": "websearch_estimate",
+    "rank": null,
+    "impressions": null,
+    "clicks": null,
+    "notes": "塾ブログ（akamonlab.jp, susumujuku.com等）が上位。対象サイトは可視範囲になし。"
+  },
+  {
+    "date": "2026-09-10",
+    "keyword": "早慶上理 方式別 理科科目",
+    "targetPath": "/shingaku/waseikeijo-rikei-2027/",
+    "method": "websearch_estimate",
+    "rank": null,
+    "impressions": null,
+    "clicks": null,
+    "notes": "未検索（今回のラウンドでは優先度low）。次回GSCが使えるようになったら実測する。"
+  },
+  {
+    "date": "2026-09-10",
+    "keyword": "PHYSICA 物理 学習記録アプリ",
+    "targetPath": "/physica-about/",
+    "method": "websearch_estimate",
+    "rank": null,
+    "impressions": null,
+    "clicks": null,
+    "notes": "同名の別アプリ（App Store「Physica」）が上位表示されており競合しやすい。対象サイトは可視範囲になし。"
+  },
+  {
+    "date": "2026-09-10",
+    "keyword": "高校物理 解説チャンネル",
+    "targetPath": "/",
+    "method": "websearch_estimate",
+    "rank": null,
+    "impressions": null,
+    "clicks": null,
+    "notes": "ブランド指名語。site:検索がWebSearchツールで機能しなかった（無関係な結果が返った）ため確認不能。GSC実測が必要。"
+  }
+]

@@ -1,0 +1,69 @@
+{
+  "site": "https://koukophysicschannel.github.io/butsuri-channel/",
+  "note": "seo-rank-watch skillが監視するキーワード一覧。2026-09-10に初回作成。GSC未接続のため、この回はWebSearch概算のみでrank:nullとして登録。今後fetch_gsc_ranks.mjsが使えるようになったらGSC実測で更新する。",
+  "keywords": [
+    {
+      "keyword": "リードα 解説",
+      "targetPath": "/leadalpha/",
+      "priority": "high",
+      "rank": null,
+      "notes": "サイトの主力コンテンツ（全650問の解説動画）。sirataki.com・date-physics.jimdofree.com・makoto-physics-school.comなど複数の競合が同テーマで記事化しており実需あり。2026-09-10にFAQ追加などの改善を実施。"
+    },
+    {
+      "keyword": "リードα 解答 解説 冊子",
+      "targetPath": "/leadalpha/",
+      "priority": "high",
+      "rank": null,
+      "notes": "『冊子が付いていない／模範解答だけでは分からない』という悩み系ロングテール。sirataki.comの記事で強く観測。leadalphaページのFAQで対応済み。"
+    },
+    {
+      "keyword": "物理重要問題集 解説",
+      "targetPath": "/juyomon/2026/",
+      "priority": "medium",
+      "rank": null,
+      "notes": "全163問の解説動画インデックス。塾・予備校系の使い方記事は多いが、動画解説サイトとしての競合は薄い。"
+    },
+    {
+      "keyword": "東京理科大 物理 過去問 解説",
+      "targetPath": "/kakomon/tokyo-rika/",
+      "priority": "medium",
+      "rank": null,
+      "notes": "河合塾Kei-Net・旺文社パスナビ・東進など大手が上位。個別1問解説の動画という切り口は差別化できる可能性。"
+    },
+    {
+      "keyword": "高校物理 授業動画",
+      "targetPath": "/jugyo/",
+      "priority": "medium",
+      "rank": null,
+      "notes": "全176本の授業動画インデックス。競合は物理のしっぽ・たのしいぶつり・Try ITなど強豪が多い一般語。"
+    },
+    {
+      "keyword": "MARCH理系 方式別 理科科目",
+      "targetPath": "/shingaku/march-rikei-2027/",
+      "priority": "low",
+      "rank": null,
+      "notes": "進学情報コンテンツ。塾ブログが多数上位表示。表形式の一次情報という強みあり。"
+    },
+    {
+      "keyword": "早慶上理 方式別 理科科目",
+      "targetPath": "/shingaku/waseikeijo-rikei-2027/",
+      "priority": "low",
+      "rank": null,
+      "notes": "march-rikei-2027と同系統。"
+    },
+    {
+      "keyword": "PHYSICA 物理 学習記録アプリ",
+      "targetPath": "/physica-about/",
+      "priority": "low",
+      "rank": null,
+      "notes": "同名の別アプリ（App Store「Physica」）と競合しやすい語。ブランド名が一般名詞に近く難易度高め。"
+    },
+    {
+      "keyword": "高校物理 解説チャンネル",
+      "targetPath": "/",
+      "priority": "low",
+      "rank": null,
+      "notes": "ブランド指名語。既に強いはずだが実測（GSC）は未確認。"
+    }
+  ]
+}
