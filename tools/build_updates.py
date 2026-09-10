@@ -24,8 +24,12 @@ Dropbox に依存せず、どのMacからでも回せて、履歴も git に残�
 CSVの行を全部HTMLに焼き、**表示する7件はページ側のJSが選ぶ**。重問の
 juyomon/2026/index.html の settle() と同じ考え方（`002 物理重要問題集/CLAUDE.md`）。
 
-  ・日付が未来の行は出さない。重問は公開予約を先に台帳へ入れるので、
-    「9/16公開」の行を9/7に載せてしまわないため。18時に回し直す必要もない。
+  ・**公開日時**が未来の行は出さない。重問は公開予約を先に台帳へ入れるので、
+    「9/16 18:00公開」の行を9/7に載せてしまわないため。18時に回し直す必要もない。
+    日付だけでなく時刻まで見る。日付だけで比べると 18:00 公開の行が当日の
+    午前中から「公開」扱いになる（2026-09-10 に問31で実際に起きた）。
+    時刻は updates.csv の `時刻` 列に持ち、HTMLには data-at として焼く。
+    空欄は 00:00 とみなす（リードαは台帳に公開日しか無いのでこちら）。
   ・残ったうち新しい7件だけを出す。件数で切るので、更新が止まっても
     節が空にならない（「直近7日」で切ると空になる日がある）。
   ・同じ日付の行はCSVの並び順を保つ（安定ソート）。
@@ -96,6 +100,11 @@ import sys
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LEDGER = os.path.join(REPO, "updates.csv")
 COLS = ["日付", "種別", "本文", "リンク", "出所"]
+# 公開時刻。重問は18:00に予約するので、日付だけで比べると当日の午前から
+# 「公開」扱いになってしまう（2026-09-10に問31で実際に起きた）。
+# 既存CSVには無い列なので**必須列には入れない**。空なら 00:00 とみなす。
+TIME_COL = "時刻"
+OUT_COLS = ["日付", TIME_COL, "種別", "本文", "リンク", "出所"]
 
 # 種別ごとの色。トップの分野色をそのまま借りる（新しい色を増やさない）。
 #   動画 = accent（黄。サイトの主役である動画の色）
@@ -153,7 +162,7 @@ def juyomon_rows(base):
                 continue
             num, gist = r["num"].strip(), (r.get("趣旨") or "").strip()
             out.append({
-                "日付": d[:10], "種別": "動画",
+                "日付": d[:10], TIME_COL: d[11:16], "種別": "動画",
                 "本文": f'重要問題集 問{num}「{gist}」を公開',
                 "リンク": f"juyomon/2026/#q{num}", "出所": "auto:juyomon",
             })
@@ -166,7 +175,7 @@ def juyomon_rows(base):
                     continue
                 num = r["親num"].strip()
                 out.append({
-                    "日付": d[:10], "種別": "動画",
+                    "日付": d[:10], TIME_COL: d[11:16], "種別": "動画",
                     "本文": f'重要問題集 問{num} 別解「{core_title(r.get("タイトル",""))}」を公開',
                     "リンク": f"juyomon/2026/#q{num}", "出所": "auto:juyomon-variant",
                 })
@@ -191,7 +200,7 @@ def leadalpha_rows(base):
                 continue
             ch, title, n = r["章"].strip(), r["章題"].strip(), r["問数"].strip()
             out.append({
-                "日付": d[:10], "種別": "動画",
+                "日付": d[:10], TIME_COL: "", "種別": "動画",
                 "本文": f"リードα 第{ch}章「{title}」全{n}問を公開",
                 "リンク": f"leadalpha/#ch{ch}", "出所": "auto:leadalpha",
             })
@@ -218,10 +227,10 @@ def sync(base, la_base):
     tmp = LEDGER + ".tmp"
     with open(tmp, "w", encoding="utf-8", newline="") as fp:
         # csv の既定は CRLF。手で書いた行と混ざると全行が差分に見えるので LF に揃える。
-        w = csv.DictWriter(fp, fieldnames=COLS, lineterminator="\n")
+        w = csv.DictWriter(fp, fieldnames=OUT_COLS, lineterminator="\n")
         w.writeheader()
         for r in rows:
-            w.writerow({c: r.get(c, "") for c in COLS})
+            w.writerow({c: r.get(c, "") for c in OUT_COLS})
     os.replace(tmp, LEDGER)
     return len(old) - len(kept), len(fresh), len(kept)
 
@@ -244,6 +253,12 @@ def load():
             datetime.date.fromisoformat(d)
         except ValueError:
             raise Abort(f"{i}行目: 日付が YYYY-MM-DD ではありません: {d!r}")
+        t = (r.get(TIME_COL) or "").strip()
+        if t:
+            try:
+                datetime.time.fromisoformat(t)
+            except ValueError:
+                raise Abort(f"{i}行目: 時刻が HH:MM ではありません: {t!r}")
         if (r["種別"] or "").strip() not in KIND:
             raise Abort(f"{i}行目: 種別は {'／'.join(KIND)} のどれかです: {r['種別']!r}")
         if not (r["本文"] or "").strip():
@@ -293,9 +308,12 @@ def rows_html(rows):
         link = (r["リンク"] or "").strip()
         md = f"{int(d[5:7])}/{int(d[8:10])}"
         body = esc(r["本文"])
-        tag = (f'<a class="upd-row" href="{esc(link)}" data-date="{d}" style="--k:var(--{color})">'
+        at = at_iso(r)
+        tag = (f'<a class="upd-row" href="{esc(link)}" data-date="{d}" data-at="{at}" '
+               f'style="--k:var(--{color})">'
                if link else
-               f'<span class="upd-row" data-date="{d}" style="--k:var(--{color})">')
+               f'<span class="upd-row" data-date="{d}" data-at="{at}" '
+               f'style="--k:var(--{color})">')
         close = "</a>" if link else "</span>"
         arrow = '<span class="upd-go mono" aria-hidden="true">→</span>' if link else ""
         out.append(
@@ -336,16 +354,38 @@ def patch_top(src, rows):
     return out
 
 
+JST = datetime.timezone(datetime.timedelta(hours=9))
+
+
+def at_of(r):
+    """行の公開日時（JST）。時刻が空なら 00:00 とみなす。
+
+    juyomon/2026/ の settle() は data-pub の**日時**と閲覧時刻を比べている。
+    こちらも同じ土俵に乗せるため、日付だけでなく時刻まで持って比較する。
+    """
+    d = (r["日付"] or "").strip()
+    t = (r.get(TIME_COL) or "").strip() or "00:00"
+    return datetime.datetime.fromisoformat(f"{d}T{t}:00").replace(tzinfo=JST)
+
+
+def at_iso(r):
+    """data-at 属性に焼く文字列。例 '2026-09-10T18:00:00+09:00'。"""
+    return at_of(r).isoformat()
+
+
 def to_bake(rows):
     """焼く行を選ぶ。未来日は全部、過去は新しい PAST 行だけ。
 
     rows は日付の降順。未来の行が何件あっても過去が PAST 行残るので、
     表示件数(SHOW)に届かなくなることがない。
+
+    「未来」は**日時**で判定する。日付だけで見ると、18:00公開の行が当日の
+    午前中から過去扱いになる（2026-09-10 に問31で実際に起きた）。
     """
-    today = datetime.date.today().isoformat()
+    now = datetime.datetime.now(JST)
     out, past = [], 0
     for r in rows:
-        if r["日付"].strip() > today:
+        if at_of(r) > now:
             out.append(r)
         elif past < PAST:
             out.append(r)
