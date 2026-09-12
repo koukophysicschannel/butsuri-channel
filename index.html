@@ -214,22 +214,40 @@
      罫線は持たせない（下辺は .findbar の border-top が兼ねる。上辺に引くと、
      行が0件で節が消えた日に線だけが残る）。
 
-     行はCSVの全行が焼かれていて、出す7件はJSが選ぶ（tools/build_updates.py）。
-     JSが動くまで hidden なので、選ばれる前の全行がちらつくことはない。 */
-  .updates{ padding: 18px 0 20px; }
+     行はCSVの全行が焼かれていて、公開済みかどうかだけJSが選ぶ（tools/build_updates.py）。
+     JSが動くまで hidden なので、選ばれる前の全行がちらつくことはない。
+
+     2026-09-12、固定7件表示からスクロール窓に変更。.upd-window が窓の外枠、
+     中の .upd-scroll だけがスクロールする。高さは --upd-row-h（1行の高さ）を
+     SHOW件（7）ぶん重ねた calc() で決めており、行の高さを変えたら自動で追従する。
+     フェード(.upd-fade)とヒント(.upd-peek)は窓の外枠に絶対配置してあるので、
+     中身がスクロールしても位置がずれない。表示のON/OFFはJS（下のscriptタグ）が
+     スクロール位置を見て切り替える。 */
+  .updates{ padding: 18px 0 20px; --upd-row-h: 33.5px; }
   .updates[hidden]{ display:none; }
   .upd-h{
     font-family:"JetBrains Mono", monospace; font-size:11px; font-weight:500;
     letter-spacing:.1em; color:#6d7880; text-align:center;
     margin: 0 0 12px;
   }
+  .upd-window{ position:relative; }
+  .upd-scroll{
+    max-height: calc(var(--upd-row-h) * 7); /* SHOW(7件)ぶん。build_updates.pyのSHOWと揃える */
+    overflow-y:auto; overscroll-behavior:contain;
+    scrollbar-width:thin; scrollbar-color: var(--chalk-dim) transparent;
+  }
+  .upd-scroll::-webkit-scrollbar{ width:6px; }
+  .upd-scroll::-webkit-scrollbar-track{ background:transparent; }
+  .upd-scroll::-webkit-scrollbar-thumb{ background:#3a4550; border-radius:999px; }
+  .upd-scroll::-webkit-scrollbar-thumb:hover{ background:var(--chalk-dim); }
   .upd-row{
     display:flex; align-items:baseline; gap:10px;
-    padding: 7px 10px; border-radius:8px;
+    padding: 7px 10px; border-radius:8px; box-sizing:border-box;
+    min-height: var(--upd-row-h);
     color: var(--chalk); text-decoration:none;
     font-size: 13px; line-height:1.5;
   }
-  /* 出番が来ていない行はJSが付ける。CSSだけでも確実に消えるようにしておく。 */
+  /* 出番が来ていない行(公開前)はJSが付ける。CSSだけでも確実に消えるようにしておく。 */
   .upd-row.hidden{ display:none; }
   a.upd-row:hover{ background: var(--bg-alt); }
   a.upd-row:hover .upd-go{ opacity:1; transform:none; }
@@ -247,14 +265,44 @@
     opacity:0; transform: translateX(-3px);
     transition: opacity .12s ease, transform .12s ease;
   }
+  /* 上下フェード。窓の中身が本当にスクロール可能で、かつ端まで
+     行っていないときだけJSが .show-top / .show-bottom を付けて出す。 */
+  .upd-fade{
+    position:absolute; left:0; right:6px; height:22px; pointer-events:none;
+    opacity:0; transition:opacity .15s ease;
+  }
+  .upd-fade.top{ top:0; background:linear-gradient(var(--bg), transparent); border-radius:8px 8px 0 0; }
+  .upd-fade.bottom{ bottom:0; background:linear-gradient(transparent, var(--bg)); border-radius:0 0 8px 8px; }
+  .upd-window.show-top .upd-fade.top{ opacity:1; }
+  .upd-window.show-bottom .upd-fade.bottom{ opacity:1; }
+  /* 「まだ下にある」ヒント。控えめな1行キャプション＋小さい矢印だけで、
+     スクロールし始めたら（.scrolled）消える。窓の中身が7件以下で
+     そもそもスクロールしない日は（.no-scroll）フェードごと出さない。 */
+  .upd-peek{
+    position:absolute; left:0; right:6px; bottom:3px; margin:0; pointer-events:none;
+    display:flex; align-items:center; justify-content:center; gap:5px;
+    font-size:10px; letter-spacing:.04em; color:var(--chalk-dim);
+    opacity:.85; transition:opacity .2s ease;
+  }
+  .upd-peek svg{ width:10px; height:10px; animation: upd-peek-bob 1.6s ease-in-out infinite; }
+  @keyframes upd-peek-bob{ 0%,100%{ transform:translateY(-1px); } 50%{ transform:translateY(2px); } }
+  .upd-window.scrolled .upd-peek{ opacity:0; }
+  .upd-window.no-scroll .upd-peek,
+  .upd-window.no-scroll .upd-fade{ display:none; }
   /* 幅が詰まったら日付と種別を1行目、本文を2行目に折り返す。
-     日付の桁（9/4 と 12/24）でずれないよう min-width で揃えてある。 */
+     日付の桁（9/4 と 12/24）でずれないよう min-width で揃えてある。
+     行が2段になる分、1行の高さ(--upd-row-h)もデスクトップ(33.5px)より
+     大きく取り直す（7件ぶんの窓が約417pxになる。仕様として維持）。 */
   @media (max-width:560px){
+    .updates{ --upd-row-h: 59.5px; }
     .upd-row{ flex-wrap:wrap; gap:6px 8px; padding:8px 8px; }
     .upd-text{ flex-basis:100%; font-size:12.5px; }
     .upd-go{ display:none; }
   }
-  @media (prefers-reduced-motion: reduce){ .upd-go{ transition:none; } }
+  @media (prefers-reduced-motion: reduce){
+    .upd-go{ transition:none; }
+    .upd-peek svg{ animation:none; }
+  }
 
   /* 上部は「ヒーロー(誰か・何か) → 最近の更新 → ①教材から探す → ②分野から探す
      → ③PHYSICA → 棚」の6段。役割が混ざって見えないよう、次のように分けている。
@@ -568,47 +616,66 @@
   <!-- BUILD_UPDATES:START この節は tools/build_updates.py が管理します -->
   <section class="updates" id="updates" aria-labelledby="updates-h" hidden>
     <h2 class="upd-h" id="updates-h">最近の更新</h2>
-    <a class="upd-row" href="leadalpha/#ch27" data-date="2026-11-22" data-at="2026-11-22T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-11-22">11/22</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第27章「交流と電気振動」全18問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="leadalpha/#ch26" data-date="2026-11-15" data-at="2026-11-15T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-11-15">11/15</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第26章「電磁誘導」全19問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="leadalpha/#ch25" data-date="2026-11-08" data-at="2026-11-08T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-11-08">11/8</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第25章「電流と磁場」全21問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="leadalpha/#ch24" data-date="2026-11-01" data-at="2026-11-01T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-11-01">11/1</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第24章「直流回路」全26問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="leadalpha/#ch23" data-date="2026-10-25" data-at="2026-10-25T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-10-25">10/25</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第23章「電流」全16問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="leadalpha/#ch22" data-date="2026-10-18" data-at="2026-10-18T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-10-18">10/18</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第22章「コンデンサー」全25問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="leadalpha/#ch21" data-date="2026-10-11" data-at="2026-10-11T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-10-11">10/11</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第21章「静電気力と電場・電位」全25問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="leadalpha/#ch20" data-date="2026-10-04" data-at="2026-10-04T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-10-04">10/4</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第20章「光の干渉と回折」全13問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="leadalpha/#ch19" data-date="2026-09-27" data-at="2026-09-27T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-27">9/27</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第19章「光の性質・レンズ」全24問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q44" data-date="2026-09-25" data-at="2026-09-25T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-25">9/25</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問44「棒でつながれた2物体の運動量保存」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q43" data-date="2026-09-24" data-at="2026-09-24T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-24">9/24</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問43「円盤が円環に繰り返し衝突する運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q42" data-date="2026-09-23" data-at="2026-09-23T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-23">9/23</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問42「上昇する板に繰り返し衝突する小球の運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q41" data-date="2026-09-22" data-at="2026-09-22T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-22">9/22</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問41「曲面をもつ台上での小球の運動量保存」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q40" data-date="2026-09-21" data-at="2026-09-21T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-21">9/21</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問40「小球が斜面と繰り返し衝突する運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="leadalpha/#ch18" data-date="2026-09-20" data-at="2026-09-20T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-20">9/20</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第18章「ドップラー効果」全14問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q39" data-date="2026-09-19" data-at="2026-09-19T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-19">9/19</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問39「小球が壁と繰り返し衝突する運動を反発係数で追う」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q38" data-date="2026-09-18" data-at="2026-09-18T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-18">9/18</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問38「水平面上で衝突する2物体のエネルギー変化」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q37" data-date="2026-09-17" data-at="2026-09-17T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-17">9/17</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問37「動く台車の上に乗る物体の運動量保存」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q36" data-date="2026-09-16" data-at="2026-09-16T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-16">9/16</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問36「木材に撃ちこまれる弾丸の運動量とエネルギー」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q36" data-date="2026-09-16" data-at="2026-09-16T19:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-16">9/16</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問36 別解「保存則を使わず運動方程式で押しきる」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q35" data-date="2026-09-15" data-at="2026-09-15T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-15">9/15</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問35「ばねにつながれた物体の運動とエネルギー」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q34" data-date="2026-09-14" data-at="2026-09-14T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-14">9/14</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問34「液体中を落下する物体が水槽に及ぼす力」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="leadalpha/#ch17" data-date="2026-09-13" data-at="2026-09-13T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-13">9/13</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第17章「音の伝わり方と発音体の振動」全25問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q33" data-date="2026-09-12" data-at="2026-09-12T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-12">9/12</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問33「空気抵抗を受ける物体の斜面上の運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q32" data-date="2026-09-11" data-at="2026-09-11T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-11">9/11</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問32「ゴムひもにつながれた物体の運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q31" data-date="2026-09-10" data-at="2026-09-10T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-10">9/10</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問31「ばねで押し出された物体の摩擦運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q30" data-date="2026-09-09" data-at="2026-09-09T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-09">9/9</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問30「斜面台上を滑る小物体の運動を調べる」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q29" data-date="2026-09-08" data-at="2026-09-08T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-08">9/8</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問29「あらい台上の物体と滑車でつながれた運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q28" data-date="2026-09-07" data-at="2026-09-07T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-07">9/7</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問28「2物体があらい面を滑って止まる運動を比べる」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="leadalpha/#ch16" data-date="2026-09-06" data-at="2026-09-06T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-06">9/6</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第16章「平面上を伝わる波」全10問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q27" data-date="2026-09-05" data-at="2026-09-05T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-05">9/5</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問27「斜面上の物体と動く台の運動を滑車でつなぐ」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="shingaku/waseikeijo-rikei-baisu-2026/" data-date="2026-09-04" data-at="2026-09-04T00:00:00+09:00" style="--k:var(--wave)"><time class="upd-date mono" datetime="2026-09-04">9/4</time><span class="upd-kind mono">ページ</span><span class="upd-text">進路情報に方式別の入試倍率ページを追加（早慶上理・MARCH）</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q26" data-date="2026-09-04" data-at="2026-09-04T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-04">9/4</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問26「斜面をもつ台と小球が一体で動く条件」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q26" data-date="2026-09-04" data-at="2026-09-04T19:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-04">9/4</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問26 別解「運動量保存と力学的エネルギー保存が使える条件」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="shingaku/waseikeijo-rikei-2027/" data-date="2026-09-03" data-at="2026-09-03T00:00:00+09:00" style="--k:var(--wave)"><time class="upd-date mono" datetime="2026-09-03">9/3</time><span class="upd-kind mono">ページ</span><span class="upd-text">早慶上理 理系 理科科目の一覧ページを公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="leadalpha/2024/" data-date="2026-09-03" data-at="2026-09-03T00:00:00+09:00" style="--k:var(--wave)"><time class="upd-date mono" datetime="2026-09-03">9/3</time><span class="upd-kind mono">ページ</span><span class="upd-text">リードα 2024年改訂版に対応した索引を新設</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="jugyo/" data-date="2026-09-03" data-at="2026-09-03T00:00:00+09:00" style="--k:var(--wave)"><time class="upd-date mono" datetime="2026-09-03">9/3</time><span class="upd-kind mono">ページ</span><span class="upd-text">授業動画 全176本のインデックスを新設</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <span class="upd-row" data-date="2026-09-03" data-at="2026-09-03T00:00:00+09:00" style="--k:var(--mech)"><time class="upd-date mono" datetime="2026-09-03">9/3</time><span class="upd-kind mono">機能</span><span class="upd-text">スマホのホーム画面に追加して使えるようにした（PWA対応）</span></span>
-    <a class="upd-row" href="juyomon/2026/#q25" data-date="2026-09-03" data-at="2026-09-03T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-03">9/3</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問25「斜面をもつ台上での物体の運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="juyomon/2026/#q25" data-date="2026-09-03" data-at="2026-09-03T19:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-03">9/3</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問25 別解「重心の速度一定から内分点へ」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
-    <a class="upd-row" href="leadalpha/" data-date="2026-09-02" data-at="2026-09-02T00:00:00+09:00" style="--k:var(--wave)"><time class="upd-date mono" datetime="2026-09-02">9/2</time><span class="upd-kind mono">ページ</span><span class="upd-text">リードα 全650問のインデックスを新設</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+    <div class="upd-window">
+      <div class="upd-scroll">
+        <a class="upd-row" href="leadalpha/#ch27" data-date="2026-11-22" data-at="2026-11-22T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-11-22">11/22</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第27章「交流と電気振動」全18問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="leadalpha/#ch26" data-date="2026-11-15" data-at="2026-11-15T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-11-15">11/15</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第26章「電磁誘導」全19問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="leadalpha/#ch25" data-date="2026-11-08" data-at="2026-11-08T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-11-08">11/8</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第25章「電流と磁場」全21問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="leadalpha/#ch24" data-date="2026-11-01" data-at="2026-11-01T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-11-01">11/1</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第24章「直流回路」全26問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="leadalpha/#ch23" data-date="2026-10-25" data-at="2026-10-25T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-10-25">10/25</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第23章「電流」全16問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="leadalpha/#ch22" data-date="2026-10-18" data-at="2026-10-18T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-10-18">10/18</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第22章「コンデンサー」全25問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="leadalpha/#ch21" data-date="2026-10-11" data-at="2026-10-11T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-10-11">10/11</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第21章「静電気力と電場・電位」全25問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="leadalpha/#ch20" data-date="2026-10-04" data-at="2026-10-04T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-10-04">10/4</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第20章「光の干渉と回折」全13問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="leadalpha/#ch19" data-date="2026-09-27" data-at="2026-09-27T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-27">9/27</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第19章「光の性質・レンズ」全24問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q44" data-date="2026-09-25" data-at="2026-09-25T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-25">9/25</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問44「棒でつながれた2物体の運動量保存」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q43" data-date="2026-09-24" data-at="2026-09-24T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-24">9/24</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問43「円盤が円環に繰り返し衝突する運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q42" data-date="2026-09-23" data-at="2026-09-23T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-23">9/23</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問42「上昇する板に繰り返し衝突する小球の運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q41" data-date="2026-09-22" data-at="2026-09-22T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-22">9/22</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問41「曲面をもつ台上での小球の運動量保存」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q40" data-date="2026-09-21" data-at="2026-09-21T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-21">9/21</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問40「小球が斜面と繰り返し衝突する運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="leadalpha/#ch18" data-date="2026-09-20" data-at="2026-09-20T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-20">9/20</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第18章「ドップラー効果」全14問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q39" data-date="2026-09-19" data-at="2026-09-19T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-19">9/19</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問39「小球が壁と繰り返し衝突する運動を反発係数で追う」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q38" data-date="2026-09-18" data-at="2026-09-18T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-18">9/18</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問38「水平面上で衝突する2物体のエネルギー変化」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q37" data-date="2026-09-17" data-at="2026-09-17T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-17">9/17</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問37「動く台車の上に乗る物体の運動量保存」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q36" data-date="2026-09-16" data-at="2026-09-16T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-16">9/16</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問36「木材に撃ちこまれる弾丸の運動量とエネルギー」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q36" data-date="2026-09-16" data-at="2026-09-16T19:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-16">9/16</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問36 別解「保存則を使わず運動方程式で押しきる」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q35" data-date="2026-09-15" data-at="2026-09-15T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-15">9/15</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問35「ばねにつながれた物体の運動とエネルギー」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q34" data-date="2026-09-14" data-at="2026-09-14T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-14">9/14</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問34「液体中を落下する物体が水槽に及ぼす力」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="leadalpha/#ch17" data-date="2026-09-13" data-at="2026-09-13T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-13">9/13</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第17章「音の伝わり方と発音体の振動」全25問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q33" data-date="2026-09-12" data-at="2026-09-12T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-12">9/12</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問33「空気抵抗を受ける物体の斜面上の運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q32" data-date="2026-09-11" data-at="2026-09-11T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-11">9/11</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問32「ゴムひもにつながれた物体の運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q31" data-date="2026-09-10" data-at="2026-09-10T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-10">9/10</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問31「ばねで押し出された物体の摩擦運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q30" data-date="2026-09-09" data-at="2026-09-09T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-09">9/9</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問30「斜面台上を滑る小物体の運動を調べる」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q29" data-date="2026-09-08" data-at="2026-09-08T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-08">9/8</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問29「あらい台上の物体と滑車でつながれた運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q28" data-date="2026-09-07" data-at="2026-09-07T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-07">9/7</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問28「2物体があらい面を滑って止まる運動を比べる」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="leadalpha/#ch16" data-date="2026-09-06" data-at="2026-09-06T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-06">9/6</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第16章「平面上を伝わる波」全10問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q27" data-date="2026-09-05" data-at="2026-09-05T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-05">9/5</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問27「斜面上の物体と動く台の運動を滑車でつなぐ」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="shingaku/waseikeijo-rikei-baisu-2026/" data-date="2026-09-04" data-at="2026-09-04T00:00:00+09:00" style="--k:var(--wave)"><time class="upd-date mono" datetime="2026-09-04">9/4</time><span class="upd-kind mono">ページ</span><span class="upd-text">進路情報に方式別の入試倍率ページを追加（早慶上理・MARCH）</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q26" data-date="2026-09-04" data-at="2026-09-04T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-04">9/4</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問26「斜面をもつ台と小球が一体で動く条件」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q26" data-date="2026-09-04" data-at="2026-09-04T19:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-04">9/4</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問26 別解「運動量保存と力学的エネルギー保存が使える条件」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="shingaku/waseikeijo-rikei-2027/" data-date="2026-09-03" data-at="2026-09-03T00:00:00+09:00" style="--k:var(--wave)"><time class="upd-date mono" datetime="2026-09-03">9/3</time><span class="upd-kind mono">ページ</span><span class="upd-text">早慶上理 理系 理科科目の一覧ページを公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="leadalpha/2024/" data-date="2026-09-03" data-at="2026-09-03T00:00:00+09:00" style="--k:var(--wave)"><time class="upd-date mono" datetime="2026-09-03">9/3</time><span class="upd-kind mono">ページ</span><span class="upd-text">リードα 2024年改訂版に対応した索引を新設</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="jugyo/" data-date="2026-09-03" data-at="2026-09-03T00:00:00+09:00" style="--k:var(--wave)"><time class="upd-date mono" datetime="2026-09-03">9/3</time><span class="upd-kind mono">ページ</span><span class="upd-text">授業動画 全176本のインデックスを新設</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <span class="upd-row" data-date="2026-09-03" data-at="2026-09-03T00:00:00+09:00" style="--k:var(--mech)"><time class="upd-date mono" datetime="2026-09-03">9/3</time><span class="upd-kind mono">機能</span><span class="upd-text">スマホのホーム画面に追加して使えるようにした（PWA対応）</span></span>
+        <a class="upd-row" href="juyomon/2026/#q25" data-date="2026-09-03" data-at="2026-09-03T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-03">9/3</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問25「斜面をもつ台上での物体の運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q25" data-date="2026-09-03" data-at="2026-09-03T19:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-03">9/3</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問25 別解「重心の速度一定から内分点へ」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="leadalpha/" data-date="2026-09-02" data-at="2026-09-02T00:00:00+09:00" style="--k:var(--wave)"><time class="upd-date mono" datetime="2026-09-02">9/2</time><span class="upd-kind mono">ページ</span><span class="upd-text">リードα 全650問のインデックスを新設</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="leadalpha/" data-date="2026-09-02" data-at="2026-09-02T00:00:00+09:00" style="--k:var(--mech)"><time class="upd-date mono" datetime="2026-09-02">9/2</time><span class="upd-kind mono">機能</span><span class="upd-text">リードαの索引を章題・分野でも絞り込めるようにした</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q24" data-date="2026-09-02" data-at="2026-09-02T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-02">9/2</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問24「動く斜面上で糸につるされた小球の運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="shingaku/march-rikei-2027/" data-date="2026-09-01" data-at="2026-09-01T00:00:00+09:00" style="--k:var(--wave)"><time class="upd-date mono" datetime="2026-09-01">9/1</time><span class="upd-kind mono">ページ</span><span class="upd-text">MARCH 理系 理科科目の一覧ページを公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q23" data-date="2026-09-01" data-at="2026-09-01T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-09-01">9/1</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問23「斜面上の運動を力学的エネルギーで追う」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q22" data-date="2026-08-31" data-at="2026-08-31T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-08-31">8/31</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問22「複数の滑車と物体のつりあいと運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="kakomon/" data-date="2026-08-30" data-at="2026-08-30T00:00:00+09:00" style="--k:var(--wave)"><time class="upd-date mono" datetime="2026-08-30">8/30</time><span class="upd-kind mono">ページ</span><span class="upd-text">過去問に大学一覧と共通テストのセクションを追加</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="leadalpha/#ch15" data-date="2026-08-30" data-at="2026-08-30T00:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-08-30">8/30</time><span class="upd-kind mono">動画</span><span class="upd-text">リードα 第15章「正弦波の式」全9問を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q21" data-date="2026-08-29" data-at="2026-08-29T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-08-29">8/29</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問21「手で押す物体の運動方程式と等加速度運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q20" data-date="2026-08-28" data-at="2026-08-28T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-08-28">8/28</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問20「上昇する気球とつるされた小球の運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q19" data-date="2026-08-27" data-at="2026-08-27T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-08-27">8/27</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問19「つり上げられる箱の中の小球の相対運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q18" data-date="2026-08-26" data-at="2026-08-26T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-08-26">8/26</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問18「斜面上で糸連結された物体の運動」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+        <a class="upd-row" href="juyomon/2026/#q17" data-date="2026-08-25" data-at="2026-08-25T18:00:00+09:00" style="--k:var(--accent)"><time class="upd-date mono" datetime="2026-08-25">8/25</time><span class="upd-kind mono">動画</span><span class="upd-text">重要問題集 問17「液体に浮かぶ棒のつりあいと浮力を調べる」を公開</span><span class="upd-go mono" aria-hidden="true">→</span></a>
+      </div>
+      <div class="upd-fade top" aria-hidden="true"></div>
+      <div class="upd-fade bottom" aria-hidden="true"></div>
+      <p class="upd-peek mono" aria-hidden="true">過去分もスクロールで<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+    </div>
   </section>
   <!-- BUILD_UPDATES:END -->
 
@@ -927,15 +994,17 @@
 </button>
 
 <script>
-  // 最近の更新。行はCSVの全行が焼かれているので、出す7件はここで選ぶ。
-  //   1. 日付が今日より先の行は出さない（重問は公開予約を先に台帳へ入れるため）
-  //   2. 残ったうち新しい7件だけ出す（件数で切る。更新が止まっても空にならない）
+  // 最近の更新。行はCSVの全行が焼かれているので、公開済みかどうかだけここで選ぶ。
+  //   日付(時刻込み)が今日より先の行は出さない（重問は公開予約を先に台帳へ入れるため）
   // 日が変わるだけで中身が入れ替わるので、ビルドを回し直す必要はない。
   // 重問インデックスの settle() と同じ考え方。
+  //
+  // 2026-09-12、固定7件表示からスクロール窓に変更。以前は新しい7件だけ残して
+  // 残りを hidden にしていたが、今は .upd-scroll の中で全部スクロールして見られる
+  // ので、件数による打ち切りはしない（hidden は「公開前」の意味だけになった）。
   (function(){
     var sec = document.getElementById('updates');
     if(!sec) return;
-    var SHOW = 7;                                   // build_updates.py の SHOW と揃える
     var now = new Date();
     // **日時**で比べる。data-at は JST の公開日時（例 2026-09-10T18:00:00+09:00）で、
     // 重問インデックスの settle() が data-pub を見るのとまったく同じ土俵。
@@ -945,12 +1014,31 @@
     sec.querySelectorAll('.upd-row').forEach(function(row){
       var at = row.dataset.at || (row.dataset.date ? row.dataset.date + 'T00:00:00+09:00' : '');
       var pub = at ? new Date(at) : null;
-      var ok = pub && pub <= now && shown < SHOW;    // 行は生成時点で新しい順
+      var ok = !!(pub && pub <= now);
       row.classList.toggle('hidden', !ok);
       if(ok) shown++;
     });
     // 1件も無ければ節ごと出さない（見出しだけが残るのを防ぐ）
     if(shown > 0) sec.hidden = false;
+
+    // スクロール窓の上下フェードと「スクロールで遡れる」ヒント。
+    // 窓の中身が本当にスクロールできる(scrollHeight>clientHeight)ときだけ出し、
+    // 上端/下端に着いたら該当側のフェードを消す。スクロールし始めたらヒントも消える。
+    var win = sec.querySelector('.upd-window');
+    var box = sec.querySelector('.upd-scroll');
+    if(!win || !box) return;
+    function update(){
+      var scrollable = box.scrollHeight > box.clientHeight + 1;
+      var atTop = box.scrollTop <= 1;
+      var atBottom = box.scrollTop + box.clientHeight >= box.scrollHeight - 1;
+      win.classList.toggle('no-scroll', !scrollable);
+      win.classList.toggle('show-top', scrollable && !atTop);
+      win.classList.toggle('show-bottom', scrollable && !atBottom);
+      if(box.scrollTop > 4) win.classList.add('scrolled');
+    }
+    box.addEventListener('scroll', update, {passive:true});
+    window.addEventListener('resize', update);
+    update();
   })();
 </script>
 

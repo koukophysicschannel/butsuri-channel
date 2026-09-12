@@ -19,9 +19,9 @@ build_site_jugyo.py）はそれぞれの教材フォルダに住んでいるが�
 Dropbox に依存せず、どのMacからでも回せて、履歴も git に残る。
 
 ────────────────────────────────────────────────────────────
-「直近7件」は閲覧時に決める
+「公開済みかどうか」は閲覧時に決める
 ────────────────────────────────────────────────────────────
-CSVの行を全部HTMLに焼き、**表示する7件はページ側のJSが選ぶ**。重問の
+CSVの行を全部HTMLに焼き、**公開済みかどうかはページ側のJSが選ぶ**。重問の
 juyomon/2026/index.html の settle() と同じ考え方（`002 物理重要問題集/CLAUDE.md`）。
 
   ・**公開日時**が未来の行は出さない。重問は公開予約を先に台帳へ入れるので、
@@ -30,12 +30,15 @@ juyomon/2026/index.html の settle() と同じ考え方（`002 物理重要問�
     午前中から「公開」扱いになる（2026-09-10 に問31で実際に起きた）。
     時刻は updates.csv の `時刻` 列に持ち、HTMLには data-at として焼く。
     空欄は 00:00 とみなす（リードαは台帳に公開日しか無いのでこちら）。
-  ・残ったうち新しい7件だけを出す。件数で切るので、更新が止まっても
-    節が空にならない（「直近7日」で切ると空になる日がある）。
+  ・残った行は全部出す。2026-09-12にスクロール窓へ変えるまでは「新しい7件だけ
+    出す」だったが、窓の中でスクロールすれば全部見られるようになったので、
+    件数で切る理由が無くなった。とはいえ163問ぶんを全部焼くのは重いので、
+    焼く行の数自体は絞ってある（下の「HTMLに焼く行の選び方」参照）。
   ・同じ日付の行はCSVの並び順を保つ（安定ソート）。
 
-したがって**日が経つだけで表示が入れ替わる**。ビルドが要るのは
-updates.csv に行を足したときだけ。
+したがって**日が経つだけで「最初に見える範囲」が入れ替わる**（窓の高さは
+SHOW=7件ぶんなので、開いた瞬間に見えるのは新しい7件のまま）。ビルドが
+要るのは updates.csv に行を足したときだけ。
 
 ────────────────────────────────────────────────────────────
 出所（auto/manual）列と --sync
@@ -69,7 +72,8 @@ Mac でも updates.csv の描画だけは通す）。
 ────────────────────────────────────────────────────────────
 HTMLに焼く行の選び方
 ────────────────────────────────────────────────────────────
-出すのは7件だが、日が経つだけで表示が入れ替われるよう、余分に焼いておく。
+窓を開いた瞬間に見えるのは7件だが、スクロールで遡れる分と、日が経つだけで
+「最初に見える範囲」が入れ替われる分とを持たせるため、余分に焼いておく。
 とはいえ163問ぶんを全部焼くとトップが倍近くに膨れるので絞る。
 
     未来日の行は全部 ＋ 過去の新しい PAST 行
@@ -116,8 +120,13 @@ KIND = {
     "機能":  ("mech",    "機能"),
 }
 
-SHOW = 7   # ページ側が出す件数。CSSとJSの両方で使うのでここが正。
-PAST = 15  # 焼く「過去の行」の数。未来日の行はこれとは別に全部焼く（上の docstring 参照）
+SHOW = 7   # 窓を開いた瞬間に見える件数の目安。CSSの窓の高さ(7行ぶん)の計算に使う。
+           # 2026-09-12にスクロール窓へ変えるまでは「表示の打ち切り件数」だった
+           # （超えた分をJSがdisplay:noneで消していた）。今は打ち切らずスクロールで
+           # 全部見られるので、SHOWは高さの基準という意味だけが残っている。
+PAST = 30  # 焼く「過去の行」の数。未来日の行はこれとは別に全部焼く（上の docstring 参照）。
+           # 窓の外はスクロールで遡れるようになったので、以前の15から30に増やした
+           # （2026-09-12、清水さんの希望）。
 
 # --sync の取り込み元。Dropbox が無いMacでは同期を飛ばす。
 JUYOMON_DIR = os.path.expanduser(
@@ -317,19 +326,38 @@ def rows_html(rows):
         close = "</a>" if link else "</span>"
         arrow = '<span class="upd-go mono" aria-hidden="true">→</span>' if link else ""
         out.append(
-            f'    {tag}'
+            f'        {tag}'
             f'<time class="upd-date mono" datetime="{d}">{md}</time>'
             f'<span class="upd-kind mono">{label}</span>'
             f'<span class="upd-text">{body}</span>{arrow}{close}\n')
     return "".join(out)
 
 
+# フェードとヒントは行データに関係ない静的なUI装飾。.upd-window(窓の外枠)に
+# 絶対配置してあるので、中の .upd-scroll がスクロールしても位置がずれない。
+# 表示のON/OFFはindex.html側のJS（DOMContentLoaded後のscript）が担当する。
+PEEK_ICON = ('<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">'
+             '<path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" '
+             'stroke-linecap="round" stroke-linejoin="round"/></svg>')
+
+
 def section(rows):
+    # .upd-window が窓の外枠、中の .upd-scroll だけがスクロールする
+    # （2026-09-12、固定7件表示から変更）。高さはCSS側で --upd-row-h × SHOW(7)
+    # に固定してあり、焼いた行が7件を超えても窓の中でスクロールして遡れる。
+    # 見出し(.upd-h)は窓の外に置き、スクロールしても動かない。
     return (
         START +
         '  <section class="updates" id="updates" aria-labelledby="updates-h" hidden>\n'
         '    <h2 class="upd-h" id="updates-h">最近の更新</h2>\n'
+        '    <div class="upd-window">\n'
+        '      <div class="upd-scroll">\n'
         + rows_html(rows) +
+        '      </div>\n'
+        '      <div class="upd-fade top" aria-hidden="true"></div>\n'
+        '      <div class="upd-fade bottom" aria-hidden="true"></div>\n'
+        f'      <p class="upd-peek mono" aria-hidden="true">過去分もスクロールで{PEEK_ICON}</p>\n'
+        '    </div>\n'
         '  </section>\n' + END)
 
 
@@ -431,27 +459,37 @@ def main():
         sys.exit(f"停止: {e}")
 
     today = datetime.date.today().isoformat()
+    baked = to_bake(rows)
     live = [r for r in rows if r["日付"].strip() <= today][:SHOW]
     ahead = [r for r in rows if r["日付"].strip() > today]
+    # 窓(SHOW=7件)からあふれた過去分。焼かれてさえいれば(PAST以内)スクロールで見え、
+    # 焼かれていなければ(PASTを超えた)CSVに残るだけでHTMLからは消える。
+    past_overflow = [r for r in rows if r["日付"].strip() <= today][SHOW:]
+    scrollable = [r for r in past_overflow if r in baked]
+    gone = [r for r in past_overflow if r not in baked]
 
-    baked = to_bake(rows)
     print(f"■ updates.csv {len(rows)}行 → {len(baked)}行をHTMLに焼き"
           f"（未来{len(ahead)}＋過去{len(baked) - len(ahead)}）、"
-          f"ページ側が新しい{SHOW}件を出す")
-    print(f"  いま出る{len(live)}件（{today} 時点）:")
+          f"窓を開いた瞬間は新しい{SHOW}件、残りはスクロールで遡れる")
+    print(f"  最初に見える{len(live)}件（{today} 時点）:")
     for r in live:
         print(f"    {r['日付']}  {r['種別']:<3}  {r['本文']}")
     if ahead:
         print(f"  まだ出ない{len(ahead)}件（公開日が先）:")
         for r in ahead:
             print(f"    {r['日付']}  {r['種別']:<3}  {r['本文']}")
-    drop = [r for r in rows if r["日付"].strip() <= today][SHOW:]
-    if drop:
-        print(f"  {SHOW}件からあふれた{len(drop)}件（CSVには残る）:")
-        for r in drop[:5]:
+    if scrollable:
+        print(f"  スクロールで遡れる{len(scrollable)}件:")
+        for r in scrollable[:5]:
             print(f"    {r['日付']}  {r['種別']:<3}  {r['本文']}")
-        if len(drop) > 5:
-            print(f"    … ほか{len(drop) - 5}件")
+        if len(scrollable) > 5:
+            print(f"    … ほか{len(scrollable) - 5}件")
+    if gone:
+        print(f"  HTMLに焼かれていない{len(gone)}件（CSVには残るがPAST={PAST}を超えた）:")
+        for r in gone[:5]:
+            print(f"    {r['日付']}  {r['種別']:<3}  {r['本文']}")
+        if len(gone) > 5:
+            print(f"    … ほか{len(gone) - 5}件")
     print(f"  index.html  {len(src.encode('utf-8')):,} → {len(out.encode('utf-8')):,} bytes")
 
     if a.dry_run:
