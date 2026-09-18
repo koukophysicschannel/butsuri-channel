@@ -81,8 +81,11 @@ LANDMARKS = {
         },
     },
     # 重問インデックス。002 物理重要問題集/scripts/build_site_index.py が生成する。
+    # 2026-09-18、2025年版ページも2026年版と同じ全問一覧の構成に統一した
+    # （生成器が年度非依存になった）。両ページとも同じ構造なので glob 1本で束ねる。
+    # 新しい年度版が増えても、この行を触らずに通る。
     # 問題が減ることはないので、min_counts は現状の163問をそのまま下限にしてある。
-    "juyomon/2026/index.html": {
+    "juyomon/20*/index.html": {
         "ids": ["filters", "qIndex", "nLive", "nSched", "onlyLive",
                 "f-mech", "f-therm", "f-wave", "f-electro", "f-atom", "f-survey"],
         "min_counts": {
@@ -94,10 +97,6 @@ LANDMARKS = {
         },
         # 公開済みの行に出る再生マーク。リードα側と対になっている(下の css を見よ)。
         "css": {"再生マーク": '.qrow[data-state="live"] .st::before{ content:"\\25B6 "; }'},
-    },
-    "juyomon/2025/index.html": {
-        "ids": ["y2025"],
-        "min_counts": {"y-table": 1},
     },
     # リードα。002 リード/999 抽出/scripts/build_site_leadalpha.py が生成する。
     # 第28・29章は未撮影だが一覧には載せるので、下限は現状の650問・29章のまま。

@@ -85,7 +85,7 @@
   .eyebrow{
     display:inline-flex; align-items:center; gap:8px;
     font-family:var(--mono); font-size:12.5px; letter-spacing:.12em;
-    color:var(--accent); border:1px solid rgba(244,201,93,.35);
+    color:var(--accent); border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);
     padding:5px 12px; border-radius:999px; margin-bottom:20px;
   }
   .eyebrow::before{ content:"\25CF"; font-size:8px; }
@@ -112,14 +112,16 @@
   .bar{ display:flex; height:6px; border-radius:999px; overflow:hidden;
         background:var(--line); gap:1.5px; }
   .b-live{ background:var(--c,var(--mech)); }
-  .b-sched{ background:rgba(244,201,93,.55); }
+  .b-sched{ background:color-mix(in srgb,var(--accent) 55%,transparent); }
   .b-prep{ background:#232c36; }
   .summary .bar{ height:8px; }
   .summary .b-live{ background:var(--mech); }
 
   .yearnote{
-    margin:22px 0 0; border:1px solid rgba(244,201,93,.3);
-    background:linear-gradient(180deg,rgba(244,201,93,.06),rgba(244,201,93,.02));
+    margin:22px 0 0; border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);
+    background:linear-gradient(180deg,
+      color-mix(in srgb,var(--accent) 6%,transparent),
+      color-mix(in srgb,var(--accent) 2%,transparent));
     border-radius:14px; padding:18px 20px;
     display:flex; gap:14px; align-items:flex-start;
   }
@@ -129,7 +131,8 @@
   .yearnote p + p{ margin-top:8px; }
   .yearnote strong{ color:var(--chalk); font-weight:700; }
   .yearnote .cav{ font-size:12.5px; color:#7d8890; }
-  .yearnote a.more{ color:var(--accent); border-bottom:1px solid rgba(244,201,93,.4); }
+  .yearnote a.more{ color:var(--accent);
+    border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent); }
 
   .filters{
     position:sticky; top:0; z-index:5;
@@ -201,8 +204,10 @@
        display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
   .lv{ border:1px solid var(--line); border-radius:4px; padding:0 4px;
        font-size:10px; letter-spacing:.03em; }
-  .lv-B{ color:var(--accent); border-color:rgba(244,201,93,.4); }
-  .yr{ color:var(--accent); border:1px solid rgba(244,201,93,.4);
+  .lv-B{ color:var(--accent);
+    border-color:color-mix(in srgb,var(--accent) 40%,transparent); }
+  .yr{ color:var(--accent);
+       border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);
        border-radius:4px; padding:0 5px; font-size:10px; }
 
   .st{ font-family:var(--mono); font-size:11px; white-space:nowrap;
@@ -224,7 +229,8 @@
   .qrow[data-state="sched"] .st{ color:var(--accent); }
   .qrow[data-state="sched"] .stretch{ pointer-events:none; }
   .qrow[data-state="sched"] .ab{ color:var(--accent);
-    border-color:rgba(244,201,93,.4); background:rgba(244,201,93,.08); }
+    border-color:color-mix(in srgb,var(--accent) 40%,transparent);
+    background:color-mix(in srgb,var(--accent) 8%,transparent); }
 
   .qrow[data-state="prep"] .st{ color:#68737d; }
   .qrow[data-state="prep"] .stretch{ pointer-events:none; }
@@ -244,31 +250,6 @@
   .none{ display:none; border:1.5px dashed var(--line); border-radius:14px;
          padding:26px 20px; text-align:center; color:var(--chalk-dim); font-size:13.5px; }
   .none.show{ display:block; }
-
-  /* 2025年版ページ */
-  .y-body{ padding:10px 0 40px; }
-  .y-body h2{ font-size:17px; margin:34px 0 10px; font-weight:700; }
-  .y-body p{ max-width:64ch; color:var(--chalk-dim); font-size:14.5px; margin:0 0 12px; }
-  .y-body strong{ color:var(--chalk); }
-  .y-table{ width:100%; border-collapse:collapse; margin:16px 0 8px; font-size:13.5px; }
-  .y-table th, .y-table td{ text-align:left; padding:11px 14px;
-    border-bottom:1px solid var(--line); }
-  .y-table th{ color:var(--chalk-dim); font-weight:500; font-size:12px;
-    letter-spacing:.04em; }
-  .y-table td.n{ font-family:var(--mono); font-variant-numeric:tabular-nums;
-    white-space:nowrap; }
-  .y-table td.same{ color:#7d8890; }
-  .y-wrap{ overflow-x:auto; }
-  .sw{ display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
-  .sw + .sw{ margin-top:6px; }
-  .swn{ color:var(--accent); border:1px solid rgba(244,201,93,.4);
-    border-radius:4px; padding:0 6px; font-size:11.5px; flex-shrink:0; }
-  .swm{ color:#7d8890; font-size:11.5px; }
-  .cta{ display:inline-flex; align-items:center; gap:8px; margin-top:22px;
-    padding:12px 22px; border-radius:10px; font-weight:700; font-size:14.5px;
-    background:var(--accent); color:#1a1607; border:1px solid var(--accent);
-    transition:background .15s ease; }
-  .cta:hover{ background:#f7d374; }
 
   footer{ padding:40px 0 60px; text-align:center; border-top:1px solid var(--line); }
   footer p{ color:#7d8890; font-size:12px; max-width:60ch; margin:0 auto; }
@@ -329,11 +310,11 @@
     <aside class="yearnote">
       <span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8.2" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="10" cy="14" r="1" fill="currentColor"/></svg></span>
       <div>
-        <h2>2025年版をお使いの方へ</h2>
-        <p><strong>問題番号は2025年版と完全に一致します。全163問、全分野で読み替えは要りません。</strong>
+        <h2>他の年度版をお使いの方へ</h2>
+        <p><strong>問題番号は年度版が変わっても完全に一致します。全163問、全分野で読み替えは要りません。</strong>
            中身が変わったのは <strong>13問だけ</strong>で、その問には一覧の中で
-           「2026年版で差し替え」の目印をつけてあります。
-           <a class="more" href="../2025/">どの問が変わったか見る</a></p>
+           「2026年版で差し替え」の目印をつけてあります。</p>
+        <p class="cav"><a class="more" href="../2025/">2025年版の一覧を見る</a></p>
         
       </div>
     </aside>
