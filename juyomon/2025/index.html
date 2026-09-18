@@ -247,6 +247,9 @@
   .q[data-state="prep"]{ background:transparent; border-color:#212a33; }
   .q[data-state="prep"] .qb h3{ color:#8e99a2; }
   .q[data-state="prep"] .qn{ color:#6d7883; background:#1c242c; }
+  /* 過去の年度版ページで、差し替え問の実データが無いことを示す空欄カード。
+     data-state="prep" を共有するので枠・番号の色は↑と同じ。文言だけ違う。 */
+  .qdiff{ margin:0; font-size:12.5px; color:#68737d; }
 
   .none{ display:none; border:1.5px dashed var(--line); border-radius:14px;
          padding:26px 20px; text-align:center; color:var(--chalk-dim); font-size:13.5px; }
@@ -301,11 +304,11 @@
     <div class="summary">
       <div class="stats">
         <div class="stat s-all"><b>163</b><span>収録問題</span></div>
-        <div class="stat s-live"><b id="nLive">11</b><span>公開済み</span></div>
-        <div class="stat s-sched"><b id="nSched">39</b><span>公開予定</span></div>
-        <div class="stat s-prep"><b id="nPrep">113</b><span>準備中</span></div>
+        <div class="stat s-live"><b id="nLive">10</b><span>公開済み</span></div>
+        <div class="stat s-sched"><b id="nSched">37</b><span>公開予定</span></div>
+        <div class="stat s-prep"><b id="nPrep">116</b><span>準備中</span></div>
       </div>
-      <div class="bar"><span style="flex:11" class="b-live"></span><span style="flex:39" class="b-sched"></span><span style="flex:113" class="b-prep"></span></div>
+      <div class="bar"><span style="flex:10" class="b-live"></span><span style="flex:37" class="b-sched"></span><span style="flex:116" class="b-prep"></span></div>
     </div>
 
     <aside class="yearnote">
@@ -337,9 +340,9 @@
 <section class="fs" id="f-mech" data-cat="mech" style="--c:var(--mech)">
   <div class="fh">
     <h2><span class="fd"></span>力学</h2>
-    <span class="fc mono">11 / 63 公開</span>
+    <span class="fc mono">10 / 63 公開</span>
   </div>
-  <div class="bar"><span style="flex:11" class="b-live"></span><span style="flex:39" class="b-sched"></span><span style="flex:13" class="b-prep"></span></div>
+  <div class="bar"><span style="flex:10" class="b-live"></span><span style="flex:37" class="b-sched"></span><span style="flex:16" class="b-prep"></span></div>
   <div class="qgrid">
   <article class="q" id="q1" data-cat="mech" data-state="live">
     <div class="qrow qmain" data-state="live" data-url="https://www.youtube.com/watch?v=ajLDga2u_J0">
@@ -381,12 +384,11 @@
       <span class="st"></span>
     </div>
   </article>
-  <article class="q" id="q5" data-cat="mech" data-state="live">
-    <div class="qrow qmain" data-state="live" data-url="https://www.youtube.com/watch?v=yPmkh4DYTuc">
+  <article class="q" id="q5" data-cat="mech" data-state="prep">
+    <div class="qrow qmain" data-state="prep">
       <span class="qn mono">5</span>
       <div class="qb">
-        <h3><a class="stretch" href="https://www.youtube.com/watch?v=yPmkh4DYTuc" target="_blank" rel="noopener" title="斜方投射と自由落下が衝突する条件を求める">斜方投射と自由落下</a></h3>
-        <p class="qm mono">25 福島大<span class="lv lv-A">A</span><span class="yr">2026で差し替え</span></p>
+        <p class="qdiff">2025年版データなし（2026年版で差し替え）</p>
       </div>
       <span class="st"></span>
     </div>
@@ -746,12 +748,11 @@
       <span class="st"></span>
     </div>
   </article>
-  <article class="q" id="q40" data-cat="mech" data-state="sched">
-    <div class="qrow qmain" data-state="sched" data-pub="2026-09-21T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=yLp9CrywGdM">
+  <article class="q" id="q40" data-cat="mech" data-state="prep">
+    <div class="qrow qmain" data-state="prep">
       <span class="qn mono">40</span>
       <div class="qb">
-        <h3><a class="stretch" href="https://www.youtube.com/watch?v=yLp9CrywGdM" target="_blank" rel="noopener" title="小球が斜面と繰り返し衝突する運動">小球と斜面とのくり返し衝突</a></h3>
-        <p class="qm mono">25 熊本大<span class="lv lv-A">A</span><span class="yr">2026で差し替え</span></p>
+        <p class="qdiff">2025年版データなし（2026年版で差し替え）</p>
       </div>
       <span class="st"></span>
     </div>
@@ -846,12 +847,11 @@
       <span class="st"></span>
     </div>
   </article>
-  <article class="q" id="q50" data-cat="mech" data-state="sched">
-    <div class="qrow qmain" data-state="sched" data-pub="2026-10-02T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=xukwczYgsNg">
+  <article class="q" id="q50" data-cat="mech" data-state="prep">
+    <div class="qrow qmain" data-state="prep">
       <span class="qn mono">50</span>
       <div class="qb">
-        <h3><a class="stretch" href="https://www.youtube.com/watch?v=xukwczYgsNg" target="_blank" rel="noopener" title="半円形の面に沿う小球の円運動">半円形状の面にそった円運動</a></h3>
-        <p class="qm mono">25 岡山大<span class="lv lv-A">A</span><span class="yr">2026で差し替え</span></p>
+        <p class="qdiff">2025年版データなし（2026年版で差し替え）</p>
       </div>
       <span class="st"></span>
     </div>
@@ -1020,8 +1020,7 @@
     <div class="qrow qmain" data-state="prep">
       <span class="qn mono">66</span>
       <div class="qb">
-        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="燃料を燃焼させるエンジンの熱効率を求める">比熱と熱機関</a></h3>
-        <p class="qm mono">25 防衛医大 改<span class="lv lv-A">A</span><span class="yr">2026で差し替え</span></p>
+        <p class="qdiff">2025年版データなし（2026年版で差し替え）</p>
       </div>
       <span class="st"></span>
     </div>
@@ -1200,8 +1199,7 @@
     <div class="qrow qmain" data-state="prep">
       <span class="qn mono">83</span>
       <div class="qb">
-        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="クインケ管を使った音波の干渉から波長を求める">音波の干渉</a></h3>
-        <p class="qm mono">25 東北学院大 改<span class="lv lv-A">A</span><span class="yr">2026で差し替え</span></p>
+        <p class="qdiff">2025年版データなし（2026年版で差し替え）</p>
       </div>
       <span class="st"></span>
     </div>
@@ -1270,8 +1268,7 @@
     <div class="qrow qmain" data-state="prep">
       <span class="qn mono">90</span>
       <div class="qb">
-        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="プリズム内での光の反射と屈折の進み方を調べる">プリズムによる光の進路</a></h3>
-        <p class="qm mono">25 関西学院大<span class="lv lv-A">A</span><span class="yr">2026で差し替え</span></p>
+        <p class="qdiff">2025年版データなし（2026年版で差し替え）</p>
       </div>
       <span class="st"></span>
     </div>
@@ -1490,8 +1487,7 @@
     <div class="qrow qmain" data-state="prep">
       <span class="qn mono">111</span>
       <div class="qb">
-        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="コンデンサーの極板どうしにはたらく力を求める">コンデンサーの極板が受ける力</a></h3>
-        <p class="qm mono">25 和歌山県医大<span class="lv lv-A">A</span><span class="yr">2026で差し替え</span></p>
+        <p class="qdiff">2025年版データなし（2026年版で差し替え）</p>
       </div>
       <span class="st"></span>
     </div>
@@ -1600,8 +1596,7 @@
     <div class="qrow qmain" data-state="prep">
       <span class="qn mono">122</span>
       <div class="qb">
-        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="コンデンサーを含む回路の消費電力を調べる">コンデンサーを含む直流回路・最大消費電力</a></h3>
-        <p class="qm mono">25 徳島大<span class="lv lv-A">A</span><span class="yr">2026で差し替え</span></p>
+        <p class="qdiff">2025年版データなし（2026年版で差し替え）</p>
       </div>
       <span class="st"></span>
     </div>
@@ -1640,8 +1635,7 @@
     <div class="qrow qmain" data-state="prep">
       <span class="qn mono">126</span>
       <div class="qb">
-        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="磁場中の電流が受ける力を調べる">電流が磁場から受ける力</a></h3>
-        <p class="qm mono">25 鳥取大<span class="lv lv-A">A</span><span class="yr">2026で差し替え</span></p>
+        <p class="qdiff">2025年版データなし（2026年版で差し替え）</p>
       </div>
       <span class="st"></span>
     </div>
@@ -1770,8 +1764,7 @@
     <div class="qrow qmain" data-state="prep">
       <span class="qn mono">139</span>
       <div class="qb">
-        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="ベータトロンによる荷電粒子の加速原理を調べる">ベータトロン</a></h3>
-        <p class="qm mono">25 横浜市大 改<span class="lv lv-A">A</span><span class="yr">2026で差し替え</span></p>
+        <p class="qdiff">2025年版データなし（2026年版で差し替え）</p>
       </div>
       <span class="st"></span>
     </div>
@@ -1810,8 +1803,7 @@
     <div class="qrow qmain" data-state="prep">
       <span class="qn mono">143</span>
       <div class="qb">
-        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="抵抗・コイル・コンデンサーを直列につないだ回路を調べる">RLC直列回路</a></h3>
-        <p class="qm mono">25 東京農工大 改<span class="lv lv-A">A</span><span class="yr">2026で差し替え</span></p>
+        <p class="qdiff">2025年版データなし（2026年版で差し替え）</p>
       </div>
       <span class="st"></span>
     </div>
@@ -1860,8 +1852,7 @@
     <div class="qrow qmain" data-state="prep">
       <span class="qn mono">147</span>
       <div class="qb">
-        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="加速した荷電粒子を磁場で分けて質量を測定する装置を調べる">質量分析器</a></h3>
-        <p class="qm mono">25 岡山大<span class="lv lv-A">A</span><span class="yr">2026で差し替え</span></p>
+        <p class="qdiff">2025年版データなし（2026年版で差し替え）</p>
       </div>
       <span class="st"></span>
     </div>
@@ -1910,8 +1901,7 @@
     <div class="qrow qmain" data-state="prep">
       <span class="qn mono">152</span>
       <div class="qb">
-        <h3><a class="stretch" href="#" target="_blank" rel="noopener" title="X線と電子の衝突によるコンプトン効果を調べる">コンプトン効果</a></h3>
-        <p class="qm mono">25 熊本大<span class="lv lv-A">A</span><span class="yr">2026で差し替え</span></p>
+        <p class="qdiff">2025年版データなし（2026年版で差し替え）</p>
       </div>
       <span class="st"></span>
     </div>
