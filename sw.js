@@ -90,10 +90,16 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin) return;
 
   // ページの表示（HTML）はネットワーク優先。ここが鮮度の担保。
+  //
+  // cache:'no-store' を明示するのが肝。指定しないと fetch() は req 自体の
+  // キャッシュモードに従うため、SWは「ネットワークに聞いた」つもりでも
+  // ブラウザ側のHTTPキャッシュ（GitHub PagesのCDNが送るCache-Controlに従う層）
+  // から返ってしまう場合がある。SWのCache Storageより手前にもう1枚キャッシュ層が
+  // あることを見落としていた（2026-09-24、モバイルだけ古い内容が出る報告で発覚）。
   if (req.mode === 'navigate') {
     event.respondWith((async () => {
       try {
-        const res = await fetch(req);
+        const res = await fetch(req, { cache: 'no-store' });
         if (storable(res)) {
           const cache = await caches.open(CACHE);
           cache.put(req, res.clone());

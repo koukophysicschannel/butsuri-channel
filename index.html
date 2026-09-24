@@ -25,6 +25,9 @@
 <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
+<!-- iOS 16.4未満はmanifestのdisplay:standaloneを見ないため、このタグが無いと
+     「ホーム画面に追加」が独立アプリにならず通常のSafariタブ扱いになる。 -->
+<meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="高校物理解説チャンネル">
 <meta name="theme-color" content="#10151b">
 
@@ -1129,9 +1132,18 @@
   //  ・失敗しても握りつぶす。Service Worker はあくまで上乗せで、
   //    無くても今までどおりのサイトとして動く（これが壊れて目次が開けない、が最悪）。
   //  ・load を待つのは、初回表示のための通信とSWの取得を競わせないため。
+  //  ・ブラウザ標準の更新チェックは「ナビゲーションごと・最大24時間に1回」しか
+  //    走らない。ホーム画面から起動する standalone PWA はこの「ナビゲーション」の
+  //    機会自体が少ないため、タブに戻ってきた（visibilitychange）たびに
+  //    registration.update() を明示的に呼び、更新確認の頻度を上げる
+  //    （2026-09-24、モバイルだけ古い内容が出る報告への対策の一部）。
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function(){
-      navigator.serviceWorker.register('sw.js').catch(function(){});
+      navigator.serviceWorker.register('sw.js').then(function(reg){
+        document.addEventListener('visibilitychange', function(){
+          if (document.visibilityState === 'visible') reg.update().catch(function(){});
+        });
+      }).catch(function(){});
     });
   }
 </script>
