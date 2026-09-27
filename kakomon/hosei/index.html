@@ -101,11 +101,13 @@
            font-variant-numeric:tabular-nums; }
   .stat span{ font-size:11.5px; color:var(--chalk-dim); letter-spacing:.04em; }
   .stat.s-live b{ color:var(--mech); }
+  .stat.s-sched b{ color:var(--accent); }
   .stat.s-prep b{ color:var(--chalk-dim); }
 
   .bar{ display:flex; height:8px; border-radius:999px; overflow:hidden;
         background:var(--line); gap:1.5px; }
   .b-live{ background:var(--mech); }
+  .b-sched{ background:color-mix(in srgb,var(--accent) 55%,transparent); }
   .b-prep{ background:#232c36; }
 
   footer{ margin-top:44px; padding:34px 0 60px; text-align:center;
@@ -142,6 +144,8 @@
     border:1px solid var(--line); border-radius:5px; padding:1px 8px; }
   .ex-meta span.live{ color:var(--mech);
     border-color:color-mix(in srgb,var(--mech) 38%,transparent); }
+  .ex-meta span.sched{ color:var(--accent);
+    border-color:color-mix(in srgb,var(--accent) 38%,transparent); }
 
   /* 大問。 */
   .fs{ margin-top:22px; }
@@ -197,6 +201,17 @@
   .q.is-prep .st{ color:#68737d; }
   .q.is-prep .st::before{ content:""; }
 
+  /* 動画IDはあるが公開予定時刻がまだ来ていない（YouTube側は private）。
+     日付は出すがクリックはできない＝見られないリンクを作らないため、
+     枠線は is-prep と同じ破線。色だけ --accent にして「日程は決まっている」を示す。 */
+  .q.is-sched{ background:transparent; border-style:dashed; }
+  .q.is-sched .qrow{ cursor:default; }
+  .q.is-sched .qrow:hover{ background:none; }
+  .q.is-sched .qb h5{ color:#8e99a2; }
+  .q.is-sched .qn{ color:#6d7883; background:#1c242c; }
+  .q.is-sched .st{ color:var(--accent); }
+  .q.is-sched .st::before{ content:""; }
+
   /* 年度が2つ以上になったときだけ出る年度ジャンプ。 */
   .ynav{ display:flex; gap:8px; flex-wrap:wrap; margin:22px 0 0; }
   .ynav a{ font-family:var(--mono); font-size:12.5px; padding:6px 13px;
@@ -246,9 +261,10 @@
       <div class="stats">
         <div class="stat s-all"><b>1</b><span>収録年度</span></div>
         <div class="stat s-all"><b>8</b><span>収録問題</span></div>
-        <div class="stat s-live"><b>6</b><span>公開済み</span></div>
+        <div class="stat s-live"><b>0</b><span>公開済み</span></div>
+        <div class="stat s-sched"><b>8</b><span>公開予定</span></div>
       </div>
-      <div class="bar"><span style="flex:6" class="b-live"></span><span style="flex:2" class="b-prep"></span></div>
+      <div class="bar"><span style="flex:0" class="b-live"></span><span style="flex:8" class="b-sched"></span></div>
     </div>
   </header>
 
@@ -256,37 +272,37 @@
   <section class="yr-sec" id="y2026">
     <div class="yr-head">
       <h2>2026<span>年度</span></h2>
-      <span class="fc mono">8問 / 6問 公開済み</span>
+      <span class="fc mono">8問 / 0問 公開済み・8問 公開予定</span>
     </div>
     <section class="ex-sec" id="ex-y2026">
       <div class="ex-head"><h3>理工ほか</h3></div>
-      <div class="ex-meta"><span>2月11日</span><span>全8問・空所30</span><span class="live">6問 公開済み</span></div>
+      <div class="ex-meta"><span>2月11日</span><span>全8問・空所30</span><span class="live">0問 公開済み</span><span class="sched">8問 公開予定</span></div>
       <section class="fs">
         <div class="fh">
           <h4><span class="fd"></span>第1問</h4>
           <span class="fc mono">2本 / 空所9</span>
         </div>
         <div class="qgrid">
-          <article class="q" style="--c:var(--mech)">
+          <article class="q is-sched" style="--c:var(--mech)">
             <div class="qrow">
               <span class="qn mono">(1)〜(4)</span>
               <div class="qb">
-                <h5><a class="stretch" href="https://www.youtube.com/watch?v=txSLPOn3_4s" target="_blank" rel="noopener" title="板の上と吊るされた物体を同時に解く">傾いた板上の物体と吊るされた物体の連結運動</a></h5>
+                <h5>傾いた板上の物体と吊るされた物体の連結運動</h5>
                 <p class="qm"><span class="fb">力学</span>(1)〜(4)・4空所</p>
                 <div class="chips"><span>力のつりあい</span><span>運動方程式</span><span>動摩擦力</span><span>等加速度直線運動</span></div>
               </div>
-              <span class="st mono"></span>
+              <span class="st mono">10/19 公開</span>
             </div>
           </article>
-          <article class="q" style="--c:var(--mech)">
+          <article class="q is-sched" style="--c:var(--mech)">
             <div class="qrow">
               <span class="qn mono">(5)〜(9)</span>
               <div class="qb">
-                <h5><a class="stretch" href="https://www.youtube.com/watch?v=MUrmGEIX0L8" target="_blank" rel="noopener" title="つりあいが崩れる角度はどこにある">板上の物体が静止する条件とすべり出す角度</a></h5>
+                <h5>板上の物体が静止する条件とすべり出す角度</h5>
                 <p class="qm"><span class="fb">力学</span>(5)〜(9)・5空所</p>
                 <div class="chips"><span>力のつりあい</span><span>力のモーメント</span><span>運動方程式</span><span>静止摩擦係数</span></div>
               </div>
-              <span class="st mono"></span>
+              <span class="st mono">10/20 公開</span>
             </div>
           </article>
         </div>
@@ -297,26 +313,26 @@
           <span class="fc mono">2本 / 空所7</span>
         </div>
         <div class="qgrid">
-          <article class="q" style="--c:var(--electro)">
+          <article class="q is-sched" style="--c:var(--electro)">
             <div class="qrow">
               <span class="qn mono">(1)〜(3)</span>
               <div class="qb">
-                <h5><a class="stretch" href="https://www.youtube.com/watch?v=T5RhZhGVNH4" target="_blank" rel="noopener" title="電荷が変わらないとき何が変わるのか">スイッチを開いたコンデンサーへの誘電体挿入</a></h5>
+                <h5>スイッチを開いたコンデンサーへの誘電体挿入</h5>
                 <p class="qm"><span class="fb">電磁気</span>(1)〜(3)・3空所</p>
                 <div class="chips"><span>コンデンサーの並列接続</span><span>比誘電率</span><span>電気量の保存</span><span>静電エネルギー</span></div>
               </div>
-              <span class="st mono"></span>
+              <span class="st mono">10/21 公開</span>
             </div>
           </article>
-          <article class="q" style="--c:var(--electro)">
+          <article class="q is-sched" style="--c:var(--electro)">
             <div class="qrow">
               <span class="qn mono">(4)〜(7)</span>
               <div class="qb">
-                <h5><a class="stretch" href="https://www.youtube.com/watch?v=OQ2nUYNVHNs" target="_blank" rel="noopener" title="誘電体を入れるとき外力は何をするか">電池をつないだままの誘電体挿入とエネルギー収支</a></h5>
+                <h5>電池をつないだままの誘電体挿入とエネルギー収支</h5>
                 <p class="qm"><span class="fb">電磁気</span>(4)〜(7)・4空所</p>
                 <div class="chips"><span>電圧一定</span><span>静電エネルギー</span><span>電池のする仕事</span><span>エネルギー収支</span></div>
               </div>
-              <span class="st mono"></span>
+              <span class="st mono">10/22 公開</span>
             </div>
           </article>
         </div>
@@ -327,26 +343,26 @@
           <span class="fc mono">2本 / 空所7</span>
         </div>
         <div class="qgrid">
-          <article class="q" style="--c:var(--mech)">
+          <article class="q is-sched" style="--c:var(--mech)">
             <div class="qrow">
               <span class="qn mono">(1)(2)</span>
               <div class="qb">
-                <h5><a class="stretch" href="https://www.youtube.com/watch?v=CzTqzwJO2ZM" target="_blank" rel="noopener" title="水圧と浮力を数値で求める">水中の面が受ける圧力と、浮かぶ氷の体積</a></h5>
+                <h5>水中の面が受ける圧力と、浮かぶ氷の体積</h5>
                 <p class="qm"><span class="fb">力学</span>(1)(2)・2空所</p>
                 <div class="chips"><span>水圧</span><span>大気圧</span><span>浮力</span><span>密度とつりあい</span></div>
               </div>
-              <span class="st mono"></span>
+              <span class="st mono">10/23 公開</span>
             </div>
           </article>
-          <article class="q" style="--c:var(--therm)">
+          <article class="q is-sched" style="--c:var(--therm)">
             <div class="qrow">
               <span class="qn mono">(3)〜(7)</span>
               <div class="qb">
-                <h5><a class="stretch" href="https://www.youtube.com/watch?v=8B5NkOXboM4" target="_blank" rel="noopener" title="沈めた容器の中の空気は何をされたか">水中に沈めた容器内の空気の圧縮と熱の出入り</a></h5>
+                <h5>水中に沈めた容器内の空気の圧縮と熱の出入り</h5>
                 <p class="qm"><span class="fb">熱</span>(3)〜(7)・5空所</p>
                 <div class="chips"><span>水圧</span><span>ボイルの法則</span><span>浮力とつりあい</span><span>熱力学第一法則</span></div>
               </div>
-              <span class="st mono"></span>
+              <span class="st mono">10/24 公開</span>
             </div>
           </article>
         </div>
@@ -357,7 +373,7 @@
           <span class="fc mono">2本 / 空所7</span>
         </div>
         <div class="qgrid">
-          <article class="q is-prep" style="--c:var(--wave)">
+          <article class="q is-sched" style="--c:var(--wave)">
             <div class="qrow">
               <span class="qn mono">(1)〜(4)</span>
               <div class="qb">
@@ -365,10 +381,10 @@
                 <p class="qm"><span class="fb">波動</span>(1)〜(4)・4空所</p>
                 <div class="chips"><span>回折と干渉</span><span>光路差</span><span>近似式</span><span>暗線の条件</span></div>
               </div>
-              <span class="st mono">準備中</span>
+              <span class="st mono">10/25 公開</span>
             </div>
           </article>
-          <article class="q is-prep" style="--c:var(--wave)">
+          <article class="q is-sched" style="--c:var(--wave)">
             <div class="qrow">
               <span class="qn mono">(5)〜(7)</span>
               <div class="qb">
@@ -376,7 +392,7 @@
                 <p class="qm"><span class="fb">波動</span>(5)〜(7)・3空所</p>
                 <div class="chips"><span>波長と縞の間隔</span><span>媒質中の波長</span><span>薄膜による光路差</span><span>屈折率</span></div>
               </div>
-              <span class="st mono">準備中</span>
+              <span class="st mono">10/26 公開</span>
             </div>
           </article>
         </div>
