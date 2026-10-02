@@ -49,13 +49,15 @@ SHOW=7件ぶんなので、開いた瞬間に見えるのは新しい7件のま�
 ので巻き込まれない。逆に auto: 行を手で直しても次の --sync で消える。
 何度走らせても同じ結果になる（冪等）。
 
-取り込み元は重問の2つの台帳で、`--juyomon` でその場所を渡す。既定は Dropbox の
-`002 物理重要問題集`。**フォルダが無ければ同期は黙って飛ばす**（Dropbox の無い
-Mac でも updates.csv の描画だけは通す）。
+取り込み元は重問の2つの台帳・リードαの章台帳・ショートの台帳の計4つで、
+`--juyomon`／`--leadalpha`／`--shorts` でその場所を渡す。既定は Dropbox。
+**フォルダが無ければ同期は黙って飛ばす**（Dropbox の無いMacでも updates.csv
+の描画だけは通す）。
 
   auto:juyomon          juyomon-mapping.csv  の 公開予約(JST) が入っている行
   auto:juyomon-variant  juyomon-variants.csv の 公開予約(JST) が入っている行
   auto:leadalpha        leadalpha-chapter-schedule.csv の 公開日 が入っている行
+  auto:shorts           shorts-mapping.csv の 公開日 が入っていて 履歴 が「載せる」の行
 
 公開予約が空の行は取らない。重問の問1〜11は予約運用を始める前に公開されたもので
 台帳に公開日が無いため、ここには出てこない（2026-09-07、遡らないと決めた）。
@@ -64,6 +66,11 @@ Mac でも updates.csv の描画だけは通す）。
 1章＝1行。`履歴` 列が「載せる」の章だけを取る。第1〜16章は公開済みだが
 遡らない方針なので「—」にしてあり、記録としては台帳に残るが更新履歴には出ない
 （2026-09-07、清水さんの判断）。
+
+ショートも同じ「履歴」列で載せる／載せないを選ぶ（2026-10-02 導入）。
+既存の18本は2026-10-02にYouTube APIから実際のpublishedAtを取得して
+公開日列を埋めたが、公開自体は2026-03-15に遡るため「—」にしてあり、
+更新履歴には今さら出てこない。新規に撮影・公開したショートだけ「載せる」にする。
 
 飛び先は `juyomon/2026/#qNN` と `leadalpha/#chN`。前者は build_site_index.py が
 振っている。後者は build_site_leadalpha.py が元から振っていた。
@@ -114,10 +121,12 @@ OUT_COLS = ["日付", TIME_COL, "種別", "本文", "リンク", "出所"]
 #   動画 = accent（黄。サイトの主役である動画の色）
 #   ページ = wave（青。新しい読みもの）
 #   機能 = mech（緑。サイトの挙動が変わったもの）
+#   ショート = electro（紫。重問・リードαの「動画」と見分けがつくように別の色にする）
 KIND = {
-    "動画":  ("accent",  "動画"),
+    "動画":   ("accent",  "動画"),
     "ページ": ("wave",   "ページ"),
-    "機能":  ("mech",    "機能"),
+    "機能":   ("mech",    "機能"),
+    "ショート": ("electro", "ショート"),
 }
 
 SHOW = 7   # 窓を開いた瞬間に見える件数の目安。CSSの窓の高さ(7行ぶん)の計算に使う。
@@ -133,6 +142,8 @@ JUYOMON_DIR = os.path.expanduser(
     "~/Library/CloudStorage/Dropbox/002 物理重要問題集")
 LEADALPHA_DIR = os.path.expanduser(
     "~/Library/CloudStorage/Dropbox/002 リード/999 抽出")
+SHORTS_DIR = os.path.expanduser(
+    "~/Library/CloudStorage/Dropbox/002 リード/999 抽出/制作物_リードα/shorts")
 
 
 class Abort(Exception):
@@ -216,7 +227,34 @@ def leadalpha_rows(base):
     return out
 
 
-def sync(base, la_base):
+def shorts_rows(base):
+    """公開日が入っていて、履歴が「載せる」の行だけを1行ずつ返す。
+
+    リードαの履歴列と同じ考え方（`002 リード/999 抽出/leadalpha-chapter-schedule.csv`）。
+    既存ショート18本は2026-03-15に遡って公開日が埋まるが、過去分を更新履歴に
+    今さら載せる意味は無いので「—」にしてある。今後の新規ショートは
+    撮影・公開のたびにこの列を「載せる」にすれば、ここで自動的に拾われる。
+    """
+    mapping = os.path.join(base, "shorts-mapping.csv")
+    if not os.path.exists(mapping):
+        raise Abort(f"ショートの台帳が見つかりません: {mapping}")
+
+    out = []
+    with open(mapping, encoding="utf-8-sig") as fp:
+        for r in csv.DictReader(fp):
+            d = (r.get("公開日") or "").strip()
+            if not d or (r.get("履歴") or "").strip() != "載せる":
+                continue
+            title = (r.get("タイトル案") or "").strip()
+            out.append({
+                "日付": d[:10], TIME_COL: d[11:16], "種別": "ショート",
+                "本文": f"ショート『{title}』を公開",
+                "リンク": "#shorts", "出所": "auto:shorts",
+            })
+    return out
+
+
+def sync(base, la_base, shorts_base):
     """auto: で始まる行を捨てて作り直す。manual の行は読みもしない。
 
     戻り値は (消した数, 入れた数, 手つかずの manual 行数)。
@@ -229,6 +267,10 @@ def sync(base, la_base):
         fresh += leadalpha_rows(la_base)
     else:
         print(f"リードαの同期は飛ばしました（{la_base} がありません）。")
+    if os.path.isdir(shorts_base):
+        fresh += shorts_rows(shorts_base)
+    else:
+        print(f"ショートの同期は飛ばしました（{shorts_base} がありません）。")
 
     rows = kept + fresh
     rows.sort(key=lambda r: r["日付"].strip(), reverse=True)
@@ -433,6 +475,8 @@ def main():
                     help="重問の台帳があるフォルダ（既定は Dropbox）")
     ap.add_argument("--leadalpha", default=LEADALPHA_DIR,
                     help="リードαの章台帳があるフォルダ（既定は Dropbox）")
+    ap.add_argument("--shorts", default=SHORTS_DIR,
+                    help="ショートの台帳があるフォルダ（既定は Dropbox）")
     a = ap.parse_args()
 
     if a.sync:
@@ -445,7 +489,8 @@ def main():
             print("--dry-run のため同期していません（--sync は updates.csv を書き換えます）。")
         else:
             try:
-                gone, made, manual = sync(base, os.path.expanduser(a.leadalpha))
+                gone, made, manual = sync(base, os.path.expanduser(a.leadalpha),
+                                          os.path.expanduser(a.shorts))
                 print(f"■ 同期  auto行 {gone} → {made} に入れ替え／manual {manual}行は手つかず")
             except Abort as e:
                 sys.exit(f"停止: {e}")
