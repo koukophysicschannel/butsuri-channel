@@ -72,6 +72,7 @@ LANDMARKS = {
             "km-index": 1,         # 過去問インデックスへの導線(build_kakomon.pyが管理)
             "la-index": 1,         # リードαインデックスへの導線(build_site_leadalpha.pyが管理)
             "la-2024": 1,          # リードα改訂版への導線(同上。同じマーカーの中)
+            "la-santei": 1,        # リードα三訂版 物理基礎への導線(同上。同じマーカーの中)
             "jg-index": 1,         # 授業動画インデックスへの導線(build_site_jugyo.pyが管理)
             "quiet-link": 1,       # フッタの進学情報への導線
             # 最近の更新の行(tools/build_updates.py が管理)。updates.csv は
@@ -136,6 +137,25 @@ LANDMARKS = {
             "which": 1,      # 版の見分け方
             "src": 1,        # 新課程版の番号の添え字(←174)。消えると番号の
                              # 出どころが分からなくなる
+        },
+        "css": {"再生マーク": '.p[data-state=live]::after{ content:"\\25B6";'},
+    },
+    # リードα 三訂版 物理基礎(2025年10月1日発行)。002 リード/999 抽出/scripts/
+    # build_site_leadalpha_santei.py が生成する。台帳は leadalpha-santeiban-mapping.csv。
+    # 番号が3系統(例題・問題・総合問題)あり、総合問題の4節を含めて19節。
+    "leadalpha/santei/index.html": {
+        "ids": ["panel", "jump", "q", "hits",
+                "ch1", "ch11", "ch付章C", "ch特集", "ch第1編総合問題"],
+        "min_counts": {
+            "p": 318,        # 1問1枚のカード（三訂版の全問）
+            "ch": 19,        # 11章＋付章3＋総合問題4＋特集
+            "jc": 19,        # 章ジャンプ
+            "none": 19,      # 章ごとの「該当なし」表示
+            "edition": 1,    # 「2025年10月1日発行 三訂版」の明記
+            "yearnote": 1,   # 動画は合本の新課程版である旨と、発行日
+            "which": 1,      # 版の見分け方
+            "src": 1,        # 動画の番号の添え字(←109)
+            "why": 1,        # 準備中の理由
         },
         "css": {"再生マーク": '.p[data-state=live]::after{ content:"\\25B6";'},
     },
