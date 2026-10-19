@@ -49,8 +49,9 @@ SHOW=7件ぶんなので、開いた瞬間に見えるのは新しい7件のま�
 ので巻き込まれない。逆に auto: 行を手で直しても次の --sync で消える。
 何度走らせても同じ結果になる（冪等）。
 
-取り込み元は重問の2つの台帳・リードαの章台帳・ショートの台帳の計4つで、
-`--juyomon`／`--leadalpha`／`--shorts` でその場所を渡す。既定は Dropbox。
+取り込み元は重問の2つの台帳・リードαの章台帳・ショートの台帳・大学過去問の
+台帳（法政・北大・筑波大・横国）で、`--juyomon`／`--leadalpha`／`--shorts`／
+`--kakomon` でその場所を渡す。既定は Dropbox。
 **フォルダが無ければ同期は黙って飛ばす**（Dropbox の無いMacでも updates.csv
 の描画だけは通す）。
 
@@ -58,6 +59,8 @@ SHOW=7件ぶんなので、開いた瞬間に見えるのは新しい7件のま�
   auto:juyomon-variant  juyomon-variants.csv の 公開予約(JST) が入っている行
   auto:leadalpha        leadalpha-chapter-schedule.csv の 公開日 が入っている行
   auto:shorts           shorts-mapping.csv の 公開日 が入っていて 履歴 が「載せる」の行
+  auto:kakomon          過去問/20_動画/<大学>/thumb-update-progress.csv の 公開予約(JST) が入っている行
+                        1動画1行。履歴列の扱いは kakomon_rows() の docstring 参照
 
 公開予約が空の行は取らない。重問の問1〜11は予約運用を始める前に公開されたもので
 台帳に公開日が無いため、ここには出てこない（2026-09-07、遡らないと決めた）。
@@ -144,6 +147,18 @@ LEADALPHA_DIR = os.path.expanduser(
     "~/Library/CloudStorage/Dropbox/002 リード/999 抽出")
 SHORTS_DIR = os.path.expanduser(
     "~/Library/CloudStorage/Dropbox/002 リード/999 抽出/制作物_リードα/shorts")
+KAKOMON_DIR = os.path.expanduser(
+    "~/Library/CloudStorage/Dropbox/006 過去問/20_動画")
+# 更新履歴に載せる大学過去問: (台帳のあるフォルダ, サイトの /kakomon/<slug>/)。
+# 東京理科大の8月分（rikadai-rigaku2026）は載せない方針なので、ここに入れない。
+# 横国は台帳（thumb-update-progress.csv）がまだ無いので今は何も出ない。
+# 台帳ができれば、この表のまま自動で拾われる。
+KAKOMON = [
+    ("hosei-2026", "hosei"),
+    ("hokkaido-2026", "hokkaido"),
+    ("tsukuba-2026", "tsukuba"),
+    ("yokokoku-2026", "yokokoku"),
+]
 
 
 class Abort(Exception):
@@ -254,7 +269,53 @@ def shorts_rows(base):
     return out
 
 
-def sync(base, la_base, shorts_base):
+def kakomon_rows(base):
+    """大学過去問の台帳から、1動画1行の auto: 行を返す。
+
+    台帳は各大学フォルダの thumb-update-progress.csv。公開予約(JST) が入っている
+    行だけを取る（重問と同じ）。公開日時を過ぎたかどうかはページ側のJSが決める。
+
+      「過去問 法政大 第1問(1)〜(4)「板の上と吊るされた物体を同時に解く」を公開」
+      リンク先は大学のページ kakomon/<slug>/
+
+    タイトル（例: 「板の上と…を同時に解く｜法政大 理工ほか 物理2026 第1問(1)〜(4)【高校物理】」）
+    から、趣旨（｜の前）・大学名（｜の次の語）・大問と小問（「物理2026」の次〜【）を
+    取り出す。形が合わない行は黙って捨てずに Abort する（文言が壊れたまま公開しない）。
+
+    載せる／載せないは台帳の「履歴」列で切り替える。列が無い台帳、または空欄は
+    「載せる」。「—」「載せない」の行は載せない。
+    **注意**: 各大学の publish_setup.py は LEDGER_FIELDS だけを書き戻すので、
+    履歴列を手で足しても、次にその大学の publish_setup.py を回すと消える。
+    恒久的に使うなら、そちらの LEDGER_FIELDS にも「履歴」を足すこと。
+    """
+    out = []
+    for folder, slug in KAKOMON:
+        ledger = os.path.join(base, folder, "thumb-update-progress.csv")
+        if not os.path.exists(ledger):
+            print(f"過去問の同期を飛ばしました（{folder} は台帳がありません）。")
+            continue
+        with open(ledger, encoding="utf-8-sig") as fp:
+            for r in csv.DictReader(fp):
+                d = (r.get("公開予約(JST)") or "").strip()
+                if not d:
+                    continue
+                if (r.get("履歴") or "").strip() in ("—", "-", "載せない"):
+                    continue
+                title = (r.get("タイトル") or "").strip()
+                m = re.match(r"^(.+?)｜(\S+)\s.*?物理\d{4}\s+(第\d+問.*?)【", title)
+                if not m:
+                    raise Abort(f"過去問のタイトルから大学名・設問を取り出せません"
+                                f"（{folder} {r.get('問')}）: {title}")
+                gist, univ, part = (x.strip() for x in m.groups())
+                out.append({
+                    "日付": d[:10], TIME_COL: d[11:16], "種別": "動画",
+                    "本文": f"過去問 {univ} {part}「{gist}」を公開",
+                    "リンク": f"kakomon/{slug}/", "出所": "auto:kakomon",
+                })
+    return out
+
+
+def sync(base, la_base, shorts_base, kk_base):
     """auto: で始まる行を捨てて作り直す。manual の行は読みもしない。
 
     戻り値は (消した数, 入れた数, 手つかずの manual 行数)。
@@ -271,6 +332,10 @@ def sync(base, la_base, shorts_base):
         fresh += shorts_rows(shorts_base)
     else:
         print(f"ショートの同期は飛ばしました（{shorts_base} がありません）。")
+    if os.path.isdir(kk_base):
+        fresh += kakomon_rows(kk_base)
+    else:
+        print(f"過去問の同期は飛ばしました（{kk_base} がありません）。")
 
     rows = kept + fresh
     rows.sort(key=lambda r: r["日付"].strip(), reverse=True)
@@ -477,6 +542,8 @@ def main():
                     help="リードαの章台帳があるフォルダ（既定は Dropbox）")
     ap.add_argument("--shorts", default=SHORTS_DIR,
                     help="ショートの台帳があるフォルダ（既定は Dropbox）")
+    ap.add_argument("--kakomon", default=KAKOMON_DIR,
+                    help="大学過去問の各大学フォルダがある場所（既定は Dropbox）")
     a = ap.parse_args()
 
     if a.sync:
@@ -490,7 +557,8 @@ def main():
         else:
             try:
                 gone, made, manual = sync(base, os.path.expanduser(a.leadalpha),
-                                          os.path.expanduser(a.shorts))
+                                          os.path.expanduser(a.shorts),
+                                          os.path.expanduser(a.kakomon))
                 print(f"■ 同期  auto行 {gone} → {made} に入れ替え／manual {manual}行は手つかず")
             except Abort as e:
                 sys.exit(f"停止: {e}")
