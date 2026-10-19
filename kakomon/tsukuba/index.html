@@ -204,6 +204,7 @@
   /* 動画IDはあるが公開予定時刻がまだ来ていない（YouTube側は private）。
      日付は出すがクリックはできない＝見られないリンクを作らないため、
      枠線は is-prep と同じ破線。色だけ --accent にして「日程は決まっている」を示す。 */
+  .ex-meta span[hidden]{ display:none; }
   .q.is-sched{ background:transparent; border-style:dashed; }
   .q.is-sched .qrow{ cursor:default; }
   .q.is-sched .qrow:hover{ background:none; }
@@ -264,7 +265,7 @@
         <div class="stat s-live"><b>0</b><span>公開済み</span></div>
         <div class="stat s-sched"><b>6</b><span>公開予定</span></div>
       </div>
-      <div class="bar"><span style="flex:0" class="b-live"></span><span style="flex:6" class="b-sched"></span></div>
+      <div class="bar"><span style="flex:0;display:none" class="b-live"></span><span style="flex:6" class="b-sched"></span><span style="flex:0;display:none" class="b-prep"></span></div>
     </div>
   </header>
 
@@ -282,7 +283,7 @@
           <span class="fc mono">2本 / 空所9</span>
         </div>
         <div class="qgrid">
-          <article class="q is-sched" style="--c:var(--mech)">
+          <article class="q is-sched" data-pub="2026-11-06T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=qP5CxUG9-CY" data-shushi="はね返る物体と振り子が出会う時刻をそろえる" style="--c:var(--mech)">
             <div class="qrow">
               <span class="qn mono">問1〜問3</span>
               <div class="qb">
@@ -293,7 +294,7 @@
               <span class="st mono">11/6 公開</span>
             </div>
           </article>
-          <article class="q is-sched" style="--c:var(--mech)">
+          <article class="q is-sched" data-pub="2026-11-07T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=CO69Pls4K18" data-shushi="弾性衝突の後に物体が戻る質量の条件を求める" style="--c:var(--mech)">
             <div class="qrow">
               <span class="qn mono">問4〜問7</span>
               <div class="qb">
@@ -312,7 +313,7 @@
           <span class="fc mono">2本 / 空所17</span>
         </div>
         <div class="qgrid">
-          <article class="q is-sched" style="--c:var(--electro)">
+          <article class="q is-sched" data-pub="2026-11-08T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=WHsbdkzuusc" data-shushi="スイッチを切り替えた後の電流と電位の変化を選ぶ" style="--c:var(--electro)">
             <div class="qrow">
               <span class="qn mono">問1〜問4</span>
               <div class="qb">
@@ -323,7 +324,7 @@
               <span class="st mono">11/8 公開</span>
             </div>
           </article>
-          <article class="q is-sched" style="--c:var(--electro)">
+          <article class="q is-sched" data-pub="2026-11-09T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=R0qJWNVY4EQ" data-shushi="pn接合の性質と交流回路のインピーダンスを求める" style="--c:var(--electro)">
             <div class="qrow">
               <span class="qn mono">問5〜問8</span>
               <div class="qb">
@@ -342,7 +343,7 @@
           <span class="fc mono">2本 / 空所11</span>
         </div>
         <div class="qgrid">
-          <article class="q is-sched" style="--c:var(--atom)">
+          <article class="q is-sched" data-pub="2026-11-10T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=vntCKYfW4uw" data-shushi="α崩壊の性質と崩壊系列・半減期を押さえる" style="--c:var(--atom)">
             <div class="qrow">
               <span class="qn mono">問1〜問5</span>
               <div class="qb">
@@ -353,7 +354,7 @@
               <span class="st mono">11/10 公開</span>
             </div>
           </article>
-          <article class="q is-sched" style="--c:var(--atom)">
+          <article class="q is-sched" data-pub="2026-11-11T18:00:00+09:00" data-url="https://www.youtube.com/watch?v=5lI_3wpQhaU" data-shushi="放射平衡で2つの原子核の数の関係を求める" style="--c:var(--atom)">
             <div class="qrow">
               <span class="qn mono">問6〜問8</span>
               <div class="qb">
@@ -375,6 +376,70 @@
   <footer>
     <p>解説動画は YouTube「高校物理 解説チャンネル」で公開しています。問題文・図は掲載していません。手元の問題を見ながらお使いください。</p>
   </footer>
+<script>
+(function(){
+  function qa(root, sel){ return Array.prototype.slice.call(root.querySelectorAll(sel)); }
+  function count(cards){
+    var n = {live: 0, sched: 0, prep: 0};
+    cards.forEach(function(q){
+      if (q.classList.contains("is-prep")) n.prep++;
+      else if (q.classList.contains("is-sched")) n.sched++;
+      else n.live++;
+    });
+    return n;
+  }
+  function setBar(bar, n){
+    if (!bar) return;
+    [["b-live", n.live], ["b-sched", n.sched], ["b-prep", n.prep]].forEach(function(p){
+      var el = bar.querySelector("." + p[0]);
+      if (!el) return;
+      el.style.flex = String(p[1]);
+      el.style.display = p[1] ? "" : "none";
+    });
+  }
+  function settle(){
+    var now = new Date();
+    qa(document, ".q.is-sched[data-pub]").forEach(function(q){
+      if (new Date(q.dataset.pub) > now) return;
+      q.classList.remove("is-sched");
+      var h = q.querySelector("h5");
+      if (h && !h.querySelector("a")){
+        var a = document.createElement("a");
+        a.className = "stretch";
+        a.href = q.dataset.url;
+        a.target = "_blank";
+        a.rel = "noopener";
+        if (q.dataset.shushi) a.title = q.dataset.shushi;
+        a.textContent = h.textContent;
+        h.textContent = "";
+        h.appendChild(a);
+      }
+    });
+
+    qa(document, ".ex-sec").forEach(function(sec){
+      var n = count(qa(sec, ".q"));
+      var l = sec.querySelector(".ex-meta .live"), s = sec.querySelector(".ex-meta .sched");
+      if (l) l.textContent = n.live + "問 公開済み";
+      if (s){ s.textContent = n.sched + "問 公開予定"; s.hidden = !n.sched; }
+    });
+    qa(document, ".yr-sec").forEach(function(sec){
+      var cards = qa(sec, ".q"), n = count(cards);
+      var fc = sec.querySelector(".yr-head .fc");
+      if (fc) fc.textContent = cards.length + "問 / " + n.live + "問 公開済み"
+                             + (n.sched ? "・" + n.sched + "問 公開予定" : "");
+    });
+    var all = count(qa(document, ".q"));
+    var sl = document.querySelector(".summary .s-live b"),
+        ss = document.querySelector(".summary .s-sched b");
+    if (sl) sl.textContent = all.live;
+    if (ss) ss.textContent = all.sched;
+    setBar(document.querySelector(".summary .bar"), all);
+  }
+  settle();
+  setInterval(settle, 30000);
+  document.addEventListener("visibilitychange", function(){ if (!document.hidden) settle(); });
+})();
+</script>
 </div>
 <button class="to-top" id="toTop" aria-label="ページの先頭へ戻る">
   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">

@@ -190,12 +190,12 @@
     </h1>
     <p class="lede">大学・共通テストを選ぶと、収録した年度の全問が大問ごとに並びます。問題を選べばそのまま解説動画に飛べます。準備中のものはまだ選べません。</p>
 
-    <div class="summary">
+    <div class="summary" data-live="10" data-sched="2026-10-20T18:00:00+09:00,2026-10-21T18:00:00+09:00,2026-10-22T18:00:00+09:00,2026-10-23T18:00:00+09:00,2026-10-24T18:00:00+09:00,2026-10-25T18:00:00+09:00,2026-10-26T18:00:00+09:00,2026-10-27T18:00:00+09:00,2026-10-28T18:00:00+09:00,2026-10-29T18:00:00+09:00,2026-10-30T18:00:00+09:00,2026-11-06T18:00:00+09:00,2026-11-07T18:00:00+09:00,2026-11-08T18:00:00+09:00,2026-11-09T18:00:00+09:00,2026-11-10T18:00:00+09:00,2026-11-11T18:00:00+09:00">
       <div class="stats">
         <div class="stat s-all"><b>4</b><span>公開中</span></div>
         <div class="stat s-all"><b>29</b><span>収録問題</span></div>
-        <div class="stat s-live"><b>9</b><span>公開済み</span></div>
-        <div class="stat s-sched"><b>18</b><span>公開予定</span></div>
+        <div class="stat s-live"><b>10</b><span>公開済み</span></div>
+        <div class="stat s-sched"><b>17</b><span>公開予定</span></div>
         <div class="stat s-prep"><b>22</b><span>準備中</span></div>
       </div>
     </div>
@@ -249,6 +249,24 @@
   <footer>
     <p>解説動画は YouTube「高校物理 解説チャンネル」で公開しています。問題文・図は掲載していません。手元の問題を見ながらお使いください。</p>
   </footer>
+<script>
+(function(){
+  var sm = document.querySelector(".summary");
+  if (!sm) return;
+  var base = parseInt(sm.dataset.live, 10) || 0;
+  var at = (sm.dataset.sched || "").split(",").filter(Boolean);
+  function settle(){
+    var now = new Date();
+    var left = at.filter(function(t){ return new Date(t) > now; }).length;
+    var sl = sm.querySelector(".s-live b"), ss = sm.querySelector(".s-sched b");
+    if (sl) sl.textContent = base + at.length - left;
+    if (ss) ss.textContent = left;
+  }
+  settle();
+  setInterval(settle, 30000);
+  document.addEventListener("visibilitychange", function(){ if (!document.hidden) settle(); });
+})();
+</script>
 </div>
 <button class="to-top" id="toTop" aria-label="ページの先頭へ戻る">
   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">

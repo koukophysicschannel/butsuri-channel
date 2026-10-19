@@ -204,6 +204,7 @@
   /* 動画IDはあるが公開予定時刻がまだ来ていない（YouTube側は private）。
      日付は出すがクリックはできない＝見られないリンクを作らないため、
      枠線は is-prep と同じ破線。色だけ --accent にして「日程は決まっている」を示す。 */
+  .ex-meta span[hidden]{ display:none; }
   .q.is-sched{ background:transparent; border-style:dashed; }
   .q.is-sched .qrow{ cursor:default; }
   .q.is-sched .qrow:hover{ background:none; }
@@ -264,7 +265,7 @@
         <div class="stat s-live"><b>9</b><span>公開済み</span></div>
         <div class="stat s-sched"><b>0</b><span>公開予定</span></div>
       </div>
-      <div class="bar"><span style="flex:9" class="b-live"></span></div>
+      <div class="bar"><span style="flex:9" class="b-live"></span><span style="flex:0;display:none" class="b-sched"></span><span style="flex:0;display:none" class="b-prep"></span></div>
     </div>
   </header>
 
@@ -276,7 +277,7 @@
     </div>
     <section class="ex-sec" id="ex-y2026-rigaku">
       <div class="ex-head"><h3>理学部</h3></div>
-      <div class="ex-meta"><span>2月5日</span><span>全9問・空所54</span><span class="live">9問 公開済み</span></div>
+      <div class="ex-meta"><span>2月5日</span><span>全9問・空所54</span><span class="live">9問 公開済み</span><span class="sched" hidden>0問 公開予定</span></div>
       <section class="fs">
         <div class="fh">
           <h4><span class="fd"></span>第1問<span class="haiten mono">30点</span></h4>
@@ -417,6 +418,70 @@
   <footer>
     <p>解説動画は YouTube「高校物理 解説チャンネル」で公開しています。問題文・図は掲載していません。手元の問題を見ながらお使いください。</p>
   </footer>
+<script>
+(function(){
+  function qa(root, sel){ return Array.prototype.slice.call(root.querySelectorAll(sel)); }
+  function count(cards){
+    var n = {live: 0, sched: 0, prep: 0};
+    cards.forEach(function(q){
+      if (q.classList.contains("is-prep")) n.prep++;
+      else if (q.classList.contains("is-sched")) n.sched++;
+      else n.live++;
+    });
+    return n;
+  }
+  function setBar(bar, n){
+    if (!bar) return;
+    [["b-live", n.live], ["b-sched", n.sched], ["b-prep", n.prep]].forEach(function(p){
+      var el = bar.querySelector("." + p[0]);
+      if (!el) return;
+      el.style.flex = String(p[1]);
+      el.style.display = p[1] ? "" : "none";
+    });
+  }
+  function settle(){
+    var now = new Date();
+    qa(document, ".q.is-sched[data-pub]").forEach(function(q){
+      if (new Date(q.dataset.pub) > now) return;
+      q.classList.remove("is-sched");
+      var h = q.querySelector("h5");
+      if (h && !h.querySelector("a")){
+        var a = document.createElement("a");
+        a.className = "stretch";
+        a.href = q.dataset.url;
+        a.target = "_blank";
+        a.rel = "noopener";
+        if (q.dataset.shushi) a.title = q.dataset.shushi;
+        a.textContent = h.textContent;
+        h.textContent = "";
+        h.appendChild(a);
+      }
+    });
+
+    qa(document, ".ex-sec").forEach(function(sec){
+      var n = count(qa(sec, ".q"));
+      var l = sec.querySelector(".ex-meta .live"), s = sec.querySelector(".ex-meta .sched");
+      if (l) l.textContent = n.live + "問 公開済み";
+      if (s){ s.textContent = n.sched + "問 公開予定"; s.hidden = !n.sched; }
+    });
+    qa(document, ".yr-sec").forEach(function(sec){
+      var cards = qa(sec, ".q"), n = count(cards);
+      var fc = sec.querySelector(".yr-head .fc");
+      if (fc) fc.textContent = cards.length + "問 / " + n.live + "問 公開済み"
+                             + (n.sched ? "・" + n.sched + "問 公開予定" : "");
+    });
+    var all = count(qa(document, ".q"));
+    var sl = document.querySelector(".summary .s-live b"),
+        ss = document.querySelector(".summary .s-sched b");
+    if (sl) sl.textContent = all.live;
+    if (ss) ss.textContent = all.sched;
+    setBar(document.querySelector(".summary .bar"), all);
+  }
+  settle();
+  setInterval(settle, 30000);
+  document.addEventListener("visibilitychange", function(){ if (!document.hidden) settle(); });
+})();
+</script>
 </div>
 <button class="to-top" id="toTop" aria-label="ページの先頭へ戻る">
   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
