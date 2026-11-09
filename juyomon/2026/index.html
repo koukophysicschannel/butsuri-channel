@@ -269,6 +269,16 @@
     .qgrid{ grid-template-columns:1fr; }
     .stats{ gap:18px; }
   }
+
+  /* 年度切り替え（2026ページ・2027ページの最上部） */
+  .yswitch{ display:flex; align-items:center; gap:10px; padding:14px 0 0;
+            font-family:var(--mono); font-size:13px; }
+  .yswitch a{ color:var(--chalk-dim); padding:8px 4px; border-bottom:2px solid transparent; }
+  .yswitch a:hover{ color:var(--chalk); }
+  .yswitch a[aria-current="page"]{ color:var(--chalk); font-weight:700;
+                                   border-bottom-color:var(--chalk); }
+  .yswitch .ysep{ color:var(--line); }
+
   /* 右下固定の「上へ戻る」。一定量スクロールしたら .show が付いて現れる。
      GAS/slidekit/webparts.py が出どころ。トップの index.html と同一。 */
   .to-top{
@@ -291,6 +301,7 @@
 <body>
 <div class="grid-bg"></div>
 <div class="wrap">
+  <nav class="yswitch" aria-label="年度の切り替え"><a href="../2026/" aria-current="page">2026版</a><span class="ysep" aria-hidden="true">｜</span><a href="../2027/">2027版</a></nav>
 
   <nav class="crumb mono"><a href="../../">高校物理 解説チャンネル</a> / 重要問題集 / 2026</nav>
 
@@ -315,7 +326,7 @@
       <span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8.2" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="10" cy="14" r="1" fill="currentColor"/></svg></span>
       <div>
         <h2>他の年度版をお使いの方へ</h2>
-        <p><strong>問題番号は年度版が変わっても完全に一致します。全163問、全分野で読み替えは要りません。</strong>
+        <p><strong>2025版とは全163問・全分野で番号が同じで、読み替えは要りません。2027版では番号が変わった問題があります。2027版は上の切り替えから。</strong>
            中身が変わったのは <strong>13問だけ</strong>で、その問には一覧の中で
            「2026で差し替え」の目印をつけてあります。</p>
         <p class="cav"><a class="more" href="../2025/">2025 物理重要問題集の一覧を見る</a></p>
