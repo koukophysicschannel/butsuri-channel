@@ -285,10 +285,16 @@
   /* 年度切り替えタブ（2027・2026・2025ページの最上部） */
   .yswitch{ display:flex; align-items:center; gap:10px; padding:14px 0 0;
             font-family:var(--mono); font-size:13px; }
-  .yswitch a{ color:var(--chalk-dim); padding:8px 4px; border-bottom:2px solid transparent; }
-  .yswitch a:hover{ color:var(--chalk); }
-  .yswitch a[aria-current="page"]{ color:var(--chalk); font-weight:700;
-                                   border-bottom-color:var(--chalk); }
+  /* 選んでいないタブは、訪問済み・ホバー・押下でも同じ灰色のまま（3ページで色をそろえる。
+     スマホでは押したタブにホバーが残るので、ホバーで色を変えると1つだけ白く見える）。 */
+  .yswitch a, .yswitch a:link, .yswitch a:visited, .yswitch a:hover,
+  .yswitch a:focus, .yswitch a:active{ color:var(--chalk-dim); padding:8px 4px;
+                                       border-bottom:2px solid transparent; }
+  /* 今いる年度だけ、白の太字＋下線。 */
+  .yswitch a[aria-current="page"], .yswitch a[aria-current="page"]:visited,
+  .yswitch a[aria-current="page"]:hover, .yswitch a[aria-current="page"]:focus,
+  .yswitch a[aria-current="page"]:active{ color:var(--chalk); font-weight:700;
+                                          border-bottom-color:var(--chalk); }
   .yswitch .ysep{ color:var(--line); }
 
   /* 右下固定の「上へ戻る」。一定量スクロールしたら .show が付いて現れる。
