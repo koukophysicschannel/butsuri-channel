@@ -81,17 +81,17 @@ LANDMARKS = {
             "upd-row": 7,
         },
     },
-    # 重問 2027年版（力学・熱のみ、2026-11-09 追加）。同じ build_site_index.py の
+    # 重問 2027年版（力学・熱 2026-11-09 追加、波動・電磁気 2026-11-11 追加）。同じ build_site_index.py の
     # page_2027() が生成する。下の glob（163問・6分野）に当たると落ちるので、
-    # 完全一致で先に引き当てる。2027番号 1〜78、分野は力学・熱力学の2つ。
+    # 完全一致で先に引き当てる。2027番号 1〜146、分野は力学・熱力学・波動・電磁気の4つ。
     "juyomon/2027/index.html": {
-        "ids": ["filters", "qIndex", "nLive", "nSched", "onlyLive", "f-mech", "f-therm"],
+        "ids": ["filters", "qIndex", "nLive", "nSched", "onlyLive", "f-mech", "f-therm", "f-wave", "f-electro"],
         "min_counts": {
-            "q": 78,        # 1問1枚のカード
-            "qmain": 78,    # 本編の行
-            "fs": 2,        # 分野セクション（力学・熱力学）
-            "none": 2,      # 各分野の「該当なし」表示
-            "yswitch": 1,   # 「2026版｜2027版」の切り替え
+            "q": 146,       # 1問1枚のカード
+            "qmain": 146,   # 本編の行
+            "fs": 4,        # 分野セクション（力学・熱力学・波動・電磁気）
+            "none": 4,      # 各分野の「該当なし」表示
+            "yswitch": 1,   # 年度の切り替え
         },
         "css": {"再生マーク": '.qrow[data-state="live"] .st::before{ content:"\\25B6 "; }'},
     },
