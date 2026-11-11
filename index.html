@@ -107,6 +107,29 @@
   a{ color: inherit; text-decoration: none; }
   .wrap{ position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
+  /* 期間限定バナー「重要問題集2027 対応済み」（2026-12-11 まで。期限後はこの .promo 系のCSSと、本文の
+     <a class="promo"> のブロックを削除してよい）。動かない：アニメーション・transition は使わない。
+     目立たせるのは枠線と大きめの文字だけ。青(#479FF8)は「対応済み」バッジだけ（ポジティブな意味）。 */
+  .promo{
+    display:block; margin:20px 0 0; padding:16px 20px;
+    border:2px solid var(--accent); border-radius:14px;
+    background: var(--bg-alt); text-align:center;
+  }
+  .promo[hidden]{ display:none; }
+  .promo:hover{ background: var(--card); }
+  .promo:focus-visible{ outline:2px solid var(--chalk); outline-offset:3px; }
+  .promo-h{
+    display:block; font-size:clamp(20px, 3.2vw, 28px); font-weight:900;
+    line-height:1.45; color: var(--chalk); text-wrap:balance;
+  }
+  .promo-badge{
+    display:inline-block; background:#479FF8; color:#10151b;
+    font-size:0.62em; font-weight:900; letter-spacing:0.04em;
+    padding:1px 10px; margin:0 2px; border-radius:6px; vertical-align:0.12em;
+  }
+  .promo-nw{ white-space:nowrap; }   /* 語や「対応済み！」を行の途中で割らない（折り返す位置はこの単位の切れ目だけ） */
+  .promo-sub{ display:block; margin-top:6px; font-size:14px; color: var(--chalk-dim); text-wrap:balance; }
+
   header.hero{ padding: 88px 0 56px; text-align: center; }
   .eyebrow{
     display:inline-flex; align-items:center; gap:8px;
@@ -597,6 +620,26 @@
 <div class="grid-bg"></div>
 
 <div class="wrap">
+
+  <!-- ▼ 期間限定バナー「重要問題集2027 対応済み」。★表示期限: 2026-12-11 まで（この日の終わりまで表示）。
+       期限の日付は、下の data-until="2026-12-11" の1か所を直す。閲覧時に直下の script が日本時間の日付を見て、
+       期限を過ぎていたら自動で隠す。※JS が動かない環境では、期限が過ぎても出たままになる。
+       期限後は、このブロックと直下の script、<style> 内の .promo 系のCSSを削除してよい。 -->
+  <a class="promo" id="promo2027" href="juyomon/2027/" data-until="2026-12-11">
+    <span class="promo-h">重要問題集2027 <span class="promo-nw"><span class="promo-badge">対応済み</span>！</span>全163問・全分野</span>
+    <span class="promo-sub"><span class="promo-nw">2026版の動画を</span><span class="promo-nw">2027版の問題番号で引けます</span><span class="promo-nw">（順次公開）</span></span>
+  </a>
+  <script>
+    (function(){
+      var el = document.getElementById('promo2027');
+      if (!el) return;
+      try {
+        var until = el.getAttribute('data-until');                                   // 'YYYY-MM-DD'（この日の終わりまで表示）
+        var today = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10); // 日本時間の今日 'YYYY-MM-DD'
+        if (until && today > until) el.hidden = true;                                // 'YYYY-MM-DD' は文字列の大小＝日付の前後
+      } catch (e) {}
+    })();
+  </script>
 
   <header class="hero">
     <span class="eyebrow mono">KOUKOU BUTSURI KAISETSU</span>
